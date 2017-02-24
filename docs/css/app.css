@@ -37,6 +37,10 @@ iframe {
   color: inherit;
 }
 
+#navigation > .list-group {
+  margin: 0 -5px;
+}
+
 a {
   cursor: pointer;
 }

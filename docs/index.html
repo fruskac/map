@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Map Container</title>
+  <title>Fruškać</title>
 
   <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" />
@@ -24,9 +24,9 @@
     ФRuŠKać
   </a>
 
-  <div ng-repeat="item in data" class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
+  <ul class="list-group">
+    <li ng-repeat-start="item in data" class="list-group-item">
+      <h5 class="list-group-item-heading">
         <a ng-if="item.children" ng-click="$parent.open=!$parent.open" ng-init="$parent.open=item.getVisible()" class="pull-right">
           <i class="fa" ng-class="{'fa-chevron-right':!open,'fa-chevron-down':open}"></i>
         </a>
@@ -34,23 +34,23 @@
           <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
           {{ item.id }}
         </a>
-      </h3>
-    </div>
-
-    <ul ng-if="item.children" ng-show="open" class="list-group">
-      <li ng-repeat="item in item.children" ng-class="{'disabled':!$parent.item.getVisible()}" class="list-group-item">
-        <a ng-if="item.type === 'track'" ng-click="item.select()" class="btn btn-default btn-xs pull-right">
-          <i class="fa fa-crosshairs"></i>
-        </a>
-        <a ng-click="$parent.item.getVisible()&&item.setVisible(!item.getVisible())">
-          <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
-          {{ item.id }}
-          <small>{{ item.type }}</small>
-        </a>
-      </li>
-    </ul>
-
-  </div>
+      </h5>
+    </li>
+    <li ng-repeat-end ng-show="open">
+      <ul ng-if="item.children"  class="list-unstyled">
+        <li ng-repeat="item in item.children" ng-class="{'disabled':!$parent.item.getVisible()}" class="list-group-item">
+          <a ng-if="item.type === 'track'" ng-click="item.select()" class="btn btn-default btn-xs pull-right">
+            <i class="fa fa-crosshairs"></i>
+          </a>
+          <a ng-click="$parent.item.getVisible()&&item.setVisible(!item.getVisible())">
+            <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
+            {{ item.id }}
+            <small class="text-muted">{{ item.type }}</small>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
 
 </div>
 

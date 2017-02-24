@@ -13,16 +13,6 @@ html, body {
   margin: 0;
 }
 
-#control {
-  width: 300px;
-  float: left;
-}
-#control ~ #map {
-  width: calc(100% - 300px);
-  left: auto;
-  right: 0;
-}
-
 #chart {
   display: none;
   position: absolute;

@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="../src/css/app.css">
+  <style>
+    #control {
+      width: 300px;
+      float: left;
+    }
+    #control ~ #map,
+    #control ~ #chart {
+      width: calc(100% - 300px);
+      left: auto;
+      right: 0;
+    }
+  </style>
 </head>
 <body>
 
@@ -16,17 +28,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
 
 <script src="../../map-container/bower_components/marker-animate/markerAnimate.js"></script>
-<script src="js/googleMaps.extend.js"></script>
+<script src="../src/js/googleMaps.extend.js"></script>
 
-<script src="js/model/marker.js"></script>
-<script src="js/model/track.js"></script>
-<script src="js/model/kml.js"></script>
+<script src="../src/js/model/marker.js"></script>
+<script src="../src/js/model/track.js"></script>
+<script src="../src/js/model/kml.js"></script>
 
-<script src="js/service/chart.service.js"></script>
-<script src="js/service/map.service.js"></script>
-<script src="js/service/data.service.js"></script>
+<script src="../src/js/service/chart.service.js"></script>
+<script src="../src/js/service/map.service.js"></script>
+<script src="../src/js/service/data.service.js"></script>
 
-<script src="js/init.js"></script>
+<script src="../src/js/init.js"></script>
 
 
 <!-- TODO: remove control helper, as iFrame will be controller using exposed object -->

@@ -1,4 +1,4 @@
-var $control = $('<div id="control"></div>').insertBefore('#map');
+var $control = $('<div id="control"></div>').insertBefore('#chart');
 
 setTimeout(function () {
   compile(DataService.root(), $control);

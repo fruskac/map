@@ -1,0 +1,2453 @@
+[
+    {
+        "lat": 45.13225,
+        "lng": 19.39731,
+        "tag": "lakes",
+        "data": {
+            "title": "Lakes Jezero Bruje",
+            "link": "http://fruskac.net/rs/lokacije/jezera/bruje",
+            "image": "http://fruskac.net/sites/default/files/styles/thumbnail/public/thumb/locations/erdevik-jezero-bruje-34.jpg",
+            "description": "Jezero koje svojim šarmom godinama privlači kampere, pecaroše, bicikliste i kupače, predstavlja stanište raznih rektih ptica i puni se izvorskom vodom iz Banje.",
+            "id": 71
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.14311,
+        "lng": 19.91766,
+        "tag": "monasteries",
+        "data": {
+            "title": "Monasteries Manastir Velika Remeta",
+            "id": 136
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.13816,
+        "lng": 19.58348,
+        "tag": "misc",
+        "data": {
+            "title": "Misc Hotel Fruška gora",
+            "id": 97
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.05541,
+        "lng": 19.43696,
+        "tag": "springs",
+        "data": {
+            "title": "Springs Izvor Živa voda",
+            "id": 53
+        },
+        "options" : {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.066193,
+        "lng": 19.548613,
+        "tag": "lakes",
+        "data": {
+            "title": "Lakes Čalmanska jezera I, II, III",
+            "id": 55
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.11885,
+        "lng": 19.76547,
+        "tag": "monasteries",
+        "data": {
+            "title": "Monasteries Manastir Jazak",
+            "id": 95
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.135602,
+        "lng": 19.693822,
+        "tag": "picnic-areas",
+        "data": {
+            "title": "Picnic Areas Izletište Jabuka",
+            "id": 80
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.19466,
+        "lng": 19.65508,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Sveta Petka Trnova",
+            "id": 57
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.13578,
+        "lng": 19.6783,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Letenka",
+            "id": 85
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.07618,
+        "lng": 19.91678,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Međeš",
+            "id": 125
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.1769547,
+        "lng": 19.7220523,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Beočin",
+            "id": 44
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.16860,
+        "lng": 19.38804,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Ćoravac",
+            "id": 120
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.215095,
+        "lng": 19.616328,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Crvka Svetog Rudolfa ",
+            "id": 40
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.07244,
+        "lng": 19.61238,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Vranjaš",
+            "id": 112
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.125199,
+        "lng": 19.551692,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Šišatovac",
+            "id": 126
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.1046,
+        "lng": 19.91232,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Savina spomen-česma",
+            "id": 105
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.15052,
+        "lng": 19.71157,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Crveni čot",
+            "id": 49
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.15634,
+        "lng": 19.74833,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Brankovac",
+            "id": 42
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.044332,
+        "lng": 19.942608,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Dobrodol",
+            "id": 69
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.119442,
+        "lng": 19.940036,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Krušedol",
+            "id": 96
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.137705,
+        "lng": 19.902686,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Geološki lokalitet Grgeteg",
+            "id": 333
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.136633,
+        "lng": 19.684349,
+        "tag": "monuments",
+        "data":{
+            "title": "Monuments Spomen-obeležje Lepinjica",
+            "id": 335
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 288
+            }
+        }
+    },
+    {
+        "lat": 45.16631,
+        "lng": 19.80421,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Ledinačko jezero",
+            "id": 115
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.14300,
+        "lng": 19.27727,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Lipovača",
+            "id": 46
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.12631,
+        "lng": 19.53314,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Petkovica",
+            "id": 127
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.14316,
+        "lng": 19.70587,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Kraljev izvor",
+            "id": 83
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.196963,
+        "lng": 19.933212,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Dvorska bašta",
+            "id": 363
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.135483,
+        "lng": 19.858360,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Staro Hopovo",
+            "id": 134
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.17406,
+        "lng": 19.64632,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Andrevlje",
+            "id": 56
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.120394,
+        "lng": 19.734562,
+        "tag": "monuments",
+        "data":{
+            "title": "Monuments Pinkijev grob",
+            "id": 51
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 288
+            }
+        }
+    },
+    {
+        "lat": 45.13524,
+        "lng": 19.65269,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Popov čot",
+            "id": 88
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.16769,
+        "lng": 19.48428,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Đipša",
+            "id": 59
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.092791,
+        "lng": 19.605588,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Vranjaš",
+            "id": 102
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.1654,
+        "lng": 19.38650,
+        "tag": "fishponds",
+        "data":{
+            "title": "Fishponds Ribnjak Belan",
+            "id": 98
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 64
+            }
+        }
+    },
+    {
+        "lat": 45.14002,
+        "lng": 19.44889,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Dusa",
+            "id": 72
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.116919,
+        "lng": 19.707284,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Bešenovo",
+            "id": 50
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.135447,
+        "lng": 19.657551,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Mošin grob",
+            "id": 392
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.128104,
+        "lng": 19.427406,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Moharač",
+            "id": 74
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.183921,
+        "lng": 19.819874,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Popovičko jezero",
+            "id": 353
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.138894,
+        "lng": 19.595204,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Ciganski logor",
+            "id": 390
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.153556,
+        "lng": 19.896825,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Ubavac",
+            "id": 371
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.168266,
+        "lng": 19.264406,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Berkasovo",
+            "id": 47
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.159041,
+        "lng": 19.874085,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Astali",
+            "id": 320
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.18111,
+        "lng": 19.77297,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Pećina Beli Majdan",
+            "id": 110
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.067216,
+        "lng": 19.549312,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Begov izvor",
+            "id": 54
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.13669,
+        "lng": 19.69253,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Jabuka",
+            "id": 82
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.143916,
+        "lng": 19.775316,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Vrdnička kula",
+            "id": 144
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.14489,
+        "lng": 19.40000,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Banja",
+            "id": 70
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.13525,
+        "lng": 19.65098,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Grgurevačka pećina",
+            "id": 79
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.1438,
+        "lng": 19.5267,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Šućakov izvor",
+            "id": 67
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.136895,
+        "lng": 19.299242,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Privina glava",
+            "id": 108
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.10122,
+        "lng": 19.43638,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Bingulsko jezero",
+            "id": 52
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.143025,
+        "lng": 19.705911,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Kraljevac",
+            "id": 84
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.21154,
+        "lng": 19.57116,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Koruška",
+            "id": 135
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.110338,
+        "lng": 19.743182,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Mala Remeta",
+            "id": 121
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.204570,
+        "lng": 19.911633,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Podvezirac",
+            "id": 362
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.143493,
+        "lng": 19.579241,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Bobelikova livada",
+            "id": 339
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.203678,
+        "lng": 19.720297,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Dvorac porodice Špicer",
+            "id": 315
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.16556,
+        "lng": 19.40196,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Čalambir",
+            "id": 117
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.128444,
+        "lng": 19.784495,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Vrdnik",
+            "id": 143
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.222782,
+        "lng": 19.844132,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Zmajev muzej",
+            "id": 388
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.15248,
+        "lng": 19.41995,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Sveti Đorđe",
+            "id": 76
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.046528,
+        "lng": 20.024214,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Ljukovo",
+            "id": 92
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.14991,
+        "lng": 19.82943,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Iriški venac",
+            "id": 89
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.17466,
+        "lng": 19.72241,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Rasadnik",
+            "id": 45
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.13434,
+        "lng": 19.64164,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Sveti Đurđe",
+            "id": 87
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.169280,
+        "lng": 19.750001,
+        "tag": "waterfalls",
+        "data":{
+            "title": "Waterfalls Dumbovački vodopad",
+            "id": 43
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 224
+            }
+        }
+    },
+    {
+        "lat": 45.14577,
+        "lng": 19.57982,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Sofijini izvori",
+            "id": 128
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.12843,
+        "lng": 19.42850,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Moharač",
+            "id": 75
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.184564,
+        "lng": 19.822482,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Popovica",
+            "id": 349
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.114614,
+        "lng": 19.766217,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Jazak",
+            "id": 94
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.199766,
+        "lng": 19.93514,
+        "tag": "lookouts",
+        "data":{
+            "title": "Lookouts Duškov vidikovac",
+            "id": 359
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 128
+            }
+        }
+    },
+    {
+        "lat": 45.13728,
+        "lng": 19.85805,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Staro Hopovo",
+            "id": 133
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.127142,
+        "lng": 19.511164,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Kuveždin",
+            "id": 61
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.158310,
+        "lng": 19.861890,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Repetitor Iriški venac",
+            "id": 91
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.069990,
+        "lng": 19.99730,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Šelevrenac",
+            "id": 104
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.16614,
+        "lng": 19.38581,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Martinov Do",
+            "id": 100
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.205573,
+        "lng": 19.766519,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Arheološko nalazište Gradina",
+            "id": 341
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.17543,
+        "lng": 19.47351,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Jelica",
+            "id": 138
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.17271,
+        "lng": 19.45448,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Dolina",
+            "id": 137
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.13892,
+        "lng": 19.62976,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Papratski Do",
+            "id": 86
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.157908,
+        "lng": 19.334717,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Sot",
+            "id": 129
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.169336,
+        "lng": 19.917636,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Stražilovo",
+            "id": 365
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.13555,
+        "lng": 19.6920667,
+        "tag": "monuments",
+        "data":{
+            "title": "Monuments Spomen-obeležje Jabuka",
+            "id": 81
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 288
+            }
+        }
+    },
+    {
+        "lat": 45.169613,
+        "lng": 20.008495,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Rimski grad",
+            "id": 329
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.17175,
+        "lng": 19.80774,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Zvečan",
+            "id": 132
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.15240,
+        "lng": 19.83998,
+        "tag": "monuments",
+        "data":{
+            "title": "Monuments Spomen-obeležje Sloboda",
+            "id": 90
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 288
+            }
+        }
+    },
+    {
+        "lat": 45.179902,
+        "lng": 19.467301,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Kapavica",
+            "id": 141
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.166666,
+        "lng": 20.021541,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Četiri kamena",
+            "id": 323
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.137996,
+        "lng": 19.902007,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Grgeteg",
+            "id": 78
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.185871,
+        "lng": 19.819653,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Popovica",
+            "id": 352
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.15778,
+        "lng": 19.77784,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Zmajevac",
+            "id": 116
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.0382207,
+        "lng": 19.6640789,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Sportski aerodrom",
+            "id": 374
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.18103,
+        "lng": 19.77137,
+        "tag": "monuments",
+        "data":{
+            "title": "Monuments Spomen-obeležje Kamenolom",
+            "id": 123
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 288
+            }
+        }
+    },
+    {
+        "lat": 45.138299,
+        "lng": 19.683874,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Široki Do",
+            "id": 337
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.16592,
+        "lng": 19.39601,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Majdan crveni",
+            "id": 99
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.17051,
+        "lng": 19.78161,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Rakovački kamenolom",
+            "id": 124
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.15814,
+        "lng": 19.49471,
+        "tag": "meadows",
+        "data":{
+            "title": "Meadows Livada Kišelez",
+            "id": 3
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 32
+            }
+        }
+    },
+    {
+        "lat": 45.16567,
+        "lng": 19.77521,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Stari Majdan",
+            "id": 145
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.06485,
+        "lng": 19.79359,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Kudoš",
+            "id": 122
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.226195,
+        "lng": 19.841655,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Dvorac Marčibanji–Karačonji",
+            "id": 343
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.144678,
+        "lng": 19.619375,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Vila Ravne",
+            "id": 367
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.153556,
+        "lng": 19.896825,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Hajdučki izvor",
+            "id": 369
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.1803901,
+        "lng": 19.8304738,
+        "tag": "lookouts",
+        "data":{
+            "title": "Lookouts Vidikovac Orlovo bojište",
+            "id": 345
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 128
+            }
+        }
+    },
+    {
+        "lat": 45.13343,
+        "lng": 19.47979,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Selo Pištinci",
+            "id": 131
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.168305,
+        "lng": 20.021613,
+        "tag": "monuments",
+        "data":{
+            "title": "Monuments Spomen-obeležje Rugovo",
+            "id": 327
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 288
+            }
+        }
+    },
+    {
+        "lat": 45.1801878,
+        "lng": 19.6520091,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Testera",
+            "id": 58
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.12808,
+        "lng": 19.84636,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Novo Hopovo",
+            "id": 106
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.166906,
+        "lng": 19.913919,
+        "tag": "monuments",
+        "data":{
+            "title": "Monuments Brankov grob",
+            "id": 357
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 288
+            }
+        }
+    },
+    {
+        "lat": 45.165503,
+        "lng": 20.020098,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Kozarica",
+            "id": 331
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.104149,
+        "lng": 19.713207,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Beli kamen",
+            "id": 48
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.032777,
+        "lng": 19.821770,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Borkovac",
+            "id": 113
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.177645,
+        "lng": 19.818356,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Perina pećina",
+            "id": 347
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.14561,
+        "lng": 19.40698,
+        "tag": "meadows",
+        "data":{
+            "title": "Meadows Livada Kosača",
+            "id": 73
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 32
+            }
+        }
+    },
+    {
+        "lat": 45.140132,
+        "lng": 19.477373,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Perinac",
+            "id": 130
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.185335,
+        "lng": 19.815025,
+        "tag": "lookouts",
+        "data":{
+            "title": "Lookouts Dunavski vidikovac",
+            "id": 355
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 128
+            }
+        }
+    },
+    {
+        "lat": 45.175253,
+        "lng": 19.871623,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Vilina vodica",
+            "id": 321
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.169323,
+        "lng": 20.017558,
+        "tag": "misc",
+        "data":{
+            "title": "Misc Čortanovačka plaža",
+            "id": 325
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 160
+            }
+        }
+    },
+    {
+        "lat": 45.16291,
+        "lng": 19.710427,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Osovlje",
+            "id": 317
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.16642,
+        "lng": 19.45709,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Vrbara",
+            "id": 142
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.16139,
+        "lng": 19.45703,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Kamarište",
+            "id": 140
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.17550,
+        "lng": 19.47343,
+        "tag": "fishponds",
+        "data":{
+            "title": "Fishponds Ribnjak Jelica",
+            "id": 139
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 64
+            }
+        }
+    },
+    {
+        "lat": 45.15968,
+        "lng": 19.38478,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Orašje",
+            "id": 119
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.15683,
+        "lng": 19.38123,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Cigljana",
+            "id": 118
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.037356,
+        "lng": 19.820139,
+        "tag": "lakes",
+        "data":{
+            "title": "Lakes Jezero Borkovac",
+            "id": 114
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": 45.181218,
+        "lng": 19.771260,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Kamenolom",
+            "id": 111
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.092605,
+        "lng": 19.604821,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Vranjaš",
+            "id": 103
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    },
+    {
+        "lat": 45.04318,
+        "lng": 20.02895,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Ljukovo",
+            "id": 93
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.14900,
+        "lng": 19.41459,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Tri oraja",
+            "id": 77
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.12371,
+        "lng": 19.47692,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Virevi",
+            "id": 68
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.1414,
+        "lng": 19.5333667,
+        "tag": "monuments",
+        "data":{
+            "title": "Monuments Spomen-obeležje Rohalj baze",
+            "id": 66
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 288
+            }
+        }
+    },
+    {
+        "lat": 45.14111,
+        "lng": 19.52946,
+        "tag": "picnic-areas",
+        "data":{
+            "title": "Picnic Areas Izletište Rohalj baze",
+            "id": 65
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 96
+            }
+        }
+    },
+    {
+        "lat": 45.14501,
+        "lng": 19.52217,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Parcovljev izvor",
+            "id": 62
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.13754,
+        "lng": 19.52364,
+        "tag": "springs",
+        "data":{
+            "title": "Springs Izvor Kunjat",
+            "id": 60
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 192
+            }
+        }
+    },
+    {
+        "lat": 45.152814,
+        "lng": 19.816788,
+        "tag": "monuments",
+        "data":{
+            "title": "Monuments Spomen-obeležje Ivan Stambolić",
+            "id": 375
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 288
+            }
+        }
+    },
+    {
+        "lat": 45.184697,
+        "lng": 19.774143,
+        "tag": "monasteries",
+        "data":{
+            "title": "Monasteries Manastir Rakovac",
+            "id": 146
+        },
+        "options": {
+            "icon_data": {
+                "url": "http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 98,
+                "y": 256
+            }
+        }
+    }
+]

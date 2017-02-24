@@ -1,0 +1,42 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+#control {
+  width: 300px;
+  float: left;
+}
+#control ~ #map {
+  width: calc(100% - 300px);
+  left: auto;
+  right: 0;
+}
+
+#chart {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: red;
+}
+
+#chart.on {
+  display: block;
+}
+
+#chart.on ~ #map {
+  height: calc(100% - 300px);;
+}

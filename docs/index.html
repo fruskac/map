@@ -18,29 +18,40 @@
 <body ng-controller="AppCtrl">
 
 <div id="navigation">
+
   <a id="navigation-brand">
     <i class="fa fa-map-o"></i>
     ФRuŠKać
   </a>
-  <ul class="nav nav-pills nav-stacked">
-    <li ng-repeat="item in data" >
-      <a ng-click="item.setVisible(!item.getVisible())">
-        <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
-        {{ item.id }}
-      </a>
-      <ul ng-if="item.children" class="nav nav-pills nav-stacked">
-        <li ng-repeat="item in item.children" ng-class="{'disabled':!$parent.item.getVisible()}">
-          <a ng-click="item.setVisible(!item.getVisible())">
-            -
-            <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
-            {{ item.id }}
-            <small>{{ item.type }}</small>
-          </a>
-          <a ng-if="item.type === 'track'" ng-click="item.select()">Select</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
+
+  <div ng-repeat="item in data" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a ng-if="item.children" ng-click="$parent.open=!$parent.open" ng-init="$parent.open=item.getVisible()" class="pull-right">
+          <i class="fa" ng-class="{'fa-chevron-right':!open,'fa-chevron-down':open}"></i>
+        </a>
+        <a ng-click="item.setVisible(!item.getVisible())">
+          <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
+          {{ item.id }}
+        </a>
+      </h3>
+    </div>
+
+    <ul ng-if="item.children" ng-show="open" class="list-group">
+      <li ng-repeat="item in item.children" ng-class="{'disabled':!$parent.item.getVisible()}" class="list-group-item">
+        <a ng-if="item.type === 'track'" ng-click="item.select()" class="btn btn-default btn-xs pull-right">
+          <i class="fa fa-crosshairs"></i>
+        </a>
+        <a ng-click="$parent.item.getVisible()&&item.setVisible(!item.getVisible())">
+          <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
+          {{ item.id }}
+          <small>{{ item.type }}</small>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
 </div>
 
 <iframe src="../src/index.html" id="map"></iframe>

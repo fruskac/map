@@ -27,6 +27,7 @@ iframe {
   width: 320px;
   border-right: 1px solid;
   height: 100%;
+  overflow: auto;
 }
 
 #navigation #navigation-brand {

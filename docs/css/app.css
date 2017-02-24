@@ -41,7 +41,7 @@ iframe {
   position: fixed;
   width: 320px;
   border-right: 1px solid;
-  height: 100%;
+  height: calc(100% - 60px);
   overflow-x: hidden;
   overflow-y: auto;
   top: 60px;

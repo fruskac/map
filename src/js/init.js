@@ -26,6 +26,15 @@ load('marathon', TYPES.TRACK, true);
 load('protection', TYPES.KML, true);
 load('time', TYPES.MARKER, true);
 
+window.FruskacMap = {
+  ready: function (callback) {
+    callback();
+  },
+  getData: function () {
+    return DataService.getSelectors();
+  }
+};
+
 /**
  * Initialize layers
  *

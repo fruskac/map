@@ -4,18 +4,6 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/app.css">
-  <style>
-    #control {
-      width: 300px;
-      float: left;
-    }
-    #control ~ #map,
-    #control ~ #chart {
-      width: calc(100% - 300px);
-      left: auto;
-      right: 0;
-    }
-  </style>
 </head>
 <body>
 
@@ -41,8 +29,24 @@
 <script src="js/init.js"></script>
 
 
+
 <!-- TODO: remove control helper, as iFrame will be controller using exposed object -->
+<!--
 <script src="controlHelper.js"></script>
+<style>
+  #control {
+    width: 300px;
+    float: left;
+  }
+  #control ~ #map,
+  #control ~ #chart {
+    width: calc(100% - 300px);
+    left: auto;
+    right: 0;
+  }
+</style>
+-->
+
 
 </body>
 </html>

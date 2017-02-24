@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Map Container</title>
+
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="css/app.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+<body ng-controller="AppCtrl">
+
+<div id="navigation">
+  <a id="navigation-brand">
+    <i class="fa fa-map-o"></i>
+    ФRuŠKać
+  </a>
+  <ul class="nav nav-pills nav-stacked">
+    <li ng-repeat="item in data" >
+      <a ng-click="item.setVisible(!item.getVisible())">
+        <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
+        {{ item.id }}
+      </a>
+      <ul ng-if="item.children" class="nav nav-pills nav-stacked">
+        <li ng-repeat="item in item.children" ng-class="{'disabled':!$parent.item.getVisible()}">
+          <a ng-click="item.setVisible(!item.getVisible())">
+            -
+            <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
+            {{ item.id }}
+            <small>{{ item.type }}</small>
+          </a>
+          <a ng-if="item.type === 'track'" ng-click="item.select()">Select</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<iframe src="../src/index.html" id="map"></iframe>
+
+</body>
+</html>

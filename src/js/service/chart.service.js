@@ -10,7 +10,9 @@ function ChartService(container) {
   this.container = container;
   this.map = MapService.getMap();
 
-  $(this.container).append('<a onclick="ChartService.setVisible(false)">x</a>');
+  $(this.container)
+    .append('<button onclick="ChartService.setVisible(false)">X</button>')
+    .append('<div id="chart_content"></div>');
 
 }
 
@@ -78,7 +80,7 @@ ChartService.prototype = {
         };
 
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.AreaChart(document.getElementById('chart'));
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_content'));
         chart.draw(data, options);
 
         google.visualization.events.addListener(chart, 'onmouseover', function (coords) {

@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   width: 100%;
   margin: 0;
+  overflow: hidden;
 }
 
 #map {
@@ -21,6 +22,16 @@ html, body {
   width: 100%;
   height: 300px;
   background: red;
+}
+
+#chart > button {
+  position: absolute;
+  z-index: 1;
+}
+#chart > div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 #chart.on {

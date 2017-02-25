@@ -19,10 +19,12 @@ var MapService = new MapService(new google.maps.Map(document.getElementById('map
   }
 }));
 
-var MarkerClusterer = new MarkerClusterer(MapService.getMap(), [], {
+var Clusterer = new MarkerClusterer(MapService.getMap(), [], {
   gridSize: 50,
   imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 });
+
+Clusterer.enabled = true;
 
 var ChartService = new ChartService(document.getElementById('chart'));
 
@@ -37,6 +39,22 @@ window.FruskacMap = {
   },
   getData: function () {
     return DataService.getSelectors();
+  },
+  clustering: function (value) {
+    if (value === undefined) { // act as getter
+      return Clusterer.enabled;
+    } else { // act as setter
+      Clusterer.enabled = value;
+      if (value) {
+        Clusterer.setMaxZoom(null);
+        Clusterer.setGridSize(50);
+      } else {
+        Clusterer.setMaxZoom(1);
+        Clusterer.setGridSize(1);
+      }
+      Clusterer.resetViewport();
+      Clusterer.redraw();
+    }
   }
 };
 

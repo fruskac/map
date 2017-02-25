@@ -68,7 +68,7 @@ MapService.prototype = {
 
       marker.setVisible(visible);
 
-      MarkerClusterer.addMarker(marker);
+      Clusterer.addMarker(marker);
 
       resolve(marker);
 
@@ -142,9 +142,9 @@ MapService.prototype = {
     if (object.hasOwnProperty('position')) {//marker
       object.setVisible(value);
       if (value) {
-        MarkerClusterer.addMarker(object);
+        Clusterer.addMarker(object);
       } else {
-        MarkerClusterer.removeMarker(object);
+        Clusterer.removeMarker(object);
       }
     } else if (object.hasOwnProperty('strokeColor')) {
       object.setVisible(value);

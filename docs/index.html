@@ -30,6 +30,14 @@
 <div id="navigation-overlay" ng-class="{'in':navigationOpen}" ng-click="navigationOpen=false"></div>
 <div id="navigation" ng-class="{'in':navigationOpen}">
   <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <a ng-click="clustering(!clustering())">
+          <i class="fa" ng-class="{'fa-check-square':clustering(),'fa-square-o':!clustering()}"></i>
+          Clustering
+        </a>
+      </div>
+    </div>
     <div ng-repeat="item in data" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">

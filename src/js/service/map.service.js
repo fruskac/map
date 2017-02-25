@@ -68,6 +68,8 @@ MapService.prototype = {
 
       marker.setVisible(visible);
 
+      MarkerClusterer.addMarker(marker);
+
       resolve(marker);
 
     })
@@ -137,8 +139,13 @@ MapService.prototype = {
    * @param value
    */
   setVisible: function (object, value) {
-    if (object.hasOwnProperty('position')) {
+    if (object.hasOwnProperty('position')) {//marker
       object.setVisible(value);
+      if (value) {
+        MarkerClusterer.addMarker(object);
+      } else {
+        MarkerClusterer.removeMarker(object);
+      }
     } else if (object.hasOwnProperty('strokeColor')) {
       object.setVisible(value);
     } else if (object.hasOwnProperty('suppressInfoWindows')) {

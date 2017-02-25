@@ -18,7 +18,7 @@
 <body ng-controller="AppCtrl">
 
 <div id="header">
-  <a ng-click="navigationOpen=!navigationOpen" class="navigation-toggle">
+  <a ng-click="navigationOpen=!navigationOpen" class="navigation-toggle hidden visible-xs-inline-block">
     <i class="fa fa-bars"></i>
   </a>
   <a class="brand">
@@ -27,8 +27,8 @@
   </a>
 </div>
 
+<div id="navigation-overlay" ng-class="{'in':navigationOpen}" ng-click="navigationOpen=false"></div>
 <div id="navigation" ng-class="{'in':navigationOpen}">
-
   <div class="panel-group">
     <div ng-repeat="item in data" class="panel panel-default">
       <div class="panel-heading">
@@ -62,36 +62,6 @@
       </div>
     </div>
   </div>
-
-<!--
-  <ul class="list-group">
-    <li ng-repeat-start="item in data" class="list-group-item">
-      <h5 class="list-group-item-heading">
-        <a ng-if="item.children" ng-click="$parent.open=!$parent.open" ng-init="$parent.open=item.getVisible()" class="pull-right">
-          <i class="fa" ng-class="{'fa-chevron-right':!open,'fa-chevron-down':open}"></i>
-        </a>
-        <a ng-click="item.setVisible(!item.getVisible())">
-          <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
-          {{ item.id }}
-        </a>
-      </h5>
-    </li>
-    <li ng-repeat-end ng-show="open">
-      <ul ng-if="item.children"  class="list-unstyled">
-        <li ng-repeat="item in item.children" ng-class="{'disabled':!$parent.item.getVisible()}" class="list-group-item">
-          <a ng-if="item.type === 'track'" ng-click="item.select()" class="btn btn-default btn-xs pull-right">
-            <i class="fa fa-crosshairs"></i>
-          </a>
-          <a ng-click="$parent.item.getVisible()&&item.setVisible(!item.getVisible())">
-            <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
-            {{ item.id }}
-            <small class="text-muted">{{ item.type }}</small>
-          </a>
-        </li>
-      </ul>
-    </li>
-  </ul>-->
-
 </div>
 
 <iframe src="../src/index.html" id="map"></iframe>

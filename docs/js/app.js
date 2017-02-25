@@ -13,6 +13,7 @@
       FruskacMap.ready(function () {
         $scope.$apply(function () {
           $scope.data = FruskacMap.getData();
+          $scope.setClusterer = FruskacMap.setClusterer;
         })
       });
     }

@@ -48,13 +48,33 @@ iframe {
   left: -320px;
 }
 
+@media (min-width: 768px) {
+  #navigation {
+    left: 0;
+  }
+}
+
 #navigation.in {
   left: 0;
 }
 
+#navigation-overlay {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 60px);
+  background: rgba(0,0,0,0.5);
+}
+
+#navigation-overlay.in {
+  display: block;
+}
+
 @media (min-width: 768px) {
-  #navigation {
-    left: 0;
+  #navigation-overlay {
+    display: none !important;
   }
 }
 

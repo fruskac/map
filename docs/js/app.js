@@ -14,6 +14,7 @@
         $scope.$apply(function () {
           $scope.data = FruskacMap.getData();
           $scope.clustering = FruskacMap.clustering;
+          $scope.type = FruskacMap.type;
         })
       });
     }

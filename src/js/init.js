@@ -55,6 +55,13 @@ window.FruskacMap = {
       Clusterer.resetViewport();
       Clusterer.redraw();
     }
+  },
+  type: function (value) {
+    if (value === undefined) { // act as getter
+      return MapService.getMap().getMapTypeId();
+    } else { // act as setter
+      return MapService.getMap().setMapTypeId(value);
+    }
   }
 };
 

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -13,10 +12,11 @@
 <script src="//maps.google.com/maps/api/js?key=AIzaSyDP5opMTc3z2n4eyGZhVgcmhm9wSu4Jxgk"></script>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marker-animate-unobtrusive/0.2.8/vendor/markerAnimate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer_compiled.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
 
-<script src="../../map-container/bower_components/marker-animate/markerAnimate.js"></script>
-<script src="js/googleMaps.extend.js"></script>
+<script src="js/extend/googleMaps.js"></script>
 
 <script src="js/model/marker.js"></script>
 <script src="js/model/track.js"></script>
@@ -27,10 +27,6 @@
 <script src="js/service/data.service.js"></script>
 
 <script src="js/init.js"></script>
-
-
-<!-- TODO: remove control helper, as iFrame will be controller using exposed object -->
-<script src="controlHelper.js"></script>
 
 </body>
 </html>

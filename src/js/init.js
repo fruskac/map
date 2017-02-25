@@ -19,12 +19,26 @@ var MapService = new MapService(new google.maps.Map(document.getElementById('map
   }
 }));
 
+var MarkerClusterer = new MarkerClusterer(MapService.getMap(), [], {
+  gridSize: 50,
+  imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+});
+
 var ChartService = new ChartService(document.getElementById('chart'));
 
 load('locations', TYPES.MARKER, true);
 load('marathon', TYPES.TRACK, true);
 load('protection', TYPES.KML, true);
 load('time', TYPES.MARKER, true);
+
+window.FruskacMap = {
+  ready: function (callback) {
+    callback();
+  },
+  getData: function () {
+    return DataService.getSelectors();
+  }
+};
 
 /**
  * Initialize layers

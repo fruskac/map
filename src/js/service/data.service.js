@@ -41,6 +41,7 @@ DataService.prototype = {
     }
 
     if (type) {
+      object.type = type;
       return MapService.add(value, type, visible).then(function (object) {
         container.push(object);
       });
@@ -237,8 +238,12 @@ DataService.prototype = {
 
     MapService.focus(object.children[0])
 
+  },
+
+  getSelectors: function () {
+    return getSelectorsForContainer(DataService.root());
   }
-}
+};
 
 /**
  * Get parent selector
@@ -288,3 +293,53 @@ function parseSelector(selector) {
 
 }
 
+function getSelectorsForContainer(items, selector) {
+
+  selector = parseSelector(selector);
+
+  var children = [];
+
+  items.forEach(function (item) {
+
+    if (!item.id) {
+      return;
+    }
+
+    var itemSelector;
+    if (selector) {
+      itemSelector = parseSelector([selector, item.id]);
+    } else {
+      itemSelector = item.id
+    }
+
+    var object = {
+      id: item.id,
+      getVisible: function () {
+        return DataService.getState(itemSelector);
+      },
+      setVisible: function (value) {
+        return DataService.setState(itemSelector, value);
+      },
+      select: function () {
+        return DataService.select(itemSelector);
+      }
+    };
+
+    if (item.type) {
+      object.type = item.type;
+    }
+
+    if (item.children && item.children.length) {
+      var subChildren = getSelectorsForContainer(item.children, itemSelector);
+      if (subChildren && subChildren.length) {
+        object.children = subChildren;
+      }
+    }
+
+    children.push(object)
+
+  });
+
+  return children;
+
+}

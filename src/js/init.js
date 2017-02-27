@@ -1,12 +1,8 @@
 'use strict';
 
-window.fruskac = (function () {
-    return new fruskac();
-})();
+var Storage = new fruskac.StorageService();
 
-var Storage = new StorageService();
-
-var Map = new MapService(new google.maps.Map(document.getElementById('map'), {
+var Map = new fruskac.MapService(new google.maps.Map(document.getElementById('map'), {
     center: new google.maps.LatLng(45.167031, 19.69677),
     zoom: 10,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
@@ -26,7 +22,7 @@ var Clusterer = new MarkerClusterer(Map.getMap(), [], {
 
 Clusterer.enabled = true;
 
-var ChartService = new ChartService(document.getElementById('chart'));
+fruskac.prototype.Chart = new fruskac.ChartService(document.getElementById('chart'));
 
 load('locations', fruskac.TYPE.MARKER, true);
 load('marathon', fruskac.TYPE.TRACK, true);

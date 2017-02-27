@@ -5,13 +5,14 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var htmlmin = require('gulp-htmlmin');
 var clean = require('gulp-clean');
-var jsdoc = require('gulp-jsdoc3');
+var jsdoc = require('gulp-jsdoc');
+var replace = require('gulp-replace');
 
 gulp.task('default', [
     'less',
     'js',
     'html',
-    'docs'
+    //'docs'
 ], function () {
 });
 
@@ -36,11 +37,12 @@ gulp.task('js', function () {
         'src/js/service/storage.service.js',
         'src/js/init.js'
     ])
+        .pipe(concat('map.min.js'))
         .pipe(uglify({
             mangle: true,
             compress: true
         }))
-        .pipe(concat('map.min.js'))
+        .pipe(replace(/'use strict';/g, ''))
         .pipe(gulp.dest('./dist'));
 });
 
@@ -67,10 +69,9 @@ gulp.task('docs:clean', function () {
 gulp.task('docs', [
     'docs:clean'
 ], function () {
-    var config = require('./jsdoc.json');
+    //var config = require('./jsdoc.json');
     gulp.src([
-        'README.md',
         './src/**/*.js'
-    ], {read: false})
-        .pipe(jsdoc(config));
+    ])
+        .pipe(jsdoc('./docs'));
 });

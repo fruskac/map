@@ -1,0 +1,1 @@
+body,html{overflow:hidden}#map,body,html{height:100%;width:100%;margin:0}#map{top:0}#chart,#map{position:absolute;left:0}#chart{display:none;bottom:0;width:100%;height:300px}#chart>button{position:absolute;z-index:1}#chart>div{position:absolute;height:100%;width:100%}#chart.on{display:block}#chart~#map{height:-200%}

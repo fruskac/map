@@ -35,10 +35,11 @@ html, body {
 
   &.on {
     display: block;
-  }
 
-  & ~ #map {
-    height: calc(100% - 300px);;
+    & + #map {
+      height: ~"calc(100% - 300px)";
+    }
+
   }
 
 }

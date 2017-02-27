@@ -1,5 +1,9 @@
 'use strict';
 
+window.fruskac = (function () {
+    return new fruskac();
+})();
+
 var Storage = new StorageService();
 
 var Map = new MapService(new google.maps.Map(document.getElementById('map'), {

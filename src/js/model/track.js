@@ -23,6 +23,6 @@
         })();
     };
 
-    fruskac.Track = Track;
+    fruskac.prototype.Track = Track;
 
 })(fruskac);

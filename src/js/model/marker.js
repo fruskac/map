@@ -86,6 +86,6 @@
         return html;
     }
 
-    fruskac.Marker = Marker;
+    fruskac.prototype.Marker = Marker;
 
 })(window.fruskac, google);

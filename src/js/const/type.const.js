@@ -8,6 +8,8 @@
         KML: 'kml'
     };
 
-    fruskac.TYPE = TYPE;
+    fruskac.prototype.TYPE = (function () {
+        return TYPE;
+    })();
 
 })(window.fruskac);

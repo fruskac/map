@@ -24,6 +24,6 @@
         })();
     }
 
-    fruskac.Kml = Kml;
+    fruskac.prototype.Kml = Kml;
 
 })(window.fruskac, google);

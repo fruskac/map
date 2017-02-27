@@ -1,7 +1,11 @@
 'use strict';
 
-(function (global) {
+(function (window) {
 
-    global.fruskac = {};
+    var fruskac = function () {};
+
+    fruskac.prototype = fruskac;
+
+    window.fruskac = fruskac;
 
 })(window);

@@ -1,9 +1,9 @@
 'use strict';
 
-(function (fruskac, google) {
+fruskac.Kml = (function () {
 
     /**
-     *
+     * KML
      * @param {string} url
      * @param {Object|undefined} options
      * @constructor
@@ -11,7 +11,7 @@
     function Kml(url, options) {
 
         options = _.extend({
-            map: fruskac.map.getMap(),
+            map: gmap,
             preserveViewport: true,
             suppressInfoWindows: true,
             data: {
@@ -24,6 +24,6 @@
         })();
     }
 
-    fruskac.prototype.Kml = Kml;
+    return Kml;
 
-})(window.fruskac, google);
+})();

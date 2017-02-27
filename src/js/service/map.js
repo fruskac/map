@@ -1,21 +1,17 @@
 'use strict';
 
-(function (window, fruskac) {
+fruskac.Map = (function () {
 
     /**
      * Map
      * @param {google.maps.Map} map
      * @constructor
      */
-    var Map = function (map) {
-
-        this.map = map;
-
+    function Map(map) {
         this.infoWindow = new google.maps.InfoWindow({
             content: "holding..."
         });
-
-    };
+    }
 
     Map.prototype = {
 
@@ -70,7 +66,7 @@
 
                 marker.setVisible(visible);
 
-                fruskac.clusterer.addMarker(marker);
+                clusterer.addMarker(marker);
 
                 resolve(marker);
 
@@ -142,23 +138,15 @@
             if (object.hasOwnProperty('position')) {//marker
                 object.setVisible(value);
                 if (value) {
-                    fruskac.clusterer.addMarker(object);
+                    clusterer.addMarker(object);
                 } else {
-                    fruskac.clusterer.removeMarker(object);
+                    clusterer.removeMarker(object);
                 }
             } else if (object.hasOwnProperty('strokeColor')) {
                 object.setVisible(value);
             } else if (object.hasOwnProperty('suppressInfoWindows')) {
-                object.setMap(value ? this.map : null);
+                object.setMap(value ? gmap : null);
             }
-        },
-
-        /**
-         * Get map
-         * @returns {*}
-         */
-        getMap: function () {
-            return this.map;
         },
 
         /**
@@ -166,8 +154,8 @@
          * @param {Object} object
          */
         focus: function (object) {
-            this.map.fitBounds(object.getBounds());
-            fruskac.chart.show(object.getPath())
+            gmap.fitBounds(object.getBounds());
+            chart.show(object.getPath())
         },
 
         /**
@@ -199,11 +187,11 @@
             var self = this;
 
             self.infoWindow.setContent(html);
-            self.infoWindow.open(self.map, marker);
+            self.infoWindow.open(gmap, marker);
 
         }
     };
 
-    fruskac.Map = Map;
+    return Map;
 
-})(window, window.fruskac);
+})();

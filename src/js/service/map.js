@@ -8,6 +8,7 @@
      * @constructor
      */
     var Map = function (map) {
+
         this.map = map;
 
         this.infoWindow = new google.maps.InfoWindow({
@@ -174,12 +175,15 @@
          * @param {google.maps.LatLng} point
          */
         placeMarker: function (point) {
-            if (!this.marker) {
-                this.marker = new fruskac.Marker({
+
+            var self = this;
+
+            if (!self.marker) {
+                self.marker = new fruskac.Marker({
                     position: point
                 });
             } else {
-                this.marker.animateTo(point, {
+                self.marker.animateTo(point, {
                     duration: 50
                 });
             }
@@ -191,8 +195,12 @@
          * @param {google.maps.Marker} marker
          */
         showInfoWindow: function (html, marker) {
-            this.infoWindow.setContent(html);
-            this.infoWindow.open(this.map, marker)
+
+            var self = this;
+
+            self.infoWindow.setContent(html);
+            self.infoWindow.open(self.map, marker);
+
         }
     };
 

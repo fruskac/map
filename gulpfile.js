@@ -10,7 +10,8 @@ var jsdoc = require('gulp-jsdoc3');
 gulp.task('default', [
     'less',
     'js',
-    'html'
+    'html',
+    'docs'
 ], function () {
 });
 

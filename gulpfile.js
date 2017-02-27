@@ -42,10 +42,10 @@ paths.scripts = [
 gulp.task('js', function () {
     return gulp.src(paths.scripts)
         .pipe(concat('map.min.js'))
-        /*.pipe(uglify({
+        .pipe(uglify({
             mangle: true,
             compress: true
-        }))*/
+        }))
         .pipe(replace(/'use strict';/g, ''))
         .pipe(gulp.dest('./dist'));
 });

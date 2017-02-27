@@ -4,8 +4,8 @@ var cssnano = require('gulp-cssnano');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var htmlmin = require('gulp-htmlmin');
-var groc = require("gulp-groc");
 var clean = require('gulp-clean');
+var jsdoc = require('gulp-jsdoc3');
 
 gulp.task('default', [
     'less',
@@ -63,9 +63,10 @@ gulp.task('docs:clean', function () {
 gulp.task('docs', [
     'docs:clean'
 ], function () {
-    return gulp
-        .src("./src/js/**/*.js")
-        .pipe(groc({
-            out: 'docs'
-        }));
+    var config = require('./jsdoc.json');
+    gulp.src([
+        'README.md',
+        './src/**/*.js'
+    ], {read: false})
+        .pipe(jsdoc(config));
 });

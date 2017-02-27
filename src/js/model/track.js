@@ -1,6 +1,6 @@
 'use strict';
 
-(function (fruskac) {
+fruskac.Track = (function () {
 
     /**
      * Track
@@ -8,10 +8,10 @@
      * @param {Object|undefined} options
      * @constructor
      */
-    var Track = function (options) {
+    function Track(options) {
 
         options = _.extend({
-            map: fruskac.map.getMap(),
+            map: gmap,
             geodesic: true,
             strokeColor: 'rgb(51, 102, 204)',
             strokeOpacity: 1.0,
@@ -21,8 +21,8 @@
         return (function () {
             return new google.maps.Polyline(options)
         })();
-    };
+    }
 
-    fruskac.prototype.Track = Track;
+    return Track;
 
-})(fruskac);
+})();

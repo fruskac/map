@@ -1,6 +1,6 @@
 'use strict';
 
-(function (window, fruskac) {
+fruskac.Storage = (function () {
     /**
      * @param {Array} Initial data array
      * @constructor
@@ -44,7 +44,7 @@
 
             if (type) {
                 object.type = type;
-                return fruskac.map.add(value, type, visible).then(function (object) {
+                return map.add(value, type, visible).then(function (object) {
                     container.push(object);
                 });
             } else {
@@ -170,7 +170,7 @@
                             self.setVisible([selector, child.id], value)
                         } else {
                             var v = value ? object.on : false;
-                            fruskac.map.setVisible(child, v);
+                            map.setVisible(child, v);
                         }
                     })
                 }
@@ -237,12 +237,12 @@
 
             }
 
-            fruskac.map.focus(object.children[0])
+            map.focus(object.children[0])
 
         },
 
         getSelectors: function () {
-            return getSelectorsForContainer(fruskac.storage.root());
+            return getSelectorsForContainer(storage.root());
         }
     };
 
@@ -319,13 +319,13 @@
             var object = {
                 id: item.id,
                 getVisible: function () {
-                    return fruskac.storage.getState(itemSelector);
+                    return storage.getState(itemSelector);
                 },
                 setVisible: function (value) {
-                    return fruskac.storage.setState(itemSelector, value);
+                    return storage.setState(itemSelector, value);
                 },
                 select: function () {
-                    return fruskac.storage.select(itemSelector);
+                    return storage.select(itemSelector);
                 }
             };
 
@@ -349,6 +349,6 @@
     }
 
 
-    fruskac.Storage = Storage;
+    return Storage;
 
-})(window, window.fruskac);
+})();

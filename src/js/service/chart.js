@@ -1,23 +1,22 @@
 'use strict';
 
-(function (window, $, google, fruskac) {
+fruskac.Chart = (function () {
 
     /**
      *
      * @param {HTMLDomElement} container
      * @constructor
      */
-    var Chart = function (container) {
+    function Chart(container) {
         var self = this;
         self.visible = false;
         self.container = container;
-        self.map = fruskac.map.getMap();
 
         $(self.container)
-            .append('<button onclick="fruskac.chart.setVisible(false)">X</button>')
+            .append('<button onclick="chart.setVisible(false)">X</button>')
             .append('<div id="chart_content"></div>');
 
-    };
+    }
 
     Chart.prototype = {
 
@@ -40,9 +39,9 @@
                 $(self.container).removeClass(className);
             }
 
-            var center = self.map.getCenter();
-            google.maps.event.trigger(self.map, "resize");
-            self.map.setCenter(center);
+            var center = gmap.getCenter();
+            google.maps.event.trigger(gmap, "resize");
+            gmap.setCenter(center);
 
         },
 
@@ -93,7 +92,7 @@
                     chart.draw(data, options);
 
                     google.visualization.events.addListener(chart, 'onmouseover', function (coords) {
-                        fruskac.map.placeMarker(points.getAt(coords.row))
+                        map.placeMarker(points.getAt(coords.row))
                     });
 
                     $(window).on('resize', function () {
@@ -170,6 +169,6 @@
         return x * Math.PI / 180;
     }
 
-    fruskac.prototype.Chart = Chart;
+    return Chart;
 
-})(window, jQuery, google, window.fruskac);
+})();

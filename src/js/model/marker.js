@@ -1,16 +1,16 @@
 'use strict';
 
-(function (fruskac, google) {
+fruskac.Marker = (function () {
 
     /**
      *
      * @param {Object|undefined} options
      * @constructor
      */
-    var Marker = function (options) {
+    function Marker(options) {
 
         options = _.extend({
-            map: fruskac.map.getMap()
+            map: gmap
         }, options);
 
         var icon;
@@ -64,7 +64,7 @@
             return marker;
 
         })();
-    };
+    }
 
     /**
      * Creates HTML that will be presented on InfoWindow
@@ -86,6 +86,6 @@
         return html;
     }
 
-    fruskac.prototype.Marker = Marker;
+    return Marker;
 
-})(window.fruskac, google);
+})();

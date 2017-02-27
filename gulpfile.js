@@ -36,7 +36,8 @@ paths.scripts = [
     'src/js/service/chart.js',
     'src/js/service/map.js',
     'src/js/service/storage.js',
-    'src/js/init.js'
+    'src/js/init.js',
+    'src/js/api.js'
 ];
 
 gulp.task('js', function () {

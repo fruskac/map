@@ -45,7 +45,6 @@
         #navigation {
             position: fixed;
             width: 320px;
-            border-right: 1px solid;
             height: calc(100% - 60px);
             overflow-x: hidden;
             overflow-y: auto;
@@ -99,6 +98,7 @@
                 window.FruskacMap = document.getElementById('map').contentWindow.FruskacMap;
                 FruskacMap.ready(function () {
                     $scope.$apply(function () {
+                        $scope.ready = true;
                         $scope.data = FruskacMap.getData();
                         $scope.clustering = FruskacMap.clustering;
                         $scope.type = FruskacMap.type;
@@ -123,7 +123,13 @@
 
 <div id="navigation-overlay" ng-class="{'in':navigationOpen}" ng-click="navigationOpen=false"></div>
 <div id="navigation" ng-class="{'in':navigationOpen}">
-    <div class="panel-group">
+    <div ng-hide="ready" class="panel panel-default">
+        <div class="panel-body">
+            <i class="fa fa-circle-o-notch fa-spin"></i>
+            Loading...
+        </div>
+    </div>
+    <div class="panel-group" ng-show="ready">
         <div class="panel panel-default">
             <ul class="list-group">
                 <li class="list-group-item">

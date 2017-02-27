@@ -5,13 +5,16 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var htmlmin = require('gulp-htmlmin');
 var clean = require('gulp-clean');
-var jsdoc = require('gulp-jsdoc3');
+var jsdoc = require('gulp-jsdoc');
+var replace = require('gulp-replace');
+
+var paths = {};
 
 gulp.task('default', [
     'less',
     'js',
     'html',
-    'docs'
+    //'docs'
 ], function () {
 });
 
@@ -23,21 +26,27 @@ gulp.task('less', function () {
         .pipe(gulp.dest('./dist'));
 });
 
+paths.scripts = [
+    'src/js/_bootstrap.js',
+    'src/js/const/*.js',
+    'src/js/extend/googleMaps.js',
+    'src/js/model/marker.js',
+    'src/js/model/track.js',
+    'src/js/model/kml.js',
+    'src/js/service/chart.js',
+    'src/js/service/map.js',
+    'src/js/service/storage.js',
+    'src/js/init.js'
+];
+
 gulp.task('js', function () {
-    return gulp.src([
-        'src/js/extend/googleMaps.js',
-        'src/js/model/marker.js',
-        'src/js/model/track.js',
-        'src/js/model/kml.js',
-        'src/js/service/chart.service.js',
-        'src/js/service/map.service.js',
-        'src/js/service/storage.service.js',
-        'src/js/init.js'
-    ])
-        .pipe(uglify({
-            mangle: true
-        }))
+    return gulp.src(paths.scripts)
         .pipe(concat('map.min.js'))
+        /*.pipe(uglify({
+            mangle: true,
+            compress: true
+        }))*/
+        .pipe(replace(/'use strict';/g, ''))
         .pipe(gulp.dest('./dist'));
 });
 
@@ -64,10 +73,13 @@ gulp.task('docs:clean', function () {
 gulp.task('docs', [
     'docs:clean'
 ], function () {
-    var config = require('./jsdoc.json');
+    //var config = require('./jsdoc.json');
     gulp.src([
-        'README.md',
         './src/**/*.js'
-    ], {read: false})
-        .pipe(jsdoc(config));
+    ])
+        .pipe(jsdoc('./docs'));
+});
+
+gulp.task('watch', function() {
+    gulp.watch(paths.scripts, ['js']);
 });

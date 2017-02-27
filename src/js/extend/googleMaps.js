@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Extend google.maps.Polyline to get bounds based on path
  *

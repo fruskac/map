@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * MapService
  * @param {google.maps.Map} map
@@ -27,17 +29,17 @@ MapService.prototype = {
 
         return new Promise(function (resolve) {
             switch (type) {
-                case TYPES.MARKER:
+                case fruskac.TYPE.MARKER:
                     return self.addMarker(data, visible).then(function (marker) {
                         resolve(marker);
                     });
                     break;
-                case TYPES.TRACK:
+                case fruskac.TYPE.TRACK:
                     return self.addTrack(data, visible).then(function (track) {
                         resolve(track);
                     });
                     break;
-                case TYPES.KML:
+                case fruskac.TYPE.KML:
                     return self.addKml(data, visible).then(function (kml) {
                         resolve(kml);
                     });
@@ -56,7 +58,7 @@ MapService.prototype = {
     addMarker: function (data, visible) {
 
         return new Promise(function (resolve) {
-            var marker = new Marker({
+            var marker = new fruskac.Marker({
                 position: new google.maps.LatLng(data.lat, data.lng),
                 title: data.data.title,
                 icon: data.tag,
@@ -92,7 +94,7 @@ MapService.prototype = {
                     points.push(p);
                 });
 
-                var track = new Track({
+                var track = new fruskac.Track({
                     path: points
                 });
 
@@ -116,7 +118,7 @@ MapService.prototype = {
 
         return new Promise(function (resolve) {
 
-            var kml = new Kml(data.url);
+            var kml = new fruskac.Kml(data.url);
 
             if (!visible) {
                 kml.setMap(null);
@@ -171,7 +173,7 @@ MapService.prototype = {
      */
     placeMarker: function (point) {
         if (!this.marker) {
-            this.marker = new Marker({
+            this.marker = new fruskac.Marker({
                 position: point
             });
         } else {

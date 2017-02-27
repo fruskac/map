@@ -1,21 +1,29 @@
-/**
- *
- * @param {string} url
- * @param {Object|undefined} options
- * @constructor
- */
-function Kml(url, options) {
+'use strict';
 
-    options = _.extend({
-        map: Map.getMap(),
-        preserveViewport: true,
-        suppressInfoWindows: true,
-        data: {
-            type: 'kml'
-        }
-    }, options);
+(function (fruskac, google) {
 
-    return (function () {
-        return new google.maps.KmlLayer(url, options)
-    })();
-}
+    /**
+     *
+     * @param {string} url
+     * @param {Object|undefined} options
+     * @constructor
+     */
+    function Kml(url, options) {
+
+        options = _.extend({
+            map: Map.getMap(),
+            preserveViewport: true,
+            suppressInfoWindows: true,
+            data: {
+                type: 'kml'
+            }
+        }, options);
+
+        return (function () {
+            return new google.maps.KmlLayer(url, options)
+        })();
+    }
+
+    fruskac.Kml = Kml;
+
+})(window.fruskac, google);

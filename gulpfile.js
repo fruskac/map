@@ -25,6 +25,8 @@ gulp.task('less', function () {
 
 gulp.task('js', function () {
     return gulp.src([
+        'src/js/_bootstrap.js',
+        'src/js/const/*.js',
         'src/js/extend/googleMaps.js',
         'src/js/model/marker.js',
         'src/js/model/track.js',
@@ -35,7 +37,8 @@ gulp.task('js', function () {
         'src/js/init.js'
     ])
         .pipe(uglify({
-            mangle: true
+            mangle: true,
+            compress: true
         }))
         .pipe(concat('map.min.js'))
         .pipe(gulp.dest('./dist'));

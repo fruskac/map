@@ -1,8 +1,4 @@
-var TYPES = {
-    MARKER: 'marker',
-    TRACK: 'track',
-    KML: 'kml'
-};
+'use strict';
 
 var Storage = new StorageService();
 
@@ -28,10 +24,10 @@ Clusterer.enabled = true;
 
 var ChartService = new ChartService(document.getElementById('chart'));
 
-load('locations', TYPES.MARKER, true);
-load('marathon', TYPES.TRACK, true);
-load('protection', TYPES.KML, true);
-load('time', TYPES.MARKER, true);
+load('locations', fruskac.TYPE.MARKER, true);
+load('marathon', fruskac.TYPE.TRACK, true);
+load('protection', fruskac.TYPE.KML, true);
+load('time', fruskac.TYPE.MARKER, true);
 
 window.FruskacMap = {
     /**

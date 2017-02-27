@@ -14,7 +14,7 @@ gulp.task('default', [
     'less',
     'js',
     'html',
-    //'docs'
+    'docs'
 ], function () {
 });
 
@@ -74,7 +74,6 @@ gulp.task('docs:clean', function () {
 gulp.task('docs', [
     'docs:clean'
 ], function () {
-    //var config = require('./jsdoc.json');
     gulp.src([
         './src/**/*.js'
     ])

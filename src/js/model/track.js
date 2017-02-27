@@ -4,7 +4,7 @@ fruskac.Track = (function () {
 
     /**
      * Track
-     *
+     * @global
      * @param {Object|undefined} options
      * @constructor
      */

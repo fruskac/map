@@ -1,6 +1,10 @@
 'use strict';
 
+/**
+ * @global
+ */
 window.api = {
+
     /**
      * Fired when ready
      * @param {Function} callback
@@ -8,6 +12,7 @@ window.api = {
     ready: function (callback) {
         callback();
     },
+
     /**
      * Get data
      * @returns {Object[]}
@@ -15,6 +20,7 @@ window.api = {
     getData: function () {
         return storage.getSelectors();
     },
+
     /**
      *
      * Get / Set clustering state
@@ -37,6 +43,7 @@ window.api = {
             clusterer.redraw();
         }
     },
+
     /**
      * Get / Set map type
      * @param {undefined|string} value

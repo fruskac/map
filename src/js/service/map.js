@@ -3,11 +3,11 @@
 (function (window, fruskac) {
 
     /**
-     * MapService
+     * Map
      * @param {google.maps.Map} map
      * @constructor
      */
-    var MapService = function (map) {
+    var Map = function (map) {
         this.map = map;
 
         this.infoWindow = new google.maps.InfoWindow({
@@ -16,7 +16,7 @@
 
     };
 
-    MapService.prototype = {
+    Map.prototype = {
 
         /**
          * Add object to map
@@ -69,7 +69,7 @@
 
                 marker.setVisible(visible);
 
-                Clusterer.addMarker(marker);
+                fruskac.clusterer.addMarker(marker);
 
                 resolve(marker);
 
@@ -141,9 +141,9 @@
             if (object.hasOwnProperty('position')) {//marker
                 object.setVisible(value);
                 if (value) {
-                    Clusterer.addMarker(object);
+                    fruskac.clusterer.addMarker(object);
                 } else {
-                    Clusterer.removeMarker(object);
+                    fruskac.clusterer.removeMarker(object);
                 }
             } else if (object.hasOwnProperty('strokeColor')) {
                 object.setVisible(value);
@@ -166,7 +166,7 @@
          */
         focus: function (object) {
             this.map.fitBounds(object.getBounds());
-            fruskac.Chart.show(object.getPath())
+            fruskac.chart.show(object.getPath())
         },
 
         /**
@@ -196,6 +196,6 @@
         }
     };
 
-    fruskac.MapService = MapService;
+    fruskac.Map = Map;
 
 })(window, window.fruskac);

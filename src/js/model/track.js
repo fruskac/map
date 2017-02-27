@@ -11,7 +11,7 @@
     var Track = function (options) {
 
         options = _.extend({
-            map: Map.getMap(),
+            map: fruskac.map.getMap(),
             geodesic: true,
             strokeColor: 'rgb(51, 102, 204)',
             strokeOpacity: 1.0,

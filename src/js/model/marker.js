@@ -10,7 +10,7 @@
     var Marker = function (options) {
 
         options = _.extend({
-            map: Map.getMap()
+            map: fruskac.map.getMap()
         }, options);
 
         var icon;

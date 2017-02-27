@@ -4,21 +4,21 @@
 
     /**
      *
-     * @param {DOMElement} container
+     * @param {HTMLDomElement} container
      * @constructor
      */
-    var ChartService = function (container) {
+    var Chart = function (container) {
         this.visible = false;
         this.container = container;
-        this.map = Map.getMap();
+        this.map = fruskac.map.getMap();
 
         $(this.container)
-            .append('<button onclick="ChartService.setVisible(false)">X</button>')
+            .append('<button onclick="fruskac.chart.setVisible(false)">X</button>')
             .append('<div id="chart_content"></div>');
 
     };
 
-    ChartService.prototype = {
+    Chart.prototype = {
 
         /**
          * Set chart container visibility
@@ -88,7 +88,7 @@
                     chart.draw(data, options);
 
                     google.visualization.events.addListener(chart, 'onmouseover', function (coords) {
-                        Map.placeMarker(points.getAt(coords.row))
+                        fruskac.map.placeMarker(points.getAt(coords.row))
                     });
 
                 });
@@ -162,6 +162,6 @@
         return x * Math.PI / 180;
     }
 
-    fruskac.prototype.ChartService = ChartService;
+    fruskac.prototype.Chart = Chart;
 
 })(window, jQuery, google, window.fruskac);

@@ -5,14 +5,14 @@
      * @param {Array} Initial data array
      * @constructor
      */
-    function StorageService(data) {
+    function Storage(data) {
         if (!data) {
             data = [];
         }
         this.data = data;
     }
 
-    StorageService.prototype = {
+    Storage.prototype = {
 
         /**
          * Add object to storage
@@ -44,7 +44,7 @@
 
             if (type) {
                 object.type = type;
-                return Map.add(value, type, visible).then(function (object) {
+                return fruskac.map.add(value, type, visible).then(function (object) {
                     container.push(object);
                 });
             } else {
@@ -170,7 +170,7 @@
                             self.setVisible([selector, child.id], value)
                         } else {
                             var v = value ? object.on : false;
-                            Map.setVisible(child, v);
+                            fruskac.map.setVisible(child, v);
                         }
                     })
                 }
@@ -219,28 +219,30 @@
          */
         select: function (selector) {
 
+            var self = this;
+
             selector = parseSelector(selector);
 
-            var object = this.get(selector);
+            var object = self.get(selector);
 
             if (hasParentSelector(selector)) {
 
-                var parent = Storage.get(getParentSelector(selector));
+                var parent = self.get(getParentSelector(selector));
 
-                Storage.setState(parent.id, true);
+                self.setState(parent.id, true);
 
                 parent.children.forEach(function (child) {
-                    Storage.setState([parent.id, child.id], child.id === object.id);
+                    self.setState([parent.id, child.id], child.id === object.id);
                 });
 
             }
 
-            Map.focus(object.children[0])
+            fruskac.map.focus(object.children[0])
 
         },
 
         getSelectors: function () {
-            return getSelectorsForContainer(Storage.root());
+            return getSelectorsForContainer(fruskac.storage.root());
         }
     };
 
@@ -317,13 +319,13 @@
             var object = {
                 id: item.id,
                 getVisible: function () {
-                    return Storage.getState(itemSelector);
+                    return fruskac.storage.getState(itemSelector);
                 },
                 setVisible: function (value) {
-                    return Storage.setState(itemSelector, value);
+                    return fruskac.storage.setState(itemSelector, value);
                 },
                 select: function () {
-                    return Storage.select(itemSelector);
+                    return fruskac.storage.select(itemSelector);
                 }
             };
 
@@ -347,6 +349,6 @@
     }
 
 
-    fruskac.StorageService = StorageService;
+    fruskac.Storage = Storage;
 
 })(window, window.fruskac);

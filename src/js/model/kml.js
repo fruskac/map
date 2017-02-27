@@ -11,7 +11,7 @@
     function Kml(url, options) {
 
         options = _.extend({
-            map: Map.getMap(),
+            map: fruskac.map.getMap(),
             preserveViewport: true,
             suppressInfoWindows: true,
             data: {

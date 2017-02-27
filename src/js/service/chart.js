@@ -8,11 +8,12 @@
      * @constructor
      */
     var Chart = function (container) {
-        this.visible = false;
-        this.container = container;
-        this.map = fruskac.map.getMap();
+        var self = this;
+        self.visible = false;
+        self.container = container;
+        self.map = fruskac.map.getMap();
 
-        $(this.container)
+        $(self.container)
             .append('<button onclick="fruskac.chart.setVisible(false)">X</button>')
             .append('<div id="chart_content"></div>');
 
@@ -27,30 +28,34 @@
          */
         setVisible: function (value) {
 
-            this.visible = value;
+            var self = this;
+
+            self.visible = value;
 
             var className = 'on';
 
-            if (this.visible) {
-                $(this.container).addClass(className);
+            if (self.visible) {
+                $(self.container).addClass(className);
             } else {
-                $(this.container).removeClass(className);
+                $(self.container).removeClass(className);
             }
 
-            var center = this.map.getCenter();
-            google.maps.event.trigger(this.map, "resize");
-            this.map.setCenter(center);
+            var center = self.map.getCenter();
+            google.maps.event.trigger(self.map, "resize");
+            self.map.setCenter(center);
 
         },
 
         /**
          * Show chart
          *
-         * @param {array} points
+         * @param {Array} points
          */
         show: function (points) {
 
-            this.setVisible(true);
+            var self = this;
+
+            self.setVisible(true);
 
             var elevator = new google.maps.ElevationService;
 
@@ -91,9 +96,12 @@
                         fruskac.map.placeMarker(points.getAt(coords.row))
                     });
 
+                    $(window).on('resize', function () {
+                        chart.draw(data, options);
+                    });
+
                 });
             });
-
 
         }
     };

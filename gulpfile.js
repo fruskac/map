@@ -80,6 +80,13 @@ gulp.task('docs', [
         .pipe(jsdoc('./docs'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', [
+    'watch:js',
+    //'watch:less',
+    //'watch:html',
+    //'watch:docs'
+]);
+
+gulp.task('watch:js', function() {
     gulp.watch(paths.scripts, ['js']);
 });

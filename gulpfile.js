@@ -42,7 +42,7 @@ gulp.task('js', function () {
 });
 
 gulp.task('html', function () {
-    return gulp.src('./src/angularjs.html')
+    return gulp.src('./src/index.html')
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,

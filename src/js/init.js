@@ -1,27 +1,27 @@
 var TYPES = {
-  MARKER: 'marker',
-  TRACK: 'track',
-  KML: 'kml'
+    MARKER: 'marker',
+    TRACK: 'track',
+    KML: 'kml'
 };
 
-var DataService = new DataService();
+var Storage = new StorageService();
 
-var MapService = new MapService(new google.maps.Map(document.getElementById('map'), {
-  center: new google.maps.LatLng(45.167031, 19.69677),
-  zoom: 10,
-  mapTypeId: google.maps.MapTypeId.TERRAIN,
-  mapTypeControl: false,
-  zoomControlOptions: {
-    position: google.maps.ControlPosition.LEFT_BOTTOM
-  },
-  streetViewControlOptions: {
-    position: google.maps.ControlPosition.LEFT_BOTTOM
-  }
+var Map = new MapService(new google.maps.Map(document.getElementById('map'), {
+    center: new google.maps.LatLng(45.167031, 19.69677),
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
+    mapTypeControl: false,
+    zoomControlOptions: {
+        position: google.maps.ControlPosition.LEFT_BOTTOM
+    },
+    streetViewControlOptions: {
+        position: google.maps.ControlPosition.LEFT_BOTTOM
+    }
 }));
 
-var Clusterer = new MarkerClusterer(MapService.getMap(), [], {
-  gridSize: 50,
-  imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+var Clusterer = new MarkerClusterer(Map.getMap(), [], {
+    gridSize: 50,
+    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 });
 
 Clusterer.enabled = true;
@@ -34,74 +34,92 @@ load('protection', TYPES.KML, true);
 load('time', TYPES.MARKER, true);
 
 window.FruskacMap = {
-  ready: function (callback) {
-    callback();
-  },
-  getData: function () {
-    return DataService.getSelectors();
-  },
-  clustering: function (value) {
-    if (value === undefined) { // act as getter
-      return Clusterer.enabled;
-    } else { // act as setter
-      Clusterer.enabled = value;
-      if (value) {
-        Clusterer.setMaxZoom(null);
-        Clusterer.setGridSize(50);
-      } else {
-        Clusterer.setMaxZoom(1);
-        Clusterer.setGridSize(1);
-      }
-      Clusterer.resetViewport();
-      Clusterer.redraw();
+    /**
+     * Fired when ready
+     * @param {Function} callback
+     */
+    ready: function (callback) {
+        callback();
+    },
+    /**
+     * Get data
+     * @returns {Object[]}
+     */
+    getData: function () {
+        return Storage.getSelectors();
+    },
+    /**
+     *
+     * Get / Set clustering state
+     * @param {undefined|boolean} value
+     * @returns {*|boolean}
+     */
+    clustering: function (value) {
+        if (value === undefined) { // act as getter
+            return Clusterer.enabled;
+        } else { // act as setter
+            Clusterer.enabled = value;
+            if (value) {
+                Clusterer.setMaxZoom(null);
+                Clusterer.setGridSize(50);
+            } else {
+                Clusterer.setMaxZoom(1);
+                Clusterer.setGridSize(1);
+            }
+            Clusterer.resetViewport();
+            Clusterer.redraw();
+        }
+    },
+    /**
+     * Get / Set map type
+     * @param {undefined|string} value
+     * @returns {*}
+     */
+    type: function (value) {
+        if (value === undefined) { // act as getter
+            return Map.getMap().getMapTypeId();
+        } else { // act as setter
+            return Map.getMap().setMapTypeId(value);
+        }
     }
-  },
-  type: function (value) {
-    if (value === undefined) { // act as getter
-      return MapService.getMap().getMapTypeId();
-    } else { // act as setter
-      return MapService.getMap().setMapTypeId(value);
-    }
-  }
 };
 
 /**
  * Initialize layers
- *
- * @param {String} name
- * @param {String} type
- * @param {Boolean} visible
+ * @param {string} name
+ * @param {string} type
+ * @param {boolean} visible
  */
 function load(name, type, visible) {
 
-  var resource = '../data/' + name + '.json';
+    var resource = '../data/' + name + '.json';
 
-  DataService.add({
-    id: name,
-    visible: visible,
-    on: visible
-  }).then(function () {
-    $.get(resource).success(function (response) {
-      response.forEach(function (item) {
-        var container = DataService.get([name, item.tag]);
-        var promise;
-        if (container) {
-          promise = new Promise(function (resolve) {
-            resolve();
-          })
-        } else {
-          promise = DataService.add({
-            id: item.tag,
-            visible: visible,
-            on: visible,
-            type: type
-          }, name)
-        }
-        promise.then(function () {
-          DataService.add(item, [name, item.tag], type, visible);
-        });
-      })
-    })
-  });
+    Storage.add({
+        id: name,
+        visible: visible,
+        on: visible
+    }).then(function () {
+        $.get(resource).success(function (response) {
+            response.forEach(function (item) {
+                var container = Storage.get([name, item.tag]);
+                var promise;
+                if (container) {
+                    promise = new Promise(function (resolve) {
+                        resolve();
+                    })
+                } else {
+                    promise = Storage.add({
+                        id: item.tag,
+                        visible: visible,
+                        on: visible,
+                        type: type
+                    }, name)
+                }
+                promise.then(function () {
+                    Storage.add(item, [name, item.tag], type, visible);
+                });
+            })
+        })
+    });
 
 }

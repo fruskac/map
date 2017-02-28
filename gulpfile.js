@@ -5,7 +5,7 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var htmlmin = require('gulp-htmlmin');
 var clean = require('gulp-clean');
-var jsdoc = require('gulp-jsdoc');
+var jsdoc = require('gulp-jsdoc3');
 var replace = require('gulp-replace');
 
 var paths = {};
@@ -18,15 +18,19 @@ gulp.task('default', [
 ], function () {
 });
 
+paths.less = [
+    './src/less/*.less'
+];
+
 gulp.task('less', function () {
-    return gulp.src('./src/less/*.less')
+    return gulp.src(paths.less)
         .pipe(less())
         .pipe(cssnano())
         .pipe(concat('map.min.css'))
         .pipe(gulp.dest('./dist'));
 });
 
-paths.scripts = [
+paths.js = [
     'src/js/_bootstrap.js',
     'src/js/const/*.js',
     'src/js/extend/googleMaps.js',
@@ -41,7 +45,7 @@ paths.scripts = [
 ];
 
 gulp.task('js', function () {
-    return gulp.src(paths.scripts)
+    return gulp.src(paths.js)
         .pipe(concat('map.min.js'))
         .pipe(uglify({
             mangle: true,
@@ -64,20 +68,20 @@ gulp.task('html', function () {
 gulp.task('docs:clean', function () {
     return gulp
         .src([
-            'docs/src'
-        ], {
-            read: false
-        })
+            'docs/*'
+        ], { read: false })
         .pipe(clean());
 });
 
 gulp.task('docs', [
     'docs:clean'
 ], function () {
+    var config = require('./jsdoc.json');
     gulp.src([
+        './README.md',
         './src/**/*.js'
-    ])
-        .pipe(jsdoc('./docs'));
+    ], { read: false })
+        .pipe(jsdoc(config));
 });
 
 gulp.task('watch', [
@@ -88,5 +92,5 @@ gulp.task('watch', [
 ]);
 
 gulp.task('watch:js', function() {
-    gulp.watch(paths.scripts, ['js']);
+    gulp.watch(paths.js, ['js']);
 });

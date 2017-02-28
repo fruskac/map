@@ -4,6 +4,7 @@ fruskac.Kml = (function () {
 
     /**
      * KML
+     * @global
      * @param {string} url
      * @param {Object|undefined} options
      * @constructor

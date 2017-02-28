@@ -9,7 +9,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.2",
     "gulp-htmlmin": "^3.0.0",
-    "gulp-jsdoc": "^0.1.5",
+    "gulp-jsdoc3": "^1.0.1",
     "gulp-less": "^3.3.0",
     "gulp-replace": "^0.5.4",
     "gulp-uglify": "^2.0.0"

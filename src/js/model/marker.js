@@ -3,7 +3,7 @@
 fruskac.Marker = (function () {
 
     /**
-     *
+     * @global
      * @param {Object|undefined} options
      * @constructor
      */

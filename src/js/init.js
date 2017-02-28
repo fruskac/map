@@ -34,6 +34,7 @@ load('time', fruskac.TYPE.MARKER, true);
 
 /**
  * Initialize layers
+ * @global
  * @param {string} name
  * @param {string} type
  * @param {boolean} visible

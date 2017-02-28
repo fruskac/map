@@ -3,7 +3,7 @@
 fruskac.Chart = (function () {
 
     /**
-     *
+     * @global
      * @param {HTMLDomElement} container
      * @constructor
      */
@@ -18,6 +18,9 @@ fruskac.Chart = (function () {
 
     }
 
+    /**
+     * @global
+     */
     Chart.prototype = {
 
         /**

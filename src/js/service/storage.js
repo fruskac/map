@@ -2,6 +2,7 @@
 
 fruskac.Storage = (function () {
     /**
+     * @global
      * @param {Array} Initial data array
      * @constructor
      */
@@ -12,6 +13,9 @@ fruskac.Storage = (function () {
         this.data = data;
     }
 
+    /**
+     * @global
+     */
     Storage.prototype = {
 
         /**

@@ -1,18 +1,22 @@
-# Mapa | Fruška gora, Srbija
+# Fruškać Map
+#### Fruška gora, Srbija
 
 The map is to be used in an `iFrame` element. Initial could be passed in via `src` attribute. The Map will expose API to it's parent element to allow Map control. Usages could be found in [examples](https://github.com/fruskac/map/tree/master/examples) directory.
 
 ## Contributing
 
 ##### Branching model
-We are using `git-flow` as our brancing model. Read more at http://nvie.com/posts/a-successful-git-branching-model/
+We are using `git-flow` as our brancing model. Read more at [nvie.com/posts/a-successful-git-branching-model](http://nvie.com/posts/a-successful-git-branching-model/)
+
+###### Installing `git-flow`
+Ream more about `git-flow` and how to install it [github.com/nvie/gitflow](https://github.com/nvie/gitflow)
 
 ##### Tools
 To be able to build source files, you need to have `npm` and `node` installed. After that run
 ```
 npm install
 ```
-This will install `Gulp` with all needed parts.
+This will install `Gulp` and other libraries needed for development.
 
 ##### Build
 To create build, run

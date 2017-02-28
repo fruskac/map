@@ -4,6 +4,7 @@ fruskac.Map = (function () {
 
     /**
      * Map
+     * @global
      * @param {google.maps.Map} map
      * @constructor
      */
@@ -13,6 +14,9 @@ fruskac.Map = (function () {
         });
     }
 
+    /**
+     * @global
+     */
     Map.prototype = {
 
         /**

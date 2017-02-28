@@ -5,7 +5,7 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var htmlmin = require('gulp-htmlmin');
 var clean = require('gulp-clean');
-var jsdoc = require('gulp-jsdoc3');
+var doxx = require('gulp-doxx');
 var replace = require('gulp-replace');
 
 var paths = {};
@@ -77,12 +77,15 @@ gulp.task('docs:clean', function () {
 gulp.task('docs', [
     'docs:clean'
 ], function () {
-    var config = require('./jsdoc.json');
     gulp.src([
         './README.md',
         './src/**/*.js'
-    ], { read: false })
-        .pipe(jsdoc(config));
+    ], { base: '.' })
+        .pipe(doxx({
+            title: 'Fruškać Map',
+            urlPrefix: null
+        }))
+        .pipe(gulp.dest('docs'));
 });
 
 gulp.task('watch', [

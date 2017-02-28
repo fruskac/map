@@ -83,7 +83,7 @@ gulp.task('docs', [
     ], { base: '.' })
         .pipe(doxx({
             title: 'Fruškać Map',
-            urlPrefix: null
+            urlPrefix: '/map'
         }))
         .pipe(gulp.dest('docs'));
 });

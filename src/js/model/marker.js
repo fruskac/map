@@ -58,7 +58,7 @@ fruskac.Marker = (function () {
             var marker = new google.maps.Marker(options);
 
             google.maps.event.addListener(marker, 'click', function () {
-                Map.showInfoWindow(getInfoWindowContent(options.data), this);
+                map.showInfoWindow(getInfoWindowContent(options.data), this);
             });
 
             return marker;

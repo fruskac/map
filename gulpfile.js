@@ -31,7 +31,7 @@ gulp.task('less', function () {
 });
 
 paths.js = [
-    'src/js/_bootstrap.js',
+    'src/js/bootstrap.js',
     'src/js/const/*.js',
     'src/js/extend/googleMaps.js',
     'src/js/model/marker.js',
@@ -40,6 +40,7 @@ paths.js = [
     'src/js/service/chart.js',
     'src/js/service/map.js',
     'src/js/service/storage.js',
+    'src/js/loader.js',
     'src/js/init.js',
     'src/js/api.js'
 ];

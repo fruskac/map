@@ -5,7 +5,7 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var htmlmin = require('gulp-htmlmin');
 var clean = require('gulp-clean');
-var jsdoc = require('gulp-jsdoc3');
+var doxx = require('gulp-doxx');
 var replace = require('gulp-replace');
 
 var paths = {};
@@ -31,7 +31,7 @@ gulp.task('less', function () {
 });
 
 paths.js = [
-    'src/js/_bootstrap.js',
+    'src/js/bootstrap.js',
     'src/js/const/*.js',
     'src/js/extend/googleMaps.js',
     'src/js/model/marker.js',
@@ -40,6 +40,7 @@ paths.js = [
     'src/js/service/chart.js',
     'src/js/service/map.js',
     'src/js/service/storage.js',
+    'src/js/loader.js',
     'src/js/init.js',
     'src/js/api.js'
 ];
@@ -76,12 +77,15 @@ gulp.task('docs:clean', function () {
 gulp.task('docs', [
     'docs:clean'
 ], function () {
-    var config = require('./jsdoc.json');
     gulp.src([
         './README.md',
         './src/**/*.js'
-    ], { read: false })
-        .pipe(jsdoc(config));
+    ], { base: '.' })
+        .pipe(doxx({
+            title: 'Fruškać Map',
+            urlPrefix: '/map'
+        }))
+        .pipe(gulp.dest('docs'));
 });
 
 gulp.task('watch', [

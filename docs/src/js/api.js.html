@@ -71,8 +71,8 @@
       <div class="row">
         <div class="span3 bs-docs-sidebar">
           <ul class="nav nav-list bs-docs-sidenav affix-top">
-            <li class="active"><a href="index.html">Main</a></li>
-            <li><a href="src/js/api.js.html">src/js/api.js</a></li>
+            <li><a href="index.html">Main</a></li>
+            <li class="active"><a href="src/js/api.js.html">src/js/api.js</a></li>
             <li><a href="src/js/bootstrap.js.html">src/js/bootstrap.js</a></li>
             <li><a href="src/js/init.js.html">src/js/init.js</a></li>
             <li><a href="src/js/loader.js.html">src/js/loader.js</a></li>
@@ -87,27 +87,128 @@
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#ready"><i class="alert alert-info"></i><span>ready</span></a>
+              </li>
+              <li><a href="#getData"><i class="alert alert-info"></i><span>getData</span></a>
+              </li>
+              <li><a href="#clustering"><i class="alert alert-info"></i><span>clustering</span></a>
+              </li>
+              <li><a href="#type"><i class="alert alert-info"></i><span>type</span></a>
+              </li>
             </ul>
           </div>
         </div>
         <div class="span9">
-          <section id="Main"><h1>Fruškać Map</h1>
-<h4>Fruška gora, Srbija</h4>
-<p>The map is to be used in an <code>iFrame</code> element. Initial could be passed in via <code>src</code> attribute. The Map will expose API to it&#39;s parent element to allow Map control. Usages could be found in <a href="https://github.com/fruskac/map/tree/master/examples">examples</a> directory.</p><h2>Contributing</h2>
-<h5>Branching model</h5>
-<p>We are using <code>git-flow</code> as our brancing model. Read more at <a href="http://nvie.com/posts/a-successful-git-branching-model/">nvie.com/posts/a-successful-git-branching-model</a></p><h6>Installing <code>git-flow</code></h6>
-<p>Ream more about <code>git-flow</code> and how to install it <a href="https://github.com/nvie/gitflow">github.com/nvie/gitflow</a></p><h5>Tools</h5>
-<p>To be able to build source files, you need to have <code>npm</code> and <code>node</code> installed. After that run</p><pre><code>npm install
-</code></pre><p>This will install <code>Gulp</code> and other libraries needed for development.</p><h5>Build</h5>
-<p>To create build, run</p><pre><code>gulp
-</code></pre><h6>Build separate JS, LESS, HTML and Docs</h6>
-<p>Build can be run by specific type, like</p><pre><code>gulp js
-gulp less
-gulp html
-gulp docs
-</code></pre><h5>Development</h5>
-<p>While doing development, start watcher which will react on file changes and start appropriate tasks to update build</p><pre><code>gulp watch
-</code></pre></section>
+          <section id="ready">
+            <h1>ready</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>ready()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>callback</td>
+                <td>Function</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Fired when ready</p> </div>
+          <pre><code class="language-javascript">ready: function (callback) {
+    callback();
+},</code></pre>
+          <section id="getData">
+            <h1>getData</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>getData()</span>
+            </p>
+          </section>
+          <div class="description"><p>Get data</p> </div>
+          <pre><code class="language-javascript">getData: function () {
+    return storage.getSelectors();
+},</code></pre>
+          <section id="clustering">
+            <h1>clustering</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>clustering()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>value</td>
+                <td>boolean</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Get / Set clustering state</p> </div>
+          <pre><code class="language-javascript">clustering: function (value) {
+    if (value === undefined) { // act as getter
+        return clusterer.enabled;
+    } else { // act as setter
+        clusterer.enabled = value;
+        if (value) {
+            clusterer.setMaxZoom(null);
+            clusterer.setGridSize(50);
+        } else {
+            clusterer.setMaxZoom(1);
+            clusterer.setGridSize(1);
+        }
+        clusterer.resetViewport();
+        clusterer.redraw();
+    }
+},</code></pre>
+          <section id="type">
+            <h1>type</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>type()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>value</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Get / Set map type</p> </div>
+          <pre><code class="language-javascript">type: function (value) {
+    if (value === undefined) { // act as getter
+        return gmap.getMapTypeId();
+    } else { // act as setter
+        return gmap.setMapTypeId(value);
+    }
+}
+};</code></pre>
         </div>
       </div>
     </div>

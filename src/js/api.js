@@ -1,12 +1,12 @@
 'use strict';
 
-/**
- * @global
- */
-window.api = {
+function api() {}
+
+api.prototype = {
 
     /**
      * Fired when ready
+     * @global
      * @param {Function} callback
      */
     ready: function (callback) {
@@ -15,6 +15,7 @@ window.api = {
 
     /**
      * Get data
+     * @global
      * @returns {Object[]}
      */
     getData: function () {
@@ -22,8 +23,8 @@ window.api = {
     },
 
     /**
-     *
      * Get / Set clustering state
+     * @global
      * @param {undefined|boolean} value
      * @returns {*|boolean}
      */
@@ -46,6 +47,7 @@ window.api = {
 
     /**
      * Get / Set map type
+     * @global
      * @param {undefined|string} value
      * @returns {*}
      */

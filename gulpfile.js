@@ -83,9 +83,10 @@ gulp.task('docs', [
         './src/**/*.js'
     ], { base: '.' })
         .pipe(doxx({
-            title: 'Fruškać Map',
+            title: 'ФRuŠKać',
             urlPrefix: '/map'
         }))
+        .pipe(replace(/http:\/\/([^/]+)/g, '//$1')) // fix to allow https
         .pipe(gulp.dest('docs'));
 });
 

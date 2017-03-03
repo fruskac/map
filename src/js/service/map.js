@@ -139,17 +139,21 @@ fruskac.Map = (function () {
          * @param {boolean} value
          */
         setVisible: function (object, value) {
-            if (object.hasOwnProperty('position')) {//marker
-                object.setVisible(value);
-                if (value) {
-                    clusterer.addMarker(object);
-                } else {
-                    clusterer.removeMarker(object);
-                }
-            } else if (object.hasOwnProperty('strokeColor')) {
-                object.setVisible(value);
-            } else if (object.hasOwnProperty('suppressInfoWindows')) {
-                object.setMap(value ? gmap : null);
+            switch (getType(object)) {
+                case fruskac.TYPE.MARKER:
+                    object.setVisible(value);
+                    if (value) {
+                        clusterer.addMarker(object);
+                    } else {
+                        clusterer.removeMarker(object);
+                    }
+                    break;
+                case fruskac.TYPE.TRACK:
+                    object.setVisible(value);
+                    break;
+                case fruskac.TYPE.KML:
+                    object.setMap(value ? gmap : null);
+                    break;
             }
         },
 
@@ -158,8 +162,19 @@ fruskac.Map = (function () {
          * @param {Object} object
          */
         focus: function (object) {
-            gmap.fitBounds(object.getBounds());
-            chart.show(object.getPath())
+            switch (getType(object)) {
+                case fruskac.TYPE.MARKER:
+                    gmap.setZoom(14);
+                    gmap.panTo(object.position);
+                    object.setAnimation(google.maps.Animation.BOUNCE);
+                    // TODO: show info window
+                    //map.showInfoWindow(getInfoWindowContent(options.data), this);
+                    break;
+                case fruskac.TYPE.TRACK:
+                    gmap.fitBounds(object.getBounds());
+                    chart.show(object.getPath());
+                    break;
+            }
         },
 
         /**
@@ -195,6 +210,16 @@ fruskac.Map = (function () {
 
         }
     };
+
+    function getType(object) {
+        if (object.hasOwnProperty('position')) {//marker
+            return fruskac.TYPE.MARKER;
+        } else if (object.hasOwnProperty('strokeColor')) {
+            return fruskac.TYPE.TRACK;
+        } else if (object.hasOwnProperty('suppressInfoWindows')) {
+            return fruskac.TYPE.KML;
+        }
+    }
 
     return Map;
 

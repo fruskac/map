@@ -93,7 +93,11 @@ fruskac.Storage = (function () {
                 return this.get(selectorParts.join(':'), container);
             }
 
-            return _.find(container, {id: selector});
+            return _.find(container, function (object) {
+                if (object && object.id === selector || (object.hasOwnProperty('data') && object.data.id == selector)) {
+                    return object;
+                }
+            });
 
         },
 
@@ -218,10 +222,10 @@ fruskac.Storage = (function () {
         },
 
         /**
-         * Select object based on selector
+         * Focus object based on selector
          * @param {Array|string} selector
          */
-        select: function (selector) {
+        focus: function (selector) {
 
             var self = this;
 
@@ -236,12 +240,14 @@ fruskac.Storage = (function () {
                 self.setState(parent.id, true);
 
                 parent.children.forEach(function (child) {
-                    self.setState([parent.id, child.id], child.id === object.id);
+                    if (child.hasOwnProperty('id')) {
+                        self.setState([parent.id, child.id], child.id === object.id);
+                    }
                 });
 
             }
 
-            map.focus(object.children[0])
+            map.focus(object && object.hasOwnProperty('children') ? object.children[0] : object);
 
         },
 
@@ -329,7 +335,7 @@ fruskac.Storage = (function () {
                     return storage.setState(itemSelector, value);
                 },
                 select: function () {
-                    return storage.select(itemSelector);
+                    return storage.focus(itemSelector);
                 }
             };
 

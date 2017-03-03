@@ -212,6 +212,9 @@ fruskac.Map = (function () {
     };
 
     function getType(object) {
+        if (!object) {
+            return;
+        }
         if (object.hasOwnProperty('position')) {//marker
             return fruskac.TYPE.MARKER;
         } else if (object.hasOwnProperty('strokeColor')) {

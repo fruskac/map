@@ -152,14 +152,15 @@
           <div class="description"><p>Initialize layers</p> </div>
           <pre><code class="language-javascript">load: function (items, callback) {
 
+    var promises = [];
+
     items.forEach(function (item) {
-        load.apply(this, item)
+        promises.push(load.apply(this, item))
     });
 
-    // TODO: create promise instead of timeout
-    setTimeout(function () {
+    Promise.all(promises).then(function () {
         callback();
-    }, 3000);
+    });
 }
 
     };
@@ -167,31 +168,36 @@
     function load(name, type, visible) {
 var resource = '../data/' + name + '.json';
 
-storage.add({
+return storage.add({
     id: name,
     visible: visible,
     on: visible
 }).then(function () {
-    $.get(resource).success(function (response) {
+    return $.get(resource).success(function (response) {
+        var promises = [];
         response.forEach(function (item) {
             var container = storage.get([name, item.tag]);
-            var promise;
+            var p;
             if (container) {
-                promise = new Promise(function (resolve) {
+                p = new Promise(function (resolve) {
                     resolve();
                 })
             } else {
-                promise = storage.add({
+                p = storage.add({
                     id: item.tag,
                     visible: visible,
                     on: visible,
                     type: type
                 }, name)
             }
-            promise.then(function () {
+            p.then(function () {
                 storage.add(item, [name, item.tag], type, visible);
             });
-        })
+            promises.push(p);
+        });
+        Promise.all(promises).then(function (datas) {
+            return datas;
+        });
     })
 });
     }

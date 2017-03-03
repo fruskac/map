@@ -14,7 +14,7 @@ fruskac.Chart = (function () {
 
         $(self.container)
             .append('<button onclick="chart.setVisible(false)">X</button>')
-            .append('<div id="chart_content"></div>');
+            .append('<div id="chart_content"><div class="loading">Loading...</div></div>');
 
     }
 

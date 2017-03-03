@@ -22,41 +22,57 @@ fruskac.Loader = (function () {
          * @param {string} type
          * @param {boolean} visible
          */
-        load: function (name, type, visible) {
+        load: function (items, callback) {
 
-            var resource = '../data/' + name + '.json';
+            var promises = [];
 
-            storage.add({
-                id: name,
-                visible: visible,
-                on: visible
-            }).then(function () {
-                $.get(resource).success(function (response) {
-                    response.forEach(function (item) {
-                        var container = storage.get([name, item.tag]);
-                        var promise;
-                        if (container) {
-                            promise = new Promise(function (resolve) {
-                                resolve();
-                            })
-                        } else {
-                            promise = storage.add({
-                                id: item.tag,
-                                visible: visible,
-                                on: visible,
-                                type: type
-                            }, name)
-                        }
-                        promise.then(function () {
-                            storage.add(item, [name, item.tag], type, visible);
-                        });
-                    })
-                })
+            items.forEach(function (item) {
+                promises.push(load.apply(this, item))
             });
 
+            Promise.all(promises).then(function () {
+                callback();
+            });
         }
 
     };
+
+    function load(name, type, visible) {
+        var resource = '../data/' + name + '.json';
+
+        return storage.add({
+            id: name,
+            visible: visible,
+            on: visible
+        }).then(function () {
+            return $.get(resource).success(function (response) {
+                var promises = [];
+                response.forEach(function (item) {
+                    var container = storage.get([name, item.tag]);
+                    var p;
+                    if (container) {
+                        p = new Promise(function (resolve) {
+                            resolve();
+                        })
+                    } else {
+                        p = storage.add({
+                            id: item.tag,
+                            visible: visible,
+                            on: visible,
+                            type: type
+                        }, name)
+                    }
+                    p.then(function () {
+                        storage.add(item, [name, item.tag], type, visible);
+                    });
+                    promises.push(p);
+                });
+                Promise.all(promises).then(function (datas) {
+                    return datas;
+                });
+            })
+        });
+    }
 
     return Loader;
 

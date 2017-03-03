@@ -3,9 +3,9 @@
   <head>
     <meta name="viewport" content="width=device-width" charset="utf-8">
     <title>Fruškać Map</title>
-    <link rel="stylesheet" href="https://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
-    <link rel="stylesheet" href="https://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="https://getbootstrap.com/2.3.2/assets/css/docs.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/docs.css">
     <style>
       body > .navbar .brand {
         float:left;
@@ -76,6 +76,7 @@
             <li><a href="/map/src/js/bootstrap.js.html">src/js/bootstrap.js</a></li>
             <li class="active"><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
             <li><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
+            <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
             <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
             <li><a href="/map/src/js/extend/googleMaps.js.html">src/js/extend/googleMaps.js</a></li>
             <li><a href="/map/src/js/model/kml.js.html">src/js/model/kml.js</a></li>
@@ -93,6 +94,8 @@
         <div class="span9">
           <div class="description"> </div>
           <pre><code class="language-javascript">'use strict';
+
+var util = new fruskac.Util();
 
 var storage = new fruskac.Storage();
 
@@ -123,10 +126,18 @@ var chart = new fruskac.Chart(document.getElementById('chart'));
 
 var loader = new fruskac.Loader();
 
-loader.load('locations', fruskac.TYPE.MARKER, true);
-loader.load('marathon', fruskac.TYPE.TRACK, true);
-loader.load('protection', fruskac.TYPE.KML, true);
-loader.load('time', fruskac.TYPE.MARKER, true);</code></pre>
+var selector = util.getParameterByName('l');
+
+loader.load([
+    ['locations', fruskac.TYPE.MARKER, true],
+    ['marathon', fruskac.TYPE.TRACK, true],
+    ['protection', fruskac.TYPE.KML, true],
+    ['time', fruskac.TYPE.MARKER, true]
+], function () {
+    if (selector) {
+        storage.focus(selector);
+    }
+});</code></pre>
         </div>
       </div>
     </div>
@@ -137,14 +148,14 @@ loader.load('time', fruskac.TYPE.MARKER, true);</code></pre>
         <p>Theme borrowed from Twitter Bootstrap</p>
       </div>
     </footer>
-    <script src="https://platform.twitter.com/widgets.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-    <script src="https://leaverou.github.com/prefixfree/prefixfree.js"></script>
-    <script src="https://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
-    <script src="https://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
-    <script src="https://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
-    <script src="https://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
-    <script src="https://getbootstrap.com/2.3.2/assets/js/bootstrap-affix.js"></script>
+    <script src="http://platform.twitter.com/widgets.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script src="http://leaverou.github.com/prefixfree/prefixfree.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-affix.js"></script>
     <script>
       /**
        * Prism: Lightweight, robust, elegant syntax highlighting

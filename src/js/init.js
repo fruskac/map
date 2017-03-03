@@ -1,5 +1,7 @@
 'use strict';
 
+var util = new fruskac.Util();
+
 var storage = new fruskac.Storage();
 
 var gmap = new google.maps.Map(document.getElementById('map'), {
@@ -29,7 +31,17 @@ var chart = new fruskac.Chart(document.getElementById('chart'));
 
 var loader = new fruskac.Loader();
 
-loader.load('locations', fruskac.TYPE.MARKER, true);
-loader.load('marathon', fruskac.TYPE.TRACK, true);
-loader.load('protection', fruskac.TYPE.KML, true);
-loader.load('time', fruskac.TYPE.MARKER, true);
+var selector = util.getParameterByName('l');
+
+loader.load([
+    ['locations', fruskac.TYPE.MARKER, true],
+    ['marathon', fruskac.TYPE.TRACK, true],
+    ['protection', fruskac.TYPE.KML, true],
+    ['time', fruskac.TYPE.MARKER, true]
+], function () {
+    if (selector) {
+        storage.focus(selector);
+    }
+});
+
+

@@ -7,16 +7,22 @@ var htmlmin = require('gulp-htmlmin');
 var clean = require('gulp-clean');
 var doxx = require('gulp-doxx');
 var replace = require('gulp-replace');
+var runSequence = require('run-sequence');
 
 var paths = {};
 
-gulp.task('default', [
+gulp.task('default', function () {
+    runSequence(
+        'build',
+        'docs'
+    );
+});
+
+gulp.task('build', [
     'less',
     'js',
-    'html',
-    'docs'
-], function () {
-});
+    'html'
+]);
 
 paths.less = [
     './src/less/*.less'
@@ -71,7 +77,7 @@ gulp.task('docs:clean', function () {
     return gulp
         .src([
             'docs/*'
-        ], { read: false })
+        ], {read: false})
         .pipe(clean());
 });
 
@@ -112,20 +118,23 @@ gulp.task('docs:copy', [
     'docs:copy:examples'
 ]);
 
-gulp.task('docs', [
-    'docs:clean',
-    'docs:copy',
-], function () {
-    gulp.src([
-        './README.md',
-        './src/**/*.js'
-    ], { base: '.' })
-        .pipe(doxx({
-            title: 'ФRuŠKać',
-            urlPrefix: '/map'
-        }))
-        .pipe(replace(/http:\/\/([^/]+)/g, '//$1')) // fix to allow https
-        .pipe(gulp.dest('docs'));
+gulp.task('docs', function () {
+    runSequence(
+        'docs:clean',
+        'docs:copy',
+        function () {
+            gulp.src([
+                './README.md',
+                './src/**/*.js'
+            ], {base: '.'})
+                .pipe(doxx({
+                    title: 'ФRuŠKać',
+                    urlPrefix: '/map'
+                }))
+                .pipe(replace(/http:\/\/([^/]+)/g, '//$1')) // fix to allow https
+                .pipe(gulp.dest('docs'));
+        }
+    );
 });
 
 gulp.task('watch', [
@@ -135,6 +144,6 @@ gulp.task('watch', [
     //'watch:docs'
 ]);
 
-gulp.task('watch:js', function() {
+gulp.task('watch:js', function () {
     gulp.watch(paths.js, ['js']);
 });

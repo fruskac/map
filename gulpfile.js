@@ -75,8 +75,46 @@ gulp.task('docs:clean', function () {
         .pipe(clean());
 });
 
+gulp.task('docs:copy:dist', function () {
+    return gulp
+        .src([
+            'dist/*.*',
+        ])
+        .pipe(gulp.dest('docs/dist'));
+});
+
+gulp.task('docs:copy:data', function () {
+    return gulp
+        .src([
+            'data/*.*',
+            'data/**/*.*',
+        ])
+        .pipe(gulp.dest('docs/data'));
+});
+
+gulp.task('docs:copy:examples', function () {
+    return gulp
+        .src([
+            'examples/**/*.*',
+        ])
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            removeComments: true,
+            minifyJS: true,
+            minifyCSS: true
+        }))
+        .pipe(gulp.dest('docs/examples'));
+});
+
+gulp.task('docs:copy', [
+    'docs:copy:dist',
+    'docs:copy:data',
+    'docs:copy:examples'
+]);
+
 gulp.task('docs', [
-    'docs:clean'
+    'docs:clean',
+    'docs:copy',
 ], function () {
     gulp.src([
         './README.md',

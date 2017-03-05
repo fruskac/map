@@ -12,6 +12,12 @@ var ga = require('gulp-ga');
 
 var paths = {};
 
+var gaConfig = {
+    url: 'auto',
+    uid: 'UA-52141130-3',
+    sendPageView: true
+};
+
 gulp.task('default', function () {
     runSequence(
         'build',
@@ -104,10 +110,7 @@ gulp.task('docs:copy:examples', function () {
         .src([
             'examples/**/*.*',
         ])
-        .pipe(ga({
-            url: 'auto',
-            uid: 'UA-52141130-3'
-        }))
+        .pipe(ga(gaConfig))
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,
@@ -137,10 +140,7 @@ gulp.task('docs', function () {
                     urlPrefix: '/map'
                 }))
                 .pipe(replace(/http:\/\/([^/]+)/g, '//$1')) // fix to allow https
-                .pipe(ga({
-                    url: 'auto',
-                    uid: 'UA-52141130-3'
-                }))
+                .pipe(ga(gaConfig))
                 .pipe(gulp.dest('docs'));
         }
     );

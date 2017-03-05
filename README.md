@@ -1,7 +1,10 @@
 # Fruškać Map
 #### Fruška gora, Srbija
 
-The map is to be used in an `iFrame` element. Initial could be passed in via `src` attribute. The Map will expose API to it's parent element to allow Map control. Usages could be found in [examples](https://github.com/fruskac/map/tree/master/examples) directory.
+The map is to be used in an `iFrame` element. Initial could be passed in via `src` attribute. The Map will expose API to it's parent element to allow Map control. Usages could be found in [examples](https://github.com/fruskac/map/tree/master/examples) directory. Here are some links:
+
+* [AngularJS](./examples/angularjs.html)
+* [Embed](./examples/embed.html)
 
 ## Contributing
 

@@ -161,7 +161,7 @@ fruskac.Map = (function () {
          * Focus one object on map, fit bounds
          * @param {Object} object
          */
-        focus: function (object) {
+        focus: function (object, isFixedLayout) {
             switch (getType(object)) {
                 case fruskac.TYPE.MARKER:
                     gmap.setZoom(14);
@@ -172,7 +172,7 @@ fruskac.Map = (function () {
                     break;
                 case fruskac.TYPE.TRACK:
                     gmap.fitBounds(object.getBounds());
-                    chart.show(object.getPath());
+                    chart.show(object.getPath(), isFixedLayout);
                     break;
             }
         },

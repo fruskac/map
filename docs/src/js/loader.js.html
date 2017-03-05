@@ -77,8 +77,8 @@
             <li><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
             <li class="active"><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
-            <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
             <li><a href="/map/src/js/extend/googleMaps.js.html">src/js/extend/googleMaps.js</a></li>
+            <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
             <li><a href="/map/src/js/model/kml.js.html">src/js/model/kml.js</a></li>
             <li><a href="/map/src/js/model/marker.js.html">src/js/model/marker.js</a></li>
             <li><a href="/map/src/js/model/track.js.html">src/js/model/track.js</a></li>
@@ -91,6 +91,8 @@
               <li><a href="#Loader"><i class="alert alert-success"></i><span>Loader</span></a>
               </li>
               <li><a href="#Loader"><i class="alert alert-success"></i><span>Loader</span></a>
+              </li>
+              <li><a href="#load"><i class="alert alert-info"></i><span>load</span></a>
               </li>
               <li><a href="#load"><i class="alert alert-info"></i><span>load</span></a>
               </li>
@@ -133,6 +135,43 @@
             </thead>
             <tbody>
               <tr>
+                <td>items</td>
+                <td>Array</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Load items</p> </div>
+          <pre><code class="language-javascript">load: function (items) {
+
+    var promises = [];
+
+    items.forEach(function (item) {
+        promises.push(load.apply(this, item));
+    });
+
+    return Promise.all(promises);
+
+}
+
+    };</code></pre>
+          <section id="load">
+            <h1>load</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>load()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
                 <td>name</td>
                 <td>string</td>
                 <td></td>
@@ -150,59 +189,46 @@
             </tbody>
           </table>
           <div class="description"><p>Initialize layers</p> </div>
-          <pre><code class="language-javascript">load: function (items, callback) {
+          <pre><code class="language-javascript">function load(name, type, visible) {
+    var resource = '../data/' + name + '.json';
 
-    var promises = [];
+    return storage.add({
+        id: name,
+        visible: visible,
+        on: visible
+    }).then(function () {
+        return $.get(resource).success(function (response) { // get json array of items
 
-    items.forEach(function (item) {
-        promises.push(load.apply(this, item))
-    });
+            var promises = [];
 
-    Promise.all(promises).then(function () {
-        callback();
+            response.forEach(function (item) {
+                var container = storage.get([name, item.tag]);
+                var p;
+                if (container) {
+                    p = new Promise(function (resolve) {
+                        resolve();
+                    });
+                } else {
+                    p = storage.add({
+                        id: item.tag,
+                        visible: visible,
+                        on: visible,
+                        type: type
+                    }, name);
+                }
+                p.then(function () {
+                    storage.add(item, [name, item.tag], type, visible);
+                });
+                promises.push(p);
+            });
+
+            return Promise.all(promises);
+
+        })
     });
 }
 
-    };
-
-    function load(name, type, visible) {
-var resource = '../data/' + name + '.json';
-
-return storage.add({
-    id: name,
-    visible: visible,
-    on: visible
-}).then(function () {
-    return $.get(resource).success(function (response) {
-        var promises = [];
-        response.forEach(function (item) {
-            var container = storage.get([name, item.tag]);
-            var p;
-            if (container) {
-                p = new Promise(function (resolve) {
-                    resolve();
-                })
-            } else {
-                p = storage.add({
-                    id: item.tag,
-                    visible: visible,
-                    on: visible,
-                    type: type
-                }, name)
-            }
-            p.then(function () {
-                storage.add(item, [name, item.tag], type, visible);
-            });
-            promises.push(p);
-        });
-        Promise.all(promises).then(function (datas) {
-            return datas;
-        });
-    })
-});
-    }
-
-    return Loader;
+return Loader;
 
 })();</code></pre>
         </div>

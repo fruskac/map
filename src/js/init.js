@@ -38,10 +38,10 @@ loader.load([
     ['marathon', fruskac.TYPE.TRACK, true],
     ['protection', fruskac.TYPE.KML, true],
     ['time', fruskac.TYPE.MARKER, true]
-], function () {
+]).then(function () {
     if (selector) {
-        storage.focus(selector);
+        google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
+            storage.focus(selector, true); // focus on selected object
+        });
     }
 });
-
-

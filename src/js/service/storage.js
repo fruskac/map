@@ -225,7 +225,7 @@ fruskac.Storage = (function () {
          * Focus object based on selector
          * @param {Array|string} selector
          */
-        focus: function (selector) {
+        focus: function (selector, isFixedLayout) {
 
             var self = this;
 
@@ -247,7 +247,7 @@ fruskac.Storage = (function () {
 
             }
 
-            map.focus(object && object.hasOwnProperty('children') ? object.children[0] : object);
+            map.focus(object && object.hasOwnProperty('children') ? object.children[0] : object, isFixedLayout);
 
         },
 

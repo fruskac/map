@@ -77,8 +77,8 @@
             <li><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
             <li><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
-            <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
             <li><a href="/map/src/js/extend/googleMaps.js.html">src/js/extend/googleMaps.js</a></li>
+            <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
             <li><a href="/map/src/js/model/kml.js.html">src/js/model/kml.js</a></li>
             <li><a href="/map/src/js/model/marker.js.html">src/js/model/marker.js</a></li>
             <li><a href="/map/src/js/model/track.js.html">src/js/model/track.js</a></li>
@@ -216,11 +216,15 @@
             </tbody>
           </table>
           <div class="description"><p>Show chart</p> </div>
-          <pre><code class="language-javascript">show: function (points) {
+          <pre><code class="language-javascript">show: function (points, isFixedLayout) {
 
     var self = this;
 
     self.setVisible(true);
+
+    if (isFixedLayout) {
+        $(self.container).find('button').remove();
+    }
 
     var elevator = new google.maps.ElevationService;
 

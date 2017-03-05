@@ -77,8 +77,8 @@
             <li><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
             <li><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
-            <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
             <li><a href="/map/src/js/extend/googleMaps.js.html">src/js/extend/googleMaps.js</a></li>
+            <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
             <li><a href="/map/src/js/model/kml.js.html">src/js/model/kml.js</a></li>
             <li><a href="/map/src/js/model/marker.js.html">src/js/model/marker.js</a></li>
             <li><a href="/map/src/js/model/track.js.html">src/js/model/track.js</a></li>
@@ -546,7 +546,7 @@
             </tbody>
           </table>
           <div class="description"><p>Focus object based on selector</p> </div>
-          <pre><code class="language-javascript">focus: function (selector) {
+          <pre><code class="language-javascript">focus: function (selector, isFixedLayout) {
 
     var self = this;
 
@@ -568,7 +568,7 @@
 
     }
 
-    map.focus(object &amp;&amp; object.hasOwnProperty('children') ? object.children[0] : object);
+    map.focus(object &amp;&amp; object.hasOwnProperty('children') ? object.children[0] : object, isFixedLayout);
 
 },
 

@@ -53,11 +53,15 @@ fruskac.Chart = (function () {
          *
          * @param {Array} points
          */
-        show: function (points) {
+        show: function (points, isFixedLayout) {
 
             var self = this;
 
             self.setVisible(true);
+
+            if (isFixedLayout) {
+                $(self.container).find('button').remove();
+            }
 
             var elevator = new google.maps.ElevationService;
 

@@ -137,6 +137,10 @@ gulp.task('docs', function () {
                     urlPrefix: '/map'
                 }))
                 .pipe(replace(/http:\/\/([^/]+)/g, '//$1')) // fix to allow https
+                .pipe(ga({
+                    url: 'auto',
+                    uid: 'UA-52141130-3'
+                }))
                 .pipe(gulp.dest('docs'));
         }
     );

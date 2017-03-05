@@ -1,7 +1,8 @@
 'use strict';
 
 fruskac.Util = (function () {
-    function Util() {}
+    function Util() {
+    }
 
     Util.prototype = {
         getParameterByName: function (name, url) {

@@ -94,7 +94,7 @@
     <script>
         angular.module('app', [
             'ui.bootstrap'
-        ]).controller('AppCtrl', function ($scope) {
+        ]).controller('AppCtrl', ['$scope', function ($scope) {
             document.getElementById('map').onload = function () {
                 var FruskacMapAPI = new (document.getElementById('map').contentWindow.api)();
                 FruskacMapAPI.ready(function () {
@@ -106,7 +106,7 @@
                     })
                 });
             }
-        });
+        }]);
     </script>
 
 </head>

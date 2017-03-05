@@ -51,7 +51,7 @@ fruskac.Marker = (function () {
                 break;
         }
 
-        options.icon = 'http://maps.gstatic.com/mapfiles/ridefinder-images/' + icon + '.png'
+        options.icon = '//maps.gstatic.com/mapfiles/ridefinder-images/' + icon + '.png';
 
         return (function () {
 

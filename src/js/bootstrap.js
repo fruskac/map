@@ -2,7 +2,8 @@
 
 (function (window) {
 
-    function fruskac(){}
+    function fruskac() {
+    }
 
     fruskac.prototype = fruskac;
 

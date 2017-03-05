@@ -1,6 +1,7 @@
 'use strict';
 
-function api() {}
+function api() {
+}
 
 api.prototype = {
 

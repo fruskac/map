@@ -8,7 +8,8 @@ fruskac.Loader = (function () {
      * @global
      * @constructor
      */
-    function Loader() {}
+    function Loader() {
+    }
 
     /**
      * @global

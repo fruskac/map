@@ -8,6 +8,7 @@ var clean = require('gulp-clean');
 var doxx = require('gulp-doxx');
 var replace = require('gulp-replace');
 var runSequence = require('run-sequence');
+var ga = require('gulp-ga');
 
 var paths = {};
 
@@ -103,6 +104,10 @@ gulp.task('docs:copy:examples', function () {
         .src([
             'examples/**/*.*',
         ])
+        .pipe(ga({
+            url: 'auto',
+            uid: 'UA-52141130-3'
+        }))
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,

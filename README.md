@@ -5,6 +5,7 @@ The map is to be used in an `iFrame` element. Initial could be passed in via `sr
 
 * [AngularJS](./examples/angularjs.html)
 * [Embed](./examples/embed.html)
+* [Coordinates](./examples/coordinates.html)
 
 ## Contributing
 

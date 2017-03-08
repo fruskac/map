@@ -6,7 +6,7 @@ var storage = new fruskac.Storage();
 
 var mapConfig = {
     center: new google.maps.LatLng(45.167031, 19.69677),
-    zoom: 10,
+    zoom: 11,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     mapTypeControl: false,
     zoomControlOptions: {
@@ -31,6 +31,23 @@ if (latLngZoom) {
 }
 
 var gmap = new google.maps.Map(document.getElementById('map'), mapConfig);
+
+var overlayImageBounds = {
+    north: 45.166508,
+    south: 45.136001,
+    east: 19.767672,
+    west: 19.681498
+};
+var overlayOptions = {
+    opacity: 0.8,
+    clickable: false
+};
+var groundOverlay = new google.maps.GroundOverlay(
+    'http://fruskac.net/sites/all/themes/fruskac/css/img/fruskac-logo-map.png',
+    overlayImageBounds,
+    overlayOptions
+);
+groundOverlay.setMap(gmap);
 
 var map = new fruskac.Map(gmap);
 

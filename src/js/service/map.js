@@ -61,10 +61,11 @@ fruskac.Map = (function () {
         addMarker: function (data, visible) {
 
             return new Promise(function (resolve) {
+
                 var marker = new fruskac.Marker({
                     position: new google.maps.LatLng(data.lat, data.lng),
                     title: data.data.title,
-                    icon: data.tag,
+                    icon: data.options.icon_data,
                     data: data.data
                 });
 

@@ -15,7 +15,16 @@ fruskac.Util = (function () {
             if (!results) return null;
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, " "));
+        },
+
+        getParameterPartsByName: function (name) {
+            var value = this.getParameterByName(name);
+            if (!value) {
+                return;
+            }
+            return value.split(',');
         }
+
     };
 
     return Util;

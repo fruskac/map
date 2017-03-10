@@ -184,8 +184,8 @@
             </thead>
             <tbody>
               <tr>
-                <td>name</td>
-                <td>string</td>
+                <td>source</td>
+                <td>string, Object</td>
                 <td></td>
               </tr>
               <tr>
@@ -201,21 +201,27 @@
             </tbody>
           </table>
           <div class="description"><p>Initialize layers</p> </div>
-          <pre><code class="language-javascript">function load(name, type, visible) {
-    var resource = '../data/' + name + '.json';
+          <pre><code class="language-javascript">function load(source, type, visible) {
+
+    if (typeof source === 'string') {
+        source = {
+            name: source,
+            url: '../data/' + source + '.json'
+        }
+    }
 
     return storage.add({
-        id: name,
+        id: source.name,
         visible: visible,
         on: visible
     }).then(function () {
-        return $.get(resource).success(function (response) { // get json array of items
+        return $.get(source.url).success(function (response) { // get json array of items
 
             var promises = [];
 
             response.forEach(function (item) {
-                var container = storage.get([name, item.tag]);
-                var p;
+                var p, container = storage.get([source.name, item.tag]);
+
                 if (container) {
                     p = new Promise(function (resolve) {
                         resolve();
@@ -226,12 +232,15 @@
                         visible: visible,
                         on: visible,
                         type: type
-                    }, name);
+                    }, source.name);
                 }
+
                 p.then(function () {
-                    storage.add(item, [name, item.tag], type, visible);
+                    storage.add(item, [source.name, item.tag], type, visible);
                 });
+
                 promises.push(p);
+
             });
 
             return Promise.all(promises);

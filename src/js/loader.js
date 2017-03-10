@@ -39,25 +39,31 @@ fruskac.Loader = (function () {
     /**
      * Initialize layers
      *
-     * @param {string} name
+     * @param {string|Object} source
      * @param {string} type
      * @param {boolean} visible
      */
-    function load(name, type, visible) {
-        var resource = '../data/' + name + '.json';
+    function load(source, type, visible) {
+
+        if (typeof source === 'string') {
+            source = {
+                name: source,
+                url: '../data/' + source + '.json'
+            }
+        }
 
         return storage.add({
-            id: name,
+            id: source.name,
             visible: visible,
             on: visible
         }).then(function () {
-            return $.get(resource).success(function (response) { // get json array of items
+            return $.get(source.url).success(function (response) { // get json array of items
 
                 var promises = [];
 
                 response.forEach(function (item) {
-                    var container = storage.get([name, item.tag]);
-                    var p;
+                    var p, container = storage.get([source.name, item.tag]);
+
                     if (container) {
                         p = new Promise(function (resolve) {
                             resolve();
@@ -68,12 +74,15 @@ fruskac.Loader = (function () {
                             visible: visible,
                             on: visible,
                             type: type
-                        }, name);
+                        }, source.name);
                     }
+
                     p.then(function () {
-                        storage.add(item, [name, item.tag], type, visible);
+                        storage.add(item, [source.name, item.tag], type, visible);
                     });
+
                     promises.push(p);
+
                 });
 
                 return Promise.all(promises);

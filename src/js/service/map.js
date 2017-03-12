@@ -71,7 +71,9 @@ fruskac.Map = (function () {
 
                 marker.setVisible(visible);
 
-                clusterer.addMarker(marker);
+                if (visible) {
+                    clusterer.addMarker(marker);
+                }
 
                 resolve(marker);
 

@@ -17,9 +17,9 @@ var mapConfig = {
     }
 };
 
-var latLngZoom = util.getParameterByName('l');
+var latLngZoom = util.getParameterByName('c');
 if (latLngZoom) {
-    var parts = util.getParameterPartsByName('l');
+    var parts = util.getParameterPartsByName('c');
     if (parts && parts.length) {
         if (parts[0] && parts[1]) {
             mapConfig.center = new google.maps.LatLng(parts[0], parts[1]);
@@ -52,7 +52,7 @@ groundOverlay.setMap(gmap);
 var map = new fruskac.Map(gmap);
 
 var clusterer = new MarkerClusterer(gmap, [], {
-    maxZoom: 13,
+    maxZoom: 12,
     gridSize: 50,
     imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
 });
@@ -61,16 +61,57 @@ clusterer.enabled = true;
 
 var chart = new fruskac.Chart(document.getElementById('chart'));
 
+/*
+* URL param: "l" defines layers visible. If not defined, default visibility will be used
+*/
+
+// default layers and their visibility
+var layers = [
+    {
+        name: 'locations',
+        type: fruskac.TYPE.MARKER,
+        visible: true
+    },
+    {
+        name: 'marathon',
+        type: fruskac.TYPE.TRACK,
+        visible: false
+    },
+    {
+        name: 'protection',
+        type: fruskac.TYPE.KML,
+        visible: false
+    },
+    {
+        name: 'time',
+        type: fruskac.TYPE.MARKER,
+        visible: false
+    }
+];
+
+var activeLayers = [];
+
+var layersFromUrl = util.getParameterPartsByName('l');
+
+layers.forEach(function (layer) {
+
+    if (layersFromUrl) { // if layer URL param exists, layers' visibility should follow
+        layer.visible = layersFromUrl.indexOf(layer.name) !== -1;
+    }
+
+    activeLayers.push(Object.values(layer));
+});
+
+
+/*
+* Load from "activeLayers"
+*/
+
 var loader = new fruskac.Loader();
 
 var focus = util.getParameterByName('f');
 
-loader.load([
-    ['locations', fruskac.TYPE.MARKER, true],
-    ['marathon', fruskac.TYPE.TRACK, true],
-    ['protection', fruskac.TYPE.KML, true],
-    ['time', fruskac.TYPE.MARKER, true]
-]).then(function () {
+loader.load(activeLayers).then(function () {
     if (focus) {
         google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
             storage.focus(focus, true); // focus on selected object

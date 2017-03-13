@@ -62,7 +62,29 @@ var map = new fruskac.Map(gmap);
 var clusterer = new MarkerClusterer(gmap, [], {
     maxZoom: 12,
     gridSize: 50,
-    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+    styles: [
+        {
+            textColor: 'white',
+            url: 'http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png',
+            backgroundPosition: '0 -523px',
+            height: 32,
+            width: 32
+        },
+        {
+            textColor: 'white',
+            url: 'http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png',
+            backgroundPosition: '0 -443px',
+            height: 48,
+            width: 48
+        },
+        {
+            textColor: 'white',
+            url: 'http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png',
+            backgroundPosition: '0 -379px',
+            height: 64,
+            width: 64
+        }
+    ]
 });
 
 clusterer.enabled = true;

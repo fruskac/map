@@ -145,11 +145,6 @@
     var self = this;
     self.visible = false;
     self.container = container;
-
-    $(self.container)
-        .append('&lt;button onclick=&quot;chart.setVisible(false)&quot;&gt;X&lt;/button&gt;')
-        .append('&lt;div id=&quot;chart_content&quot;&gt;&lt;div class=&quot;loading&quot;&gt;Loading...&lt;/div&gt;&lt;/div&gt;');
-
 }</code></pre>
           <section id="Chart">
             <h1>Chart</h1>
@@ -269,7 +264,7 @@
             };
 
             // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.AreaChart(document.getElementById('chart_content'));
+            var chart = new google.visualization.AreaChart(document.getElementById('chart'));
             chart.draw(data, options);
 
             google.visualization.events.addListener(chart, 'onmouseover', function (coords) {

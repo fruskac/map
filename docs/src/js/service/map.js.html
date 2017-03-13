@@ -148,9 +148,16 @@
           </table>
           <div class="description"><p>Map</p> </div>
           <pre><code class="language-javascript">function Map(map) {
+
     this.infoWindow = new google.maps.InfoWindow({
         content: &quot;holding...&quot;
     });
+
+    // show fullscreen button if CrossDomain or if &quot;allowfullscreen&quot; attribute added to iframe
+    if (fruskac.isCrossDomain || window.frameElement &amp;&amp; window.frameElement.hasAttribute('allowFullScreen')) {
+        $('#map_container &gt; button').show();
+    }
+
 }</code></pre>
           <section id="Map">
             <h1>Map</h1>
@@ -530,6 +537,22 @@
     self.infoWindow.setContent(html);
     self.infoWindow.open(gmap, marker);
 
+},
+
+fullscreen: function () {
+
+    var params = {
+        c: gmap.getCenter().lat() + ',' + gmap.getCenter().lng() + ',' + gmap.getZoom(),
+        l: util.getParameterByName('l'),
+        f: util.getParameterByName('f')
+    };
+
+    var url = '/fruskac/map/examples/angularjs.html#!?' + Object.keys(params).map(function(i) {
+            return params[i] &amp;&amp; encodeURIComponent(i) + &quot;=&quot; + encodeURIComponent(params[i]);
+        }).join('&amp;');
+
+    // TODO: update location when published
+    window.open(url, '_blank');
 }
     };
 

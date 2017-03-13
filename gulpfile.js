@@ -70,8 +70,12 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./dist'));
 });
 
+paths.html = [
+    './src/index.html'
+];
+
 gulp.task('html', function () {
-    return gulp.src('./src/index.html')
+    return gulp.src(paths.html)
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,
@@ -148,11 +152,19 @@ gulp.task('docs', function () {
 
 gulp.task('watch', [
     'watch:js',
-    //'watch:less',
-    //'watch:html',
+    'watch:less',
+    'watch:html',
     //'watch:docs'
 ]);
 
 gulp.task('watch:js', function () {
     gulp.watch(paths.js, ['js']);
+});
+
+gulp.task('watch:less', function () {
+    gulp.watch(paths.less, ['less']);
+});
+
+gulp.task('watch:html', function () {
+    gulp.watch(paths.html, ['html']);
 });

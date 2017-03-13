@@ -4,6 +4,10 @@ var util = new fruskac.Util();
 
 var storage = new fruskac.Storage();
 
+if (window.self !== window.top && document.referrer && !(new RegExp('//' + document.domain)).test(document.referrer)) {
+    fruskac.isCrossDomain = true;
+}
+
 var mapConfig = {
     center: new google.maps.LatLng(45.167031, 19.69677),
     zoom: 11,
@@ -59,7 +63,7 @@ var clusterer = new MarkerClusterer(gmap, [], {
 
 clusterer.enabled = true;
 
-var chart = new fruskac.Chart(document.getElementById('chart'));
+var chart = new fruskac.Chart(document.getElementById('chart_container'));
 
 /*
 * URL param: "l" defines layers visible. If not defined, default visibility will be used

@@ -61,7 +61,10 @@ fruskac.Chart = (function () {
             var elevator = new google.maps.ElevationService;
 
             // Load the Visualization API and the corechart package.
-            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.load('current', {
+                packages: ['corechart'],
+                language: fruskac.lang
+            });
 
             // Set a callback to run when the Google Visualization API is loaded.
             google.charts.setOnLoadCallback(function () {
@@ -69,8 +72,8 @@ fruskac.Chart = (function () {
 
                     // Create the data table.
                     var data = new google.visualization.DataTable();
-                    data.addColumn('number', 'Distance');
-                    data.addColumn('number', 'Elevation');
+                    data.addColumn('number', i18n.translate('DISTANCE'));
+                    data.addColumn('number', i18n.translate('ELEVATION'));
                     data.addRows(rows);
 
                     // Set chart options
@@ -78,10 +81,10 @@ fruskac.Chart = (function () {
                         lineWidth: 5,
                         focusTarget: 'category',
                         hAxis: {
-                            title: 'Distance (km)'
+                            title: i18n.translate('DISTANCE') + ' (km)'
                         },
                         vAxis: {
-                            title: 'Elevation (m)',
+                            title: i18n.translate('ELEVATION') + ' (m)',
                             minValue: 0
                         },
                         legend: {

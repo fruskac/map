@@ -52,6 +52,7 @@ paths.js = [
     'src/js/model/marker.js',
     'src/js/model/track.js',
     'src/js/model/kml.js',
+    'src/js/service/i18n.js',
     'src/js/service/chart.js',
     'src/js/service/map.js',
     'src/js/service/storage.js',

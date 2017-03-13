@@ -88,12 +88,15 @@
             <li><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
             <li><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
+            <li><a href="/map/src/js/const/i18n.const.js.html">src/js/const/i18n.const.js</a></li>
+            <li><a href="/map/src/js/const/params.const.js.html">src/js/const/params.const.js</a></li>
             <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
             <li><a href="/map/src/js/extend/googleMaps.js.html">src/js/extend/googleMaps.js</a></li>
             <li><a href="/map/src/js/model/kml.js.html">src/js/model/kml.js</a></li>
             <li><a href="/map/src/js/model/marker.js.html">src/js/model/marker.js</a></li>
             <li><a href="/map/src/js/model/track.js.html">src/js/model/track.js</a></li>
             <li class="active"><a href="/map/src/js/service/chart.js.html">src/js/service/chart.js</a></li>
+            <li><a href="/map/src/js/service/i18n.js.html">src/js/service/i18n.js</a></li>
             <li><a href="/map/src/js/service/map.js.html">src/js/service/map.js</a></li>
             <li><a href="/map/src/js/service/storage.js.html">src/js/service/storage.js</a></li>
           </ul>
@@ -235,7 +238,10 @@
     var elevator = new google.maps.ElevationService;
 
     // Load the Visualization API and the corechart package.
-    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.load('current', {
+        packages: ['corechart'],
+        language: fruskac.lang
+    });
 
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(function () {
@@ -243,8 +249,8 @@
 
             // Create the data table.
             var data = new google.visualization.DataTable();
-            data.addColumn('number', 'Distance');
-            data.addColumn('number', 'Elevation');
+            data.addColumn('number', i18n.translate('DISTANCE'));
+            data.addColumn('number', i18n.translate('ELEVATION'));
             data.addRows(rows);
 
             // Set chart options
@@ -252,10 +258,10 @@
                 lineWidth: 5,
                 focusTarget: 'category',
                 hAxis: {
-                    title: 'Distance (km)'
+                    title: i18n.translate('DISTANCE') + ' (km)'
                 },
                 vAxis: {
-                    title: 'Elevation (m)',
+                    title: i18n.translate('ELEVATION') + ' (m)',
                     minValue: 0
                 },
                 legend: {

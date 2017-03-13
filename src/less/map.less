@@ -1,4 +1,5 @@
 @chart-height: 30%;
+@padding: 10px;
 
 html, body {
   height: 100%;
@@ -23,8 +24,8 @@ html, body {
   > button {
     display: none;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: @padding;
+    right: @padding;
     z-index: 99;
   }
 
@@ -40,6 +41,8 @@ html, body {
 
   > button {
     position: absolute;
+    top: @padding;
+    left: @padding;
     z-index: 1;
   }
 

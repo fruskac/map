@@ -99,6 +99,8 @@
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#track"><i class="alert alert-success"></i><span>track</span></a>
+              </li>
               <li><a href="#loader"><i class="alert alert-success"></i><span>loader</span></a>
               </li>
             </ul>
@@ -109,22 +111,22 @@
           <pre><code class="language-javascript">// default layers and their visibility
 var layers = [
     {
-        name: 'locations',
+        source: 'locations',
         type: fruskac.TYPE.MARKER,
         visible: true
     },
     {
-        name: 'marathon',
+        source: 'marathon',
         type: fruskac.TYPE.TRACK,
         visible: false
     },
     {
-        name: 'protection',
+        source: 'protection',
         type: fruskac.TYPE.KML,
         visible: false
     },
     {
-        name: 'time',
+        source: 'time',
         type: fruskac.TYPE.MARKER,
         visible: false
     }
@@ -142,6 +144,15 @@ layers.forEach(function (layer) {
 
     activeLayers.push(Object.values(layer));
 });</code></pre>
+          <section id="track">
+            <h1>track</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">declaration</div><span>track</span>
+            </p>
+          </section>
+          <div class="description"><p>Load remote track</p> </div>
+          <pre><code class="language-javascript">var track = util.getParameterByName('t');</code></pre>
           <section id="loader">
             <h1>loader</h1>
             <h5 class="subheader"></h5>
@@ -155,6 +166,15 @@ layers.forEach(function (layer) {
 var focus = util.getParameterByName('f');
 
 loader.load(activeLayers).then(function () {
+
+    if (track) {
+        loader.append(track, fruskac.TYPE.TRACK).then(function (object) {
+            google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
+                map.focus(object); // focus on appended object
+            });
+        })
+    }
+
     if (focus) {
         google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
             storage.focus(focus, true); // focus on selected object

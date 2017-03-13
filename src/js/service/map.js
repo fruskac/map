@@ -96,9 +96,17 @@ fruskac.Map = (function () {
          */
         addTrack: function (data, visible) {
 
+            var url;
+
+            if (typeof data === 'string') {
+                url = data;
+            } else {
+                url = '../' + data.url;
+            }
+
             return new Promise(function (resolve) {
 
-                return $.get('../' + data.url).then(function (response) {
+                return $.get(url).then(function (response) {
                     var points = [];
                     $(response).find('trkpt').each(function (i, v) {
                         var lat = Number($(this).attr('lat'));

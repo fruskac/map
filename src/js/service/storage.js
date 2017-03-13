@@ -293,7 +293,7 @@ fruskac.Storage = (function () {
      * @returns {*}
      */
     function parseSelector(selector) {
-        if (_.isArray(selector)) {
+        if (selector && typeof selector != 'string') {
             selector = selector.join(':');
         }
 

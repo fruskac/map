@@ -682,7 +682,7 @@ getSelectors: function () {
           </table>
           <div class="description"><p>Parse array (if provided) into string</p> </div>
           <pre><code class="language-javascript">function parseSelector(selector) {
-    if (_.isArray(selector)) {
+    if (selector &amp;&amp; typeof selector != 'string') {
         selector = selector.join(':');
     }
 

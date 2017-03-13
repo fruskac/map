@@ -68,12 +68,11 @@ gulp.task('js', function () {
         .pipe(concat('map.min.js'))
         .pipe(replace(/["']use strict["'];/g, ''))
         .pipe(iife({
-            params: ['window', '$', 'google', 'Promise'],
-            args: ['window', 'jQuery', 'google', 'Promise']
+            params: ['window', 'document', '$', '_', 'google', 'Promise'],
+            args: ['window', 'document', 'jQuery', '_', 'google', 'Promise']
         }))
         .pipe(uglify({
-            mangle: true,
-            compress: true
+            mangle: true
         }))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist'));

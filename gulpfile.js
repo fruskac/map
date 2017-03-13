@@ -9,6 +9,7 @@ var doxx = require('gulp-doxx');
 var replace = require('gulp-replace');
 var runSequence = require('run-sequence');
 var ga = require('gulp-ga');
+var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {};
 
@@ -61,12 +62,14 @@ paths.js = [
 
 gulp.task('js', function () {
     return gulp.src(paths.js)
+        .pipe(sourcemaps.init())
         .pipe(concat('map.min.js'))
         .pipe(uglify({
             mangle: true,
             compress: true
         }))
         .pipe(replace(/'use strict';/g, ''))
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist'));
 });
 

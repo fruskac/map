@@ -32,6 +32,10 @@ fruskac.Loader = (function () {
 
             return Promise.all(promises);
 
+        },
+        
+        append: function (source, type) {
+            return map.add(source, type, true)
         }
 
     };

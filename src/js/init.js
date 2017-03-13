@@ -72,22 +72,22 @@ var chart = new fruskac.Chart(document.getElementById('chart_container'));
 // default layers and their visibility
 var layers = [
     {
-        name: 'locations',
+        source: 'locations',
         type: fruskac.TYPE.MARKER,
         visible: true
     },
     {
-        name: 'marathon',
+        source: 'marathon',
         type: fruskac.TYPE.TRACK,
         visible: false
     },
     {
-        name: 'protection',
+        source: 'protection',
         type: fruskac.TYPE.KML,
         visible: false
     },
     {
-        name: 'time',
+        source: 'time',
         type: fruskac.TYPE.MARKER,
         visible: false
     }
@@ -108,14 +108,29 @@ layers.forEach(function (layer) {
 
 
 /*
-* Load from "activeLayers"
-*/
+Load remote track
+ */
+
+var track = util.getParameterByName('t');
+
+/*
+Load from "activeLayers"
+ */
 
 var loader = new fruskac.Loader();
 
 var focus = util.getParameterByName('f');
 
 loader.load(activeLayers).then(function () {
+
+    if (track) {
+        loader.append(track, fruskac.TYPE.TRACK).then(function (object) {
+            google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
+                map.focus(object); // focus on appended object
+            });
+        })
+    }
+
     if (focus) {
         google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
             storage.focus(focus, true); // focus on selected object

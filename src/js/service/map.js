@@ -9,9 +9,16 @@ fruskac.Map = (function () {
      * @constructor
      */
     function Map(map) {
+
         this.infoWindow = new google.maps.InfoWindow({
             content: "holding..."
         });
+
+        // show fullscreen button if CrossDomain or if "allowfullscreen" attribute added to iframe
+        if (fruskac.isCrossDomain || window.frameElement && window.frameElement.hasAttribute('allowFullScreen')) {
+            $('#map_container > button').show();
+        }
+
     }
 
     /**
@@ -71,7 +78,9 @@ fruskac.Map = (function () {
 
                 marker.setVisible(visible);
 
-                clusterer.addMarker(marker);
+                if (visible) {
+                    clusterer.addMarker(marker);
+                }
 
                 resolve(marker);
 
@@ -209,6 +218,22 @@ fruskac.Map = (function () {
             self.infoWindow.setContent(html);
             self.infoWindow.open(gmap, marker);
 
+        },
+
+        fullscreen: function () {
+
+            var params = {
+                c: gmap.getCenter().lat() + ',' + gmap.getCenter().lng() + ',' + gmap.getZoom(),
+                l: util.getParameterByName('l'),
+                f: util.getParameterByName('f')
+            };
+
+            var url = '/fruskac/map/examples/angularjs.html#!?' + Object.keys(params).map(function(i) {
+                    return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
+                }).join('&');
+
+            // TODO: update location when published
+            window.open(url, '_blank');
         }
     };
 

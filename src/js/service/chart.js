@@ -11,11 +11,6 @@ fruskac.Chart = (function () {
         var self = this;
         self.visible = false;
         self.container = container;
-
-        $(self.container)
-            .append('<button onclick="chart.setVisible(false)">X</button>')
-            .append('<div id="chart_content"><div class="loading">Loading...</div></div>');
-
     }
 
     /**
@@ -95,7 +90,7 @@ fruskac.Chart = (function () {
                     };
 
                     // Instantiate and draw our chart, passing in some options.
-                    var chart = new google.visualization.AreaChart(document.getElementById('chart_content'));
+                    var chart = new google.visualization.AreaChart(document.getElementById('chart'));
                     chart.draw(data, options);
 
                     google.visualization.events.addListener(chart, 'onmouseover', function (coords) {

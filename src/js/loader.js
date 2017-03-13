@@ -51,7 +51,7 @@ fruskac.Loader = (function () {
 
         if (typeof source === 'string') {
             source = {
-                name: source,
+                name: source.replace(/-\w{2}/,''), // remove language suffix from name
                 url: '../data/' + source + '.json'
             }
         }

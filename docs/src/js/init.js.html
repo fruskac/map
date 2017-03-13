@@ -88,12 +88,15 @@
             <li class="active"><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
             <li><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
+            <li><a href="/map/src/js/const/i18n.const.js.html">src/js/const/i18n.const.js</a></li>
+            <li><a href="/map/src/js/const/params.const.js.html">src/js/const/params.const.js</a></li>
             <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
             <li><a href="/map/src/js/extend/googleMaps.js.html">src/js/extend/googleMaps.js</a></li>
             <li><a href="/map/src/js/model/kml.js.html">src/js/model/kml.js</a></li>
             <li><a href="/map/src/js/model/marker.js.html">src/js/model/marker.js</a></li>
             <li><a href="/map/src/js/model/track.js.html">src/js/model/track.js</a></li>
             <li><a href="/map/src/js/service/chart.js.html">src/js/service/chart.js</a></li>
+            <li><a href="/map/src/js/service/i18n.js.html">src/js/service/i18n.js</a></li>
             <li><a href="/map/src/js/service/map.js.html">src/js/service/map.js</a></li>
             <li><a href="/map/src/js/service/storage.js.html">src/js/service/storage.js</a></li>
           </ul>
@@ -111,7 +114,7 @@
           <pre><code class="language-javascript">// default layers and their visibility
 var layers = [
     {
-        source: 'locations',
+        source: 'locations-' + fruskac.lang,
         type: fruskac.TYPE.MARKER,
         visible: true
     },
@@ -134,7 +137,7 @@ var layers = [
 
 var activeLayers = [];
 
-var layersFromUrl = util.getParameterPartsByName('l');
+var layersFromUrl = util.getParameterPartsByName(fruskac.PARAMETER.LAYERS);
 
 layers.forEach(function (layer) {
 
@@ -152,7 +155,7 @@ layers.forEach(function (layer) {
             </p>
           </section>
           <div class="description"><p>Load remote track</p> </div>
-          <pre><code class="language-javascript">var track = util.getParameterByName('t');</code></pre>
+          <pre><code class="language-javascript">var track = util.getParameterByName(fruskac.PARAMETER.TRACK);</code></pre>
           <section id="loader">
             <h1>loader</h1>
             <h5 class="subheader"></h5>
@@ -163,7 +166,7 @@ layers.forEach(function (layer) {
           <div class="description"><p>Load from &quot;activeLayers&quot;</p> </div>
           <pre><code class="language-javascript">var loader = new fruskac.Loader();
 
-var focus = util.getParameterByName('f');
+var focus = util.getParameterByName(fruskac.PARAMETER.FOCUS);
 
 loader.load(activeLayers).then(function () {
 

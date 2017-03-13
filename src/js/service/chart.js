@@ -174,6 +174,10 @@ fruskac.Chart = (function () {
         return x * Math.PI / 180;
     }
 
+    window.closeChart = function () {
+        chart.setVisible(false);
+    };
+
     return Chart;
 
 })();

@@ -10,6 +10,7 @@ var replace = require('gulp-replace');
 var runSequence = require('run-sequence');
 var ga = require('gulp-ga');
 var sourcemaps = require('gulp-sourcemaps');
+var iife = require('gulp-iife');
 
 var paths = {};
 
@@ -57,19 +58,23 @@ paths.js = [
     'src/js/service/map.js',
     'src/js/service/storage.js',
     'src/js/loader.js',
-    'src/js/init.js',
     'src/js/api.js',
+    'src/js/init.js',
 ];
 
 gulp.task('js', function () {
     return gulp.src(paths.js)
         .pipe(sourcemaps.init())
         .pipe(concat('map.min.js'))
+        .pipe(replace(/["']use strict["'];/g, ''))
+        .pipe(iife({
+            params: ['window', '$', 'google', 'Promise'],
+            args: ['window', 'jQuery', 'google', 'Promise']
+        }))
         .pipe(uglify({
             mangle: true,
             compress: true
         }))
-        .pipe(replace(/'use strict';/g, ''))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist'));
 });

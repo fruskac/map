@@ -103,7 +103,7 @@
             }).join('&');
 
             document.getElementById('map').onload = function () {
-                var FruskacMapAPI = new (document.getElementById('map').contentWindow.api)();
+                var FruskacMapAPI = document.getElementById('map').contentWindow.fruskac;
                 FruskacMapAPI.ready(function () {
                     $scope.$apply(function () {
                         $scope.ready = true;

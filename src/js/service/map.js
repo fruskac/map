@@ -259,6 +259,10 @@ fruskac.Map = (function () {
         }
     }
 
+    window.fullscreen = function () {
+        map.fullscreen()
+    };
+
     return Map;
 
 })();

@@ -1,17 +1,17 @@
 'use strict';
 
-fruskac.i18n = (function () {
+fruskac.I18n = (function () {
 
     var source = {};
 
-    function i18n(lang) {
+    function I18n(lang) {
         this.lang = lang;
         Object.keys(fruskac.I18N.SOURCE).forEach(function (key) {
             add(key, fruskac.I18N.SOURCE[key])
         })
     }
 
-    i18n.prototype = {
+    I18n.prototype = {
         translate: function (id) {
             return source[this.lang] && source[this.lang][id] || '__TRANSLATION_MISSING__';
         }
@@ -30,6 +30,6 @@ fruskac.i18n = (function () {
         });
     }
 
-    return i18n;
+    return I18n;
 
 })();

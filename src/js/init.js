@@ -1,11 +1,14 @@
 'use strict';
 
+// expose API
+window.fruskac = new fruskac.Api();
+
 var util = new fruskac.Util();
 
 fruskac.isCrossDomain = window.self !== window.top && document.referrer && !(new RegExp('//' + document.domain)).test(document.referrer);
 fruskac.lang = util.getParameterByName('lang') || (window.self !== window.top && window.top.document.documentElement.lang) || 'en';
 
-var i18n  = new fruskac.i18n(fruskac.lang);
+var i18n  = new fruskac.I18n(fruskac.lang);
 
 var storage = new fruskac.Storage();
 

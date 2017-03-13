@@ -13,60 +13,12 @@ fruskac.Marker = (function () {
             map: gmap
         }, options);
 
-        var icon;
-
-        if (typeof options.icon === 'string') {
-
-            switch (options.icon) {
-                case 'lakes':
-                    icon = 'mm_20_purple';
-                    break;
-                case 'monasteries':
-                    icon = 'mm_20_yellow';
-                    break;
-                case 'misc':
-                    icon = 'mm_20_blue';
-                    break;
-                case 'springs':
-                    icon = 'mm_20_white';
-                    break;
-                case 'picnic-areas':
-                    icon = 'mm_20_green';
-                    break;
-                case 'monuments':
-                    icon = 'mm_20_red';
-                    break;
-                case 'fishponds':
-                    icon = 'mm_20_black';
-                    break;
-                case 'waterfalls':
-                    icon = 'mm_20_orange';
-                    break;
-                case 'lookouts':
-                    icon = 'mm_20_gray';
-                    break;
-                case 'meadows':
-                    icon = 'mm_20_brown';
-                    break;
-                default:
-                    icon = 'mm_20_white';
-                    break;
-            }
-
-            options.icon = '//maps.gstatic.com/mapfiles/ridefinder-images/' + icon + '.png';
-
-        } else {
-
-            if (options.icon && options.icon.hasOwnProperty('url')) {
-                options.icon = new google.maps.MarkerImage(
-                    options.icon.url,
-                    new google.maps.Size(options.icon.width, options.icon.height),
-                    new google.maps.Point(options.icon.x, options.icon.y)
-                )
-            } else {
-                options.icon = '//maps.gstatic.com/mapfiles/ridefinder-images/mm_20_white.png';
-            }
-
+        if (options.icon && options.icon.hasOwnProperty('url')) {
+            options.icon = new google.maps.MarkerImage(
+                options.icon.url,
+                new google.maps.Size(options.icon.width, options.icon.height),
+                new google.maps.Point(options.icon.x, options.icon.y)
+            )
         }
 
         return (function () {

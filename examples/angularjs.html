@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="app" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -103,7 +103,7 @@
             }).join('&');
 
             document.getElementById('map').onload = function () {
-                var FruskacMapAPI = new (document.getElementById('map').contentWindow.api)();
+                var FruskacMapAPI = document.getElementById('map').contentWindow.fruskac;
                 FruskacMapAPI.ready(function () {
                     $scope.$apply(function () {
                         $scope.ready = true;

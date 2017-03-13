@@ -232,8 +232,9 @@ fruskac.Map = (function () {
 
             var params = {
                 c: gmap.getCenter().lat() + ',' + gmap.getCenter().lng() + ',' + gmap.getZoom(),
-                l: util.getParameterByName('l'),
-                f: util.getParameterByName('f')
+                l: util.getParameterByName(fruskac.PARAMETER.LAYERS),
+                f: util.getParameterByName(fruskac.PARAMETER.FOCUS),
+                lang: fruskac.lang
             };
 
             var url = '/fruskac/map/examples/angularjs.html#!?' + Object.keys(params).map(function(i) {
@@ -257,6 +258,10 @@ fruskac.Map = (function () {
             return fruskac.TYPE.KML;
         }
     }
+
+    window.fullscreen = function () {
+        map.fullscreen()
+    };
 
     return Map;
 

@@ -1,12 +1,16 @@
 'use strict';
 
+// expose API
+window.fruskac = new fruskac.Api();
+
 var util = new fruskac.Util();
 
-var storage = new fruskac.Storage();
+fruskac.isCrossDomain = window.self !== window.top && document.referrer && !(new RegExp('//' + document.domain)).test(document.referrer);
+fruskac.lang = util.getParameterByName('lang') || (window.self !== window.top && window.top.document.documentElement.lang) || 'en';
 
-if (window.self !== window.top && document.referrer && !(new RegExp('//' + document.domain)).test(document.referrer)) {
-    fruskac.isCrossDomain = true;
-}
+var i18n  = new fruskac.I18n(fruskac.lang);
+
+var storage = new fruskac.Storage();
 
 var mapConfig = {
     center: new google.maps.LatLng(45.167031, 19.69677),
@@ -21,9 +25,9 @@ var mapConfig = {
     }
 };
 
-var latLngZoom = util.getParameterByName('c');
+var latLngZoom = util.getParameterByName(fruskac.PARAMETER.COORDINATES);
 if (latLngZoom) {
-    var parts = util.getParameterPartsByName('c');
+    var parts = util.getParameterPartsByName(fruskac.PARAMETER.COORDINATES);
     if (parts && parts.length) {
         if (parts[0] && parts[1]) {
             mapConfig.center = new google.maps.LatLng(parts[0], parts[1]);
@@ -72,7 +76,7 @@ var chart = new fruskac.Chart(document.getElementById('chart_container'));
 // default layers and their visibility
 var layers = [
     {
-        source: 'locations',
+        source: 'locations-' + fruskac.lang,
         type: fruskac.TYPE.MARKER,
         visible: true
     },
@@ -95,7 +99,7 @@ var layers = [
 
 var activeLayers = [];
 
-var layersFromUrl = util.getParameterPartsByName('l');
+var layersFromUrl = util.getParameterPartsByName(fruskac.PARAMETER.LAYERS);
 
 layers.forEach(function (layer) {
 
@@ -111,7 +115,7 @@ layers.forEach(function (layer) {
 Load remote track
  */
 
-var track = util.getParameterByName('t');
+var track = util.getParameterByName(fruskac.PARAMETER.TRACK);
 
 /*
 Load from "activeLayers"
@@ -119,7 +123,7 @@ Load from "activeLayers"
 
 var loader = new fruskac.Loader();
 
-var focus = util.getParameterByName('f');
+var focus = util.getParameterByName(fruskac.PARAMETER.FOCUS);
 
 loader.load(activeLayers).then(function () {
 

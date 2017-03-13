@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="map.min.css">
@@ -7,11 +7,11 @@
 <body>
 
 <div id="chart_container">
-    <button onclick="chart.setVisible(false)">X</button>
+    <button onclick="closeChart()">Close</button>
     <div id="chart"><div class="loading">Loading...</div></div>
 </div>
 <div id="map_container">
-    <button onclick="map.fullscreen()">Full Screen</button>
+    <button onclick="fullscreen()">Full Screen</button>
     <div id="map"></div>
 </div>
 

@@ -234,6 +234,7 @@ fruskac.Map = (function () {
                 c: gmap.getCenter().lat() + ',' + gmap.getCenter().lng() + ',' + gmap.getZoom(),
                 l: util.getParameterByName(fruskac.PARAMETER.LAYERS),
                 f: util.getParameterByName(fruskac.PARAMETER.FOCUS),
+                t: util.getParameterByName(fruskac.PARAMETER.TRACK),
                 lang: fruskac.lang
             };
 

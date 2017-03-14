@@ -78,14 +78,26 @@ fruskac.Chart = (function () {
 
                     // Set chart options
                     var options = {
-                        lineWidth: 5,
+                        lineWidth: 2,
+                        areaOpacity: 0.2,
+                        series: [
+                            {color: 'black', visibleInLegend: false}, {}, {},
+                        ],
                         focusTarget: 'category',
                         hAxis: {
-                            title: i18n.translate('DISTANCE') + ' (km)'
+                            baselineColor:'transparent',
+                            title: i18n.translate('DISTANCE') + ' (km)',
+                            gridlines: {
+                                color: 'transparent'
+                            },
                         },
                         vAxis: {
+                            baselineColor:'transparent',
                             title: i18n.translate('ELEVATION') + ' (m)',
-                            minValue: 0
+                            minValue: 0,
+                            gridlines: {
+                                color: 'transparent'
+                            },
                         },
                         legend: {
                             position: "none"

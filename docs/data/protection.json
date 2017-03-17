@@ -1,0 +1,18 @@
+[
+    {
+        "tag": "protection-borders",
+        "url": "http://fruskac.hnsmedia.net/kmls/granica-zastite.kml"
+    },
+    {
+        "tag": "protection-first-level",
+        "url": "http://fruskac.hnsmedia.net/kmls/rezim-zastite-I-stepena.kml"
+    },
+    {
+        "tag": "protection-second-level",
+        "url": "http://demo.bergb.com/maps/v2/layers/kmls/rezim-zastite-II-stepena.kml"
+    },
+    {
+        "tag": "protection-third-level",
+        "url": "http://demo.bergb.com/maps/v2/layers/kmls/rezim-zastite-III-stepena.kml"
+    }
+]

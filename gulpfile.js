@@ -119,8 +119,8 @@ gulp.task('docs:copy:dist', function () {
 gulp.task('docs:copy:data', function () {
     return gulp
         .src([
-            'data/*.*',
-            'data/**/*.*',
+            'data/*',
+            'data/**/*',
         ])
         .pipe(gulp.dest('docs/data'));
 });
@@ -128,7 +128,7 @@ gulp.task('docs:copy:data', function () {
 gulp.task('docs:copy:examples', function () {
     return gulp
         .src([
-            'examples/**/*.*',
+            'examples/**/*',
         ])
         .pipe(ga(gaConfig))
         .pipe(htmlmin({
@@ -149,7 +149,7 @@ gulp.task('docs:copy', [
 gulp.task('docs', function () {
     runSequence(
         'docs:clean',
-        //'docs:copy',
+        'docs:copy',
         function () {
             gulp.src([
                 './README.md',

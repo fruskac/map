@@ -22,16 +22,16 @@ var gaConfig = {
 
 gulp.task('default', function () {
     runSequence(
-        'build',
-        'docs'
+        'build'
+        //,'docs'
     );
 });
 
 gulp.task('build', [
-    'less',
-    'js',
-    'img',
-    'html'
+    'less'
+    ,'js'
+    ,'img'
+    ,'html'
 ]);
 
 paths.less = [
@@ -47,21 +47,21 @@ gulp.task('less', function () {
 });
 
 paths.js = [
-    'src/js/bootstrap.js',
-    'src/js/util.js',
-    'src/js/const/*.js',
-    'src/js/extend/googleMaps.js',
-    'map.config.js',
-    'src/js/model/marker.js',
-    'src/js/model/track.js',
-    'src/js/model/kml.js',
-    'src/js/service/i18n.js',
-    'src/js/service/chart.js',
-    'src/js/service/map.js',
-    'src/js/service/storage.js',
-    'src/js/loader.js',
-    'src/js/api.js',
-    'src/js/init.js',
+    'src/js/bootstrap.js'
+    ,'src/js/util.js'
+    ,'src/js/const/*.js'
+    ,'src/js/extend/googleMaps.js'
+    ,'map.config.js'
+    ,'src/js/model/marker.js'
+    ,'src/js/model/track.js'
+    ,'src/js/model/kml.js'
+    ,'src/js/service/i18n.js'
+    ,'src/js/service/chart.js'
+    ,'src/js/service/map.js'
+    ,'src/js/service/storage.js'
+    ,'src/js/loader.js'
+    ,'src/js/api.js'
+    ,'src/js/init.js'
 ];
 
 gulp.task('js', function () {
@@ -110,8 +110,8 @@ gulp.task('docs:clean', function () {
 gulp.task('docs:copy:dist', function () {
     return gulp
         .src([
-            'dist/*',
-            'dist/**/*',
+            'dist/*'
+            ,'dist/**/*'
         ])
         .pipe(gulp.dest('docs/dist'));
 });
@@ -119,8 +119,8 @@ gulp.task('docs:copy:dist', function () {
 gulp.task('docs:copy:data', function () {
     return gulp
         .src([
-            'data/*',
-            'data/**/*',
+            'data/*'
+            ,'data/**/*'
         ])
         .pipe(gulp.dest('docs/data'));
 });
@@ -128,7 +128,7 @@ gulp.task('docs:copy:data', function () {
 gulp.task('docs:copy:examples', function () {
     return gulp
         .src([
-            'examples/**/*',
+            'examples/**/*'
         ])
         .pipe(ga(gaConfig))
         .pipe(htmlmin({
@@ -141,9 +141,9 @@ gulp.task('docs:copy:examples', function () {
 });
 
 gulp.task('docs:copy', [
-    'docs:copy:dist',
-    'docs:copy:data',
-    'docs:copy:examples'
+    'docs:copy:dist'
+    ,'docs:copy:data'
+    ,'docs:copy:examples'
 ]);
 
 gulp.task('docs', function () {
@@ -167,10 +167,10 @@ gulp.task('docs', function () {
 });
 
 gulp.task('watch', [
-    'watch:js',
-    'watch:less',
-    'watch:html',
-    //'watch:docs'
+    'watch:js'
+    ,'watch:less'
+    ,'watch:html'
+    //,'watch:docs'
 ]);
 
 gulp.task('watch:js', function () {

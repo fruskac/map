@@ -110,7 +110,8 @@ gulp.task('docs:clean', function () {
 gulp.task('docs:copy:dist', function () {
     return gulp
         .src([
-            'dist/*.*',
+            'dist/*',
+            'dist/**/*',
         ])
         .pipe(gulp.dest('docs/dist'));
 });

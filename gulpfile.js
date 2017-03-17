@@ -30,6 +30,7 @@ gulp.task('default', function () {
 gulp.task('build', [
     'less',
     'js',
+    'img',
     'html'
 ]);
 
@@ -82,6 +83,11 @@ gulp.task('js', function () {
 paths.html = [
     './src/index.html'
 ];
+
+gulp.task('img', function () {
+    return gulp.src('src/img/*')
+        .pipe(gulp.dest('./dist/img'))
+});
 
 gulp.task('html', function () {
     return gulp.src(paths.html)

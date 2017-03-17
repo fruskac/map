@@ -149,7 +149,7 @@ gulp.task('docs:copy', [
 gulp.task('docs', function () {
     runSequence(
         'docs:clean',
-        'docs:copy',
+        //'docs:copy',
         function () {
             gulp.src([
                 './README.md',

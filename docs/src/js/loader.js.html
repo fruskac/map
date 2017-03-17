@@ -108,6 +108,8 @@
               </li>
               <li><a href="#load"><i class="alert alert-info"></i><span>load</span></a>
               </li>
+              <li><a href="#append"><i class="alert alert-info"></i><span>append</span></a>
+              </li>
               <li><a href="#load"><i class="alert alert-info"></i><span>load</span></a>
               </li>
             </ul>
@@ -167,10 +169,38 @@
 
     return Promise.all(promises);
 
-},
-
-append: function (source, type) {
-    return map.add(source, type, true)
+},</code></pre>
+          <section id="append">
+            <h1>append</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Loader.prototype.append()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>url</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>type</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Append item to map</p> </div>
+          <pre><code class="language-javascript">append: function (url, type) {
+    return map.add(url, type, true)
 }
 
     };</code></pre>
@@ -191,8 +221,13 @@ append: function (source, type) {
             </thead>
             <tbody>
               <tr>
-                <td>source</td>
-                <td>string, Object</td>
+                <td>url</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>name</td>
+                <td>string</td>
                 <td></td>
               </tr>
               <tr>
@@ -208,26 +243,19 @@ append: function (source, type) {
             </tbody>
           </table>
           <div class="description"><p>Initialize layers</p> </div>
-          <pre><code class="language-javascript">function load(source, type, visible) {
-
-    if (typeof source === 'string') {
-        source = {
-            name: source.replace(/-\w{2}/,''), // remove language suffix from name
-            url: '../data/' + source + '.json'
-        }
-    }
+          <pre><code class="language-javascript">function load(url, name, type, visible) {
 
     return storage.add({
-        id: source.name,
+        id: name.toLowerCase(),
         visible: visible,
         on: visible
     }).then(function () {
-        return $.get(source.url).success(function (response) { // get json array of items
+        return $.get(url).success(function (response) { // get json array of items
 
             var promises = [];
 
             response.forEach(function (item) {
-                var p, container = storage.get([source.name, item.tag]);
+                var p, container = storage.get([name, item.tag]);
 
                 if (container) {
                     p = new Promise(function (resolve) {
@@ -235,15 +263,15 @@ append: function (source, type) {
                     });
                 } else {
                     p = storage.add({
-                        id: item.tag,
+                        id: item.tag.toLowerCase(),
                         visible: visible,
                         on: visible,
                         type: type
-                    }, source.name);
+                    }, name);
                 }
 
                 p.then(function () {
-                    storage.add(item, [source.name, item.tag], type, visible);
+                    storage.add(item, [name.toLowerCase(), item.tag], type, visible);
                 });
 
                 promises.push(p);

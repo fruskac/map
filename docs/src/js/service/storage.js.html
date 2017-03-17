@@ -682,11 +682,16 @@ getSelectors: function () {
           </table>
           <div class="description"><p>Parse array (if provided) into string</p> </div>
           <pre><code class="language-javascript">function parseSelector(selector) {
-    if (selector &amp;&amp; typeof selector != 'string') {
+
+    if (!selector) {
+        return;
+    }
+
+    if (typeof selector != 'string') {
         selector = selector.join(':');
     }
 
-    return selector;
+    return selector.toLowerCase();
 
 }</code></pre>
           <section id="getSelectorsForContainer">

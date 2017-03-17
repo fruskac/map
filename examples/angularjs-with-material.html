@@ -102,7 +102,9 @@
         angular.module('app', [
             'ui.bootstrap',
             'ngMaterial'
-        ]).config([
+        ]).constant('CONFIG', {
+            map: '../dist/index.html'
+        }).config([
             '$compileProvider',
             function ($compileProvider) {
                 $compileProvider.debugInfoEnabled(false);
@@ -113,11 +115,12 @@
             '$scope',
             '$location',
             '$window',
-            function ($scope, $location, $window) {
+            'CONFIG',
+            function ($scope, $location, $window, CONFIG) {
 
                 var params = $location.search();
 
-                $scope.iframe = '../dist/index.html?' + Object.keys(params).map(function (i) {
+                $scope.iframe = CONFIG.map + '?' + Object.keys(params).map(function (i) {
                         return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
                     }).join('&');
 

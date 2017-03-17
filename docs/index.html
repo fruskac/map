@@ -120,7 +120,8 @@
 <p>Ream more about <code>git-flow</code> and how to install it <a href="https://github.com/nvie/gitflow">github.com/nvie/gitflow</a></p><h5>Tools</h5>
 <p>To be able to build source files, you need to have <code>npm</code> and <code>node</code> installed. After that run</p><pre><code>npm install
 </code></pre><p>This will install <code>Gulp</code> and other libraries needed for development.</p><h5>Build</h5>
-<p>To create build, run</p><pre><code>gulp
+<p>Configure your dist by copying content of <code>map.config.js.dist</code> to <code>map.config.js</code> (this file is ignored in GIT)</p><pre><code>cp map.config.js.dist map.config.js
+</code></pre><p>To create build, run</p><pre><code>gulp
 </code></pre><h6>Build separate JS, LESS, HTML and Docs</h6>
 <p>Build can be run by specific type, like</p><pre><code>gulp js
 gulp less

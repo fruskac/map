@@ -50,6 +50,7 @@ paths.js = [
     'src/js/util.js',
     'src/js/const/*.js',
     'src/js/extend/googleMaps.js',
+    'map.config.js',
     'src/js/model/marker.js',
     'src/js/model/track.js',
     'src/js/model/kml.js',

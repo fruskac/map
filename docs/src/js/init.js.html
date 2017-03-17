@@ -112,32 +112,11 @@
         <div class="span9">
           <div class="description"><p>URL param: &quot;l&quot; defines layers visible. If not defined, default visibility will be used</p> </div>
           <pre><code class="language-javascript">// default layers and their visibility
-var layers = [
-    {
-        source: 'locations-' + fruskac.lang,
-        type: fruskac.TYPE.MARKER,
-        visible: true
-    },
-    {
-        source: 'marathon',
-        type: fruskac.TYPE.TRACK,
-        visible: false
-    },
-    {
-        source: 'protection',
-        type: fruskac.TYPE.KML,
-        visible: false
-    },
-    {
-        source: 'time',
-        type: fruskac.TYPE.MARKER,
-        visible: false
-    }
-];
+var layers = CONFIG_LAYERS;
 
 var activeLayers = [];
 
-var layersFromUrl = util.getParameterPartsByName(fruskac.PARAMETER.LAYERS);
+var layersFromUrl = util.getParameterPartsByName(PARAMETER_LAYERS);
 
 layers.forEach(function (layer) {
 
@@ -155,7 +134,7 @@ layers.forEach(function (layer) {
             </p>
           </section>
           <div class="description"><p>Load remote track</p> </div>
-          <pre><code class="language-javascript">var track = util.getParameterByName(fruskac.PARAMETER.TRACK);</code></pre>
+          <pre><code class="language-javascript">var track = util.getParameterByName(PARAMETER_TRACK);</code></pre>
           <section id="loader">
             <h1>loader</h1>
             <h5 class="subheader"></h5>
@@ -166,12 +145,12 @@ layers.forEach(function (layer) {
           <div class="description"><p>Load from &quot;activeLayers&quot;</p> </div>
           <pre><code class="language-javascript">var loader = new fruskac.Loader();
 
-var focus = util.getParameterByName(fruskac.PARAMETER.FOCUS);
+var focus = util.getParameterByName(PARAMETER_FOCUS);
 
 loader.load(activeLayers).then(function () {
 
     if (track) {
-        loader.append(track, fruskac.TYPE.TRACK).then(function (object) {
+        loader.append(track, TYPE_TRACK).then(function (object) {
             google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
                 map.focus(object); // focus on appended object
             });

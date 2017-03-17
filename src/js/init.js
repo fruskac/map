@@ -6,7 +6,7 @@ window.fruskac = new fruskac.Api();
 var util = new fruskac.Util();
 
 fruskac.isCrossDomain = window.self !== window.top && document.referrer && !(new RegExp('//' + document.domain)).test(document.referrer);
-fruskac.lang = util.getParameterByName('lang') || (window.self !== window.top && window.top.document.documentElement.lang) || 'en';
+fruskac.lang = util.getParameterByName('lang') || (window.self !== window.top && window.top.document.documentElement.lang) || CONFIG_LANG;
 
 var i18n  = new fruskac.I18n(fruskac.lang);
 
@@ -25,9 +25,9 @@ var mapConfig = {
     }
 };
 
-var latLngZoom = util.getParameterByName(fruskac.PARAMETER.COORDINATES);
+var latLngZoom = util.getParameterByName(PARAMETER_COORDINATES);
 if (latLngZoom) {
-    var parts = util.getParameterPartsByName(fruskac.PARAMETER.COORDINATES);
+    var parts = util.getParameterPartsByName(PARAMETER_COORDINATES);
     if (parts && parts.length) {
         if (parts[0] && parts[1]) {
             mapConfig.center = new google.maps.LatLng(parts[0], parts[1]);
@@ -96,32 +96,11 @@ var chart = new fruskac.Chart(document.getElementById('chart_container'));
 */
 
 // default layers and their visibility
-var layers = [
-    {
-        source: 'locations-' + fruskac.lang,
-        type: fruskac.TYPE.MARKER,
-        visible: true
-    },
-    {
-        source: 'marathon',
-        type: fruskac.TYPE.TRACK,
-        visible: false
-    },
-    {
-        source: 'protection',
-        type: fruskac.TYPE.KML,
-        visible: false
-    },
-    {
-        source: 'time',
-        type: fruskac.TYPE.MARKER,
-        visible: false
-    }
-];
+var layers = CONFIG_LAYERS;
 
 var activeLayers = [];
 
-var layersFromUrl = util.getParameterPartsByName(fruskac.PARAMETER.LAYERS);
+var layersFromUrl = util.getParameterPartsByName(PARAMETER_LAYERS);
 
 layers.forEach(function (layer) {
 
@@ -137,7 +116,7 @@ layers.forEach(function (layer) {
 Load remote track
  */
 
-var track = util.getParameterByName(fruskac.PARAMETER.TRACK);
+var track = util.getParameterByName(PARAMETER_TRACK);
 
 /*
 Load from "activeLayers"
@@ -145,12 +124,12 @@ Load from "activeLayers"
 
 var loader = new fruskac.Loader();
 
-var focus = util.getParameterByName(fruskac.PARAMETER.FOCUS);
+var focus = util.getParameterByName(PARAMETER_FOCUS);
 
 loader.load(activeLayers).then(function () {
 
     if (track) {
-        loader.append(track, fruskac.TYPE.TRACK).then(function (object) {
+        loader.append(track, TYPE_TRACK).then(function (object) {
             google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
                 map.focus(object); // focus on appended object
             });

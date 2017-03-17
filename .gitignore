@@ -1,4 +1,4 @@
-dist/
+dist
 map.config.js
 
 bower_components/*

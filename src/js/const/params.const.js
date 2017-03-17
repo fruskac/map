@@ -1,8 +1,4 @@
-'use strict';
-
-fruskac.PARAMETER = {
-    FOCUS: 'f',
-    COORDINATES: 'c',
-    TRACK: 't',
-    LAYERS: 'l'
-};
+var PARAMETER_FOCUS = 'f';
+var PARAMETER_COORDINATES = 'c';
+var PARAMETER_TRACK = 't';
+var PARAMETER_LAYERS = 'l';

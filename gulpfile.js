@@ -50,6 +50,7 @@ paths.js = [
     'src/js/util.js',
     'src/js/const/*.js',
     'src/js/extend/googleMaps.js',
+    'map.config.js',
     'src/js/model/marker.js',
     'src/js/model/track.js',
     'src/js/model/kml.js',
@@ -68,12 +69,11 @@ gulp.task('js', function () {
         .pipe(concat('map.min.js'))
         .pipe(replace(/["']use strict["'];/g, ''))
         .pipe(iife({
-            params: ['window', '$', 'google', 'Promise'],
-            args: ['window', 'jQuery', 'google', 'Promise']
+            params: ['window', 'document', '$', '_', 'google', 'Promise'],
+            args: ['window', 'document', 'jQuery', '_', 'google', 'Promise']
         }))
         .pipe(uglify({
-            mangle: true,
-            compress: true
+            mangle: true
         }))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist'));

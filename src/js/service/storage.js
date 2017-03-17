@@ -293,11 +293,16 @@ fruskac.Storage = (function () {
      * @returns {*}
      */
     function parseSelector(selector) {
-        if (_.isArray(selector)) {
+
+        if (!selector) {
+            return;
+        }
+
+        if (typeof selector != 'string') {
             selector = selector.join(':');
         }
 
-        return selector;
+        return selector.toLowerCase();
 
     }
 

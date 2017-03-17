@@ -33,9 +33,15 @@ fruskac.Loader = (function () {
             return Promise.all(promises);
 
         },
-        
-        append: function (source, type) {
-            return map.add(source, type, true)
+
+        /**
+         * Append item to map
+         *
+         * @param url
+         * @param type
+         */
+        append: function (url, type) {
+            return map.add(url, type, true)
         }
 
     };
@@ -43,30 +49,24 @@ fruskac.Loader = (function () {
     /**
      * Initialize layers
      *
-     * @param {string|Object} source
+     * @param {string} url
+     * @param {string} name
      * @param {string} type
      * @param {boolean} visible
      */
-    function load(source, type, visible) {
-
-        if (typeof source === 'string') {
-            source = {
-                name: source.replace(/-\w{2}/,''), // remove language suffix from name
-                url: '../data/' + source + '.json'
-            }
-        }
+    function load(url, name, type, visible) {
 
         return storage.add({
-            id: source.name,
+            id: name.toLowerCase(),
             visible: visible,
             on: visible
         }).then(function () {
-            return $.get(source.url).success(function (response) { // get json array of items
+            return $.get(url).success(function (response) { // get json array of items
 
                 var promises = [];
 
                 response.forEach(function (item) {
-                    var p, container = storage.get([source.name, item.tag]);
+                    var p, container = storage.get([name, item.tag]);
 
                     if (container) {
                         p = new Promise(function (resolve) {
@@ -74,15 +74,15 @@ fruskac.Loader = (function () {
                         });
                     } else {
                         p = storage.add({
-                            id: item.tag,
+                            id: item.tag.toLowerCase(),
                             visible: visible,
                             on: visible,
                             type: type
-                        }, source.name);
+                        }, name);
                     }
 
                     p.then(function () {
-                        storage.add(item, [source.name, item.tag], type, visible);
+                        storage.add(item, [name.toLowerCase(), item.tag], type, visible);
                     });
 
                     promises.push(p);

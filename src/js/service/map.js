@@ -39,17 +39,17 @@ fruskac.Map = (function () {
 
             return new Promise(function (resolve) {
                 switch (type) {
-                    case fruskac.TYPE.MARKER:
+                    case TYPE_MARKER:
                         return self.addMarker(data, visible).then(function (marker) {
                             resolve(marker);
                         });
                         break;
-                    case fruskac.TYPE.TRACK:
+                    case TYPE_TRACK:
                         return self.addTrack(data, visible).then(function (track) {
                             resolve(track);
                         });
                         break;
-                    case fruskac.TYPE.KML:
+                    case TYPE_KML:
                         return self.addKml(data, visible).then(function (kml) {
                             resolve(kml);
                         });
@@ -158,7 +158,7 @@ fruskac.Map = (function () {
          */
         setVisible: function (object, value) {
             switch (getType(object)) {
-                case fruskac.TYPE.MARKER:
+                case TYPE_MARKER:
                     object.setVisible(value);
                     if (value) {
                         clusterer.addMarker(object);
@@ -166,10 +166,10 @@ fruskac.Map = (function () {
                         clusterer.removeMarker(object);
                     }
                     break;
-                case fruskac.TYPE.TRACK:
+                case TYPE_TRACK:
                     object.setVisible(value);
                     break;
-                case fruskac.TYPE.KML:
+                case TYPE_KML:
                     object.setMap(value ? gmap : null);
                     break;
             }
@@ -181,14 +181,14 @@ fruskac.Map = (function () {
          */
         focus: function (object, isFixedLayout) {
             switch (getType(object)) {
-                case fruskac.TYPE.MARKER:
+                case TYPE_MARKER:
                     gmap.setZoom(14);
                     gmap.panTo(object.position);
                     object.setAnimation(google.maps.Animation.BOUNCE);
                     // TODO: show info window
                     //map.showInfoWindow(getInfoWindowContent(options.data), this);
                     break;
-                case fruskac.TYPE.TRACK:
+                case TYPE_TRACK:
                     gmap.fitBounds(object.getBounds());
                     chart.show(object.getPath(), isFixedLayout);
                     break;
@@ -232,17 +232,16 @@ fruskac.Map = (function () {
 
             var params = {
                 c: gmap.getCenter().lat() + ',' + gmap.getCenter().lng() + ',' + gmap.getZoom(),
-                l: util.getParameterByName(fruskac.PARAMETER.LAYERS),
-                f: util.getParameterByName(fruskac.PARAMETER.FOCUS),
-                t: util.getParameterByName(fruskac.PARAMETER.TRACK),
+                l: util.getParameterByName(PARAMETER_LAYERS),
+                f: util.getParameterByName(PARAMETER_FOCUS),
+                t: util.getParameterByName(PARAMETER_TRACK),
                 lang: fruskac.lang
             };
 
-            var url = '/fruskac/map/examples/angularjs.html#!?' + Object.keys(params).map(function(i) {
+            var url = CONFIG_FULLSCREEN + '?' + Object.keys(params).map(function(i) {
                     return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
                 }).join('&');
 
-            // TODO: update location when published
             window.open(url, '_blank');
         }
     };
@@ -252,11 +251,11 @@ fruskac.Map = (function () {
             return;
         }
         if (object.hasOwnProperty('position')) {//marker
-            return fruskac.TYPE.MARKER;
+            return TYPE_MARKER;
         } else if (object.hasOwnProperty('strokeColor')) {
-            return fruskac.TYPE.TRACK;
+            return TYPE_TRACK;
         } else if (object.hasOwnProperty('suppressInfoWindows')) {
-            return fruskac.TYPE.KML;
+            return TYPE_KML;
         }
     }
 

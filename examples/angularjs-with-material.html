@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ФRuŠKać</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         html, body {
             margin: 0;
@@ -18,52 +19,53 @@
 
         iframe {
             border: none;
-            margin-top: 52px;
             width: 100%;
-            height: calc(100% - 52px);
+            height: 100%;
         }
 
         a {
             cursor: pointer;
         }
 
+        a:hover {
+            text-decoration: none;
+        }
+
         #header {
             position: absolute;
             top: 0;
             left: 0;
+            padding: 10px;
             width: 100%;
-            height: 52px;
-            font-size: 16px;
         }
 
-        #header .brand,
-        #header .navigation-toggle {
-            padding: 15px;
-            display: inline-block;
-            color: inherit;
+        #header .btn {
+            position: relative;
+            z-index: 99;
+            line-height: 0;
         }
 
         #navigation {
             position: fixed;
             width: 320px;
-            height: calc(100% - 52px);
+            height: 100%;
             overflow-x: hidden;
             overflow-y: auto;
-            top: 52px;
-            left: -320px;
+            top: 0;
+            right: -320px;
         }
 
         #navigation.in {
-            left: 0;
+            right: 0;
         }
 
         #navigation-overlay {
             display: none;
             position: absolute;
-            top: 52px;
-            left: 0;
+            top: 0;
+            right: 0;
             width: 100%;
-            height: calc(100% - 52px);
+            height: 100%;
             background: rgba(0, 0, 0, 0.5);
         }
 
@@ -71,29 +73,35 @@
             display: block;
         }
 
-        @media (min-width: 768px) {
-            iframe {
-                margin-top: 0;
-                margin-left: 320px;
-                width: calc(100% - 320px);
-                height: 100%;
-            }
+        md-checkbox,
+        md-switch {
+            margin: 0;
+        }
 
+        .panel-title .material-icons {
+            font-size: 32px;
+            margin-right: -10px;
+        }
+
+        @media (min-width: 768px) {
             #navigation-overlay {
                 display: none !important;
-            }
-
-            #navigation {
-                left: 0;
             }
         }
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
+
+
     <script>
         angular.module('app', [
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'ngMaterial'
         ]).constant('CONFIG', {
             map: '../dist/index.html'
         }).config([
@@ -106,8 +114,9 @@
         ]).controller('AppCtrl', [
             '$scope',
             '$location',
+            '$window',
             'CONFIG',
-            function ($scope, $location, CONFIG) {
+            function ($scope, $location, $window, CONFIG) {
 
                 var params = $location.search();
 
@@ -125,6 +134,10 @@
                             $scope.type = FruskacMapAPI.type;
                         })
                     });
+                };
+
+                if ($window.innerWidth > 768) {
+                    $scope.navigationOpen = true;
                 }
 
             }
@@ -135,12 +148,12 @@
 <body ng-controller="AppCtrl">
 
 <div id="header">
-    <a ng-click="navigationOpen=!navigationOpen" class="navigation-toggle hidden visible-xs-inline-block">
-        <i class="fa fa-bars"></i>
+    <a ng-click="navigationOpen=!navigationOpen" class="btn pull-right"
+       ng-class="{'btn-link':navigationOpen,'btn-default':!navigationOpen}">
+        <i class="material-icons">menu</i>
     </a>
     <a class="brand">
-        <i class="fa fa-map-o"></i>
-        ФRuŠKać
+        <img src="http://fruskac.net/sites/all/themes/fruskac/css/img/logo.png" width="120">
     </a>
 </div>
 
@@ -148,7 +161,6 @@
 <div id="navigation" ng-class="{'in':navigationOpen}">
     <div ng-hide="ready" class="panel panel-default">
         <div class="panel-body">
-            <i class="fa fa-circle-o-notch fa-spin"></i>
             Loading...
         </div>
     </div>
@@ -156,17 +168,15 @@
         <div class="panel panel-default">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a ng-click="clustering(!clustering())">
-                        <i class="fa" ng-class="{'fa-check-square':clustering(),'fa-square-o':!clustering()}"></i>
+                    <md-checkbox ng-click="clustering(!clustering())" ng-checked="clustering()">
                         Clustering
-                    </a>
+                    </md-checkbox>
                 </li>
                 <li class="list-group-item">
-                    <a ng-click="type(type()==='terrain'?'satellite':'terrain')">
-                        <i class="fa"
-                           ng-class="{'fa-check-square':type()==='satellite','fa-square-o':!type()!=='terrain'}"></i>
+                    <md-checkbox ng-click="type(type()==='terrain'?'satellite':'terrain')"
+                                 ng-checked="type()==='satellite'">
                         Satellite
-                    </a>
+                    </md-checkbox>
                 </li>
             </ul>
         </div>
@@ -175,13 +185,11 @@
                 <h3 class="panel-title">
                     <a ng-if="item.children" ng-click="$parent.open=!$parent.open"
                        ng-init="$parent.open=item.getVisible()" class="pull-right">
-                        <i class="fa" ng-class="{'fa-chevron-right':!open,'fa-chevron-down':open}"></i>
+                        <i class="material-icons" ng-style="{'transform':$parent.open?'rotate(90deg)':'none'}">chevron_right</i>
                     </a>
-                    <a ng-click="item.setVisible(!item.getVisible())">
-                        <i class="fa fa-fw"
-                           ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
+                    <md-switch ng-click="item.setVisible(!item.getVisible())" ng-checked="item.getVisible()">
                         {{ item.id }}
-                    </a>
+                    </md-switch>
                 </h3>
             </div>
             <div class="panel-collapse collapse" ng-class="{'in':open}">
@@ -191,14 +199,13 @@
                             <li ng-repeat="item in item.children" ng-class="{'disabled':!$parent.item.getVisible()}"
                                 class="list-group-item">
                                 <a ng-if="item.type === 'track'" ng-click="item.select()"
-                                   class="btn btn-default btn-xs pull-right">
-                                    <i class="fa fa-crosshairs"></i>
+                                   class="btn btn-link btn-xs pull-right">
+                                    <i class="material-icons">center_focus_strong</i>
                                 </a>
-                                <a ng-click="$parent.item.getVisible()&&item.setVisible(!item.getVisible())">
-                                    <i class="fa fa-fw"
-                                       ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
+                                <md-checkbox ng-click="$parent.item.getVisible()&&item.setVisible(!item.getVisible())"
+                                             ng-checked="item.getVisible()">
                                     {{ item.id }}
-                                </a>
+                                </md-checkbox>
                             </li>
                         </ul>
                     </li>

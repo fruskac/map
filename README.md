@@ -4,6 +4,7 @@
 The map is to be used in an `iFrame` element. Initial could be passed in via `src` attribute. The Map will expose API to it's parent element to allow Map control. Usages could be found in [examples](https://github.com/fruskac/map/tree/master/examples) directory. Here are some links:
 
 * [AngularJS](./examples/angularjs.html)
+* [AngularJS with Material](./examples/angularjs-with-material.html)
 * [Embed](./examples/embed.html)
 * [Coordinates](./examples/coordinates.html)
 

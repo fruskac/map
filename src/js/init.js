@@ -51,7 +51,7 @@ var overlayOptions = {
     clickable: false
 };
 var groundOverlay = new google.maps.GroundOverlay(
-    'http://fruskac.net/sites/all/themes/fruskac/css/img/fruskac-logo-map.png',
+    'img/overlay.png',
     overlayImageBounds,
     overlayOptions
 );
@@ -65,21 +65,21 @@ var clusterer = new MarkerClusterer(gmap, [], {
     styles: [
         {
             textColor: 'white',
-            url: 'http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png',
+            url: 'img/sprite.png',
             backgroundPosition: '0 -523px',
             height: 32,
             width: 32
         },
         {
             textColor: 'white',
-            url: 'http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png',
+            url: 'img/sprite.png',
             backgroundPosition: '0 -443px',
             height: 48,
             width: 48
         },
         {
             textColor: 'white',
-            url: 'http://fruskac.net/sites/all/themes/fruskac/css/img/maps.png',
+            url: 'img/sprite.png',
             backgroundPosition: '0 -379px',
             height: 64,
             width: 64

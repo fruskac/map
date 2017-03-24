@@ -272,8 +272,8 @@
                     <div class="col-xs-6" ng-repeat="child in ::item.children">
                         <div class="checkbox" ng-class="'checkbox-' + child.id">
                             <label >
-                                <input ng-attr-type="{{ child.type === 'marker' ? 'checkbox' : 'radio' }}"
-                                       ng-click="item.getVisible()&&(child.type === 'marker'?child.setVisible(!child.getVisible()):child.focus())"
+                                <input ng-attr-type="{{ child.type !== 'track' ? 'checkbox' : 'radio' }}"
+                                       ng-click="item.getVisible()&&(child.type !== 'track'?child.setVisible(!child.getVisible()):child.focus())"
                                        ng-checked="getVisible(child)"
                                        ng-disabled="!item.getVisible()">
                                 {{ ::child.id | humanize }}

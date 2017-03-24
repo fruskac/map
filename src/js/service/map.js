@@ -215,7 +215,8 @@ fruskac.Map = (function () {
                     self.marker.setPoint(point);
                 } else {
                     self.marker = new fruskac.Marker({
-                        position: point
+                        position: point,
+                        visible: true
                     });
                 }
             } else {

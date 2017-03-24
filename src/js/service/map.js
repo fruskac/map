@@ -11,6 +11,8 @@ fruskac.Map = (function () {
     function Map(map) {
 
         this.infoWindow = new google.maps.InfoWindow({
+            //pixelOffset: new google.maps.Size(0, -34),
+            maxWidth: 285,
             content: "holding..."
         });
 
@@ -72,15 +74,18 @@ fruskac.Map = (function () {
                 var marker = new fruskac.Marker({
                     position: new google.maps.LatLng(data.lat, data.lng),
                     title: data.data.title,
-                    icon: data.options.icon_data,
-                    data: data.data
+                    icon: data.tag,
+                    data: data.data,
+                    visible: visible
                 });
 
-                marker.setVisible(visible);
-
                 if (visible) {
-                    clusterer.addMarker(marker);
+                    //clusterer.addMarker(marker);
                 }
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    marker.animateWobble();
+                });
 
                 resolve(marker);
 
@@ -160,11 +165,6 @@ fruskac.Map = (function () {
             switch (getType(object)) {
                 case TYPE_MARKER:
                     object.setVisible(value);
-                    if (value) {
-                        clusterer.addMarker(object);
-                    } else {
-                        clusterer.removeMarker(object);
-                    }
                     break;
                 case TYPE_TRACK:
                     object.setVisible(value);
@@ -180,15 +180,24 @@ fruskac.Map = (function () {
          * @param {Object} object
          */
         focus: function (object, isFixedLayout) {
+
+            var self = this;
+
             switch (getType(object)) {
                 case TYPE_MARKER:
                     gmap.setZoom(14);
                     gmap.panTo(object.position);
-                    object.setAnimation(google.maps.Animation.BOUNCE);
+                    var interval = setInterval(function () {
+                        object.animateBounce();
+                    }, 2000);
+                    google.maps.event.addDomListener(object.div, 'click', function () {
+                        clearInterval(interval);
+                    });
                     // TODO: show info window
                     //map.showInfoWindow(getInfoWindowContent(options.data), this);
                     break;
                 case TYPE_TRACK:
+                    self.placeMarker(null);
                     gmap.fitBounds(object.getBounds());
                     chart.show(object.getPath(), isFixedLayout);
                     break;
@@ -203,28 +212,36 @@ fruskac.Map = (function () {
 
             var self = this;
 
-            if (!self.marker) {
-                self.marker = new fruskac.Marker({
-                    position: point
-                });
+            if (point) {
+                if (self.marker) {
+                    self.marker.setPoint(point);
+                } else {
+                    self.marker = new fruskac.Marker({
+                        position: point,
+                        visible: true
+                    });
+                }
             } else {
-                self.marker.animateTo(point, {
-                    duration: 50
-                });
+                if (self.marker) {
+                    self.marker.remove();
+                    self.marker = null;
+                }
             }
+
         },
 
         /**
          * Show info window for Marker
          * @param {string} html
-         * @param {google.maps.Marker} marker
+         * @param {LatLng|LatLngLiteral} position
          */
-        showInfoWindow: function (html, marker) {
+        showInfoWindow: function (html, position) {
 
             var self = this;
 
             self.infoWindow.setContent(html);
-            self.infoWindow.open(gmap, marker);
+            self.infoWindow.setPosition(position);
+            self.infoWindow.open(gmap);
 
         },
 
@@ -238,7 +255,7 @@ fruskac.Map = (function () {
                 lang: fruskac.lang
             };
 
-            var url = CONFIG_FULLSCREEN + '?' + Object.keys(params).map(function(i) {
+            var url = CONFIG_FULLSCREEN + '?' + Object.keys(params).map(function (i) {
                     return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
                 }).join('&');
 

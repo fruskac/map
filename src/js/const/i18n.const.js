@@ -7,12 +7,12 @@ fruskac.I18N = {
     ],
     SOURCE: {
         DISTANCE: [
-            { en: 'Distance' },
-            { rs: 'Udaljenost' }
+            {en: 'Distance'},
+            {rs: 'Udaljenost'}
         ],
         ELEVATION: [
-            { en: 'Elevation' },
-            { rs: 'Visina' }
+            {en: 'Elevation'},
+            {rs: 'Visina'}
         ]
     }
 

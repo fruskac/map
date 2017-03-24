@@ -236,9 +236,25 @@
 
     if (type) {
         object.type = type;
+        if (value.categories) {
+            value.categories.forEach(function (category) {
+                var parent = self.get(getParentSelector(selector));
+                if (parent) {
+                    if (!parent.categories) {
+                        parent.categories = [];
+                    }
+                    if (parent.categories.indexOf(category) === -1) {
+                        parent.categories.push(category);
+                    }
+                }
+            });
+        }
         return map.add(value, type, visible).then(function (object) {
+            if (value.categories) {
+                object.categories = value.categories;
+            }
             container.push(object);
-        });
+        })
     } else {
         return new Promise(function (resolve) {
             container.push(value);
@@ -586,6 +602,29 @@
 
 },
 
+highlight: function (selector, category) {
+
+    var self = this;
+
+    selector = parseSelector(selector);
+
+    var object = self.get(selector);
+
+    if (object.children) {
+        object.children.forEach(function (item) {
+            if (item.children) {
+                item.children.forEach(function (child) {
+                    var shoudBeOpaque = category &amp;&amp; child.categories.indexOf(category) === -1;
+                    child.setOpaque(shoudBeOpaque);
+                    if (!shoudBeOpaque) {
+                        child.animateWobble();
+                    }
+                })
+            }
+        })
+    }
+},
+
 getSelectors: function () {
     return getSelectorsForContainer(storage.root());
 }
@@ -750,7 +789,7 @@ getSelectors: function () {
             setVisible: function (value) {
                 return storage.setState(itemSelector, value);
             },
-            select: function () {
+            focus: function () {
                 return storage.focus(itemSelector);
             }
         };
@@ -763,6 +802,13 @@ getSelectors: function () {
             var subChildren = getSelectorsForContainer(item.children, itemSelector);
             if (subChildren &amp;&amp; subChildren.length) {
                 object.children = subChildren;
+            }
+        }
+
+        if (item.categories &amp;&amp; item.categories.length) {
+            object.categories = item.categories;
+            object.highlight = function (category) {
+                storage.highlight(object.id, category)
             }
         }
 

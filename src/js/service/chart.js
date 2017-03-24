@@ -35,6 +35,7 @@ fruskac.Chart = (function () {
                 $(self.container).addClass(className);
             } else {
                 $(self.container).removeClass(className);
+                map.placeMarker();
             }
 
             var center = gmap.getCenter();
@@ -85,14 +86,14 @@ fruskac.Chart = (function () {
                         ],
                         focusTarget: 'category',
                         hAxis: {
-                            baselineColor:'transparent',
+                            baselineColor: 'transparent',
                             title: i18n.translate('DISTANCE') + ' (km)',
                             gridlines: {
                                 color: 'transparent'
                             },
                         },
                         vAxis: {
-                            baselineColor:'transparent',
+                            baselineColor: 'transparent',
                             title: i18n.translate('ELEVATION') + ' (m)',
                             minValue: 0,
                             gridlines: {
@@ -121,7 +122,6 @@ fruskac.Chart = (function () {
 
         }
     };
-
 
     /**
      *

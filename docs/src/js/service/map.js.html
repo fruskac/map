@@ -153,6 +153,8 @@
           <pre><code class="language-javascript">function Map(map) {
 
     this.infoWindow = new google.maps.InfoWindow({
+        //pixelOffset: new google.maps.Size(0, -34),
+        maxWidth: 285,
         content: &quot;holding...&quot;
     });
 
@@ -548,19 +550,20 @@
                 <td></td>
               </tr>
               <tr>
-                <td>marker</td>
-                <td>google.maps.Marker</td>
+                <td>position</td>
+                <td>LatLng, LatLngLiteral</td>
                 <td></td>
               </tr>
             </tbody>
           </table>
           <div class="description"><p>Show info window for Marker</p> </div>
-          <pre><code class="language-javascript">showInfoWindow: function (html, marker) {
+          <pre><code class="language-javascript">showInfoWindow: function (html, position) {
 
     var self = this;
 
     self.infoWindow.setContent(html);
-    self.infoWindow.open(gmap, marker);
+    self.infoWindow.setPosition(position);
+    self.infoWindow.open(gmap);
 
 },
 

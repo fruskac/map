@@ -1,29 +1,24 @@
-@markerDialogWidth: 600px;
-@markerDialogHeight: 400px;
-@markerDialogPadding: 10px;
-@markerDialogArrowWidth: 10px;
+@padding: 10px;
 
-.marker-dialog {
-  position: absolute;
-  background: #fff;
-  bottom: 40px;
-  left: -((@markerDialogWidth+@markerDialogPadding*2)/2-16);
-  width: @markerDialogWidth;
-  height: @markerDialogHeight;
-  padding: @markerDialogPadding;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+.gm-style-iw {
+  max-width: 285px;
+  margin: -8px -14px;
+  font-size: 12px !important;
 
-  &:before {
-    display: block;
-    content: '';
-    position: absolute;
-    bottom: round(-@markerDialogArrowWidth/2);
-    left: 50%;
-    background: red;
-    width: @markerDialogArrowWidth;
-    height: @markerDialogArrowWidth;
-    transform: rotate(-45deg);
-    margin-left: -@markerDialogArrowWidth/2;
+  a {
+    color: #333;
+    text-decoration: none;
+
+    img {
+    }
+
+    h2 {
+      padding: 0 @padding;
+    }
+
+    p {
+      padding: 0 @padding;
+    }
+
   }
-
 }

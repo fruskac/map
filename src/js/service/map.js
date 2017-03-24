@@ -11,6 +11,8 @@ fruskac.Map = (function () {
     function Map(map) {
 
         this.infoWindow = new google.maps.InfoWindow({
+            //pixelOffset: new google.maps.Size(0, -34),
+            maxWidth: 285,
             content: "holding..."
         });
 
@@ -231,14 +233,15 @@ fruskac.Map = (function () {
         /**
          * Show info window for Marker
          * @param {string} html
-         * @param {google.maps.Marker} marker
+         * @param {LatLng|LatLngLiteral} position
          */
-        showInfoWindow: function (html, marker) {
+        showInfoWindow: function (html, position) {
 
             var self = this;
 
             self.infoWindow.setContent(html);
-            self.infoWindow.open(gmap, marker);
+            self.infoWindow.setPosition(position);
+            self.infoWindow.open(gmap);
 
         },
 

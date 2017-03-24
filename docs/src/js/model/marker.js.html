@@ -207,8 +207,8 @@
         }, Math.random() * 800 + 200);
 
         google.maps.event.addDomListener(div, &quot;click&quot;, function () {
-            self.animateBounce();
-            console.log('TODO: show dialog')
+            self.animateWobble();
+            self.showInfoWindow();
         });
     }
 
@@ -334,7 +334,7 @@
           </section>
           <div class="description"><p>Get position of Marker</p> </div>
           <pre><code class="language-javascript">Marker.prototype.getPosition = function () {
-    console.log('getPosition')
+    return this.position;
 };</code></pre>
           <section id="remove">
             <h1>remove</h1>
@@ -357,6 +357,10 @@
           <div class="description"><p>onRemove handler</p> </div>
           <pre><code class="language-javascript">Marker.prototype.onRemove = function () {
     this.remove();
+};
+
+Marker.prototype.showInfoWindow = function () {
+    map.showInfoWindow(getInfoWindowContent(this.options.data), this.getPosition());
 };</code></pre>
           <section id="animateDrop">
             <h1>animateDrop</h1>
@@ -517,16 +521,20 @@ return Marker;</code></pre>
           </table>
           <div class="description"><p>Creates HTML that will be presented on InfoWindow</p> </div>
           <pre><code class="language-javascript">function getInfoWindowContent(data) {
-    var html = '&lt;h1&gt;' + data.title + '&lt;/h1&gt;';
-    if (data.description) {
-        html += '&lt;p&gt;' + data.description + '&lt;/p&gt;';
-    }
+    var html = '';
+
     if (data.image) {
         html += '&lt;img src=&quot;' + data.image + '&quot;&gt;';
     }
-    if (data.link) {
-        html += '&lt;a href=&quot;' + data.link + '&quot; target=&quot;_blank&quot;&gt;' + data.link + '&lt;/a&gt;';
+
+    html += '&lt;h2&gt;' + data.title + '&lt;/h2&gt;';
+
+    if (data.description) {
+        html += '&lt;p&gt;' + data.description + '&lt;/p&gt;';
     }
+
+    html = '&lt;a' + (data.link &amp;&amp; ' href=&quot;' + data.link + '&quot; target=&quot;_blank&quot;') + '&gt;' + html + '&lt;/a&gt;';
+
     return html;
 }
 

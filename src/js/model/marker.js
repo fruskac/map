@@ -52,8 +52,8 @@ fruskac.Marker = (function () {
             }, Math.random() * 800 + 200);
 
             google.maps.event.addDomListener(div, "click", function () {
-                self.animateBounce();
-                console.log('TODO: show dialog')
+                self.animateWobble();
+                self.showInfoWindow();
             });
         }
 
@@ -121,7 +121,7 @@ fruskac.Marker = (function () {
      * Get position of Marker
      */
     Marker.prototype.getPosition = function () {
-        console.log('getPosition')
+        return this.position;
     };
 
     /**
@@ -136,6 +136,10 @@ fruskac.Marker = (function () {
      */
     Marker.prototype.onRemove = function () {
         this.remove();
+    };
+
+    Marker.prototype.showInfoWindow = function () {
+        map.showInfoWindow(getInfoWindowContent(this.options.data), this.getPosition());
     };
 
     /**
@@ -267,16 +271,20 @@ fruskac.Marker = (function () {
      * @returns {string}
      */
     function getInfoWindowContent(data) {
-        var html = '<h1>' + data.title + '</h1>';
-        if (data.description) {
-            html += '<p>' + data.description + '</p>';
-        }
+        var html = '';
+
         if (data.image) {
             html += '<img src="' + data.image + '">';
         }
-        if (data.link) {
-            html += '<a href="' + data.link + '" target="_blank">' + data.link + '</a>';
+
+        html += '<h2>' + data.title + '</h2>';
+
+        if (data.description) {
+            html += '<p>' + data.description + '</p>';
         }
+
+        html = '<a' + (data.link && ' href="' + data.link + '" target="_blank"') + '>' + html + '</a>';
+
         return html;
     }
 

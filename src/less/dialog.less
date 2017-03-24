@@ -1,0 +1,29 @@
+@markerDialogWidth: 600px;
+@markerDialogHeight: 400px;
+@markerDialogPadding: 10px;
+@markerDialogArrowWidth: 10px;
+
+.marker-dialog {
+  position: absolute;
+  background: #fff;
+  bottom: 40px;
+  left: -((@markerDialogWidth+@markerDialogPadding*2)/2-16);
+  width: @markerDialogWidth;
+  height: @markerDialogHeight;
+  padding: @markerDialogPadding;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+
+  &:before {
+    display: block;
+    content: '';
+    position: absolute;
+    bottom: round(-@markerDialogArrowWidth/2);
+    left: 50%;
+    background: red;
+    width: @markerDialogArrowWidth;
+    height: @markerDialogArrowWidth;
+    transform: rotate(-45deg);
+    margin-left: -@markerDialogArrowWidth/2;
+  }
+
+}

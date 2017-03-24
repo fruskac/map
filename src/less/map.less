@@ -1,5 +1,4 @@
-@chart-height: 30%;
-@padding: 10px;
+@import "_variables";
 
 html, body {
   height: 100%;
@@ -36,50 +35,8 @@ html, body {
     z-index: 99;
 
     img {
-      width: 120px;
+      width: 210px;
       height: auto;
-    }
-  }
-
-}
-
-#chart_container {
-  display: none;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: @chart-height;
-
-  > button {
-    position: absolute;
-    top: @padding;
-    left: @padding;
-    z-index: 1;
-  }
-
-  > div {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-  }
-
-  &.on {
-    display: block;
-
-    & + #map_container {
-      height: calc(100% ~' - @{chart-height}');
-    }
-
-  }
-
-  > #chart {
-    > .loading {
-      position: relative;
-      top: 50%;
-      width: 100%;
-      text-align: center;
-      transform: translateY(-50%);
     }
   }
 

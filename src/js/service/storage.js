@@ -48,9 +48,25 @@ fruskac.Storage = (function () {
 
             if (type) {
                 object.type = type;
+                if (value.categories) {
+                    value.categories.forEach(function (category) {
+                        var parent = self.get(getParentSelector(selector));
+                        if (parent) {
+                            if (!parent.categories) {
+                                parent.categories = [];
+                            }
+                            if (parent.categories.indexOf(category) === -1) {
+                                parent.categories.push(category);
+                            }
+                        }
+                    });
+                }
                 return map.add(value, type, visible).then(function (object) {
+                    if (value.categories) {
+                        object.categories = value.categories;
+                    }
                     container.push(object);
-                });
+                })
             } else {
                 return new Promise(function (resolve) {
                     container.push(value);
@@ -221,6 +237,7 @@ fruskac.Storage = (function () {
 
         },
 
+
         /**
          * Focus object based on selector
          * @param {Array|string} selector
@@ -249,6 +266,29 @@ fruskac.Storage = (function () {
 
             map.focus(object && object.hasOwnProperty('children') ? object.children[0] : object, isFixedLayout);
 
+        },
+
+        highlight: function (selector, category) {
+
+            var self = this;
+
+            selector = parseSelector(selector);
+
+            var object = self.get(selector);
+
+            if (object.children) {
+                object.children.forEach(function (item) {
+                    if (item.children) {
+                        item.children.forEach(function (child) {
+                            var shoudBeHighlighted = child.categories.indexOf(category) !== -1;
+                            child.setOpaque(shoudBeHighlighted);
+                            if (shoudBeHighlighted) {
+                                child.animateWobble();
+                            }
+                        })
+                    }
+                })
+            }
         },
 
         getSelectors: function () {
@@ -339,7 +379,7 @@ fruskac.Storage = (function () {
                 setVisible: function (value) {
                     return storage.setState(itemSelector, value);
                 },
-                select: function () {
+                focus: function () {
                     return storage.focus(itemSelector);
                 }
             };
@@ -352,6 +392,13 @@ fruskac.Storage = (function () {
                 var subChildren = getSelectorsForContainer(item.children, itemSelector);
                 if (subChildren && subChildren.length) {
                     object.children = subChildren;
+                }
+            }
+
+            if (item.categories && item.categories.length) {
+                object.categories = item.categories;
+                object.highlight = function (category) {
+                    storage.highlight(object.id, category)
                 }
             }
 

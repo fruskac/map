@@ -72,15 +72,19 @@ fruskac.Map = (function () {
                 var marker = new fruskac.Marker({
                     position: new google.maps.LatLng(data.lat, data.lng),
                     title: data.data.title,
-                    icon: data.options.icon_data,
+                    icon: data.tag,
                     data: data.data
                 });
 
                 marker.setVisible(visible);
 
                 if (visible) {
-                    clusterer.addMarker(marker);
+                    //clusterer.addMarker(marker);
                 }
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    marker.animateWobble();
+                });
 
                 resolve(marker);
 
@@ -160,11 +164,6 @@ fruskac.Map = (function () {
             switch (getType(object)) {
                 case TYPE_MARKER:
                     object.setVisible(value);
-                    if (value) {
-                        clusterer.addMarker(object);
-                    } else {
-                        clusterer.removeMarker(object);
-                    }
                     break;
                 case TYPE_TRACK:
                     object.setVisible(value);
@@ -180,6 +179,9 @@ fruskac.Map = (function () {
          * @param {Object} object
          */
         focus: function (object, isFixedLayout) {
+
+            var self = this;
+
             switch (getType(object)) {
                 case TYPE_MARKER:
                     gmap.setZoom(14);
@@ -189,6 +191,7 @@ fruskac.Map = (function () {
                     //map.showInfoWindow(getInfoWindowContent(options.data), this);
                     break;
                 case TYPE_TRACK:
+                    self.placeMarker(null);
                     gmap.fitBounds(object.getBounds());
                     chart.show(object.getPath(), isFixedLayout);
                     break;
@@ -203,15 +206,21 @@ fruskac.Map = (function () {
 
             var self = this;
 
-            if (!self.marker) {
-                self.marker = new fruskac.Marker({
-                    position: point
-                });
+            if (point) {
+                if (self.marker) {
+                    self.marker.setPoint(point);
+                } else {
+                    self.marker = new fruskac.Marker({
+                        position: point
+                    });
+                }
             } else {
-                self.marker.animateTo(point, {
-                    duration: 50
-                });
+                if (self.marker) {
+                    self.marker.remove();
+                    self.marker = null;
+                }
             }
+
         },
 
         /**

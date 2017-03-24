@@ -59,7 +59,7 @@ groundOverlay.setMap(gmap);
 
 var map = new fruskac.Map(gmap);
 
-var clusterer = new MarkerClusterer(gmap, [], {
+/*var clusterer = new MarkerClusterer(gmap, [], {
     maxZoom: 12,
     gridSize: 50,
     styles: [
@@ -87,7 +87,7 @@ var clusterer = new MarkerClusterer(gmap, [], {
     ]
 });
 
-clusterer.enabled = true;
+clusterer.enabled = true;*/
 
 var chart = new fruskac.Chart(document.getElementById('chart_container'));
 

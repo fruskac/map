@@ -1,0 +1,41 @@
+[
+  {
+    "lat": "45.126384",
+    "lng": "19.781676",
+    "tag": "winery",
+    "categories": ["biking","hiking"],
+    "data": {
+      "title": "Test winery",
+      "id": "487",
+      "link": "http:\/\/fruskac.net\/en\/locations\/springs\/dry",
+      "description": "The Dry Spring is located in the Vrdnik settlment called Stara kolonija (Old Colony), where its also called Dobra voda (Good water).",
+      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/locations\/vrdnik-izvor-suvi-izvor-1.jpg?itok=TqdkJXCw"
+    }
+  },
+  {
+    "lat": "45.026384",
+    "lng": "19.681676",
+    "tag": "winery",
+    "categories": ["biking"],
+    "data": {
+      "title": "Test winery",
+      "id": "487",
+      "link": "http:\/\/fruskac.net\/en\/locations\/springs\/dry",
+      "description": "The Dry Spring is located in the Vrdnik settlment called Stara kolonija (Old Colony), where its also called Dobra voda (Good water).",
+      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/locations\/vrdnik-izvor-suvi-izvor-1.jpg?itok=TqdkJXCw"
+    }
+  },
+  {
+    "lat": "45.256384",
+    "lng": "19.581676",
+    "tag": "restaurant",
+    "categories": ["eating"],
+    "data": {
+      "title": "Test winery",
+      "id": "487",
+      "link": "http:\/\/fruskac.net\/en\/locations\/springs\/dry",
+      "description": "The Dry Spring is located in the Vrdnik settlment called Stara kolonija (Old Colony), where its also called Dobra voda (Good water).",
+      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/locations\/vrdnik-izvor-suvi-izvor-1.jpg?itok=TqdkJXCw"
+    }
+  }
+]

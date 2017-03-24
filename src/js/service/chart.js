@@ -35,6 +35,7 @@ fruskac.Chart = (function () {
                 $(self.container).addClass(className);
             } else {
                 $(self.container).removeClass(className);
+                map.placeMarker();
             }
 
             var center = gmap.getCenter();

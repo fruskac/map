@@ -66,18 +66,21 @@ fruskac.Marker = (function () {
 
         if (self.div) {
             if (value) {
-                util.removeClass(self.div, 'hidden');
-
-                // add wobble animation on enter
                 setTimeout(function () {
-                    self.animateWobble();
-                }, Math.random() * 400);
+                    util.removeClass(self.div, 'hidden');
 
-                //clusterer.addMarker(object);
+                    // add wobble animation on enter
+                    self.animateWobble();
+
+                    //clusterer.addMarker(object);
+                }, Math.random() * 400);
             } else {
-                util.addClass(self.div, 'hidden');
-                //clusterer.removeMarker(object);
+                setTimeout(function () {
+                    util.addClass(self.div, 'hidden');
+                    //clusterer.removeMarker(object);
+                }, Math.random() * 200);
             }
+
         }
     };
 

@@ -73,16 +73,15 @@ fruskac.Map = (function () {
                     position: new google.maps.LatLng(data.lat, data.lng),
                     title: data.data.title,
                     icon: data.tag,
-                    data: data.data
+                    data: data.data,
+                    visible: visible
                 });
-
-                marker.setVisible(visible);
 
                 if (visible) {
                     //clusterer.addMarker(marker);
                 }
 
-                google.maps.event.addListener(marker, 'click', function() {
+                google.maps.event.addListener(marker, 'click', function () {
                     marker.animateWobble();
                 });
 
@@ -252,7 +251,7 @@ fruskac.Map = (function () {
                 lang: fruskac.lang
             };
 
-            var url = CONFIG_FULLSCREEN + '?' + Object.keys(params).map(function(i) {
+            var url = CONFIG_FULLSCREEN + '?' + Object.keys(params).map(function (i) {
                     return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
                 }).join('&');
 

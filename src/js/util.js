@@ -2,7 +2,8 @@
 
 fruskac.Util = (function () {
 
-    function Util() {}
+    function Util() {
+    }
 
     Util.prototype = {
         getParameterByName: function (name, url) {
@@ -25,14 +26,14 @@ fruskac.Util = (function () {
             return value.split(',');
         },
 
-        addClass: function(element, className) {
+        addClass: function (element, className) {
             if (element.classList)
                 element.classList.add(className);
             else
                 element.className += ' ' + className;
         },
 
-        removeClass: function(element, className) {
+        removeClass: function (element, className) {
             if (element.classList)
                 element.classList.remove(className);
             else

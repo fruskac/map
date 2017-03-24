@@ -282,9 +282,9 @@ fruskac.Storage = (function () {
                 object.children.forEach(function (item) {
                     if (item.children) {
                         item.children.forEach(function (child) {
-                            var shoudBeHighlighted = child.categories.indexOf(category) !== -1;
-                            child.setOpaque(shoudBeHighlighted);
-                            if (shoudBeHighlighted) {
+                            var shoudBeOpaque = category && child.categories.indexOf(category) === -1;
+                            child.setOpaque(shoudBeOpaque);
+                            if (!shoudBeOpaque) {
                                 child.animateWobble();
                             }
                         })

@@ -8,7 +8,7 @@ var util = new fruskac.Util();
 fruskac.isCrossDomain = window.self !== window.top && document.referrer && !(new RegExp('//' + document.domain)).test(document.referrer);
 fruskac.lang = util.getParameterByName('lang') || (window.self !== window.top && window.top.document.documentElement.lang) || CONFIG_LANG;
 
-var i18n  = new fruskac.I18n(fruskac.lang);
+var i18n = new fruskac.I18n(fruskac.lang);
 
 var storage = new fruskac.Storage();
 
@@ -60,40 +60,40 @@ groundOverlay.setMap(gmap);
 var map = new fruskac.Map(gmap);
 
 /*var clusterer = new MarkerClusterer(gmap, [], {
-    maxZoom: 12,
-    gridSize: 50,
-    styles: [
-        {
-            textColor: 'white',
-            url: 'img/sprite.png',
-            backgroundPosition: '0 -523px',
-            height: 32,
-            width: 32
-        },
-        {
-            textColor: 'white',
-            url: 'img/sprite.png',
-            backgroundPosition: '0 -443px',
-            height: 48,
-            width: 48
-        },
-        {
-            textColor: 'white',
-            url: 'img/sprite.png',
-            backgroundPosition: '0 -379px',
-            height: 64,
-            width: 64
-        }
-    ]
-});
+ maxZoom: 12,
+ gridSize: 50,
+ styles: [
+ {
+ textColor: 'white',
+ url: 'img/sprite.png',
+ backgroundPosition: '0 -523px',
+ height: 32,
+ width: 32
+ },
+ {
+ textColor: 'white',
+ url: 'img/sprite.png',
+ backgroundPosition: '0 -443px',
+ height: 48,
+ width: 48
+ },
+ {
+ textColor: 'white',
+ url: 'img/sprite.png',
+ backgroundPosition: '0 -379px',
+ height: 64,
+ width: 64
+ }
+ ]
+ });
 
-clusterer.enabled = true;*/
+ clusterer.enabled = true;*/
 
 var chart = new fruskac.Chart(document.getElementById('chart_container'));
 
 /*
-* URL param: "l" defines layers visible. If not defined, default visibility will be used
-*/
+ * URL param: "l" defines layers visible. If not defined, default visibility will be used
+ */
 
 // default layers and their visibility
 var layers = CONFIG_LAYERS;
@@ -113,13 +113,13 @@ layers.forEach(function (layer) {
 
 
 /*
-Load remote track
+ Load remote track
  */
 
 var track = util.getParameterByName(PARAMETER_TRACK);
 
 /*
-Load from "activeLayers"
+ Load from "activeLayers"
  */
 
 var loader = new fruskac.Loader();

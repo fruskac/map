@@ -102,7 +102,29 @@
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#prototype"><i class="alert alert-success"></i><span>prototype</span></a>
+              </li>
               <li><a href="#Marker"><i class="alert alert-success"></i><span>Marker</span></a>
+              </li>
+              <li><a href="#draw"><i class="alert alert-info"></i><span>draw</span></a>
+              </li>
+              <li><a href="#setPoint"><i class="alert alert-info"></i><span>setPoint</span></a>
+              </li>
+              <li><a href="#setVisible"><i class="alert alert-info"></i><span>setVisible</span></a>
+              </li>
+              <li><a href="#setOpaque"><i class="alert alert-info"></i><span>setOpaque</span></a>
+              </li>
+              <li><a href="#getPosition"><i class="alert alert-info"></i><span>getPosition</span></a>
+              </li>
+              <li><a href="#remove"><i class="alert alert-info"></i><span>remove</span></a>
+              </li>
+              <li><a href="#onRemove"><i class="alert alert-info"></i><span>onRemove</span></a>
+              </li>
+              <li><a href="#animateDrop"><i class="alert alert-info"></i><span>animateDrop</span></a>
+              </li>
+              <li><a href="#animateBounce"><i class="alert alert-info"></i><span>animateBounce</span></a>
+              </li>
+              <li><a href="#animateWobble"><i class="alert alert-info"></i><span>animateWobble</span></a>
               </li>
               <li><a href="#getInfoWindowContent"><i class="alert alert-info"></i><span>getInfoWindowContent</span></a>
               </li>
@@ -110,6 +132,15 @@
           </div>
         </div>
         <div class="span9">
+          <section id="prototype">
+            <h1>prototype</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Marker.prototype</span>
+            </p>
+          </section>
+          <div class="description"> </div>
+          <pre><code class="language-javascript">Marker.prototype = new google.maps.OverlayView();</code></pre>
           <section id="Marker">
             <h1>Marker</h1>
             <h5 class="subheader"></h5>
@@ -135,31 +166,332 @@
           </table>
           <div class="description"> </div>
           <pre><code class="language-javascript">function Marker(options) {
-
-    options = _.extend({
+    this.options = options;
+    this.data = options.data;
+    this.setValues({
+        position: new google.maps.LatLng(parseFloat(options.position.lat()), parseFloat(options.position.lng())),
         map: gmap
-    }, options);
+    });
+}</code></pre>
+          <section id="draw">
+            <h1>draw</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.draw()</span>
+            </p>
+          </section>
+          <div class="description"><p>Draw Overlay</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.draw = function () {
+    var self = this;
+    var div = this.div;
+    if (!div) {
+        div = this.div = $('' +
+            '&lt;div' + (this.options.visible ? '' : ' class=&quot;hidden&quot;') + '&gt;' +
+            '&lt;div class=&quot;marker-shadow&quot;&gt;&lt;/div&gt;' +
+            '&lt;div class=&quot;marker-wrap&quot; title=&quot;' + this.options.title + '&quot;&gt;' +
+            '&lt;div class=&quot;marker marker-' + this.options.icon + '&quot;&gt;&lt;/div&gt;' +
+            '&lt;/div&gt;' +
+            '&lt;/div&gt;' +
+            '')[0];
+        this.markerWrap = this.div.getElementsByClassName('marker-wrap');
+        this.marker = this.div.getElementsByClassName('marker');
+        this.markerShadow = this.div.getElementsByClassName('marker-shadow');
+        div.style.position = 'absolute';
+        div.style.cursor = 'pointer';
+        var panes = this.getPanes();
+        panes.overlayImage.appendChild(div);
 
-    if (options.icon &amp;&amp; options.icon.hasOwnProperty('url')) {
-        options.icon = new google.maps.MarkerImage(
-            options.icon.url,
-            new google.maps.Size(options.icon.width, options.icon.height),
-            new google.maps.Point(options.icon.x, options.icon.y)
-        )
+        // add wobble animation on enter
+        setTimeout(function () {
+            self.animateWobble();
+        }, Math.random() * 800 + 200);
+
+        google.maps.event.addDomListener(div, &quot;click&quot;, function () {
+            self.animateBounce();
+            console.log('TODO: show dialog')
+        });
     }
 
-    return (function () {
+    self.setPoint(self.position);
 
-        var marker = new google.maps.Marker(options);
+};</code></pre>
+          <section id="setPoint">
+            <h1>setPoint</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.setPoint()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>position</td>
+                <td>LatLng, LatLngLiteral</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Set position of Marker</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.setPoint = function (position) {
+    var point = this.getProjection().fromLatLngToDivPixel(position);
+    this.div.style.left = point.x + 'px';
+    this.div.style.top = point.y + 'px';
+    this.div.style.zIndex = Math.round(point.y * 100);
+};</code></pre>
+          <section id="setVisible">
+            <h1>setVisible</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.setVisible()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>value</td>
+                <td>boolean</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Set visibility</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.setVisible = function (value) {
 
-        google.maps.event.addListener(marker, 'click', function () {
-            map.showInfoWindow(getInfoWindowContent(options.data), this);
-        });
+    var self = this;
 
-        return marker;
+    if (self.div) {
+        if (value) {
+            setTimeout(function () {
+                util.removeClass(self.div, 'hidden');
 
-    })();
-}</code></pre>
+                // add wobble animation on enter
+                self.animateWobble();
+
+                //clusterer.addMarker(object);
+            }, Math.random() * 400);
+        } else {
+            setTimeout(function () {
+                util.addClass(self.div, 'hidden');
+                //clusterer.removeMarker(object);
+            }, Math.random() * 200);
+        }
+
+    }
+};</code></pre>
+          <section id="setOpaque">
+            <h1>setOpaque</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.setOpaque()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>value</td>
+                <td>boolean</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Make marker semi-transparent</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.setOpaque = function (value) {
+    if (this.div) {
+        if (value) {
+            util.addClass(this.div, 'opaque');
+        } else {
+            util.removeClass(this.div, 'opaque');
+        }
+    }
+};</code></pre>
+          <section id="getPosition">
+            <h1>getPosition</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.getPosition()</span>
+            </p>
+          </section>
+          <div class="description"><p>Get position of Marker</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.getPosition = function () {
+    console.log('getPosition')
+};</code></pre>
+          <section id="remove">
+            <h1>remove</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.remove()</span>
+            </p>
+          </section>
+          <div class="description"><p>Remove marker</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.remove = function () {
+    this.div.remove();
+};</code></pre>
+          <section id="onRemove">
+            <h1>onRemove</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.onRemove()</span>
+            </p>
+          </section>
+          <div class="description"><p>onRemove handler</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.onRemove = function () {
+    this.remove();
+};</code></pre>
+          <section id="animateDrop">
+            <h1>animateDrop</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.animateDrop()</span>
+            </p>
+          </section>
+          <div class="description"><p>Animate Marker with &quot;Drop&quot; animation</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.animateDrop = function () {
+    dynamics.stop(this.markerWrap);
+    dynamics.css(this.markerWrap, {
+        'transform': 'scaleY(2) translateY(-' + $('#map').outerHeight() + 'px)',
+        'opacity': '1'
+    });
+    dynamics.animate(this.markerWrap, {
+        translateY: 0,
+        scaleY: 1.0
+    }, {
+        type: dynamics.gravity,
+        duration: 1800
+    });
+
+    dynamics.stop(this.marker);
+    dynamics.css(this.marker, {
+        'transform': 'none'
+    });
+    dynamics.animate(this.marker, {
+        scaleY: 0.8
+    }, {
+        type: dynamics.bounce,
+        duration: 1800,
+        bounciness: 600
+    });
+
+    dynamics.stop(this.markerShadow);
+    dynamics.css(this.markerShadow, {
+        'transform': 'scale(0,0)',
+    });
+    dynamics.animate(this.markerShadow, {
+        scale: 1
+    }, {
+        type: dynamics.gravity,
+        duration: 1800
+    });
+};</code></pre>
+          <section id="animateBounce">
+            <h1>animateBounce</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.animateBounce()</span>
+            </p>
+          </section>
+          <div class="description"><p>Animate Marker with Bounce animation</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.animateBounce = function () {
+    dynamics.stop(this.markerWrap);
+    dynamics.css(this.markerWrap, {
+        'transform': 'none'
+    });
+    dynamics.animate(this.markerWrap, {
+        translateY: -30
+    }, {
+        type: dynamics.forceWithGravity,
+        bounciness: 0,
+        duration: 500,
+        delay: 150
+    });
+
+    dynamics.stop(this.marker);
+    dynamics.css(this.marker, {
+        'transform': 'none'
+    });
+    dynamics.animate(this.marker, {
+        scaleY: 0.8
+    }, {
+        type: dynamics.bounce,
+        duration: 800,
+        bounciness: 0
+    });
+    dynamics.animate(this.marker, {
+        scaleY: 0.8
+    }, {
+        type: dynamics.bounce,
+        duration: 800,
+        bounciness: 600,
+        delay: 650
+    });
+
+    dynamics.stop(this.markerShadow);
+    dynamics.css(this.markerShadow, {
+        'transform': 'none',
+    });
+    dynamics.animate(this.markerShadow, {
+        scale: 0.6
+    }, {
+        type: dynamics.forceWithGravity,
+        bounciness: 0,
+        duration: 500,
+        delay: 150
+    });
+};</code></pre>
+          <section id="animateWobble">
+            <h1>animateWobble</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.animateWobble()</span>
+            </p>
+          </section>
+          <div class="description"><p>Animate Marker with Wobble animation</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.animateWobble = function () {
+    dynamics.stop(this.markerWrap);
+    dynamics.css(this.markerWrap, {
+        'transform': 'none'
+    });
+    dynamics.animate(this.markerWrap, {
+        rotateZ: Math.random() * 90 - 45
+    }, {
+        type: dynamics.bounce,
+        duration: 1800
+    });
+
+    dynamics.stop(this.marker);
+    dynamics.css(this.marker, {
+        'transform': 'none'
+    });
+    dynamics.animate(this.marker, {
+        scaleX: 0.8
+    }, {
+        type: dynamics.bounce,
+        duration: 800,
+        bounciness: 1800
+    });
+};
+
+return Marker;</code></pre>
           <section id="getInfoWindowContent">
             <h1>getInfoWindowContent</h1>
             <h5 class="subheader"></h5>
@@ -197,8 +529,6 @@
     }
     return html;
 }
-
-return Marker;
 
 })();</code></pre>
         </div>

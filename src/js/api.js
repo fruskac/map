@@ -2,7 +2,8 @@
 
 fruskac.Api = (function () {
 
-    function Api(){}
+    function Api() {
+    }
 
     Api.prototype = {
 

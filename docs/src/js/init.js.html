@@ -102,6 +102,8 @@
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#chart"><i class="alert alert-success"></i><span>chart</span></a>
+              </li>
               <li><a href="#track"><i class="alert alert-success"></i><span>track</span></a>
               </li>
               <li><a href="#loader"><i class="alert alert-success"></i><span>loader</span></a>
@@ -110,6 +112,15 @@
           </div>
         </div>
         <div class="span9">
+          <section id="chart">
+            <h1>chart</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">declaration</div><span>chart</span>
+            </p>
+          </section>
+          <div class="description"><p>var clusterer = new MarkerClusterer(gmap, [], {<br /> maxZoom: 12,<br /> gridSize: 50,<br /> styles: [<br /> {<br /> textColor: &#39;white&#39;,<br /> url: &#39;img/sprite.png&#39;,<br /> backgroundPosition: &#39;0 -523px&#39;,<br /> height: 32,<br /> width: 32<br /> },<br /> {<br /> textColor: &#39;white&#39;,<br /> url: &#39;img/sprite.png&#39;,<br /> backgroundPosition: &#39;0 -443px&#39;,<br /> height: 48,<br /> width: 48<br /> },<br /> {<br /> textColor: &#39;white&#39;,<br /> url: &#39;img/sprite.png&#39;,<br /> backgroundPosition: &#39;0 -379px&#39;,<br /> height: 64,<br /> width: 64<br /> }<br /> ]<br /> });</p><p> clusterer.enabled = true;</p> </div>
+          <pre><code class="language-javascript">var chart = new fruskac.Chart(document.getElementById('chart_container'));</code></pre>
           <div class="description"><p>URL param: &quot;l&quot; defines layers visible. If not defined, default visibility will be used</p> </div>
           <pre><code class="language-javascript">// default layers and their visibility
 var layers = CONFIG_LAYERS;
@@ -162,6 +173,7 @@ loader.load(activeLayers).then(function () {
             storage.focus(focus, true); // focus on selected object
         });
     }
+
 });</code></pre>
         </div>
       </div>

@@ -2,6 +2,11 @@
 
 fruskac.Marker = (function () {
 
+    /**
+     * @global
+     *
+     * @type {google.maps.OverlayView}
+     */
     Marker.prototype = new google.maps.OverlayView();
 
     /**
@@ -18,12 +23,15 @@ fruskac.Marker = (function () {
         });
     }
 
+    /**
+     * Draw Overlay
+     */
     Marker.prototype.draw = function () {
         var self = this;
         var div = this.div;
         if (!div) {
             div = this.div = $('' +
-                '<div>' +
+                '<div' + (this.options.visible ? '' : ' class="hidden"') + '>' +
                 '<div class="marker-shadow"></div>' +
                 '<div class="marker-wrap" title="' + this.options.title + '">' +
                 '<div class="marker marker-' + this.options.icon + '"></div>' +
@@ -53,6 +61,11 @@ fruskac.Marker = (function () {
 
     };
 
+    /**
+     * Set position of Marker
+     *
+     * @param {LatLng|LatLngLiteral} position
+     */
     Marker.prototype.setPoint = function (position) {
         var point = this.getProjection().fromLatLngToDivPixel(position);
         this.div.style.left = point.x + 'px';
@@ -60,6 +73,11 @@ fruskac.Marker = (function () {
         this.div.style.zIndex = Math.round(point.y * 100);
     };
 
+    /**
+     * Set visibility
+     *
+     * @param {boolean} value
+     */
     Marker.prototype.setVisible = function (value) {
 
         var self = this;
@@ -84,28 +102,45 @@ fruskac.Marker = (function () {
         }
     };
 
+    /**
+     * Make marker semi-transparent
+     *
+     * @param {boolean} value
+     */
     Marker.prototype.setOpaque = function (value) {
         if (this.div) {
             if (value) {
-                util.removeClass(this.div, 'opaque');
-            } else {
                 util.addClass(this.div, 'opaque');
+            } else {
+                util.removeClass(this.div, 'opaque');
             }
         }
     };
 
+    /**
+     * Get position of Marker
+     */
     Marker.prototype.getPosition = function () {
         console.log('getPosition')
     };
 
+    /**
+     * Remove marker
+     */
     Marker.prototype.remove = function () {
         this.div.remove();
     };
 
+    /**
+     * onRemove handler
+     */
     Marker.prototype.onRemove = function () {
         this.remove();
     };
 
+    /**
+     * Animate Marker with "Drop" animation
+     */
     Marker.prototype.animateDrop = function () {
         dynamics.stop(this.markerWrap);
         dynamics.css(this.markerWrap, {
@@ -144,6 +179,9 @@ fruskac.Marker = (function () {
         });
     };
 
+    /**
+     * Animate Marker with Bounce animation
+     */
     Marker.prototype.animateBounce = function () {
         dynamics.stop(this.markerWrap);
         dynamics.css(this.markerWrap, {
@@ -160,7 +198,7 @@ fruskac.Marker = (function () {
 
         dynamics.stop(this.marker);
         dynamics.css(this.marker, {
-            'transform': 'none',
+            'transform': 'none'
         });
         dynamics.animate(this.marker, {
             scaleY: 0.8
@@ -192,13 +230,16 @@ fruskac.Marker = (function () {
         });
     };
 
+    /**
+     * Animate Marker with Wobble animation
+     */
     Marker.prototype.animateWobble = function () {
         dynamics.stop(this.markerWrap);
         dynamics.css(this.markerWrap, {
-            'transform': 'none',
+            'transform': 'none'
         });
         dynamics.animate(this.markerWrap, {
-            rotateZ: Math.random() * 90 - 45,
+            rotateZ: Math.random() * 90 - 45
         }, {
             type: dynamics.bounce,
             duration: 1800
@@ -206,7 +247,7 @@ fruskac.Marker = (function () {
 
         dynamics.stop(this.marker);
         dynamics.css(this.marker, {
-            'transform': 'none',
+            'transform': 'none'
         });
         dynamics.animate(this.marker, {
             scaleX: 0.8

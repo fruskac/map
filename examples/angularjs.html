@@ -27,6 +27,10 @@
             cursor: pointer;
         }
 
+        a:hover {
+            text-decoration: none;
+        }
+
         #header {
             position: absolute;
             top: 0;
@@ -170,34 +174,34 @@
                 </li>
             </ul>
         </div>
-        <div ng-repeat="item in data" class="panel panel-default">
+        <div ng-repeat="item in ::data" class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <a ng-if="item.children" ng-click="$parent.open=!$parent.open"
+                    <a ng-if="::item.children" ng-click="$parent.open=!$parent.open"
                        ng-init="$parent.open=item.getVisible()" class="pull-right">
                         <i class="fa" ng-class="{'fa-chevron-right':!open,'fa-chevron-down':open}"></i>
                     </a>
                     <a ng-click="item.setVisible(!item.getVisible())">
                         <i class="fa fa-fw"
                            ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
-                        {{ item.id }}
+                        {{ ::item.id }}
                     </a>
                 </h3>
             </div>
             <div class="panel-collapse collapse" ng-class="{'in':open}">
-                <ul ng-if="item.children" class="list-group">
+                <ul ng-if="::item.children" class="list-group">
                     <li ng-repeat-end ng-show="open">
-                        <ul ng-if="item.children" class="list-unstyled">
-                            <li ng-repeat="item in item.children" ng-class="{'disabled':!$parent.item.getVisible()}"
+                        <ul ng-if="::item.children" class="list-unstyled">
+                            <li ng-repeat="item in ::item.children" ng-class="{'disabled':!$parent.item.getVisible()}"
                                 class="list-group-item">
-                                <a ng-if="item.type === 'track'" ng-click="item.select()"
+                                <a ng-if="::item.type === 'track'" ng-click="item.select()"
                                    class="btn btn-default btn-xs pull-right">
                                     <i class="fa fa-crosshairs"></i>
                                 </a>
                                 <a ng-click="$parent.item.getVisible()&&item.setVisible(!item.getVisible())">
                                     <i class="fa fa-fw"
                                        ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
-                                    {{ item.id }}
+                                    {{ ::item.id }}
                                 </a>
                             </li>
                         </ul>
@@ -208,7 +212,7 @@
     </div>
 </div>
 
-<iframe ng-src="{{iframe}}" id="map"></iframe>
+<iframe ng-src="{{ ::iframe}}" id="map"></iframe>
 
 </body>
 </html>

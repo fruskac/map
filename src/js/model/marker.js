@@ -11,6 +11,7 @@ fruskac.Marker = (function () {
      */
     function Marker(options) {
         this.options = options;
+        this.data = options.data;
         this.setValues({
             position: new google.maps.LatLng(parseFloat(options.position.lat()), parseFloat(options.position.lng())),
             map: gmap

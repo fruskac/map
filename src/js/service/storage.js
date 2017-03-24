@@ -250,6 +250,8 @@ fruskac.Storage = (function () {
 
             var object = self.get(selector);
 
+            console.log(object)
+
             if (hasParentSelector(selector)) {
 
                 var parent = self.get(getParentSelector(selector));

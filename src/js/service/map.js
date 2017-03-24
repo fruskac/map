@@ -186,7 +186,12 @@ fruskac.Map = (function () {
                 case TYPE_MARKER:
                     gmap.setZoom(14);
                     gmap.panTo(object.position);
-                    object.setAnimation(google.maps.Animation.BOUNCE);
+                    var interval = setInterval(function () {
+                        object.animateBounce();
+                    }, 2000);
+                    google.maps.event.addDomListener(object.div, 'click', function () {
+                        clearInterval(interval);
+                    });
                     // TODO: show info window
                     //map.showInfoWindow(getInfoWindowContent(options.data), this);
                     break;

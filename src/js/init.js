@@ -141,4 +141,5 @@ loader.load(activeLayers).then(function () {
             storage.focus(focus, true); // focus on selected object
         });
     }
+
 });

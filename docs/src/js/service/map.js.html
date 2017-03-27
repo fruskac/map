@@ -504,10 +504,15 @@
                 <td>google.maps.LatLng</td>
                 <td></td>
               </tr>
+              <tr>
+                <td>pulsate</td>
+                <td>boolean</td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
           <div class="description"><p>Place marker on map</p> </div>
-          <pre><code class="language-javascript">placeMarker: function (point) {
+          <pre><code class="language-javascript">placeMarker: function (point, pulsate) {
 
     var self = this;
 
@@ -517,7 +522,8 @@
         } else {
             self.marker = new fruskac.Marker({
                 position: point,
-                visible: true
+                visible: true,
+                pulsate: pulsate
             });
         }
     } else {

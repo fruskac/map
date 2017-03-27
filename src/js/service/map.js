@@ -207,8 +207,9 @@ fruskac.Map = (function () {
         /**
          * Place marker on map
          * @param {google.maps.LatLng} point
+         * @param {boolean|undefined} pulsate
          */
-        placeMarker: function (point) {
+        placeMarker: function (point, pulsate) {
 
             var self = this;
 
@@ -218,7 +219,8 @@ fruskac.Map = (function () {
                 } else {
                     self.marker = new fruskac.Marker({
                         position: point,
-                        visible: true
+                        visible: true,
+                        pulsate: pulsate
                     });
                 }
             } else {

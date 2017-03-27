@@ -118,8 +118,6 @@
               </li>
               <li><a href="#remove"><i class="alert alert-info"></i><span>remove</span></a>
               </li>
-              <li><a href="#onRemove"><i class="alert alert-info"></i><span>onRemove</span></a>
-              </li>
               <li><a href="#animateDrop"><i class="alert alert-info"></i><span>animateDrop</span></a>
               </li>
               <li><a href="#animateBounce"><i class="alert alert-info"></i><span>animateBounce</span></a>
@@ -183,33 +181,36 @@
           <div class="description"><p>Draw Overlay</p> </div>
           <pre><code class="language-javascript">Marker.prototype.draw = function () {
     var self = this;
-    var div = this.div;
+    var div = self.div;
     if (!div) {
-        div = this.div = $('' +
-            '&lt;div' + (this.options.visible ? '' : ' class=&quot;hidden&quot;') + '&gt;' +
-            '&lt;div class=&quot;marker-shadow&quot;&gt;&lt;/div&gt;' +
-            '&lt;div class=&quot;marker-wrap&quot; title=&quot;' + this.options.title + '&quot;&gt;' +
-            '&lt;div class=&quot;marker marker-' + this.options.icon + '&quot;&gt;&lt;/div&gt;' +
-            '&lt;/div&gt;' +
+        div = self.div = $('' +
+            '&lt;div' + (self.options.visible ? '' : ' class=&quot;hidden&quot;') + '&gt;' +
+                (self.options.pulsate ? '' : '&lt;div class=&quot;marker-shadow&quot;&gt;&lt;/div&gt;') +
+                '&lt;div class=&quot;marker-wrap&quot;' + (self.options.title ? ' title=&quot;' + self.options.title + '&quot;' : '') + '&gt;' +
+                    (self.options.pulsate ? '&lt;div class=&quot;marker-pulse&quot;&gt;&lt;/div&gt;' : '&lt;div class=&quot;marker marker-' + self.options.icon + '&quot;&gt;&lt;/div&gt;') +
+                '&lt;/div&gt;' +
             '&lt;/div&gt;' +
             '')[0];
-        this.markerWrap = this.div.getElementsByClassName('marker-wrap');
-        this.marker = this.div.getElementsByClassName('marker');
-        this.markerShadow = this.div.getElementsByClassName('marker-shadow');
+        self.markerWrap = self.div.getElementsByClassName('marker-wrap');
+        self.marker = self.div.getElementsByClassName('marker');
+        self.markerShadow = self.div.getElementsByClassName('marker-shadow');
         div.style.position = 'absolute';
         div.style.cursor = 'pointer';
-        var panes = this.getPanes();
+        var panes = self.getPanes();
         panes.overlayImage.appendChild(div);
 
-        // add wobble animation on enter
-        setTimeout(function () {
-            self.animateWobble();
-        }, Math.random() * 800 + 200);
+        // if this is a regular marker
+        if (!self.options.pulsate) {
+            // add wobble animation on enter
+            setTimeout(function () {
+                self.animateWobble();
+            }, Math.random() * 800 + 200);
 
-        google.maps.event.addDomListener(div, &quot;click&quot;, function () {
-            self.animateWobble();
-            self.showInfoWindow();
-        });
+            google.maps.event.addDomListener(div, 'click', function () {
+                self.animateWobble();
+                self.showInfoWindow();
+            });
+        }
     }
 
     self.setPoint(self.position);
@@ -240,10 +241,13 @@
           </table>
           <div class="description"><p>Set position of Marker</p> </div>
           <pre><code class="language-javascript">Marker.prototype.setPoint = function (position) {
-    var point = this.getProjection().fromLatLngToDivPixel(position);
-    this.div.style.left = point.x + 'px';
-    this.div.style.top = point.y + 'px';
-    this.div.style.zIndex = Math.round(point.y * 100);
+    var self = this;
+    var point = self.getProjection().fromLatLngToDivPixel(position);
+    self.div.style.left = point.x + 'px';
+    self.div.style.top = point.y + 'px';
+    if (!self.options.pulsate) {
+        self.div.style.zIndex = Math.round(point.y * 100);
+    }
 };</code></pre>
           <section id="setVisible">
             <h1>setVisible</h1>
@@ -346,17 +350,6 @@
           <div class="description"><p>Remove marker</p> </div>
           <pre><code class="language-javascript">Marker.prototype.remove = function () {
     this.div.remove();
-};</code></pre>
-          <section id="onRemove">
-            <h1>onRemove</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.onRemove()</span>
-            </p>
-          </section>
-          <div class="description"><p>onRemove handler</p> </div>
-          <pre><code class="language-javascript">Marker.prototype.onRemove = function () {
-    this.remove();
 };
 
 Marker.prototype.showInfoWindow = function () {

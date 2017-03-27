@@ -162,15 +162,21 @@ loader.load(activeLayers).then(function () {
 
     if (track) {
         loader.append(track, TYPE_TRACK).then(function (object) {
-            google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
+            google.maps.event.addListenerOnce(gmap, 'idle', function () {
                 map.focus(object); // focus on appended object
             });
         })
     }
 
     if (focus) {
-        google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
+        google.maps.event.addListenerOnce(gmap, 'idle', function () {
             storage.focus(focus, true); // focus on selected object
+        });
+    }
+
+    if (latLngZoom &amp;&amp; latLngZoomParts &amp;&amp; latLngZoomParts.length) {
+        google.maps.event.addListenerOnce(gmap, 'idle', function () {
+            map.placeMarker(new google.maps.LatLng(latLngZoomParts[0], latLngZoomParts[1]), true); // create pulsating marker
         });
     }
 

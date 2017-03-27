@@ -28,33 +28,36 @@ fruskac.Marker = (function () {
      */
     Marker.prototype.draw = function () {
         var self = this;
-        var div = this.div;
+        var div = self.div;
         if (!div) {
-            div = this.div = $('' +
-                '<div' + (this.options.visible ? '' : ' class="hidden"') + '>' +
-                '<div class="marker-shadow"></div>' +
-                '<div class="marker-wrap" title="' + this.options.title + '">' +
-                '<div class="marker marker-' + this.options.icon + '"></div>' +
-                '</div>' +
+            div = self.div = $('' +
+                '<div' + (self.options.visible ? '' : ' class="hidden"') + '>' +
+                    (self.options.pulsate ? '' : '<div class="marker-shadow"></div>') +
+                    '<div class="marker-wrap"' + (self.options.title ? ' title="' + self.options.title + '"' : '') + '>' +
+                        (self.options.pulsate ? '<div class="marker-pulse"></div>' : '<div class="marker marker-' + self.options.icon + '"></div>') +
+                    '</div>' +
                 '</div>' +
                 '')[0];
-            this.markerWrap = this.div.getElementsByClassName('marker-wrap');
-            this.marker = this.div.getElementsByClassName('marker');
-            this.markerShadow = this.div.getElementsByClassName('marker-shadow');
+            self.markerWrap = self.div.getElementsByClassName('marker-wrap');
+            self.marker = self.div.getElementsByClassName('marker');
+            self.markerShadow = self.div.getElementsByClassName('marker-shadow');
             div.style.position = 'absolute';
             div.style.cursor = 'pointer';
-            var panes = this.getPanes();
+            var panes = self.getPanes();
             panes.overlayImage.appendChild(div);
 
-            // add wobble animation on enter
-            setTimeout(function () {
-                self.animateWobble();
-            }, Math.random() * 800 + 200);
+            // if this is a regular marker
+            if (!self.options.pulsate) {
+                // add wobble animation on enter
+                setTimeout(function () {
+                    self.animateWobble();
+                }, Math.random() * 800 + 200);
 
-            google.maps.event.addDomListener(div, "click", function () {
-                self.animateWobble();
-                self.showInfoWindow();
-            });
+                google.maps.event.addDomListener(div, 'click', function () {
+                    self.animateWobble();
+                    self.showInfoWindow();
+                });
+            }
         }
 
         self.setPoint(self.position);
@@ -67,10 +70,13 @@ fruskac.Marker = (function () {
      * @param {LatLng|LatLngLiteral} position
      */
     Marker.prototype.setPoint = function (position) {
-        var point = this.getProjection().fromLatLngToDivPixel(position);
-        this.div.style.left = point.x + 'px';
-        this.div.style.top = point.y + 'px';
-        this.div.style.zIndex = Math.round(point.y * 100);
+        var self = this;
+        var point = self.getProjection().fromLatLngToDivPixel(position);
+        self.div.style.left = point.x + 'px';
+        self.div.style.top = point.y + 'px';
+        if (!self.options.pulsate) {
+            self.div.style.zIndex = Math.round(point.y * 100);
+        }
     };
 
     /**
@@ -129,13 +135,6 @@ fruskac.Marker = (function () {
      */
     Marker.prototype.remove = function () {
         this.div.remove();
-    };
-
-    /**
-     * onRemove handler
-     */
-    Marker.prototype.onRemove = function () {
-        this.remove();
     };
 
     Marker.prototype.showInfoWindow = function () {

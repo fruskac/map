@@ -9,8 +9,8 @@ var doxx = require('gulp-doxx');
 var replace = require('gulp-replace');
 var runSequence = require('run-sequence');
 var ga = require('gulp-ga');
-var sourcemaps = require('gulp-sourcemaps');
 var iife = require('gulp-iife');
+var inlinesource = require('gulp-inline-source');
 
 var paths = {};
 
@@ -21,8 +21,9 @@ var gaConfig = {
 };
 
 gulp.task('default', function () {
-    runSequence(
+    return runSequence(
         'build'
+        ,'inlinesource'
         //,'docs'
     );
 });
@@ -34,6 +35,25 @@ gulp.task('build', [
     ,'html'
     ,'fonts'
 ]);
+
+gulp.task('inlinesource', function () {
+  return runSequence(
+    'inlinesource:build'
+    ,'inlinesource:clean'
+  );
+});
+
+gulp.task('inlinesource:build', function () {
+  return gulp.src('./dist/index.html')
+        .pipe(inlinesource())
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('inlinesource:clean', function () {
+  return gulp.src('./dist/map.min.*', {read: false})
+      .pipe(clean());
+});
+
 
 paths.less = [
     './src/less/*.less'
@@ -67,7 +87,6 @@ paths.js = [
 
 gulp.task('js', function () {
     return gulp.src(paths.js)
-        .pipe(sourcemaps.init())
         .pipe(concat('map.min.js'))
         .pipe(replace(/["']use strict["'];/g, ''))
         .pipe(iife({
@@ -77,7 +96,6 @@ gulp.task('js', function () {
         .pipe(uglify({
             mangle: true
         }))
-        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist'));
 });
 
@@ -106,11 +124,10 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('docs:clean', function () {
-    return gulp
-        .src([
-            'docs/*'
-        ], {read: false})
-        .pipe(clean());
+    return gulp.src([
+        'docs/*'
+      ], {read: false})
+      .pipe(clean());
 });
 
 gulp.task('docs:copy:dist', function () {

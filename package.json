@@ -12,6 +12,7 @@
     "gulp-ga": "0.0.8",
     "gulp-htmlmin": "^3.0.0",
     "gulp-iife": "^0.3.0",
+    "gulp-inline-source": "^3.0.0",
     "gulp-less": "^3.3.0",
     "gulp-replace": "^0.5.4",
     "gulp-sourcemaps": "^2.4.1",

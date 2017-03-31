@@ -27,13 +27,13 @@ var mapConfig = {
 
 var latLngZoom = util.getParameterByName(PARAMETER_COORDINATES);
 if (latLngZoom) {
-    var parts = util.getParameterPartsByName(PARAMETER_COORDINATES);
-    if (parts && parts.length) {
-        if (parts[0] && parts[1]) {
-            mapConfig.center = new google.maps.LatLng(parts[0], parts[1]);
+    var latLngZoomParts = util.getParameterPartsByName(PARAMETER_COORDINATES);
+    if (latLngZoomParts && latLngZoomParts.length) {
+        if (latLngZoomParts[0] && latLngZoomParts[1]) {
+            mapConfig.center = new google.maps.LatLng(latLngZoomParts[0], latLngZoomParts[1]);
         }
-        if (parts[2]) {
-            mapConfig.zoom = parseFloat(parts[2]);
+        if (latLngZoomParts[2]) {
+            mapConfig.zoom = parseFloat(latLngZoomParts[2]);
         }
     }
 }
@@ -130,15 +130,21 @@ loader.load(activeLayers).then(function () {
 
     if (track) {
         loader.append(track, TYPE_TRACK).then(function (object) {
-            google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
+            google.maps.event.addListenerOnce(gmap, 'idle', function () {
                 map.focus(object); // focus on appended object
             });
         })
     }
 
     if (focus) {
-        google.maps.event.addListenerOnce(gmap, 'idle', function () { // wait for map to be loaded
+        google.maps.event.addListenerOnce(gmap, 'idle', function () {
             storage.focus(focus, true); // focus on selected object
+        });
+    }
+
+    if (latLngZoom && latLngZoomParts && latLngZoomParts.length) {
+        google.maps.event.addListenerOnce(gmap, 'idle', function () {
+            map.placeMarker(new google.maps.LatLng(latLngZoomParts[0], latLngZoomParts[1]), true); // create pulsating marker
         });
     }
 

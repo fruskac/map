@@ -1,10 +1,14 @@
 @markerWidth: 32px;
 @markerHeightFactor: 1.20711;
-@markerHeight: @markerHeightFactor * @markerWidth;
+@markerHeight: round(@markerHeightFactor * @markerWidth);
 @markerColor: cyan;
+
 @shadowOpacity: .5;
 @shadow-size: @markerWidth/2;
-@pulseSize: @markerWidth;
+
+@pulseWidth: @markerWidth*5;
+@pulseDot: 5px;
+@pulseColor: #f93c11;
 
 @font-face {
   font-family: "fruskac";
@@ -40,30 +44,11 @@
   height: @markerWidth;
   margin-top: -@markerHeight;
   margin-left: -@markerWidth/2;
-  transform-origin: 50% (@markerHeightFactor * 100%) 0;
-}
-
-.marker-shadow {
-  position: absolute;
-
-  &:after {
-    position: absolute;
-    left: -100px - @shadow-size/2;
-    display: block;
-    width: @shadow-size;
-    height: @shadow-size;
-    margin-top: -@shadow-size/2;
-    content: '';
-    transform: rotateX(55deg);
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, @shadowOpacity) 100px 0 20px;
-  }
-
+  transform-origin: 50% round(@markerHeightFactor * 100%) 0;
 }
 
 .color(@name, @icon, @color) {
-  @markerClassName: "marker-@{name}";
-  [class*="@{markerClassName}"] {
+  .marker-@{name} {
 
     &:before {
       background-color: @color;
@@ -77,8 +62,7 @@
 
   }
 
-  @checkboxClassName: "checkbox-@{name}";
-  [class*="@{checkboxClassName}"] {
+  .checkbox-@{name} {
     input:checked {
       &:after {
         background-color: @color !important;
@@ -97,7 +81,7 @@
   height: @markerWidth;
   margin-top: -@markerWidth/2;
   margin-left: -@markerWidth/2;
-  transform-origin: 50% (@markerHeightFactor * 100%) 0;
+  transform-origin: 50% round(@markerHeightFactor * 100%) 0;
 
   &:before {
     position: absolute;
@@ -130,13 +114,81 @@
 
 }
 
-.color('lakes', "\66", #448b89);
-.color('waterfalls', "\6e", #26b1b7);
-.color('fishponds', "\65", #26b1b7);
-.color('monasteries', "\6a", #ac860c);
-.color('monuments', "\6b", #666666);
-.color('springs', "\6d", #4d84a6);
-.color('misc', "\69", #e0196a);
-.color('picnic-areas', "\6c", #4f452f);
-.color('meadows', "\68", #9ca22f);
-.color('lookouts', "\67", #8c1bdd);
+.color(lakes, "\66", #448b89);
+.color(waterfalls, "\6e", #26b1b7);
+.color(fishponds, "\65", #26b1b7);
+.color(monasteries, "\6a", #ac860c);
+.color(monuments, "\6b", #666666);
+.color(springs, "\6d", #4d84a6);
+.color(misc, "\69", #e0196a);
+.color(picnic-areas, "\6c", #4f452f);
+.color(meadows, "\68", #9ca22f);
+.color(lookouts, "\67", #8c1bdd);
+
+.marker-shadow {
+  position: absolute;
+
+  &:after {
+    position: absolute;
+    left: -100px - @shadow-size/2;
+    display: block;
+    width: @shadow-size;
+    height: @shadow-size;
+    margin-top: -@shadow-size/2;
+    content: '';
+    transform: rotateX(55deg);
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, @shadowOpacity) 100px 0 20px;
+  }
+
+}
+
+.marker-pulse {
+  position: absolute;
+  top: @markerHeight;
+  left: @markerWidth/2;
+  width: @pulseWidth;
+  height: @pulseWidth;
+  transform: rotateX(60deg) translate(-50%,-100%);
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: @pulseDot;
+    height: @pulseDot;
+    border-radius: 50%;
+    background: @pulseColor;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    animation: pulsate 1s ease-out;
+    animation-delay: 1.1s;
+    animation-iteration-count: infinite;
+    opacity: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 2px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 6px 3px @pulseColor;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(.1, .1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2, 1.2);
+    opacity: 0;
+  }
+}

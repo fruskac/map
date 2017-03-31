@@ -32,6 +32,7 @@ gulp.task('build', [
     ,'js'
     ,'img'
     ,'html'
+    ,'fonts'
 ]);
 
 paths.less = [
@@ -97,6 +98,11 @@ gulp.task('html', function () {
             minifyJS: true
         }))
         .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('fonts', function () {
+    return gulp.src('src/fonts/*')
+        .pipe(gulp.dest('./dist/fonts'))
 });
 
 gulp.task('docs:clean', function () {

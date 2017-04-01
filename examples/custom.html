@@ -1,290 +1,298 @@
 <!DOCTYPE html>
 <html ng-app="app" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ФRuŠKać</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ФRuŠKać</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="../dist/map.min.css">
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="../dist/map.min.css">
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+    
+    a {
+      cursor: pointer;
+    }
+    
+    a:hover {
+      text-decoration: none;
+    }
+    
+    #header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 18px 10px;
+      width: 100%;
+    }
+    
+    #header .btn {
+      position: relative;
+      z-index: 99;
+      line-height: 0;
+    }
+    
+    #navigation {
+      position: fixed;
+      width: 320px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      top: 0;
+      right: -320px;
+    }
+    
+    #navigation.in {
+      right: 0;
+    }
+    
+    #navigation-overlay {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    
+    #navigation-overlay.in {
+      display: block;
+    }
+    
+    md-checkbox,
+    md-switch {
+      margin: 0;
+    }
+    
+    .panel-title .material-icons {
+      font-size: 32px;
+      margin-right: -10px;
+    }
+    
+    .loading {
+      content: 'Loading...';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ededed url('../dist/img/logo.png') no-repeat center;
+      background-size: 210px;
+      /* follow logo size */
+      transition: background-position .3s, opacity 1s .3s;
+      animation-name: pulse;
+      animation-duration: 1s;
+      animation-fill-mode: both;
+      animation-iteration-count: infinite;
+      z-index: 999;
+    }
+    
+    .loading.loaded {
+      opacity: 0;
+      background-position: 10px 10px;
+      pointer-events: none;
+      animation: none;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    @media (min-width: 768px) {
+      #navigation-overlay {
+        display: none !important;
+      }
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
+
+
+  <script>
+    angular.module('app', [
+      'ui.bootstrap',
+      'ngMaterial'
+    ]).constant('CONFIG', {
+      map: '../dist/index.html'
+    }).config([
+      '$compileProvider',
+      function($compileProvider) {
+        $compileProvider.debugInfoEnabled(false);
+        $compileProvider.commentDirectivesEnabled(false);
+        $compileProvider.cssClassDirectivesEnabled(false);
+      }
+    ]).filter('humanize', function() {
+      return function(text) {
+        if (text) {
+          text.match(/(\w+)/g).forEach(function(word) {
+            text = text.replace(word, word.charAt(0).toUpperCase() + word.slice(1))
+          });
+          return text.replace(/[^a-zA-Z0-9]+/g, ' ');
         }
+      };
+    }).controller('AppCtrl', [
+      '$scope',
+      '$location',
+      '$window',
+      'CONFIG',
+      function($scope, $location, $window, CONFIG) {
 
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-        }
+        var params = $location.search();
 
-        a {
-            cursor: pointer;
-        }
+        $scope.iframe = CONFIG.map + '?' + Object.keys(params).map(function(i) {
+          return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
+        }).join('&');
 
-        a:hover {
-            text-decoration: none;
-        }
+        document.getElementById('map').onload = function() {
+          var FruskacMapAPI = document.getElementById('map').contentWindow.fruskac;
+          FruskacMapAPI.ready(function() {
+            $scope.$apply(function() {
+              $scope.ready = true;
+              $scope.data = FruskacMapAPI.getData();
+              $scope.clustering = FruskacMapAPI.clustering;
+              $scope.type = FruskacMapAPI.type;
 
-        #header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding: 18px 10px;
-            width: 100%;
-        }
-
-        #header .btn {
-            position: relative;
-            z-index: 99;
-            line-height: 0;
-        }
-
-        #navigation {
-            position: fixed;
-            width: 320px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            top: 0;
-            right: -320px;
-        }
-
-        #navigation.in {
-            right: 0;
-        }
-
-        #navigation-overlay {
-            display: none;
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        #navigation-overlay.in {
-            display: block;
-        }
-
-        md-checkbox,
-        md-switch {
-            margin: 0;
-        }
-
-        .panel-title .material-icons {
-            font-size: 32px;
-            margin-right: -10px;
-        }
-
-        .loading {
-            content: 'Loading...';
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #ededed url('../dist/img/logo.png') no-repeat center;
-            background-size: 210px; /* follow logo size */
-            transition: background-position .3s, opacity 1s .3s;
-            animation-name: pulse;
-            animation-duration: 1s;
-            animation-fill-mode: both;
-            animation-iteration-count: infinite;
-            z-index: 999;
-        }
-
-        .loading.loaded {
-            opacity: 0;
-            background-position: 10px 10px;
-            pointer-events: none;
-            animation: none;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        @media (min-width: 768px) {
-            #navigation-overlay {
-                display: none !important;
-            }
-        }
-    </style>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-messages.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
-
-
-    <script>
-        angular.module('app', [
-            'ui.bootstrap',
-            'ngMaterial'
-        ]).constant('CONFIG', {
-            map: '../dist/index.html'
-        }).config([
-            '$compileProvider',
-            function ($compileProvider) {
-                $compileProvider.debugInfoEnabled(false);
-                $compileProvider.commentDirectivesEnabled(false);
-                $compileProvider.cssClassDirectivesEnabled(false);
-            }
-        ]).filter('humanize', function(){
-            return function(text) {
-                if (text) {
-                    text.match(/(\w+)/g).forEach(function (word) {
-                        text = text.replace(word, word.charAt(0).toUpperCase() + word.slice(1))
-                    });
-                    return text.replace(/[^a-zA-Z0-9]+/g, ' ');
+              $scope.getVisible = function(item) {
+                if (!item.customized) {
+                  var preset = ['lakes', 'misc', 'monasteries', 'household'].indexOf(item.id) !== -1;
+                  item.setVisible(preset);
+                  item.customized = true;
                 }
-            };
-        }).controller('AppCtrl', [
-            '$scope',
-            '$location',
-            '$window',
-            'CONFIG',
-            function ($scope, $location, $window, CONFIG) {
+                return item.getVisible();
+              };
 
-                var params = $location.search();
+              $scope.loaded = true;
 
-                $scope.iframe = CONFIG.map + '?' + Object.keys(params).map(function (i) {
-                        return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
-                    }).join('&');
+              $scope.highlight = function(item, category) {
+                item.highlightedCategory = category;
+                item.highlight(category);
+              }
 
-                document.getElementById('map').onload = function () {
-                    var FruskacMapAPI = document.getElementById('map').contentWindow.fruskac;
-                    FruskacMapAPI.ready(function () {
-                        $scope.$apply(function () {
-                            $scope.ready = true;
-                            $scope.data = FruskacMapAPI.getData();
-                            $scope.clustering = FruskacMapAPI.clustering;
-                            $scope.type = FruskacMapAPI.type;
+            })
+          });
+        };
 
-                            $scope.getVisible = function (item) {
-                                if (!item.customized) {
-                                    var preset = ['lakes', 'misc', 'monasteries','household'].indexOf(item.id) !== -1;
-                                    item.setVisible(preset);
-                                    item.customized = true;
-                                }
-                                return item.getVisible();
-                            };
+        if ($window.innerWidth > 768) {
+          $scope.navigationOpen = true;
+        }
 
-                            $scope.loaded = true;
-
-                            $scope.highlight = function (item, category) {
-                                item.highlightedCategory = category;
-                                item.highlight(category);
-                            }
-
-                        })
-                    });
-                };
-
-                if ($window.innerWidth > 768) {
-                    $scope.navigationOpen = true;
-                }
-
-            }
-        ]);
-    </script>
+      }
+    ]);
+  </script>
 
 </head>
+
 <body ng-controller="AppCtrl">
 
-<iframe ng-src="{{ ::iframe }}" id="map"></iframe>
+  <iframe ng-src="{{ ::iframe }}" id="map"></iframe>
 
-<div id="header">
-    <a ng-click="navigationOpen=!navigationOpen" class="btn pull-right"
-       ng-class="{'btn-link':navigationOpen,'btn-default':!navigationOpen}">
-        <i class="material-icons">menu</i>
+  <div id="header">
+    <a ng-click="navigationOpen=!navigationOpen" class="btn pull-right" ng-class="{'btn-link':navigationOpen,'btn-default':!navigationOpen}">
+      <i class="material-icons">menu</i>
     </a>
-</div>
+  </div>
 
-<div id="navigation-overlay" ng-class="{'in':navigationOpen}" ng-click="navigationOpen=false"></div>
-<div id="navigation" ng-class="{'in':navigationOpen}">
+  <div id="navigation-overlay" ng-class="{'in':navigationOpen}" ng-click="navigationOpen=false"></div>
+  <div id="navigation" ng-class="{'in':navigationOpen}">
     <div ng-hide="ready" class="panel panel-default">
-        <div class="panel-body">
-            Loading...
-        </div>
+      <div class="panel-body">
+        Loading...
+      </div>
     </div>
     <div class="panel-group" ng-show="ready">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <div class="checkbox">
-                            <label>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-5">
+              <div class="checkbox">
+                <label>
                                 <input type="checkbox"
                                        ng-checked="clustering()"
                                        ng-click="clustering(!clustering())">
                                 Clustering
                             </label>
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="checkbox">
-                            <label >
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="checkbox">
+                <label>
                                 <input type="checkbox"
                                        ng-checked="type()==='satellite'"
                                        ng-click="type(type()==='terrain'?'satellite':'terrain')">
                                 Satellite
                             </label>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
-        <div ng-repeat="item in ::data" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a ng-if="::item.children" ng-click="$parent.open=!$parent.open"
-                       ng-init="$parent.open=item.getVisible()" class="pull-right">
-                        <i class="material-icons" ng-style="{'transform':$parent.open?'rotate(90deg)':'none'}">chevron_right</i>
-                    </a>
-                    <md-switch ng-click="item.setVisible(!item.getVisible());open=item.getVisible()" ng-checked="item.getVisible()">
-                        {{ ::item.id | humanize }}
-                    </md-switch>
-                </h3>
-            </div>
-            <ul ng-if="::item.children&&item.categories" ng-show="open" class="nav nav-tabs nav-justified">
-                <li ng-class="{'active':tab===1}">
-                    <a ng-click="$parent.tab=1">Objects</a>
-                </li>
-                <li ng-class="{'active':tab===2}">
-                    <a ng-click="$parent.tab=2">Activity</a>
-                </li>
-            </ul>
-            <div ng-if="::item.children" ng-show="open" class="panel-body" ng-init="$parent.tab=1">
-                <div ng-show="$parent.tab===1" class="row">
-                    <div class="col-xs-6" ng-repeat="child in ::item.children">
-                        <div class="checkbox" ng-class="'checkbox-' + child.id">
-                            <label >
+      </div>
+      <div ng-repeat="item in ::data" class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <a ng-if="::item.children" ng-click="$parent.open=!$parent.open" ng-init="$parent.open=item.getVisible()" class="pull-right">
+              <i class="material-icons" ng-style="{'transform':$parent.open?'rotate(90deg)':'none'}">chevron_right</i>
+            </a>
+            <md-switch ng-click="item.setVisible(!item.getVisible());open=item.getVisible()" ng-checked="item.getVisible()">
+              {{ ::item.id | humanize }}
+            </md-switch>
+          </h3>
+        </div>
+        <ul ng-if="::item.children&&item.categories" ng-show="open" class="nav nav-tabs nav-justified">
+          <li ng-class="{'active':tab===1}">
+            <a ng-click="$parent.tab=1">Objects</a>
+          </li>
+          <li ng-class="{'active':tab===2}">
+            <a ng-click="$parent.tab=2">Activity</a>
+          </li>
+        </ul>
+        <div ng-if="::item.children" ng-show="open" class="panel-body" ng-init="$parent.tab=1">
+          <div ng-show="$parent.tab===1" class="row">
+            <div class="col-xs-6" ng-repeat="child in ::item.children">
+              <div class="checkbox" ng-class="'checkbox-' + child.id">
+                <label>
                                 <input ng-attr-type="{{ child.type !== 'track' ? 'checkbox' : 'radio' }}"
                                        ng-click="item.getVisible()&&(child.type !== 'track'?child.setVisible(!child.getVisible()):child.focus())"
                                        ng-checked="getVisible(child)"
                                        ng-disabled="!item.getVisible()">
                                 {{ ::child.id | humanize }}
                             </label>
-                        </div>
-                    </div>
-                </div>
-                <div ng-show="$parent.tab===2" class="row">
-                    <div class="col-xs-6" ng-repeat="category in item.categories">
-                        <div class="checkbox" ng-class="'checkbox-' + child.id">
-                            <label>
+              </div>
+            </div>
+          </div>
+          <div ng-show="$parent.tab===2" class="row">
+            <div class="col-xs-6" ng-repeat="category in item.categories">
+              <div class="checkbox" ng-class="'checkbox-' + child.id">
+                <label>
                                 <input type="radio"
                                        ng-attr-name="{{item.id}}"
                                        ng-checked="item.highlightedCategory===category"
@@ -292,15 +300,16 @@
                                 >
                                 {{ ::category | humanize }}
                             </label>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="loading" ng-class="{'loaded':loaded}"></div>
+  <div class="loading" ng-class="{'loaded':loaded}"></div>
 
 </body>
+
 </html>

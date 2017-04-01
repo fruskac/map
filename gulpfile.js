@@ -12,6 +12,7 @@ var ga = require('gulp-ga');
 var iife = require('gulp-iife');
 var inlinesource = require('gulp-inline-source');
 var imagemin = require('gulp-imagemin');
+var base64 = require('gulp-base64');
 
 var paths = {};
 
@@ -39,14 +40,15 @@ gulp.task('build', [
 
 gulp.task('inlinesource', function () {
   return runSequence(
-    'inlinesource:build'
+    'inlinesource:html'
     ,'inlinesource:clean'
   );
 });
 
-gulp.task('inlinesource:build', function () {
+gulp.task('inlinesource:html', function () {
   return gulp.src('./dist/index.html')
         .pipe(inlinesource())
+        .pipe(base64())
         .pipe(gulp.dest('./dist'));
 });
 

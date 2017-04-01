@@ -13,6 +13,9 @@ var iife = require('gulp-iife');
 var inlinesource = require('gulp-inline-source');
 var imagemin = require('gulp-imagemin');
 var base64 = require('gulp-base64');
+var svgstore = require('gulp-svgstore');
+var inject = require('gulp-inject');
+var rename = require('gulp-rename');
 
 var paths = {};
 
@@ -56,7 +59,6 @@ gulp.task('inlinesource:clean', function () {
   return gulp.src('./dist/map.min.*', {read: false})
       .pipe(clean());
 });
-
 
 paths.less = [
     './src/less/*.less'
@@ -113,13 +115,25 @@ gulp.task('build:img', function () {
 });
 
 gulp.task('build:html', function () {
-    return gulp.src(paths.html)
+    
+    var svgs = gulp.src('./dist/img/icon/*.svg')
+        .pipe(rename({prefix: 'icon-'}))
+        .pipe(svgstore({ inlineSvg: true }));
+
+    function fileContents (filePath, file) {
+        return file.contents.toString();
+    }
+
+    return gulp
+        .src(paths.html)
+        .pipe(inject(svgs, { transform: fileContents }))
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,
             minifyJS: true
         }))
         .pipe(gulp.dest('./dist'));
+    
 });
 
 gulp.task('build:fonts', function () {

@@ -34,7 +34,7 @@ fruskac.Marker = (function () {
                 '<div' + (self.options.visible ? '' : ' class="hidden"') + '>' +
                     (self.options.pulsate ? '' : '<div class="marker-shadow"></div>') +
                     '<div class="marker-wrap"' + (self.options.title ? ' title="' + self.options.title + '"' : '') + '>' +
-                        (self.options.pulsate ? '<div class="marker-pulse"></div>' : '<div class="marker marker-' + self.options.icon + '"><svg><use xlink:href="#icon-' + self.options.icon + '"></use></svg></div>') +
+                        (self.options.pulsate ? '<div class="marker-pulse"></div>' : '<div marker class="marker-' + self.options.icon + '"><svg><use xlink:href="#icon-' + self.options.icon + '"></use></svg></div>') +
                     '</div>' +
                 '</div>' +
                 '')[0];

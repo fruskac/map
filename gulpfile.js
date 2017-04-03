@@ -67,13 +67,18 @@ gulp.task('inlinesource:html', function () {
     return gulp.src('./dist/index.html')
         .pipe(inlinesource())
         .pipe(base64())
-        .pipe(replace(/(#|id="|getElementById\(")([a-z_]{7,}|chart)/g, function (match, value_1, value_2) {
+        // id selectors
+        .pipe(replace(/(#|id="|getElementById\(")([a-z_]{7,}|chart|map)/g, function (match, value_1, value_2) {
             return value_1 + getValue(value_2, 'id');
         }))
-        // TODO: minify class names
-        /*.pipe(replace(/([},]\.|class="|getElementsByClassName\(")([a-z]{6,})/g, function (match, value_1, value_2) {
+        // class selectors
+        .pipe(replace(/([},]\.|class="|getElementsByClassName\("|Class\(\w+\.div,")([a-z]{6,})/g, function (match, value_1, value_2) {
             return value_1 + getValue(value_2, 'class');
-        }))*/
+        }))
+        // misc
+        .pipe(replace(/(\[|\s)(marker)(\]|\s)/g, function (match, value_1, value_2, value_3) {
+            return value_1 + getValue(value_2, 'misc') + value_3;
+        }))
         .pipe(gulp.dest('./dist'));
 });
 

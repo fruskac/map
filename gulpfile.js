@@ -28,40 +28,62 @@ var gaConfig = {
 gulp.task('default', function () {
     return runSequence(
         'build'
-        ,'inlinesource'
+        , 'inlinesource'
         //,'docs'
     );
 });
 
 gulp.task('build', [
     'build:less'
-    ,'build:js'
-    ,'build:img'
-    ,'build:html'
-    ,'build:fonts'
+    , 'build:js'
+    , 'build:img'
+    , 'build:html'
+    , 'build:fonts'
 ]);
 
 gulp.task('inlinesource', function () {
-  return runSequence(
-    'inlinesource:html'
-    ,'inlinesource:clean'
-  );
+    return runSequence(
+        'inlinesource:html'
+        , 'inlinesource:clean'
+    );
 });
 
 gulp.task('inlinesource:html', function () {
-  return gulp.src('./dist/index.html')
+
+    var index = 0,
+        alphabet = 'abcdefghijklmnopqrstuvwxyz'.split(''),
+        map = {};
+
+    function getValue(string, namespace) {
+        var name = namespace + '__' + string;
+        var value = map[name];
+        if (!value) {
+            value = map[name] = alphabet[index];
+            index++;
+        }
+        return value;
+    }
+
+    return gulp.src('./dist/index.html')
         .pipe(inlinesource())
         .pipe(base64())
+        .pipe(replace(/(#|id="|getElementById\(")([a-z_]{7,}|chart)/g, function (match, value_1, value_2) {
+            return value_1 + getValue(value_2, 'id');
+        }))
+        // TODO: minify class names
+        /*.pipe(replace(/([},]\.|class="|getElementsByClassName\(")([a-z]{6,})/g, function (match, value_1, value_2) {
+            return value_1 + getValue(value_2, 'class');
+        }))*/
         .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('inlinesource:clean', function () {
-  return gulp.src([
-      './dist/map.min.*'
-      ,'./dist/fonts'
-      ,'./dist/img'
-  ], {read: false})
-      .pipe(clean());
+    return gulp.src([
+        './dist/map.min.*'
+        , './dist/fonts'
+        , './dist/img'
+    ], {read: false})
+        .pipe(clean());
 });
 
 paths.less = [
@@ -78,20 +100,20 @@ gulp.task('build:less', function () {
 
 paths.js = [
     'src/js/bootstrap.js'
-    ,'src/js/util.js'
-    ,'src/js/const/*.js'
-    ,'src/js/extend/googleMaps.js'
-    ,'map.config.js'
-    ,'src/js/model/marker.js'
-    ,'src/js/model/track.js'
-    ,'src/js/model/kml.js'
-    ,'src/js/service/i18n.js'
-    ,'src/js/service/chart.js'
-    ,'src/js/service/map.js'
-    ,'src/js/service/storage.js'
-    ,'src/js/loader.js'
-    ,'src/js/api.js'
-    ,'src/js/init.js'
+    , 'src/js/util.js'
+    , 'src/js/const/*.js'
+    , 'src/js/extend/googleMaps.js'
+    , 'map.config.js'
+    , 'src/js/model/marker.js'
+    , 'src/js/model/track.js'
+    , 'src/js/model/kml.js'
+    , 'src/js/service/i18n.js'
+    , 'src/js/service/chart.js'
+    , 'src/js/service/map.js'
+    , 'src/js/service/storage.js'
+    , 'src/js/loader.js'
+    , 'src/js/api.js'
+    , 'src/js/init.js'
 ];
 
 gulp.task('build:js', function () {
@@ -119,25 +141,25 @@ gulp.task('build:img', function () {
 });
 
 gulp.task('build:html', function () {
-    
+
     var svgs = gulp.src('./src/img/icon/*.svg')
         .pipe(rename({prefix: 'icon-'}))
-        .pipe(svgstore({ inlineSvg: true }));
+        .pipe(svgstore({inlineSvg: true}));
 
-    function fileContents (filePath, file) {
+    function fileContents(filePath, file) {
         return file.contents.toString();
     }
 
     return gulp
         .src(paths.html)
-        .pipe(inject(svgs, { transform: fileContents }))
+        .pipe(inject(svgs, {transform: fileContents}))
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,
             minifyJS: true
         }))
         .pipe(gulp.dest('./dist'));
-    
+
 });
 
 gulp.task('build:fonts', function () {
@@ -148,15 +170,15 @@ gulp.task('build:fonts', function () {
 gulp.task('docs:clean', function () {
     return gulp.src([
         'docs/*'
-      ], {read: false})
-      .pipe(clean());
+    ], {read: false})
+        .pipe(clean());
 });
 
 gulp.task('docs:copy:dist', function () {
     return gulp
         .src([
             'dist/*'
-            ,'dist/**/*'
+            , 'dist/**/*'
         ])
         .pipe(gulp.dest('docs/dist'));
 });
@@ -165,7 +187,7 @@ gulp.task('docs:copy:data', function () {
     return gulp
         .src([
             'data/*'
-            ,'data/**/*'
+            , 'data/**/*'
         ])
         .pipe(gulp.dest('docs/data'));
 });
@@ -187,8 +209,8 @@ gulp.task('docs:copy:examples', function () {
 
 gulp.task('docs:copy', [
     'docs:copy:dist'
-    ,'docs:copy:data'
-    ,'docs:copy:examples'
+    , 'docs:copy:data'
+    , 'docs:copy:examples'
 ]);
 
 gulp.task('docs', function () {
@@ -212,15 +234,15 @@ gulp.task('docs', function () {
 });
 
 gulp.task('watch', function () {
-  return runSequence(
-    'build',
-    [
-        'watch:js'
-        ,'watch:less'
-        ,'watch:html'
-        //,'watch:docs'
-    ]
-  )
+    return runSequence(
+        'build',
+        [
+            'watch:js'
+            , 'watch:less'
+            , 'watch:html'
+            //,'watch:docs'
+        ]
+    )
 });
 
 gulp.task('watch:js', function () {

@@ -56,7 +56,11 @@ gulp.task('inlinesource:html', function () {
 });
 
 gulp.task('inlinesource:clean', function () {
-  return gulp.src('./dist/map.min.*', {read: false})
+  return gulp.src([
+      './dist/map.min.*'
+      ,'./dist/fonts'
+      ,'./dist/img'
+  ], {read: false})
       .pipe(clean());
 });
 
@@ -116,7 +120,7 @@ gulp.task('build:img', function () {
 
 gulp.task('build:html', function () {
     
-    var svgs = gulp.src('./dist/img/icon/*.svg')
+    var svgs = gulp.src('./src/img/icon/*.svg')
         .pipe(rename({prefix: 'icon-'}))
         .pipe(svgstore({ inlineSvg: true }));
 

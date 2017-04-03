@@ -38,7 +38,6 @@ gulp.task('build', [
     , 'build:js'
     , 'build:img'
     , 'build:html'
-    , 'build:fonts'
 ]);
 
 gulp.task('inlinesource', function () {
@@ -79,13 +78,18 @@ gulp.task('inlinesource:html', function () {
         .pipe(replace(/(\[|\s)(marker)(\]|\s)/g, function (match, value_1, value_2, value_3) {
             return value_1 + getValue(value_2, 'misc') + value_3;
         }))
+/*
+        // methods
+        .pipe(replace(/(getParameterByName|getParameterPartsByName|I18N|placeMarker|addMarker|Marker|addTrack|Track|addKml|Kml|Loader|Chart|markerWrap|markerShadow|animateWobble|animateBounce|animateDrop|setOpaque|showInfoWindow|highlight|translate|fromLatLngToDivPixel)/g, function (match, value_1) {
+            return getValue(value_1, 'method');
+        }))
+*/
         .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('inlinesource:clean', function () {
     return gulp.src([
         './dist/map.min.*'
-        , './dist/fonts'
         , './dist/img'
     ], {read: false})
         .pipe(clean());
@@ -126,8 +130,8 @@ gulp.task('build:js', function () {
         .pipe(concat('map.min.js'))
         .pipe(replace(/["']use strict["'];/g, ''))
         .pipe(iife({
-            params: ['window', 'document', '$', '_', 'google', 'Promise'],
-            args: ['window', 'document', 'jQuery', '_', 'google', 'Promise']
+            params: ['window', 'document', '$', '_', 'google', 'Promise', 'dynamics'],
+            args: ['window', 'document', 'jQuery', '_', 'google', 'Promise', 'dynamics']
         }))
         .pipe(uglify({
             mangle: true
@@ -165,11 +169,6 @@ gulp.task('build:html', function () {
         }))
         .pipe(gulp.dest('./dist'));
 
-});
-
-gulp.task('build:fonts', function () {
-    return gulp.src('src/fonts/*')
-        .pipe(gulp.dest('./dist/fonts'))
 });
 
 gulp.task('docs:clean', function () {

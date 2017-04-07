@@ -6,7 +6,15 @@ window.fruskac = new fruskac.Api();
 var util = new fruskac.Util();
 
 fruskac.isCrossDomain = window.self !== window.top && document.referrer && !(new RegExp('//' + document.domain)).test(document.referrer);
-fruskac.lang = util.getParameterByName('lang') || (window.self !== window.top && window.top.document.documentElement.lang) || CONFIG_LANG;
+fruskac.lang = util.getParameterByName('lang') || CONFIG_LANG;
+fruskac.isMobile = document.getElementById('map_container').getBoundingClientRect().width < 1024;
+fruskac.allowfullscreen = window.frameElement && window.frameElement.hasAttribute('allowFullScreen');
+fruskac.allowBrand = !window.frameElement || !window.frameElement.hasAttribute('allowBrand') || !window.frameElement.getAttribute('allowBrand');
+
+if (fruskac.isCrossDomain || fruskac.allowBrand) {
+    // remove logo "hidden" class
+    util.removeClass(document.getElementById('map_logo'), 'hidden');
+}
 
 var i18n = new fruskac.I18n(fruskac.lang);
 
@@ -129,6 +137,7 @@ var focus = util.getParameterByName(PARAMETER_FOCUS);
 loader.load(activeLayers).then(function () {
 
     if (track) {
+        // load external track
         loader.append(track, TYPE_TRACK).then(function (object) {
             google.maps.event.addListenerOnce(gmap, 'idle', function () {
                 map.focus(object); // focus on appended object
@@ -137,12 +146,14 @@ loader.load(activeLayers).then(function () {
     }
 
     if (focus) {
+        // focus on selector
         google.maps.event.addListenerOnce(gmap, 'idle', function () {
             storage.focus(focus, true); // focus on selected object
         });
     }
 
-    if (latLngZoom && latLngZoomParts && latLngZoomParts.length) {
+    if (!(track || focus) && latLngZoom && latLngZoomParts && latLngZoomParts.length) {
+        // add circle marker if track/location not set
         google.maps.event.addListenerOnce(gmap, 'idle', function () {
             map.placeMarker(new google.maps.LatLng(latLngZoomParts[0], latLngZoomParts[1]), true); // create pulsating marker
         });

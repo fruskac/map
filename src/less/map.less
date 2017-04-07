@@ -30,13 +30,19 @@ body {
 }
 
 #map_logo {
-  position: absolute;
   display: block;
-  top: @padding;
-  left: @padding;
-  z-index: 99;
-  width: 210px;
-  height: 57px;
+  position: absolute;
   background: url("img/logo.png") no-repeat center;
   background-size: contain;
+  top: @padding;
+  left: @padding;
+  width: 120px;
+  height: 33px;
+  z-index: 99;
+
+  @media (min-width: 768px) {
+    width: 210px;
+    height: 57px;
+  }
+
 }

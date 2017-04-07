@@ -118,8 +118,6 @@
               </li>
               <li><a href="#remove"><i class="alert alert-info"></i><span>remove</span></a>
               </li>
-              <li><a href="#animateDrop"><i class="alert alert-info"></i><span>animateDrop</span></a>
-              </li>
               <li><a href="#animateBounce"><i class="alert alert-info"></i><span>animateBounce</span></a>
               </li>
               <li><a href="#animateWobble"><i class="alert alert-info"></i><span>animateWobble</span></a>
@@ -185,10 +183,10 @@
     if (!div) {
         div = self.div = $('' +
             '&lt;div' + (self.options.visible ? '' : ' class=&quot;hidden&quot;') + '&gt;' +
-                (self.options.pulsate ? '' : '&lt;div class=&quot;marker-shadow&quot;&gt;&lt;/div&gt;') +
-                '&lt;div class=&quot;marker-wrap&quot;' + (self.options.title ? ' title=&quot;' + self.options.title + '&quot;' : '') + '&gt;' +
-                    (self.options.pulsate ? '&lt;div class=&quot;marker-pulse&quot;&gt;&lt;/div&gt;' : '&lt;div class=&quot;marker marker-' + self.options.icon + '&quot;&gt;&lt;/div&gt;') +
-                '&lt;/div&gt;' +
+            (self.options.pulsate ? '' : '&lt;div class=&quot;marker-shadow&quot;&gt;&lt;/div&gt;') +
+            '&lt;div class=&quot;marker-wrap&quot;' + (self.options.title ? ' title=&quot;' + self.options.title + '&quot;' : '') + '&gt;' +
+            (self.options.pulsate ? '&lt;div class=&quot;marker-pulse&quot;&gt;&lt;/div&gt;' : '&lt;div class=&quot;marker marker-' + self.options.icon + '&quot;&gt;&lt;svg&gt;&lt;use xlink:href=&quot;#icon-' + self.options.icon + '&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/div&gt;') +
+            '&lt;/div&gt;' +
             '&lt;/div&gt;' +
             '')[0];
         self.markerWrap = self.div.getElementsByClassName('marker-wrap');
@@ -355,51 +353,31 @@
 Marker.prototype.showInfoWindow = function () {
     map.showInfoWindow(getInfoWindowContent(this.options.data), this.getPosition());
 };</code></pre>
-          <section id="animateDrop">
-            <h1>animateDrop</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.animateDrop()</span>
-            </p>
-          </section>
           <div class="description"><p>Animate Marker with &quot;Drop&quot; animation</p> </div>
-          <pre><code class="language-javascript">Marker.prototype.animateDrop = function () {
-    dynamics.stop(this.markerWrap);
-    dynamics.css(this.markerWrap, {
-        'transform': 'scaleY(2) translateY(-' + $('#map').outerHeight() + 'px)',
-        'opacity': '1'
-    });
-    dynamics.animate(this.markerWrap, {
-        translateY: 0,
-        scaleY: 1.0
-    }, {
-        type: dynamics.gravity,
-        duration: 1800
-    });
+          <div class="description"><p>Marker.prototype.animateDrop = function () {<br />     dynamics.stop(this.markerWrap);<br />     dynamics.css(this.markerWrap, {<br />     &#39;transform&#39;: &#39;scaleY(2) translateY(-&#39; + $(&#39;#map&#39;).outerHeight() + &#39;px)&#39;,<br />     &#39;opacity&#39;: &#39;1&#39;<br />     });<br />     dynamics.animate(this.markerWrap, {<br />     translateY: 0,<br />     scaleY: 1.0<br />     }, {<br />     type: dynamics.gravity,<br />     duration: 1800<br />     });</p><pre><code> dynamics.stop(this.marker);
+ dynamics.css(this.marker, {
+ &#39;transform&#39;: &#39;none&#39;
+ });
+ dynamics.animate(this.marker, {
+ scaleY: 0.8
+ }, {
+ type: dynamics.bounce,
+ duration: 1800,
+ bounciness: 600
+ });
 
-    dynamics.stop(this.marker);
-    dynamics.css(this.marker, {
-        'transform': 'none'
-    });
-    dynamics.animate(this.marker, {
-        scaleY: 0.8
-    }, {
-        type: dynamics.bounce,
-        duration: 1800,
-        bounciness: 600
-    });
-
-    dynamics.stop(this.markerShadow);
-    dynamics.css(this.markerShadow, {
-        'transform': 'scale(0,0)',
-    });
-    dynamics.animate(this.markerShadow, {
-        scale: 1
-    }, {
-        type: dynamics.gravity,
-        duration: 1800
-    });
-};</code></pre>
+ dynamics.stop(this.markerShadow);
+ dynamics.css(this.markerShadow, {
+ &#39;transform&#39;: &#39;scale(0,0)&#39;,
+ });
+ dynamics.animate(this.markerShadow, {
+ scale: 1
+ }, {
+ type: dynamics.gravity,
+ duration: 1800
+ });
+ };
+</code></pre> </div>
           <section id="animateBounce">
             <h1>animateBounce</h1>
             <h5 class="subheader"></h5>
@@ -444,7 +422,7 @@ Marker.prototype.showInfoWindow = function () {
 
     dynamics.stop(this.markerShadow);
     dynamics.css(this.markerShadow, {
-        'transform': 'none',
+        'transform': 'none'
     });
     dynamics.animate(this.markerShadow, {
         scale: 0.6

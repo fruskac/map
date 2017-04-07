@@ -32,10 +32,10 @@ fruskac.Marker = (function () {
         if (!div) {
             div = self.div = $('' +
                 '<div' + (self.options.visible ? '' : ' class="hidden"') + '>' +
-                    (self.options.pulsate ? '' : '<div class="marker-shadow"></div>') +
-                    '<div class="marker-wrap"' + (self.options.title ? ' title="' + self.options.title + '"' : '') + '>' +
-                        (self.options.pulsate ? '<div class="marker-pulse"></div>' : '<div marker class="marker-' + self.options.icon + '"><svg><use xlink:href="#icon-' + self.options.icon + '"></use></svg></div>') +
-                    '</div>' +
+                (self.options.pulsate ? '' : '<div class="marker-shadow"></div>') +
+                '<div class="marker-wrap"' + (self.options.title ? ' title="' + self.options.title + '"' : '') + '>' +
+                (self.options.pulsate ? '<div class="marker-pulse"></div>' : '<div class="marker marker-' + self.options.icon + '"><svg><use xlink:href="#icon-' + self.options.icon + '"></use></svg></div>') +
+                '</div>' +
                 '</div>' +
                 '')[0];
             self.markerWrap = self.div.getElementsByClassName('marker-wrap');
@@ -144,43 +144,43 @@ fruskac.Marker = (function () {
     /**
      * Animate Marker with "Drop" animation
      */
-    Marker.prototype.animateDrop = function () {
-        dynamics.stop(this.markerWrap);
-        dynamics.css(this.markerWrap, {
-            'transform': 'scaleY(2) translateY(-' + $('#map').outerHeight() + 'px)',
-            'opacity': '1'
-        });
-        dynamics.animate(this.markerWrap, {
-            translateY: 0,
-            scaleY: 1.0
-        }, {
-            type: dynamics.gravity,
-            duration: 1800
-        });
+    /*Marker.prototype.animateDrop = function () {
+     dynamics.stop(this.markerWrap);
+     dynamics.css(this.markerWrap, {
+     'transform': 'scaleY(2) translateY(-' + $('#map').outerHeight() + 'px)',
+     'opacity': '1'
+     });
+     dynamics.animate(this.markerWrap, {
+     translateY: 0,
+     scaleY: 1.0
+     }, {
+     type: dynamics.gravity,
+     duration: 1800
+     });
 
-        dynamics.stop(this.marker);
-        dynamics.css(this.marker, {
-            'transform': 'none'
-        });
-        dynamics.animate(this.marker, {
-            scaleY: 0.8
-        }, {
-            type: dynamics.bounce,
-            duration: 1800,
-            bounciness: 600
-        });
+     dynamics.stop(this.marker);
+     dynamics.css(this.marker, {
+     'transform': 'none'
+     });
+     dynamics.animate(this.marker, {
+     scaleY: 0.8
+     }, {
+     type: dynamics.bounce,
+     duration: 1800,
+     bounciness: 600
+     });
 
-        dynamics.stop(this.markerShadow);
-        dynamics.css(this.markerShadow, {
-            'transform': 'scale(0,0)',
-        });
-        dynamics.animate(this.markerShadow, {
-            scale: 1
-        }, {
-            type: dynamics.gravity,
-            duration: 1800
-        });
-    };
+     dynamics.stop(this.markerShadow);
+     dynamics.css(this.markerShadow, {
+     'transform': 'scale(0,0)',
+     });
+     dynamics.animate(this.markerShadow, {
+     scale: 1
+     }, {
+     type: dynamics.gravity,
+     duration: 1800
+     });
+     };*/
 
     /**
      * Animate Marker with Bounce animation
@@ -221,7 +221,7 @@ fruskac.Marker = (function () {
 
         dynamics.stop(this.markerShadow);
         dynamics.css(this.markerShadow, {
-            'transform': 'none',
+            'transform': 'none'
         });
         dynamics.animate(this.markerShadow, {
             scale: 0.6

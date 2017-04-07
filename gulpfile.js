@@ -71,19 +71,20 @@ gulp.task('inlinesource:html', function () {
             return value_1 + getValue(value_2, 'id');
         }))
         // class selectors
-        .pipe(replace(/([},]\.|class="|getElementsByClassName\("|Class\(\w+\.div,")([a-z]{6,})/g, function (match, value_1, value_2) {
+        // TODO: minify class selectors
+        /*.pipe(replace(/([},]\.|class="|getElementsByClassName\("|Class\(\w+\.div,")([a-z]{6,})/g, function (match, value_1, value_2) {
             return value_1 + getValue(value_2, 'class');
-        }))
+        }))*/
         // misc
-        .pipe(replace(/(\[|\s)(marker)(\]|\s)/g, function (match, value_1, value_2, value_3) {
+        // TODO: minify other selectors
+        /*.pipe(replace(/(\[|\s)(marker)(\]|\s)/g, function (match, value_1, value_2, value_3) {
             return value_1 + getValue(value_2, 'misc') + value_3;
-        }))
-/*
+        }))*/
         // methods
-        .pipe(replace(/(getParameterByName|getParameterPartsByName|I18N|placeMarker|addMarker|Marker|addTrack|Track|addKml|Kml|Loader|Chart|markerWrap|markerShadow|animateWobble|animateBounce|animateDrop|setOpaque|showInfoWindow|highlight|translate|fromLatLngToDivPixel)/g, function (match, value_1) {
+        // TODO: minify JS methods
+        /*.pipe(replace(/(getParameterByName|getParameterPartsByName|I18N|placeMarker|addMarker|Marker|addTrack|Track|addKml|Kml|Loader|Chart|markerWrap|markerShadow|animateWobble|animateBounce|animateDrop|setOpaque|showInfoWindow|highlight|translate|fromLatLngToDivPixel)/g, function (match, value_1) {
             return getValue(value_1, 'method');
-        }))
-*/
+        }))*/
         .pipe(gulp.dest('./dist'));
 });
 

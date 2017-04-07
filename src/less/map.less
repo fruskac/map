@@ -1,40 +1,41 @@
 @import "_variables";
+
 html,
 body {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    overflow: hidden;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
 }
 
 #map_container {
-    position: absolute;
-    top: 0;
-    left: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  #map {
     height: 100%;
     width: 100%;
-    margin: 0;
-    #map {
-        height: 100%;
-        width: 100%;
-    }
-    >button {
-        display: none;
-        position: absolute;
-        top: @padding;
-        right: @padding;
-        z-index: 99;
-    }
-    >#map_logo {
-        position: absolute;
-        display: block;
-        top: @padding;
-        left: @padding;
-        z-index: 99;
-        width: 210px;
-        height: 57px;
-        background-image: url(img/logo.png);
-        background-repeat: no-repeat;
-        background-size: contain;
-    }
+  }
+  > button {
+    display: none;
+    position: absolute;
+    top: @padding;
+    right: @padding;
+    z-index: 99;
+  }
+  > #map_logo {
+    position: absolute;
+    display: block;
+    top: @padding;
+    left: @padding;
+    z-index: 99;
+    width: 210px;
+    height: 57px;
+    background-image: url(img/logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
 }

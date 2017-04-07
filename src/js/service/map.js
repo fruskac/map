@@ -17,7 +17,7 @@ fruskac.Map = (function () {
         });
 
         // show fullscreen button if CrossDomain or if "allowfullscreen" attribute added to iframe
-        if (fruskac.isCrossDomain || window.frameElement && window.frameElement.hasAttribute('allowFullScreen')) {
+        if (fruskac.isCrossDomain || fruskac.allowfullscreen) {
             $('#map_container > button').show();
         }
 

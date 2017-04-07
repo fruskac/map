@@ -159,7 +159,7 @@
     });
 
     // show fullscreen button if CrossDomain or if &quot;allowfullscreen&quot; attribute added to iframe
-    if (fruskac.isCrossDomain || window.frameElement &amp;&amp; window.frameElement.hasAttribute('allowFullScreen')) {
+    if (fruskac.isCrossDomain || fruskac.allowfullscreen) {
         $('#map_container &gt; button').show();
     }
 

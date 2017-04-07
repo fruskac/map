@@ -15,6 +15,5 @@ fruskac.I18N = {
             {rs: 'Visina'}
         ]
     }
-
 };
 

@@ -1,5 +1,5 @@
 'use strict';
 
-function fruskac() {
-}
+function fruskac() {}
+
 fruskac.prototype = fruskac;

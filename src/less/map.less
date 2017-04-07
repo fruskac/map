@@ -1,6 +1,7 @@
 @import "_variables";
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -14,12 +15,6 @@ html, body {
   height: 100%;
   width: 100%;
   margin: 0;
-
-  #map {
-    height: 100%;
-    width: 100%;
-  }
-
   > button {
     display: none;
     position: absolute;
@@ -27,17 +22,21 @@ html, body {
     right: @padding;
     z-index: 99;
   }
+}
 
-  > #map_logo {
-    position: absolute;
-    top: @padding;
-    left: @padding;
-    z-index: 99;
+#map {
+  height: 100%;
+  width: 100%;
+}
 
-    img {
-      width: 210px;
-      height: auto;
-    }
-  }
-
+#map_logo {
+  position: absolute;
+  display: block;
+  top: @padding;
+  left: @padding;
+  z-index: 99;
+  width: 210px;
+  height: 57px;
+  background: url("img/logo.png") no-repeat center;
+  background-size: contain;
 }

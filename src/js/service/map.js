@@ -193,8 +193,6 @@ fruskac.Map = (function () {
                     google.maps.event.addDomListener(object.div, 'click', function () {
                         clearInterval(interval);
                     });
-                    // TODO: show info window
-                    //map.showInfoWindow(getInfoWindowContent(options.data), this);
                     break;
                 case TYPE_TRACK:
                     self.placeMarker(null);

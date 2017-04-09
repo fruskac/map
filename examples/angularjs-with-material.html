@@ -111,8 +111,8 @@
                 $compileProvider.commentDirectivesEnabled(false);
                 $compileProvider.cssClassDirectivesEnabled(false);
             }
-        ]).filter('humanize', function(){
-            return function(text) {
+        ]).filter('humanize', function () {
+            return function (text) {
                 if (text) {
                     text.match(/(\w+)/g).forEach(function (word) {
                         text = text.replace(word, word.charAt(0).toUpperCase() + word.slice(1))

@@ -82,7 +82,7 @@ fruskac.Chart = (function () {
                         lineWidth: 2,
                         areaOpacity: 0.2,
                         series: [
-                            {color: 'black', visibleInLegend: false}, {}, {},
+                            {color: '#d2003b', visibleInLegend: false}, {}, {}
                         ],
                         focusTarget: 'category',
                         hAxis: {
@@ -90,7 +90,7 @@ fruskac.Chart = (function () {
                             title: i18n.translate('DISTANCE') + ' (km)',
                             gridlines: {
                                 color: 'transparent'
-                            },
+                            }
                         },
                         vAxis: {
                             baselineColor: 'transparent',
@@ -98,7 +98,7 @@ fruskac.Chart = (function () {
                             minValue: 0,
                             gridlines: {
                                 color: 'transparent'
-                            },
+                            }
                         },
                         legend: {
                             position: "none"

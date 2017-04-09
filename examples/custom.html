@@ -2,297 +2,336 @@
 <html ng-app="app" lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ФRuŠKać</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ФRuŠKać</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-    
-    iframe {
-      border: none;
-      width: 100%;
-      height: 100%;
-    }
-    
-    a {
-      cursor: pointer;
-    }
-    
-    a:hover {
-      text-decoration: none;
-    }
-    
-    #header {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 18px 10px;
-      width: 100%;
-    }
-    
-    #header .btn {
-      position: relative;
-      z-index: 99;
-      line-height: 0;
-    }
-    
-    #navigation {
-      position: fixed;
-      width: 320px;
-      overflow-x: hidden;
-      overflow-y: auto;
-      top: 0;
-      right: -320px;
-    }
-    
-    #navigation.in {
-      right: 0;
-    }
-    
-    #navigation-overlay {
-      display: none;
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-    }
-    
-    #navigation-overlay.in {
-      display: block;
-    }
-    
-    md-checkbox,
-    md-switch {
-      margin: 0;
-    }
-    
-    .panel-title .material-icons {
-      font-size: 32px;
-      margin-right: -10px;
-    }
-    
-    .loading {
-      content: 'Loading...';
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #ededed url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAABKCAMAAACvgUABAAAA7VBMVEVHcEzSADvSADt1kCicoS51kCh1kCl1kCl9jRacoS7SADvSADt1kCd1kCjSADt1kCnSADvSADt1kCl1kCmcoS51kCfSADt1kCnSADt1kCl1kCh1kCicoS6coS51kCmcoS6coS7SADucoS7SADucoS6coS6coS7SADucoS6coS6coS6coS54ixF4ixF4ixF4ixGOkyXSADtfZgj///9udhLpgJ387/PdQGzVEEc6UQT0v87unbTYIFRmbgzjYIXaMGD3z9r53+d6gBjmcJHgUHjxr8KYnSxviiZPZxB1kCmcoS54ixGOkyV+hBuIjiETjsmMAAAAMXRSTlMAEO+AgEC/779AYDAQYCDPr58wIM+f39+PcI9QcFCvEO9Hn8Kv32B+MCCPv98g78/PxtzQWwAAChtJREFUeF7k2OFqwjAUhuEPYhOFhEJrKG11LaJlzs3tNk7qdv+Xs6KR6tAx4CxU+vw8P1/IORAMSS6EQW/0ykIq6sQa46OFEIWkWMrYpPDKjM5yjE9MFwp0kMh+olKMTk6XlEyARPWDOMX4PNE1lVwmKTBGkn7qk6gco2TpDiVEgsGqlk2F/6Ijz1hF9CCLpFo559YIIFHUizBcy9p1FgghyujMYLgW7mg+QwjaPsK92TgfBWEU1KEnDNnceVuEYYgo0xiyF+ctEEhBWYJBmzhvh1BKDX4wYqq5m9QVHpietm0ruJu4CcJIIyGszChLwUa/t539G3eTDQIobUZnAmym7RFfk3CXx/gg3E1MewIeTd+kwU3bZjV39ZLv24C/yStvk1nfZIVbntlelqVrBkxKn2QPJrvD1+fR4ePXaA13EvrLjq0mtTtZz3CP9U0sGHyzbm5rqQNJFBZJwkRBUEBEwEQkGMjc9G5OchI8m0Hf/3FmB0iqu6saMod1sb8PzDbwd9XqquroG4G7+RNrEIaVwOj6cubEn8n9n0s1RbU0SCohKLCPpI6+1c4ory9Kj/cZyif6217nR2Cyk9cjcyt60TVatu38dyW9qtsUSPqhpD596z2Sf5I/vLh5YIw93MM75zenp+yvrv+CwVMTYLJVGKvSl/vmSK6drFmnC9RSyhRgVOummY/zwgvEL+o0O0FgJKvmhYoqvQNMbk3cM5yX2F7X9ztEj9dM0HVGnZpEGkhMUPdjhKQqTXHJrqw7NEiMJmsFE8wEW6uBnKq5+1TxirRDJNenmAwWX09PT5/fkSwx/u5PGegmkzkrMUWXqPPTMnEdmgmog+ZnJhEYtf2bOWK36YQ7JTbRliulHrkYuC6uPm31iSd4j0zSNRACncUm4ZJMPsR7O8CEVl8dKVrksY65vYQaOQYKk45SFYhmoq+i6rnvrwhJcgcYzlyyNDrfJU4Ykkw2RJR2Qq26ypS1eCIo+72XBYQUY5WjwhHuFEijnYphdGARPVwZf359fX1+g+K9hWmFLMXxNEx+iNQNQr22F5Rz5MGvJUVGAV5omPieeGf88yYVKPniN6Hq3kuYVvMpn8Ore5QOWiZhcIyJ60BAqEwKOTE0ygQTX/ySvot9VC6vuzhQTHApoha8OKVozEbvz2zM+RsDIet60TIJe7A+tDoSExMFNSRP/KJBMDHk2qzig7+QdtOKfUxGUaybkeoN7CbzfVRMZvyvRvMl52MGQjvcj55JF4KKViAxucI1GjDBfmILTAQkblKC9ILAhfkfrKVBnBbdFVCn8MD2GnM+ZGw5emXvfKvZUGHihKmZGLA/0vIk45B3SNnyksUkmHQBPB5tOQ7auwPVS2oFaurIYg0jJssoQPhOU5VJz0vNpA1+opHIJCf3qsAkLz6EUsZMmmAmB1vNJjARf2OO7q/PJSbjCEXMZC0zuT7puimYwM291Ews3N+Az1SREUPA/sNF9krKF5lUEyS6Q4CSwGQ24nw15nScPKCF/z3M5CASFzEB1ejNuKjGycfgBSOhVYFStn78KP4MmERaTxImwzfOX0UmoaINMHlJzwQC/Q5yR1JWqhfy4MQyk48FLIUWiW13W3bPFqKziqIEKRPvxW880hubx0zmr5yvpuu1lsnHAg0LUjOR65OyphOuSjVcVWYygPCskEicbsfFGVsEwlrdxDtx5CMzxtiUb/XKJltnmca9IXxJokD5T5m0RSY17XRA9peyyOQFUrZDDkcMl3SxNCPdC7bX82q9TMqT9Th6Zzl8nw7ZThf4S/4BbRCT1HUsnhEp/UdODZRebGYD/dlsy6Od/QocmxTuASfj5+2/8x0lobQvEQu/0DLp6HtASP9bXKJiJmSOJY2F9mjW0O12+RqKE52jQAG7ek4CZzQT252DufODazbjCBIosIvUc7HAJJ9TNyg3DDeLJGXbqZGE9omVbsx9HyNZ8Z2BjNfDLRLOEz7XYBBpNuMWHmKgTs3Unk1YitFU1Qu78c1DGood6pnAMqTJnle+E1tHZcpkLRgsO6MM4gOYDPC24pAZXWk3HWSlFsUE3i+rF/pxlGpKWE/PpJqSSWY3fF3xrUYTPlrxbRaN4sb4NEMuPLEZw3TRTj5Z26WOx67SMFEDxRRS4xe2Ox+dUOqYZCEr02TPvqhfLvmMDdf8fcLe+HrCIj3CregJykK+tXy53QopKPjABjNRA6Uq5sbvYkPWbJ0DTBrY17FgJPvOZ8Phcs7eYWwy5cNdvRbJSVugBPsAh0/SpKBYAEXjsRaeRyYmG2mTbHeeWKK4B5iYMHo9ptLWT0bL8XLIOJ8kWw8fzRk7PUcnBPoTHpjliK87xKz4VnfYSeRUVX4niOmjyTjcmGZShk4hlaVMd7nDVyzRjM+Eof2BjmeD5xiBwEQ6qrRRA5zVMEHz05qcHUYbQTnC5KSGPUyn86hKWU6n768zsfObjEbsUT1DAFFMApTWBpwew0BMGh5VaSZ32JALUv1hwE3gpM8+xASg4EpW3yCPVxPyvAu+GLXx/OL1MqTA8V10/JSjTTZPhE9ZxmTABgdQ3NZxP4E0RNlDN4OkLg/tcgNUtLWdE4KJCqWvPmljkscMZey7lvSrA7kM6sNZpb4db+CZkl6XWiSgvs5kX+Drk0wAKPiseUckz1URpQ422a6Qp34Iqti6o1GIz3wO7lpOnT6g03t9J0E8blHxyUv7xP9tKY6S3UdKI0cFD4zHLMkyPACESyOsJjrcKdavjpYpsh4yRBNekTseKNpcA+PDrgs+C6sPE+Pst6a6NaU3mxLtpqf+3jbNpAehCKpbVjabvbOsaoFOH5w3WF1yMw7bPXKoA0zk3G/HgQKyGpBM6klYg4yTAAbzsWy9zXqJZVnfpOp0+uC8wer0A8Rk0MLXBSqTE991IXvI57J0TdAtzQStk+vAUFpVID1TQCir8ZR4mlKCvCHk9wM3LlAWg5/NR2gT03L8QJtjCFEOhgeiwwSuy5JMAEoLHqZCatF/JAVqaIs3HCR6qTFL/5Du4yvgnSC6jCsXZVI2fgi1rUwN/ODI8yeFYvpnB88fkLnqBalgHGDiiB6tbAN0atdEv8tnc3DsoTABtQzDkCzN9kgkoKvbHI5MWpnSWeb/8ocIHTKGgsRlfcgKggiopmY85M6/2zm7FYZBGAoHrJZCyoDtZv2ZAq5ofZO9/wONAoW6oKWgw0K/S8Gbo6gxOYEok1Y7qdNeiNXmzvrkxdRVULD3LGnl6mNaB7GrY3vkKbYtCvAnOwp72KYZFvFC2WREQN5yhHSY2DpI91F6sGSOUrM3iKwOKMJfgUPQHSlHNvBfyKF+BKqK8BQRwWJhOTqyEIW5R7N4r1n8+WCqwUKR6FwmHiRtLXooHOoKtHk7OHQIZ2EkP+dp4P4eoVF9+dZrLfM1yelYi3AqpHZuNpAarMllc3HnS0ByYxy2XCBC2XwB+OtnMFdNCj8AAAAASUVORK5CYII=) no-repeat center;
-      background-size: 210px;
-      /* follow logo size */
-      transition: background-position .3s, opacity 1s .3s;
-      animation-name: pulse;
-      animation-duration: 1s;
-      animation-fill-mode: both;
-      animation-iteration-count: infinite;
-      z-index: 999;
-    }
-    
-    .loading.loaded {
-      opacity: 0;
-      background-position: 10px 10px;
-      pointer-events: none;
-      animation: none;
-    }
-    
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.1);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-    
-    @media (min-width: 768px) {
-      #navigation-overlay {
-        display: none !important;
-      }
-    }
-  </style>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-messages.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
-
-
-  <script>
-    angular.module('app', [
-      'ui.bootstrap',
-      'ngMaterial'
-    ]).constant('CONFIG', {
-      map: '../dist/index.html'
-    }).config([
-      '$compileProvider',
-      function($compileProvider) {
-        $compileProvider.debugInfoEnabled(false);
-        $compileProvider.commentDirectivesEnabled(false);
-        $compileProvider.cssClassDirectivesEnabled(false);
-      }
-    ]).filter('humanize', function() {
-      return function(text) {
-        if (text) {
-          text.match(/(\w+)/g).forEach(function(word) {
-            text = text.replace(word, word.charAt(0).toUpperCase() + word.slice(1))
-          });
-          return text.replace(/[^a-zA-Z0-9]+/g, ' ');
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
-      };
-    }).controller('AppCtrl', [
-      '$scope',
-      '$location',
-      '$window',
-      'CONFIG',
-      function($scope, $location, $window, CONFIG) {
 
-        var params = $location.search();
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
 
-        $scope.iframe = CONFIG.map + '?' + Object.keys(params).map(function(i) {
-          return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
-        }).join('&');
+        a {
+            cursor: pointer;
+        }
 
-        document.getElementById('map').onload = function() {
-          var FruskacMapAPI = document.getElementById('map').contentWindow.fruskac;
-          FruskacMapAPI.ready(function() {
-            $scope.$apply(function() {
-              $scope.ready = true;
-              $scope.data = FruskacMapAPI.getData();
-              $scope.clustering = FruskacMapAPI.clustering;
-              $scope.type = FruskacMapAPI.type;
+        a:hover {
+            text-decoration: none;
+        }
 
-              $scope.getVisible = function(item) {
-                if (!item.customized) {
-                  var preset = ['lakes', 'misc', 'monasteries', 'household'].indexOf(item.id) !== -1;
-                  item.setVisible(preset);
-                  item.customized = true;
+        #header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 18px 10px;
+            width: 100%;
+        }
+
+        #header .btn {
+            position: relative;
+            z-index: 99;
+            line-height: 0;
+        }
+
+        #navigation {
+            position: fixed;
+            width: 320px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            top: 0;
+            right: -320px;
+        }
+
+        #navigation.in {
+            right: 0;
+        }
+
+        #navigation-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        #navigation-overlay.in {
+            display: block;
+        }
+
+        md-checkbox,
+        md-switch {
+            margin: 0;
+        }
+
+        .panel-title .material-icons {
+            font-size: 32px;
+            margin-right: -10px;
+        }
+
+        .loading {
+            content: 'Loading...';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ededed url(data:image/png;base64,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) no-repeat center;
+            background-size: 210px;
+            /* follow logo size */
+            transition: background-position .3s, opacity 1s .3s;
+            animation-name: pulse;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            animation-iteration-count: infinite;
+            z-index: 999;
+        }
+
+        .loading.loaded {
+            opacity: 0;
+            background-position: 10px 10px;
+            pointer-events: none;
+            animation: none;
+        }
+
+        input[type="checkbox"]:checked:after, .checkbox input[type="checkbox"]:checked:after, .checkbox-inline input[type="checkbox"]:checked:after {
+            background-color: #ff4081;
+            border-color: #ff4081;
+        }
+
+        .nav-tabs > li > a:hover, .nav-tabs > li > a:focus:hover, .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus {
+            color: #ff4081;
+            box-shadow: inset 0 -2px 0 #ff4081;
+        }
+
+        .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus:hover {
+            color: #ff4081;
+        }
+
+        input[type="radio"]:checked:after, .radio input[type="radio"]:checked:after, .radio-inline input[type="radio"]:checked:after, input[type="checkbox"]:focus:after, .checkbox input[type="checkbox"]:focus:after, .checkbox-inline input[type="checkbox"]:focus:after {
+            border-color: #ff4081;
+        }
+
+        input[type="radio"]:before, .radio input[type="radio"]:before, .radio-inline input[type="radio"]:before {
+            background-color: #ff4081;
+        }
+
+        md-switch.md-default-theme .md-bar, md-switch .md-bar {
+            background-color: #a4a4a4;
+        }
+
+        md-switch.md-default-theme .md-thumb, md-switch .md-thumb {
+            background-color: #fff;
+        }
+
+        md-switch.md-default-theme.md-checked .md-thumb, md-switch.md-checked .md-thumb {
+            background-color: #525252;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (min-width: 768px) {
+            #navigation-overlay {
+                display: none !important;
+            }
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
+
+
+    <script>
+        angular.module('app', [
+            'ui.bootstrap',
+            'ngMaterial'
+        ]).constant('CONFIG', {
+            map: '../dist/index.html'
+        }).config([
+            '$compileProvider',
+            '$mdThemingProvider',
+            function ($compileProvider, $mdThemingProvider) {
+                $compileProvider.debugInfoEnabled(false);
+                $compileProvider.commentDirectivesEnabled(false);
+                $compileProvider.cssClassDirectivesEnabled(false);
+                $mdThemingProvider.disableTheming();
+            }
+        ]).filter('humanize', function () {
+            return function (text) {
+                if (text) {
+                    text.match(/(\w+)/g).forEach(function (word) {
+                        text = text.replace(word, word.charAt(0).toUpperCase() + word.slice(1))
+                    });
+                    return text.replace(/[^a-zA-Z0-9]+/g, ' ');
                 }
-                return item.getVisible();
-              };
+            };
+        }).controller('AppCtrl', [
+            '$scope',
+            '$location',
+            '$window',
+            'CONFIG',
+            function ($scope, $location, $window, CONFIG) {
 
-              $scope.loaded = true;
+                var params = $location.search();
 
-              $scope.highlight = function(item, category) {
-                item.highlightedCategory = category;
-                item.highlight(category);
-              }
+                $scope.iframe = CONFIG.map + '?' + Object.keys(params).map(function (i) {
+                        return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
+                    }).join('&');
 
-            })
-          });
-        };
+                document.getElementById('map').onload = function () {
+                    var FruskacMapAPI = document.getElementById('map').contentWindow.fruskac;
+                    FruskacMapAPI.ready(function () {
+                        $scope.$apply(function () {
+                            $scope.ready = true;
+                            $scope.data = FruskacMapAPI.getData();
+                            $scope.clustering = FruskacMapAPI.clustering;
+                            $scope.type = FruskacMapAPI.type;
 
-        if ($window.innerWidth > 768) {
-          $scope.navigationOpen = true;
-        }
+                            $scope.getVisible = function (item) {
+                                if (!item.customized) {
+                                    var preset = ['lakes', 'misc', 'monasteries', 'household'].indexOf(item.id) !== -1;
+                                    item.setVisible(preset);
+                                    item.customized = true;
+                                }
+                                return item.getVisible();
+                            };
 
-      }
-    ]);
-  </script>
+                            $scope.loaded = true;
+
+                            $scope.highlight = function (item, category) {
+                                item.highlightedCategory = category;
+                                item.highlight(category);
+                            }
+
+                        })
+                    });
+                };
+
+                if ($window.innerWidth > 768) {
+                    $scope.navigationOpen = true;
+                }
+
+            }
+        ]);
+    </script>
 
 </head>
 
 <body ng-controller="AppCtrl">
 
-  <iframe ng-src="{{ ::iframe }}" id="map"></iframe>
+<iframe ng-src="{{ ::iframe }}" id="map"></iframe>
 
-  <div id="header">
-    <a ng-click="navigationOpen=!navigationOpen" class="btn pull-right" ng-class="{'btn-link':navigationOpen,'btn-default':!navigationOpen}">
-      <i class="material-icons">menu</i>
+<div id="header">
+    <a ng-click="navigationOpen=!navigationOpen" class="btn pull-right"
+       ng-class="{'btn-link':navigationOpen,'btn-default':!navigationOpen}">
+        <i class="material-icons">menu</i>
     </a>
-  </div>
+</div>
 
-  <div id="navigation-overlay" ng-class="{'in':navigationOpen}" ng-click="navigationOpen=false"></div>
-  <div id="navigation" ng-class="{'in':navigationOpen}">
+<div id="navigation-overlay" ng-class="{'in':navigationOpen}" ng-click="navigationOpen=false"></div>
+<div id="navigation" ng-class="{'in':navigationOpen}">
     <div ng-hide="ready" class="panel panel-default">
-      <div class="panel-body">
-        Loading...
-      </div>
+        <div class="panel-body">
+            Loading...
+        </div>
     </div>
     <div class="panel-group" ng-show="ready">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-xs-5">
-              <div class="checkbox">
-                <label>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="checkbox">
+                            <label>
                                 <input type="checkbox"
                                        ng-checked="clustering()"
                                        ng-click="clustering(!clustering())">
                                 Clustering
                             </label>
-              </div>
-            </div>
-            <div class="col-xs-6">
-              <div class="checkbox">
-                <label>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="checkbox">
+                            <label>
                                 <input type="checkbox"
                                        ng-checked="type()==='satellite'"
                                        ng-click="type(type()==='terrain'?'satellite':'terrain')">
                                 Satellite
                             </label>
-              </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div ng-repeat="item in ::data" class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            <a ng-if="::item.children" ng-click="$parent.open=!$parent.open" ng-init="$parent.open=item.getVisible()" class="pull-right">
-              <i class="material-icons" ng-style="{'transform':$parent.open?'rotate(90deg)':'none'}">chevron_right</i>
-            </a>
-            <md-switch ng-click="item.setVisible(!item.getVisible());open=item.getVisible()" ng-checked="item.getVisible()">
-              {{ ::item.id | humanize }}
-            </md-switch>
-          </h3>
-        </div>
-        <ul ng-if="::item.children&&item.categories" ng-show="open" class="nav nav-tabs nav-justified">
-          <li ng-class="{'active':tab===1}">
-            <a ng-click="$parent.tab=1">Objects</a>
-          </li>
-          <li ng-class="{'active':tab===2}">
-            <a ng-click="$parent.tab=2">Activity</a>
-          </li>
-        </ul>
-        <div ng-if="::item.children" ng-show="open" class="panel-body" ng-init="$parent.tab=1">
-          <div ng-show="$parent.tab===1" class="row">
-            <div class="col-xs-6" ng-repeat="child in ::item.children">
-              <div class="checkbox" ng-class="'checkbox-' + child.id">
-                <label>
+        <div ng-repeat="item in ::data" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a ng-if="::item.children" ng-click="$parent.open=!$parent.open"
+                       ng-init="$parent.open=item.getVisible()" class="pull-right">
+                        <i class="material-icons" ng-style="{'transform':$parent.open?'rotate(90deg)':'none'}">chevron_right</i>
+                    </a>
+                    <md-switch md-no-ink ng-click="item.setVisible(!item.getVisible());open=item.getVisible()"
+                               ng-checked="item.getVisible()">
+                        {{ ::item.id | humanize }}
+                    </md-switch>
+                </h3>
+            </div>
+            <ul ng-if="::item.children&&item.categories" ng-show="open" class="nav nav-tabs nav-justified">
+                <li ng-class="{'active':tab===1}">
+                    <a ng-click="$parent.tab=1">Objects</a>
+                </li>
+                <li ng-class="{'active':tab===2}">
+                    <a ng-click="$parent.tab=2">Activity</a>
+                </li>
+            </ul>
+            <div ng-if="::item.children" ng-show="open" class="panel-body" ng-init="$parent.tab=1">
+                <div ng-show="$parent.tab===1" class="row">
+                    <div class="col-xs-6" ng-repeat="child in ::item.children">
+                        <div class="checkbox" ng-class="'checkbox-' + child.id">
+                            <label>
                                 <input ng-attr-type="{{ child.type !== 'track' ? 'checkbox' : 'radio' }}"
                                        ng-click="item.getVisible()&&(child.type !== 'track'?child.setVisible(!child.getVisible()):child.focus())"
                                        ng-checked="getVisible(child)"
                                        ng-disabled="!item.getVisible()">
                                 {{ ::child.id | humanize }}
                             </label>
-              </div>
-            </div>
-          </div>
-          <div ng-show="$parent.tab===2" class="row">
-            <div class="col-xs-6" ng-repeat="category in item.categories">
-              <div class="checkbox" ng-class="'checkbox-' + child.id">
-                <label>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="$parent.tab===2" class="row">
+                    <div class="col-xs-6" ng-repeat="category in item.categories">
+                        <div class="checkbox" ng-class="'checkbox-' + child.id">
+                            <label>
                                 <input type="radio"
                                        ng-attr-name="{{item.id}}"
                                        ng-checked="item.highlightedCategory===category"
@@ -300,15 +339,15 @@
                                 >
                                 {{ ::category | humanize }}
                             </label>
-              </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <div class="loading" ng-class="{'loaded':loaded}"></div>
+<div class="loading" ng-class="{'loaded':loaded}"></div>
 
 </body>
 

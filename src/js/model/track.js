@@ -13,7 +13,7 @@ fruskac.Track = (function () {
         options = _.extend({
             map: gmap,
             geodesic: true,
-            strokeColor: 'rgb(51, 102, 204)',
+            strokeColor: '#d2003b',
             strokeOpacity: 1.0,
             strokeWeight: 4
         }, options);

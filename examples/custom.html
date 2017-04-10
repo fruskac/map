@@ -210,34 +210,36 @@
                         return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
                     }).join('&');
 
-                document.getElementById('map').onload = function () {
-                    var FruskacMapAPI = document.getElementById('map').contentWindow.fruskac;
-                    FruskacMapAPI.ready(function () {
-                        $scope.$apply(function () {
-                            $scope.ready = true;
-                            $scope.data = FruskacMapAPI.getData();
-                            $scope.clustering = FruskacMapAPI.clustering;
-                            $scope.type = FruskacMapAPI.type;
+                setTimeout(function () {
+                    document.getElementById('map').onload = function () {
+                        var FruskacMapAPI = document.getElementById('map').contentWindow.fruskac;
+                        FruskacMapAPI.ready(function () {
+                            $scope.$apply(function () {
+                                $scope.ready = true;
+                                $scope.data = FruskacMapAPI.getData();
+                                $scope.clustering = FruskacMapAPI.clustering;
+                                $scope.type = FruskacMapAPI.type;
 
-                            $scope.getVisible = function (item) {
-                                if (!item.customized) {
-                                    var preset = ['lakes', 'misc', 'monasteries', 'household'].indexOf(item.id) !== -1;
-                                    item.setVisible(preset);
-                                    item.customized = true;
+                                $scope.getVisible = function (item) {
+                                    if (!item.customized) {
+                                        var preset = ['lakes', 'misc', 'monasteries', 'household'].indexOf(item.id) !== -1;
+                                        item.setVisible(preset);
+                                        item.customized = true;
+                                    }
+                                    return item.getVisible();
+                                };
+
+                                $scope.loaded = true;
+
+                                $scope.highlight = function (item, category) {
+                                    item.highlightedCategory = category;
+                                    item.highlight(category);
                                 }
-                                return item.getVisible();
-                            };
 
-                            $scope.loaded = true;
-
-                            $scope.highlight = function (item, category) {
-                                item.highlightedCategory = category;
-                                item.highlight(category);
-                            }
-
-                        })
-                    });
-                };
+                            })
+                        });
+                    };
+                });
 
                 if ($window.innerWidth > 768) {
                     $scope.navigationOpen = true;

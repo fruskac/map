@@ -116,7 +116,12 @@ layers.forEach(function (layer) {
         layer.visible = layersFromUrl.indexOf(layer.name) !== -1;
     }
 
-    activeLayers.push(Object.values(layer));
+    var layer = Object.keys(layer).map(function(key) {
+        return layer[key];
+    });
+
+    activeLayers.push(layer);
+
 });
 
 

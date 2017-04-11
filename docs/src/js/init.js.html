@@ -135,11 +135,9 @@ layers.forEach(function (layer) {
         layer.visible = layersFromUrl.indexOf(layer.name) !== -1;
     }
 
-    var layer = Object.keys(layer).map(function(key) {
+    activeLayers.push(Object.keys(layer).map(function(key) {
         return layer[key];
-    });
-
-    activeLayers.push(layer);
+    }));
 
 });</code></pre>
           <section id="track">

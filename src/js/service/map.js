@@ -18,7 +18,7 @@ fruskac.Map = (function () {
 
         // show fullscreen button if CrossDomain or if "allowfullscreen" attribute added to iframe
         if (fruskac.isCrossDomain || fruskac.allowfullscreen) {
-            $('#map_container > button').show();
+            $('#map_button_fullscreen').show();
         }
 
     }
@@ -205,9 +205,10 @@ fruskac.Map = (function () {
         /**
          * Place marker on map
          * @param {google.maps.LatLng} point
+         * @param {string|undefined} icon
          * @param {boolean|undefined} pulsate
          */
-        placeMarker: function (point, pulsate) {
+        placeMarker: function (point, icon, pulsate) {
 
             var self = this;
 
@@ -218,7 +219,8 @@ fruskac.Map = (function () {
                     self.marker = new fruskac.Marker({
                         position: point,
                         visible: true,
-                        pulsate: pulsate
+                        pulsate: pulsate,
+                        icon: icon
                     });
                 }
             } else {

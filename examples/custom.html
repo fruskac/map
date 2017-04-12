@@ -324,7 +324,7 @@
 
                         $scope.getVisible = function (item) {
                             if (!item.customized) {
-                                var preset = ['lakes', 'misc', 'monasteries', 'household'].indexOf(item.id) !== -1;
+                                var preset = ['lakes', 'misc', 'monasteries', 'households'].indexOf(item.id) !== -1;
                                 item.setVisible(preset);
                                 item.customized = true;
                             }

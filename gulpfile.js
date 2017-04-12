@@ -85,6 +85,8 @@ gulp.task('inlinesource:html', function () {
         /*.pipe(replace(/(getParameterByName|getParameterPartsByName|I18N|placeMarker|addMarker|Marker|addTrack|Track|addKml|Kml|Loader|Chart|markerWrap|markerShadow|animateWobble|animateBounce|animateDrop|setOpaque|showInfoWindow|highlight|translate|fromLatLngToDivPixel)/g, function (match, value_1) {
             return getValue(value_1, 'method');
         }))*/
+        .pipe(replace("\n", ' '))
+        .pipe(replace(/[\s]+/g, ' '))
         .pipe(gulp.dest('./dist'));
 });
 

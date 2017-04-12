@@ -56,7 +56,7 @@ fruskac.Chart = (function () {
             self.setVisible(true);
 
             if (isFixedLayout) {
-                $(self.container).find('button').remove();
+                $(self.container).find('#chart_button_close').remove();
             }
 
             var elevator = new google.maps.ElevationService;
@@ -110,7 +110,7 @@ fruskac.Chart = (function () {
                     chart.draw(data, options);
 
                     google.visualization.events.addListener(chart, 'onmouseover', function (coords) {
-                        map.placeMarker(points.getAt(coords.row))
+                        map.placeMarker(points.getAt(coords.row), 'tracker')
                     });
 
                     $(window).on('resize', function () {

@@ -110,7 +110,7 @@ fruskac.Chart = (function () {
                     chart.draw(data, options);
 
                     google.visualization.events.addListener(chart, 'onmouseover', function (coords) {
-                        map.placeMarker(points.getAt(coords.row))
+                        map.placeMarker(points.getAt(coords.row), 'tracker')
                     });
 
                     $(window).on('resize', function () {

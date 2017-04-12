@@ -2,7 +2,7 @@
   {
     "lat": "45.211112",
     "lng": "19.511212",
-    "tag": "household",
+    "tag": "households",
     "categories": ["bikes","hiking"],
     "data": {
       "title": "Ran\u010d Dobro prase",
@@ -24,7 +24,7 @@
   {
     "lat": "45.211386",
     "lng": "19.606089",
-    "tag": "household",
+    "tag": "cellars",
     "categories": ["gustation"],
     "data": {
       "title": "Vinarija \u0160ija\u010dki",

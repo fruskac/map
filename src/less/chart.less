@@ -2,6 +2,10 @@
 
 @chart-height: 30%;
 
+a {
+  cursor: pointer;
+}
+
 #chart_container {
   display: none;
   position: absolute;
@@ -9,13 +13,6 @@
   left: 0;
   width: 100%;
   height: @chart-height;
-
-  > button {
-    position: absolute;
-    top: @padding;
-    left: @padding;
-    z-index: 1;
-  }
 
   > div {
     position: absolute;
@@ -32,14 +29,28 @@
 
   }
 
-  > #chart {
-    > .loading {
-      position: relative;
-      top: 50%;
-      width: 100%;
-      text-align: center;
-      transform: translateY(-50%);
-    }
+}
+
+#chart {
+  > .loading {
+    position: relative;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
+  }
+}
+
+#chart_button_close {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: @padding;
+  z-index: 1;
+
+  svg {
+    width: 16px;
+    height: 16px;
   }
 
 }

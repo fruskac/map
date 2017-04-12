@@ -17,7 +17,7 @@
   transform-origin: 50% round(@markerHeightFactor * 100%) 0;
 }
 
-.color(@name, @color) {
+.color(@name, @color:@markerColor) {
   .marker-@{name} {
     &:before {
       background-color: @color;
@@ -77,6 +77,11 @@
 .color(picnic-areas, #4f452f);
 .color(meadows, #9ca22f);
 .color(lookouts, #8c1bdd);
+
+.color(cellars);
+.color(households);
+
+.color(tracker);
 
 .marker-shadow {
   position: absolute;

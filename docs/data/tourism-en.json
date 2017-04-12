@@ -1,0 +1,148 @@
+[
+  {
+    "lat": "45.215499",
+    "lng": "19.816843",
+    "tag": "restaurants",
+    "categories": [
+      "gustation"
+    ],
+    "data": {
+      "title": "Vila Milana",
+      "id": "519",
+      "link": "http:\/\/fruskac.net\/rs\/turizam\/restorani\/vila-milana",
+      "description": "Na putu Novi Sad \u2013 Ledinci, koji se pru\u017ea paralelno uz Dunav i gde Fru\u0161ka gora silazi do same vode, nalazi se vila \u201eMilana\u201d. ",
+      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/1.jpg?itok=egRK-ENz"
+    },
+    "options": {
+      "icon_data": {
+        "url": "http:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+        "width": 32,
+        "height": 32,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  {
+    "lat": "45.219150",
+    "lng": "19.665415",
+    "tag": "households",
+    "categories": [
+      "gustation"
+    ],
+    "data": {
+      "title": "Etno bud\u017eak",
+      "id": "510",
+      "link": "http:\/\/fruskac.net\/rs\/turizam\/domacinstva\/etno-budzak",
+      "description": " Etno bud\u017eak, ure\u0111en u etno stilu, svojim izgledom, toplom i doma\u0107inskom atmosferom vas ne\u0107e ostaviti ravnodu\u0161nim.",
+      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/cerevic-domacinstvo-etno-budzak-11.jpg?itok=8andtJ-N"
+    },
+    "options": {
+      "icon_data": {
+        "url": "http:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+        "width": 32,
+        "height": 32,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  {
+    "lat": "45.217773",
+    "lng": "19.660962",
+    "tag": "households",
+    "categories": [
+      "gustation",
+      "cycling"
+    ],
+    "data": {
+      "title": "Eko-etno klub",
+      "id": "503",
+      "link": "http:\/\/fruskac.net\/rs\/turizam\/domacinstva\/eko-etno-klub",
+      "description": "Etno klub \u010cerevi\u0107 nalazi se u blizini Beo\u010dina u malom mestu \u010cerevi\u0107u i idealno je mesto za ljubitelje Fru\u0161ke gore.",
+      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/cerevic-domacinstvo-etno-eko-kuca-6.jpg?itok=csaEyCRm"
+    },
+    "options": {
+      "icon_data": {
+        "url": "http:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+        "width": 32,
+        "height": 32,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  {
+    "lat": "19.450007",
+    "lng": "45.227975",
+    "tag": "households",
+    "categories": [
+      "gustation"
+    ],
+    "data": {
+      "title": "Vinarija Gaston Wine",
+      "id": "490",
+      "link": "http:\/\/fruskac.net\/rs\/node\/490",
+      "description": "Vinarija u atraktivnom objektu napravljenom u autenti\u010dnom vojvo\u0111anskom stilu, nudi organizovanim grupama degustacije vina, rakije i proizvoda sa sala\u0161a.",
+      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/nestin-vinarija-gaston-wine-2.jpg?itok=MUG96iQQ"
+    },
+    "options": {
+      "icon_data": {
+        "url": "http:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+        "width": 32,
+        "height": 32,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  {
+    "lat": "45.185561",
+    "lng": "19.807491",
+    "tag": "households",
+    "categories": [
+      "riding"
+    ],
+    "data": {
+      "title": "Ran\u010d Dobro prase",
+      "id": "489",
+      "link": "http:\/\/fruskac.net\/rs\/turizam\/domacinstva\/dobro-prase",
+      "description": "Ran\u010d Dobro prase vam nudi skloni\u0161te od urbanog \u017eivota, oazu mira i zdravlja, na samo 10km od Novog Sada. ",
+      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/ledinci-domacinstvo-dobro-prase-10.jpg?itok=5UMbdXu0"
+    },
+    "options": {
+      "icon_data": {
+        "url": "http:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+        "width": 32,
+        "height": 32,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  {
+    "lat": "45.211386",
+    "lng": "19.606089",
+    "tag": "households",
+    "categories": [
+      "gustation",
+      "cycling"
+    ],
+    "data": {
+      "title": "Vinarija \u0160ija\u010dki",
+      "id": "454",
+      "link": "http:\/\/fruskac.net\/rs\/turizam\/domacinstva\/sijacki",
+      "description": "Ovo je teaser",
+      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/vinarija-sijacki.jpg?itok=vGALlbRV"
+    },
+    "options": {
+      "icon_data": {
+        "url": "http:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+        "width": 32,
+        "height": 32,
+        "x": 0,
+        "y": 0
+      }
+    }
+  }
+]

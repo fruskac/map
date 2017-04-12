@@ -182,7 +182,7 @@ loader.load(activeLayers).then(function () {
     if (!(track || focus) &amp;&amp; latLngZoom &amp;&amp; latLngZoomParts &amp;&amp; latLngZoomParts.length) {
         // add circle marker if track/location not set
         google.maps.event.addListenerOnce(gmap, 'idle', function () {
-            map.placeMarker(new google.maps.LatLng(latLngZoomParts[0], latLngZoomParts[1]), true); // create pulsating marker
+            map.placeMarker(new google.maps.LatLng(latLngZoomParts[0], latLngZoomParts[1]), null, true); // create pulsating marker
         });
     }
 

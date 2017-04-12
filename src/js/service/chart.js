@@ -56,7 +56,7 @@ fruskac.Chart = (function () {
             self.setVisible(true);
 
             if (isFixedLayout) {
-                $(self.container).find('button').remove();
+                $(self.container).find('#chart_button_close').remove();
             }
 
             var elevator = new google.maps.ElevationService;

@@ -15,12 +15,28 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
-  > button {
-    display: none;
-    position: absolute;
-    top: @padding;
-    right: @padding;
-    z-index: 99;
+}
+
+#map_button_fullscreen {
+  display: none;
+  position: absolute;
+  top: @padding;
+  right: @padding;
+  padding: 6px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
+  z-index: 99;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    fill: #666;
+  }
+
+  &:hover svg {
+    fill: #333;
   }
 }
 

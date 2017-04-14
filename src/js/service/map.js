@@ -10,12 +10,6 @@ fruskac.Map = (function () {
      */
     function Map(map) {
 
-        this.infoWindow = new google.maps.InfoWindow({
-            //pixelOffset: new google.maps.Size(0, -34),
-            maxWidth: 285,
-            content: "holding..."
-        });
-
         // show fullscreen button if CrossDomain or if "allowfullscreen" attribute added to iframe
         if (fruskac.isCrossDomain || fruskac.allowfullscreen) {
             $('#map_button_fullscreen').show();
@@ -232,21 +226,6 @@ fruskac.Map = (function () {
 
         },
 
-        /**
-         * Show info window for Marker
-         * @param {string} html
-         * @param {LatLng|LatLngLiteral} position
-         */
-        showInfoWindow: function (html, position) {
-
-            var self = this;
-
-            self.infoWindow.setContent(html);
-            self.infoWindow.setPosition(position);
-            self.infoWindow.open(gmap);
-
-        },
-
         fullscreen: function () {
 
             var params = {
@@ -262,6 +241,7 @@ fruskac.Map = (function () {
                 }).join('&');
 
             window.open(url, '_blank');
+
         }
     };
 

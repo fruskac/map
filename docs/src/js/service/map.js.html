@@ -96,6 +96,7 @@
             <li><a href="/map/src/js/model/marker.js.html">src/js/model/marker.js</a></li>
             <li><a href="/map/src/js/model/track.js.html">src/js/model/track.js</a></li>
             <li><a href="/map/src/js/service/chart.js.html">src/js/service/chart.js</a></li>
+            <li><a href="/map/src/js/service/dialog.js.html">src/js/service/dialog.js</a></li>
             <li><a href="/map/src/js/service/i18n.js.html">src/js/service/i18n.js</a></li>
             <li class="active"><a href="/map/src/js/service/map.js.html">src/js/service/map.js</a></li>
             <li><a href="/map/src/js/service/storage.js.html">src/js/service/storage.js</a></li>
@@ -120,8 +121,6 @@
               </li>
               <li><a href="#placeMarker"><i class="alert alert-info"></i><span>placeMarker</span></a>
               </li>
-              <li><a href="#showInfoWindow"><i class="alert alert-info"></i><span>showInfoWindow</span></a>
-              </li>
             </ul>
           </div>
         </div>
@@ -133,30 +132,8 @@
               <div class="label label-success radius ctx-type">constructor</div><span>Map()</span>
             </p>
           </section>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th style="width:20%">Option name</th>
-                <th style="width:20%">Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>map</td>
-                <td>google.maps.Map</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
           <div class="description"><p>Map</p> </div>
-          <pre><code class="language-javascript">function Map(map) {
-
-    this.infoWindow = new google.maps.InfoWindow({
-        //pixelOffset: new google.maps.Size(0, -34),
-        maxWidth: 285,
-        content: &quot;holding...&quot;
-    });
+          <pre><code class="language-javascript">function Map() {
 
     // show fullscreen button if CrossDomain or if &quot;allowfullscreen&quot; attribute added to iframe
     if (fruskac.isCrossDomain || fruskac.allowfullscreen) {
@@ -537,44 +514,6 @@
         }
     }
 
-},</code></pre>
-          <section id="showInfoWindow">
-            <h1>showInfoWindow</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-info radius ctx-type">method</div><span>Map.prototype.showInfoWindow()</span>
-            </p>
-          </section>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th style="width:20%">Option name</th>
-                <th style="width:20%">Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>html</td>
-                <td>string</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>position</td>
-                <td>LatLng, LatLngLiteral</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="description"><p>Show info window for Marker</p> </div>
-          <pre><code class="language-javascript">showInfoWindow: function (html, position) {
-
-    var self = this;
-
-    self.infoWindow.setContent(html);
-    self.infoWindow.setPosition(position);
-    self.infoWindow.open(gmap);
-
 },
 
 fullscreen: function () {
@@ -592,6 +531,7 @@ fullscreen: function () {
         }).join('&amp;');
 
     window.open(url, '_blank');
+
 }
     };
 

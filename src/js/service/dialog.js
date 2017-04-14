@@ -11,8 +11,10 @@ fruskac.Dialog = (function () {
 
         var self = this;
 
+        self.container = document.createElement('div');
+
         self.dialog = new InfoBox({
-            content: document.createElement('div')
+            content: self.container
             ,maxWidth: 280
             ,pixelOffset: new google.maps.Size(-16, -308)
             ,zIndex: null
@@ -57,12 +59,17 @@ fruskac.Dialog = (function () {
 
             var self = this;
 
-            self.dialog.setContent(content);
+            self.container.innerHTML = content;
+
+            self.dialog.setContent(self.container);
             self.dialog.setPosition(position);
             //this.dialog.setZIndex(Math.round(position.lat() * 100000));
 
             setTimeout(function () {
                 self.dialog.open(gmap);
+                setTimeout(function () {
+                    self.animateWobble();
+                })
             });
 
         },
@@ -74,6 +81,19 @@ fruskac.Dialog = (function () {
             if (this.dialog.getVisible()) {
                 this.dialog.close();
             }
+        },
+
+        /**
+         * Animate Marker with Wobble animation
+         */
+        animateWobble: function () {
+
+            dynamics.animate(this.container.parentNode, {
+                rotateZ: Math.random() * 30 - 15
+            }, {
+                type: dynamics.bounce,
+                duration: 1800
+            })
         }
 
     };

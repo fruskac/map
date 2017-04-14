@@ -65,7 +65,8 @@ var groundOverlay = new google.maps.GroundOverlay(
 );
 groundOverlay.setMap(gmap);
 
-var map = new fruskac.Map(gmap);
+var map = new fruskac.Map();
+var dialog = new fruskac.Dialog();
 
 /*var clusterer = new MarkerClusterer(gmap, [], {
  maxZoom: 12,

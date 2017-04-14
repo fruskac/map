@@ -111,6 +111,7 @@ gulp.task('build:less', function () {
 });
 
 paths.js = [
+    'bower_components/google-maps-v3-infobox/infobox.js',
     'src/js/bootstrap.js'
     , 'src/js/util.js'
     , 'src/js/const/*.js'
@@ -123,6 +124,7 @@ paths.js = [
     , 'src/js/service/chart.js'
     , 'src/js/service/map.js'
     , 'src/js/service/storage.js'
+    , 'src/js/service/dialog.js'
     , 'src/js/loader.js'
     , 'src/js/api.js'
     , 'src/js/init.js'

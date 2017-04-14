@@ -54,7 +54,7 @@ fruskac.Marker = (function () {
                 }, Math.random() * 800 + 200);
 
                 google.maps.event.addDomListener(div, 'click', function () {
-                    self.animateWobble();
+                    //self.animateWobble();
                     self.showInfoWindow();
                 });
             }
@@ -137,8 +137,23 @@ fruskac.Marker = (function () {
         this.div.remove();
     };
 
+    /**
+     * Show info window for Marker
+     */
     Marker.prototype.showInfoWindow = function () {
-        map.showInfoWindow(getInfoWindowContent(this.options.data), this.getPosition());
+
+        var self = this;
+
+        var content =
+            '<a href="' + self.data.link + '" target="_blank">' +
+                '<img src="' + self.data.image + '">' +
+            '</a>' +
+            '<h2>' +
+                '<a href="' + self.data.link + '" target="_blank">' + self.data.title + '</a>' +
+            '</h2>' +
+            '<p>' + self.data.description + '</p>';
+
+        dialog.open(content, self.getPosition());
     };
 
     /**
@@ -262,29 +277,5 @@ fruskac.Marker = (function () {
     };
 
     return Marker;
-
-    /**
-     * Creates HTML that will be presented on InfoWindow
-     *
-     * @param {Object} data
-     * @returns {string}
-     */
-    function getInfoWindowContent(data) {
-        var html = '';
-
-        if (data.image) {
-            html += '<img src="' + data.image + '">';
-        }
-
-        html += '<h2>' + data.title + '</h2>';
-
-        if (data.description) {
-            html += '<p>' + data.description + '</p>';
-        }
-
-        html = '<a' + (data.link && ' href="' + data.link + '" target="_blank"') + '>' + html + '</a>';
-
-        return html;
-    }
 
 })();

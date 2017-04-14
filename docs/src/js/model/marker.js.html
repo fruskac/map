@@ -96,6 +96,7 @@
             <li class="active"><a href="/map/src/js/model/marker.js.html">src/js/model/marker.js</a></li>
             <li><a href="/map/src/js/model/track.js.html">src/js/model/track.js</a></li>
             <li><a href="/map/src/js/service/chart.js.html">src/js/service/chart.js</a></li>
+            <li><a href="/map/src/js/service/dialog.js.html">src/js/service/dialog.js</a></li>
             <li><a href="/map/src/js/service/i18n.js.html">src/js/service/i18n.js</a></li>
             <li><a href="/map/src/js/service/map.js.html">src/js/service/map.js</a></li>
             <li><a href="/map/src/js/service/storage.js.html">src/js/service/storage.js</a></li>
@@ -118,11 +119,11 @@
               </li>
               <li><a href="#remove"><i class="alert alert-info"></i><span>remove</span></a>
               </li>
+              <li><a href="#showInfoWindow"><i class="alert alert-info"></i><span>showInfoWindow</span></a>
+              </li>
               <li><a href="#animateBounce"><i class="alert alert-info"></i><span>animateBounce</span></a>
               </li>
               <li><a href="#animateWobble"><i class="alert alert-info"></i><span>animateWobble</span></a>
-              </li>
-              <li><a href="#getInfoWindowContent"><i class="alert alert-info"></i><span>getInfoWindowContent</span></a>
               </li>
             </ul>
           </div>
@@ -205,7 +206,7 @@
             }, Math.random() * 800 + 200);
 
             google.maps.event.addDomListener(div, 'click', function () {
-                self.animateWobble();
+                //self.animateWobble();
                 self.showInfoWindow();
             });
         }
@@ -348,10 +349,29 @@
           <div class="description"><p>Remove marker</p> </div>
           <pre><code class="language-javascript">Marker.prototype.remove = function () {
     this.div.remove();
-};
+};</code></pre>
+          <section id="showInfoWindow">
+            <h1>showInfoWindow</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.showInfoWindow()</span>
+            </p>
+          </section>
+          <div class="description"><p>Show info window for Marker</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.showInfoWindow = function () {
 
-Marker.prototype.showInfoWindow = function () {
-    map.showInfoWindow(getInfoWindowContent(this.options.data), this.getPosition());
+    var self = this;
+
+    var content =
+        '&lt;a href=&quot;' + self.data.link + '&quot; target=&quot;_blank&quot;&gt;' +
+            '&lt;img src=&quot;' + self.data.image + '&quot;&gt;' +
+        '&lt;/a&gt;' +
+        '&lt;h2&gt;' +
+            '&lt;a href=&quot;' + self.data.link + '&quot; target=&quot;_blank&quot;&gt;' + self.data.title + '&lt;/a&gt;' +
+        '&lt;/h2&gt;' +
+        '&lt;p&gt;' + self.data.description + '&lt;/p&gt;';
+
+    dialog.open(content, self.getPosition());
 };</code></pre>
           <div class="description"><p>Animate Marker with &quot;Drop&quot; animation</p> </div>
           <div class="description"><p>Marker.prototype.animateDrop = function () {<br />     dynamics.stop(this.markerWrap);<br />     dynamics.css(this.markerWrap, {<br />     &#39;transform&#39;: &#39;scaleY(2) translateY(-&#39; + $(&#39;#map&#39;).outerHeight() + &#39;px)&#39;,<br />     &#39;opacity&#39;: &#39;1&#39;<br />     });<br />     dynamics.animate(this.markerWrap, {<br />     translateY: 0,<br />     scaleY: 1.0<br />     }, {<br />     type: dynamics.gravity,<br />     duration: 1800<br />     });</p><pre><code> dynamics.stop(this.marker);
@@ -466,48 +486,7 @@ Marker.prototype.showInfoWindow = function () {
     });
 };
 
-return Marker;</code></pre>
-          <section id="getInfoWindowContent">
-            <h1>getInfoWindowContent</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-info radius ctx-type">function</div><span>getInfoWindowContent()</span>
-            </p>
-          </section>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th style="width:20%">Option name</th>
-                <th style="width:20%">Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>data</td>
-                <td>Object</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="description"><p>Creates HTML that will be presented on InfoWindow</p> </div>
-          <pre><code class="language-javascript">function getInfoWindowContent(data) {
-    var html = '';
-
-    if (data.image) {
-        html += '&lt;img src=&quot;' + data.image + '&quot;&gt;';
-    }
-
-    html += '&lt;h2&gt;' + data.title + '&lt;/h2&gt;';
-
-    if (data.description) {
-        html += '&lt;p&gt;' + data.description + '&lt;/p&gt;';
-    }
-
-    html = '&lt;a' + (data.link &amp;&amp; ' href=&quot;' + data.link + '&quot; target=&quot;_blank&quot;') + '&gt;' + html + '&lt;/a&gt;';
-
-    return html;
-}
+return Marker;
 
 })();</code></pre>
         </div>

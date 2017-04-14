@@ -5,10 +5,9 @@ fruskac.Map = (function () {
     /**
      * Map
      * @global
-     * @param {google.maps.Map} map
      * @constructor
      */
-    function Map(map) {
+    function Map() {
 
         // show fullscreen button if CrossDomain or if "allowfullscreen" attribute added to iframe
         if (fruskac.isCrossDomain || fruskac.allowfullscreen) {

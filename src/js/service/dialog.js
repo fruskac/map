@@ -5,7 +5,6 @@ fruskac.Dialog = (function () {
     /**
      * Dialog
      * @global
-     * @param {google.maps.Map} map
      * @constructor
      */
     function Dialog() {
@@ -49,6 +48,11 @@ fruskac.Dialog = (function () {
      */
     Dialog.prototype = {
 
+        /**
+         * Open Dialog with content and position
+         * @param {string} content
+         * @param {google.maps.LatLng|google.maps.LatLngLiteral} position
+         */
         open: function (content, position) {
 
             var self = this;
@@ -63,22 +67,13 @@ fruskac.Dialog = (function () {
 
         },
 
+        /**
+         * Closes Dialog
+         */
         close: function () {
             if (this.dialog.getVisible()) {
                 this.dialog.close();
             }
-        },
-
-        /**
-         * Creates HTML that will be presented on InfoWindow
-         *
-         * @param {Object} marker
-         * @returns {string}
-         */
-        compile: function (marker) {
-
-            this.dialog.setContent(content);
-
         }
 
     };

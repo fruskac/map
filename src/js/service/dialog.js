@@ -43,6 +43,14 @@ fruskac.Dialog = (function () {
             }
         });
 
+        event.subscribe([
+            EVENT_STORAGE_STATE_CHANGE,
+            EVENT_STORAGE_FOCUS,
+            EVENT_STORAGE_HIGHLIGHT
+        ], function () {
+            self.close();
+        });
+
     }
 
     /**

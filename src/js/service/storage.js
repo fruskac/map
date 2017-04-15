@@ -144,6 +144,8 @@ fruskac.Storage = (function () {
          */
         setState: function (selector, value) {
 
+            event.publish(EVENT_STORAGE_STATE_CHANGE);
+
             selector = parseSelector(selector);
 
             var object = this.get(selector);
@@ -178,6 +180,8 @@ fruskac.Storage = (function () {
          * @param {boolean} value
          */
         setVisible: function (selector, value) {
+
+            event.publish(EVENT_STORAGE_VISIBILITY_CHANGE);
 
             selector = parseSelector(selector);
 
@@ -244,6 +248,8 @@ fruskac.Storage = (function () {
          */
         focus: function (selector, isFixedLayout) {
 
+            event.publish(EVENT_STORAGE_FOCUS);
+
             var self = this;
 
             selector = parseSelector(selector);
@@ -269,6 +275,8 @@ fruskac.Storage = (function () {
         },
 
         highlight: function (selector, category) {
+
+            event.publish(EVENT_STORAGE_HIGHLIGHT);
 
             var self = this;
 

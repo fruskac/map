@@ -146,7 +146,7 @@ fruskac.Marker = (function () {
 
         var content =
             '<a href="' + self.data.link + '" target="_blank">' +
-                '<img src="' + self.data.image + '">' +
+                '<img src="' + self.data.image + '" width="280" height="157">' +
             '</a>' +
             '<h2>' +
                 '<a href="' + self.data.link + '" target="_blank">' + self.data.title + '</a>' +

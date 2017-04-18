@@ -82,13 +82,13 @@
       <div class="row">
         <div class="span3 bs-docs-sidebar">
           <ul class="nav nav-list bs-docs-sidenav affix-top">
-            <li class="active"><a href="/map/index.html">Main</a></li>
+            <li><a href="/map/index.html">Main</a></li>
             <li><a href="/map/src/js/api.js.html">src/js/api.js</a></li>
             <li><a href="/map/src/js/bootstrap.js.html">src/js/bootstrap.js</a></li>
             <li><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
             <li><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
-            <li><a href="/map/src/js/const/event.const.js.html">src/js/const/event.const.js</a></li>
+            <li class="active"><a href="/map/src/js/const/event.const.js.html">src/js/const/event.const.js</a></li>
             <li><a href="/map/src/js/const/i18n.const.js.html">src/js/const/i18n.const.js</a></li>
             <li><a href="/map/src/js/const/params.const.js.html">src/js/const/params.const.js</a></li>
             <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
@@ -105,43 +105,24 @@
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#EVENT_STORAGE_VISIBILITY_CHANGE"><i class="alert alert-success"></i><span>EVENT_STORAGE_VISIBILITY_CHANGE</span></a>
+              </li>
             </ul>
           </div>
         </div>
         <div class="span9">
-          <section id="Main"><h1>Fruškać Map</h1>
-<h4>Fruška gora, Srbija</h4>
-<p>The map is to be used in an <code>iFrame</code> element. Initial configuration could be passed in via <code>src</code> attribute. The Map will expose API to it&#39;s parent element to allow Map control. Usages could be found in <a href="https://github.com/fruskac/map/tree/master/examples">examples</a> directory. Here are some links:</p><ul>
-<li><a href="./examples/angularjs.html">AngularJS</a></li>
-<li><a href="./examples/angularjs-with-material.html">AngularJS with Material</a></li>
-<li><a href="./examples/embed.html">Embed</a></li>
-<li><a href="./examples/coordinates.html">Coordinates</a></li>
-</ul>
-<h2>Contributing</h2>
-<h5>Branching model</h5>
-<p>We are using <code>git-flow</code> as our brancing model. Read more at <a href="//nvie.com/posts/a-successful-git-branching-model/">nvie.com/posts/a-successful-git-branching-model</a></p><h6>Installing <code>git-flow</code></h6>
-<p>Read more about <code>git-flow</code> and how to install it <a href="https://github.com/nvie/gitflow">github.com/nvie/gitflow</a></p><h6>Adding <code>git-flow-hooks</code> helper</h6>
-<p>To automate &quot;semantic versioning&quot; you could install <code>git-flow-hooks</code> from <a href="https://github.com/jaspernbrouwer/git-flow-hooks">https://github.com/jaspernbrouwer/git-flow-hooks</a> to </p><ul>
-<li>Prevent direct commits to the master branch.</li>
-<li>Prevent merge marker commits.</li>
-<li>Automatically bump versions when starting a release or hotfix. Versions are generated, written to file and committed.</li>
-<li>Automatically specify tag messages.</li>
-</ul>
-<h5>Tools</h5>
-<p>To be able to build source files, you need to have <code>npm</code> and <code>node</code> installed. After that run</p><pre><code>npm install
-</code></pre><p>This will install <code>Gulp</code> and other libraries needed for development.</p><h5>Build</h5>
-<p>Configure your dist by copying content of <code>map.config.js.dist</code> to <code>map.config.js</code> (this file is ignored in GIT)</p><pre><code>cp map.config.js.dist map.config.js
-</code></pre><p>To create build, run</p><pre><code>gulp
-</code></pre><h6>Build separate JS, LESS, HTML and IMG</h6>
-<p>Build can be run by specific type, like</p><pre><code>gulp js
-gulp less
-gulp html
-gulp img
-</code></pre><h6>Documentation</h6>
-<p>Documentation build is automated and is run by</p><pre><code>gulp docs
-</code></pre><h5>Development</h5>
-<p>While doing development, start watcher which will react on file changes and start appropriate tasks to update build</p><pre><code>gulp watch
-</code></pre></section>
+          <section id="EVENT_STORAGE_VISIBILITY_CHANGE">
+            <h1>EVENT_STORAGE_VISIBILITY_CHANGE</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">declaration</div><span>EVENT_STORAGE_VISIBILITY_CHANGE</span>
+            </p>
+          </section>
+          <div class="description"> </div>
+          <pre><code class="language-javascript">var EVENT_STORAGE_VISIBILITY_CHANGE = 'storage:visibility:change';
+var EVENT_STORAGE_STATE_CHANGE = 'storage:state:change';
+var EVENT_STORAGE_FOCUS = 'storage:focus';
+var EVENT_STORAGE_HIGHLIGHT = 'storage:highlight';</code></pre>
         </div>
       </div>
     </div>

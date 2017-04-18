@@ -4,6 +4,7 @@
 window.fruskac = new fruskac.Api();
 
 var util = new fruskac.Util();
+var event = new fruskac.Event();
 
 fruskac.isCrossDomain = window.self !== window.top && document.referrer && !(new RegExp('//' + document.domain)).test(document.referrer);
 fruskac.lang = util.getParameterByName('lang') || CONFIG_LANG;
@@ -117,7 +118,7 @@ layers.forEach(function (layer) {
         layer.visible = layersFromUrl.indexOf(layer.name) !== -1;
     }
 
-    activeLayers.push(Object.keys(layer).map(function(key) {
+    activeLayers.push(Object.keys(layer).map(function (key) {
         return layer[key];
     }));
 

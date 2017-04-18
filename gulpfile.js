@@ -125,6 +125,7 @@ paths.js = [
     , 'src/js/service/map.js'
     , 'src/js/service/storage.js'
     , 'src/js/service/dialog.js'
+    , 'src/js/service/event.js'
     , 'src/js/loader.js'
     , 'src/js/api.js'
     , 'src/js/init.js'

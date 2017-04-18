@@ -36,7 +36,7 @@ fruskac.Event = (function () {
          * Subscribe a callback on a channel
          * @param {string|Array} name
          * @param {Function} callback
-         * @returns {[*,*]}
+         * @returns {Array}
          */
         subscribe: function (name, callback) {
 

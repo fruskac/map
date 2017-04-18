@@ -82,7 +82,7 @@
       <div class="row">
         <div class="span3 bs-docs-sidebar">
           <ul class="nav nav-list bs-docs-sidenav affix-top">
-            <li class="active"><a href="/map/index.html">Main</a></li>
+            <li><a href="/map/index.html">Main</a></li>
             <li><a href="/map/src/js/api.js.html">src/js/api.js</a></li>
             <li><a href="/map/src/js/bootstrap.js.html">src/js/bootstrap.js</a></li>
             <li><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
@@ -98,50 +98,168 @@
             <li><a href="/map/src/js/model/track.js.html">src/js/model/track.js</a></li>
             <li><a href="/map/src/js/service/chart.js.html">src/js/service/chart.js</a></li>
             <li><a href="/map/src/js/service/dialog.js.html">src/js/service/dialog.js</a></li>
-            <li><a href="/map/src/js/service/event.js.html">src/js/service/event.js</a></li>
+            <li class="active"><a href="/map/src/js/service/event.js.html">src/js/service/event.js</a></li>
             <li><a href="/map/src/js/service/i18n.js.html">src/js/service/i18n.js</a></li>
             <li><a href="/map/src/js/service/map.js.html">src/js/service/map.js</a></li>
             <li><a href="/map/src/js/service/storage.js.html">src/js/service/storage.js</a></li>
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#Event"><i class="alert alert-success"></i><span>Event</span></a>
+              </li>
+              <li><a href="#Event"><i class="alert alert-success"></i><span>Event</span></a>
+              </li>
+              <li><a href="#publish"><i class="alert alert-info"></i><span>publish</span></a>
+              </li>
+              <li><a href="#subscribe"><i class="alert alert-info"></i><span>subscribe</span></a>
+              </li>
+              <li><a href="#unsubscribe"><i class="alert alert-info"></i><span>unsubscribe</span></a>
+              </li>
             </ul>
           </div>
         </div>
         <div class="span9">
-          <section id="Main"><h1>Fruškać Map</h1>
-<h4>Fruška gora, Srbija</h4>
-<p>The map is to be used in an <code>iFrame</code> element. Initial configuration could be passed in via <code>src</code> attribute. The Map will expose API to it&#39;s parent element to allow Map control. Usages could be found in <a href="https://github.com/fruskac/map/tree/master/examples">examples</a> directory. Here are some links:</p><ul>
-<li><a href="./examples/angularjs.html">AngularJS</a></li>
-<li><a href="./examples/angularjs-with-material.html">AngularJS with Material</a></li>
-<li><a href="./examples/embed.html">Embed</a></li>
-<li><a href="./examples/coordinates.html">Coordinates</a></li>
-</ul>
-<h2>Contributing</h2>
-<h5>Branching model</h5>
-<p>We are using <code>git-flow</code> as our brancing model. Read more at <a href="//nvie.com/posts/a-successful-git-branching-model/">nvie.com/posts/a-successful-git-branching-model</a></p><h6>Installing <code>git-flow</code></h6>
-<p>Read more about <code>git-flow</code> and how to install it <a href="https://github.com/nvie/gitflow">github.com/nvie/gitflow</a></p><h6>Adding <code>git-flow-hooks</code> helper</h6>
-<p>To automate &quot;semantic versioning&quot; you could install <code>git-flow-hooks</code> from <a href="https://github.com/jaspernbrouwer/git-flow-hooks">https://github.com/jaspernbrouwer/git-flow-hooks</a> to </p><ul>
-<li>Prevent direct commits to the master branch.</li>
-<li>Prevent merge marker commits.</li>
-<li>Automatically bump versions when starting a release or hotfix. Versions are generated, written to file and committed.</li>
-<li>Automatically specify tag messages.</li>
-</ul>
-<h5>Tools</h5>
-<p>To be able to build source files, you need to have <code>npm</code> and <code>node</code> installed. After that run</p><pre><code>npm install
-</code></pre><p>This will install <code>Gulp</code> and other libraries needed for development.</p><h5>Build</h5>
-<p>Configure your dist by copying content of <code>map.config.js.dist</code> to <code>map.config.js</code> (this file is ignored in GIT)</p><pre><code>cp map.config.js.dist map.config.js
-</code></pre><p>To create build, run</p><pre><code>gulp
-</code></pre><h6>Build separate JS, LESS, HTML and IMG</h6>
-<p>Build can be run by specific type, like</p><pre><code>gulp js
-gulp less
-gulp html
-gulp img
-</code></pre><h6>Documentation</h6>
-<p>Documentation build is automated and is run by</p><pre><code>gulp docs
-</code></pre><h5>Development</h5>
-<p>While doing development, start watcher which will react on file changes and start appropriate tasks to update build</p><pre><code>gulp watch
-</code></pre></section>
+          <section id="Event">
+            <h1>Event</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">constructor</div><span>Event()</span>
+            </p>
+          </section>
+          <div class="description"><p>Event</p> </div>
+          <pre><code class="language-javascript">function Event() {
+}</code></pre>
+          <section id="Event">
+            <h1>Event</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">prototype</div><span>Event.prototype</span>
+            </p>
+          </section>
+          <div class="description"> </div>
+          <pre><code class="language-javascript">Event.prototype = {</code></pre>
+          <section id="publish">
+            <h1>publish</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Event.prototype.publish()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>name</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>args</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Publish on channel</p> </div>
+          <pre><code class="language-javascript">publish: function (name, args) {
+    try {
+        cache[name] &amp;&amp; cache[name].forEach(function (callback) {
+            callback.apply(args);
+        });
+    } catch (err) {
+        console.warn(err);
+    }
+},</code></pre>
+          <section id="subscribe">
+            <h1>subscribe</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Event.prototype.subscribe()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>name</td>
+                <td>string, Array</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>callback</td>
+                <td>Function</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Subscribe a callback on a channel</p> </div>
+          <pre><code class="language-javascript">subscribe: function (name, callback) {
+
+    var self = this;
+
+    if (name.constructor === Array) {
+        name.forEach(function (n) {
+            self.subscribe(n, callback);
+        });
+        return;
+    }
+
+    if (!cache[name]) {
+        cache[name] = [];
+    }
+    cache[name].push(callback);
+    return [name, callback];
+},</code></pre>
+          <section id="unsubscribe">
+            <h1>unsubscribe</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Event.prototype.unsubscribe()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>handle</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Unsubscribe</p> </div>
+          <pre><code class="language-javascript">unsubscribe: function (handle) {
+    var name = handle[0];
+    cache[name] &amp;&amp; cache[name].forEach(function (id) {
+        if (this == handle[1]) {
+            cache[name].splice(id, 1);
+        }
+    });
+}
+
+    };
+
+    return Event;
+
+})();</code></pre>
         </div>
       </div>
     </div>

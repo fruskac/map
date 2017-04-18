@@ -1,6 +1,8 @@
 @import "_variables";
 
-@chart-height: 30%;
+@chart-width: 400px;
+@chart-height: 135px;
+@chart-bottom: 35px;
 
 a {
   cursor: pointer;
@@ -9,10 +11,13 @@ a {
 #chart_container {
   display: none;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  bottom: @chart-bottom;
+  left: @padding;
+  width: @chart-width;
+  max-width: ~"calc(100% - @{padding} - @{padding})";
   height: @chart-height;
+  background-color: #fff;
+  opacity: 0.85;
 
   > div {
     position: absolute;
@@ -22,11 +27,6 @@ a {
 
   &.on {
     display: block;
-
-    & + #map_container {
-      height: calc(100% ~' - @{chart-height}');
-    }
-
   }
 
 }
@@ -44,7 +44,7 @@ a {
 #chart_button_close {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   padding: @padding;
   z-index: 1;
 

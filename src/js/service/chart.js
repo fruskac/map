@@ -73,17 +73,21 @@ fruskac.Chart = (function () {
 
                     // Create the data table.
                     var data = new google.visualization.DataTable();
-                    data.addColumn('number', i18n.translate('DISTANCE'));
-                    data.addColumn('number', i18n.translate('ELEVATION'));
+                    data.addColumn('number', i18n.translate(I18N_DISTANCE));
+                    data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
+                    data.addColumn('number', i18n.translate(I18N_ELEVATION));
                     data.addRows(rows);
 
                     // Set chart options
                     var options = {
                         lineWidth: 2,
                         areaOpacity: 0.4,
-                        series: [
-                            {color: '#d2003b', visibleInLegend: false}, {}, {}
-                        ],
+                        series: {
+                            0: {
+                                color: '#d2003b',
+                                visibleInLegend: false
+                            }
+                        },
                         focusTarget: 'category',
                         axisTitlesPosition: 'none',
                         hAxis: {
@@ -91,7 +95,7 @@ fruskac.Chart = (function () {
                             gridlines: {
                                 color: 'transparent'
                             },
-                            ticks: [0, Math.round(rows[rows.length-1][0]*100)/100]
+                            ticks: [0, Math.round(rows[rows.length - 1][0] * 10) / 10]
                         },
                         vAxis: {
                             baselineColor: 'transparent',
@@ -102,6 +106,9 @@ fruskac.Chart = (function () {
                         },
                         legend: {
                             position: 'none'
+                        },
+                        tooltip: {
+                            isHtml: true
                         }
                     };
 
@@ -164,7 +171,7 @@ fruskac.Chart = (function () {
                     distanceFromPrevious = 0;
                 }
                 distance += parseFloat(distanceFromPrevious);
-                rows.push([distance, e.elevation]);
+                rows.push([distance, getTooltipContent(distance, e.elevation), e.elevation]);
             });
             callback(rows);
         });
@@ -197,6 +204,12 @@ fruskac.Chart = (function () {
      */
     function rad(x) {
         return x * Math.PI / 180;
+    }
+
+    function getTooltipContent(distance, elevation) {
+        return i18n.translate(I18N_ELEVATION) + ': ' + '<strong>' + Math.round(elevation) + ' m' + '</strong>' +
+            '<br>'
+            + i18n.translate(I18N_DISTANCE) + ': ' + '<strong>' + Math.round(distance * 10) / 10 + ' km' + '</strong>';
     }
 
     window.closeChart = function () {

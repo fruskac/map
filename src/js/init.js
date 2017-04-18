@@ -25,13 +25,12 @@ var mapConfig = {
     center: new google.maps.LatLng(45.167031, 19.69677),
     zoom: 11,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
-    mapTypeControl: false,
     zoomControlOptions: {
-        position: google.maps.ControlPosition.LEFT_BOTTOM
+        position: google.maps.ControlPosition.LEFT_CENTER
     },
-    streetViewControlOptions: {
-        position: google.maps.ControlPosition.LEFT_BOTTOM
-    }
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false
 };
 
 var latLngZoom = util.getParameterByName(PARAMETER_COORDINATES);

@@ -216,6 +216,11 @@ fruskac.Map = (function () {
                         icon: icon
                     });
                 }
+
+                if (!gmap.getBounds().contains(point)) {
+                    gmap.panTo(point);
+                }
+
             } else {
                 if (self.marker) {
                     self.marker.remove();

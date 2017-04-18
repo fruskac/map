@@ -80,28 +80,28 @@ fruskac.Chart = (function () {
                     // Set chart options
                     var options = {
                         lineWidth: 2,
-                        areaOpacity: 0.2,
+                        areaOpacity: 0.4,
                         series: [
                             {color: '#d2003b', visibleInLegend: false}, {}, {}
                         ],
                         focusTarget: 'category',
+                        axisTitlesPosition: 'none',
                         hAxis: {
                             baselineColor: 'transparent',
-                            title: i18n.translate('DISTANCE') + ' (km)',
                             gridlines: {
                                 color: 'transparent'
-                            }
+                            },
+                            ticks: [0, Math.round(rows[rows.length-1][0]*100)/100]
                         },
                         vAxis: {
                             baselineColor: 'transparent',
-                            title: i18n.translate('ELEVATION') + ' (m)',
                             minValue: 0,
                             gridlines: {
                                 color: 'transparent'
                             }
                         },
                         legend: {
-                            position: "none"
+                            position: 'none'
                         }
                     };
 
@@ -109,8 +109,21 @@ fruskac.Chart = (function () {
                     var chart = new google.visualization.AreaChart(document.getElementById('chart'));
                     chart.draw(data, options);
 
+                    var timeout;
+
                     google.visualization.events.addListener(chart, 'onmouseover', function (coords) {
-                        map.placeMarker(points.getAt(coords.row), 'tracker')
+
+                        if (timeout) {
+                            clearTimeout(timeout);
+                        }
+
+                        map.placeMarker(points.getAt(coords.row), 'tracker');
+                    });
+
+                    google.visualization.events.addListener(chart, 'onmouseout', function () {
+                        timeout = setTimeout(function () {
+                            map.placeMarker(null);
+                        }, 300);
                     });
 
                     $(window).on('resize', function () {

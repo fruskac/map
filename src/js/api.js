@@ -2,7 +2,16 @@
 
 fruskac.Api = (function () {
 
-    function Api() {
+    function Api(options) {
+
+        fruskac.config = _.extend({
+            lang: 'en',
+            fullscreen: window.location,
+            data: []
+        }, options);
+
+        fruskac.init();
+
     }
 
     Api.prototype = {
@@ -13,7 +22,10 @@ fruskac.Api = (function () {
          * @param {Function} callback
          */
         ready: function (callback) {
-            callback();
+            var self = this;
+            event.subscribe('ready', function () {
+                callback.apply(self);
+            });
         },
 
         /**

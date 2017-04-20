@@ -1,3 +1,3 @@
-var TYPE_MARKER = 'marker';
-var TYPE_TRACK = 'track';
-var TYPE_KML = 'kml';
+var TYPE_MARKER = 'FRUSKAC_TYPE_MARKER';
+var TYPE_TRACK = 'FRUSKAC_TYPE_TRACK';
+var TYPE_KML = 'FRUSKAC_TYPE_KML';

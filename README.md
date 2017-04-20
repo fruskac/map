@@ -34,11 +34,6 @@ This will install `Gulp` and other libraries needed for development.
 
 ##### Build
 
-Configure your dist by copying content of `map.config.js.dist` to `map.config.js` (this file is ignored in GIT)
-```
-cp map.config.js.dist map.config.js
-```
-
 To create build, run
 ```
 gulp

@@ -64,7 +64,7 @@ fruskac.Chart = (function () {
             // Load the Visualization API and the corechart package.
             google.charts.load('current', {
                 packages: ['corechart'],
-                language: fruskac.lang
+                language: fruskac.config.lang
             });
 
             // Set a callback to run when the Google Visualization API is loaded.

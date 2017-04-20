@@ -27,6 +27,13 @@ fruskac.Loader = (function () {
             var promises = [];
 
             items.forEach(function (item) {
+
+                if (item.constructor !== Array) {
+                    item = Object.keys(item).map(function (key) {
+                        return item[key];
+                    });
+                }
+
                 promises.push(load.apply(this, item));
             });
 

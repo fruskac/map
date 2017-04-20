@@ -110,42 +110,13 @@ fruskac.init = function (options) {
 
     chart = new fruskac.Chart(document.getElementById('chart_container'));
 
-    /*
-     * URL param: "l" defines layers visible. If not defined, default visibility will be used
-     */
 
-    // default layers and their visibility
-    var layers = fruskac.config.data;
-
-    var activeLayers = [];
-
-    var layersFromUrl = request.getParts(PARAMETER_LAYERS);
-
-    layers.forEach(function (layer) {
-
-        if (layersFromUrl) { // if layer URL param exists, layers' visibility should follow
-            layer.visible = layersFromUrl.indexOf(layer.name) !== -1;
-        }
-
-        activeLayers.push(Object.keys(layer).map(function (key) {
-            return layer[key];
-        }));
-
-    });
-
-    /*
-     Load from "activeLayers"
-     */
     var loader = new fruskac.Loader();
-
-    /*
-     Load remote track
-     */
 
     var track = request.get(PARAMETER_TRACK);
     var focus = request.get(PARAMETER_FOCUS);
 
-    loader.load(activeLayers).then(function () {
+    loader.load(fruskac.config.data).then(function () {
 
         if (track) {
             // load external track

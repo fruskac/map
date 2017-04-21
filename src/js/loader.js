@@ -65,7 +65,7 @@ fruskac.Loader = (function () {
      */
     function load(url, name, type, options) {
 
-        options = _.extend({
+        options = util.extend({
             visible: false,
             show: [],
             hide: []
@@ -76,54 +76,63 @@ fruskac.Loader = (function () {
             visible: options.visible,
             on: options.visible
         }).then(function () {
-            return $.get(url).success(function (response) { // get json array of items
 
-                var promises = [];
+            var request = new XMLHttpRequest();
+            request.open('GET', url, true);
 
-                response.forEach(function (item) {
-                    var p, container = storage.get([name, item.tag]);
+            request.onload = function() {
+                if (request.status >= 200 && request.status < 400) {
 
-                    var v = (function () {
+                    var promises = [];
 
-                        if (options.show.length) { // whitelist
-                            return options.show.indexOf(item.tag) !== -1;
+                    JSON.parse(request.responseText).forEach(function (item) {
+                        var p, container = storage.get([name, item.tag]);
+
+                        var v = (function () {
+
+                            if (options.show.length) { // whitelist
+                                return options.show.indexOf(item.tag) !== -1;
+                            }
+
+                            if (options.hide.length) { // blacklist
+                                return options.show.indexOf(item.tag) === -1;
+                            }
+
+                            return options.visible;
+
+                        })();
+
+                        if (container) {
+                            // dummy promise to allow promise chain
+                            p = new Promise(function (resolve) {
+                                resolve();
+                            });
+                        } else {
+                            // create subcategory
+                            p = storage.add({
+                                id: item.tag.toLowerCase(),
+                                visible: v,
+                                on: v,
+                                type: type
+                            }, name);
                         }
 
-                        if (options.hide.length) { // blacklist
-                            return options.show.indexOf(item.tag) === -1;
-                        }
-
-                        return options.visible;
-
-                    })();
-
-                    if (container) {
-                        // dummy promise to allow promise chain
-                        p = new Promise(function (resolve) {
-                            resolve();
+                        p.then(function () {
+                            // when subcategory is created, add map item to storage
+                            storage.add(item, [name.toLowerCase(), item.tag], type, v);
                         });
-                    } else {
-                        // create subcategory
-                        p = storage.add({
-                            id: item.tag.toLowerCase(),
-                            visible: v,
-                            on: v,
-                            type: type
-                        }, name);
-                    }
 
-                    p.then(function () {
-                        // when subcategory is created, add map item to storage
-                        storage.add(item, [name.toLowerCase(), item.tag], type, v);
+                        promises.push(p);
+
                     });
 
-                    promises.push(p);
+                    return Promise.all(promises);
 
-                });
+                }
+            };
 
-                return Promise.all(promises);
+            request.send();
 
-            })
         });
     }
 

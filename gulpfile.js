@@ -73,18 +73,18 @@ gulp.task('inlinesource:html', function () {
         // class selectors
         // TODO: minify class selectors
         /*.pipe(replace(/([},]\.|class="|getElementsByClassName\("|Class\(\w+\.div,")([a-z]{6,})/g, function (match, value_1, value_2) {
-            return value_1 + getValue(value_2, 'class');
-        }))*/
+         return value_1 + getValue(value_2, 'class');
+         }))*/
         // misc
         // TODO: minify other selectors
         /*.pipe(replace(/(\[|\s)(marker)(\]|\s)/g, function (match, value_1, value_2, value_3) {
-            return value_1 + getValue(value_2, 'misc') + value_3;
-        }))*/
+         return value_1 + getValue(value_2, 'misc') + value_3;
+         }))*/
         // methods
         // TODO: minify JS methods
         /*.pipe(replace(/(getParameterByName|getParameterPartsByName|I18N|placeMarker|addMarker|Marker|addTrack|Track|addKml|Kml|Loader|Chart|markerWrap|markerShadow|animateWobble|animateBounce|animateDrop|setOpaque|showInfoWindow|highlight|translate|fromLatLngToDivPixel)/g, function (match, value_1) {
-            return getValue(value_1, 'method');
-        }))*/
+         return getValue(value_1, 'method');
+         }))*/
         .pipe(replace("\n", ' '))
         .pipe(replace(/[\s]+/g, ' '))
         .pipe(gulp.dest('./dist'));
@@ -112,23 +112,25 @@ gulp.task('build:less', function () {
 
 paths.js = [
     'bower_components/google-maps-v3-infobox/infobox.js',
-    'src/js/bootstrap.js'
-    , 'src/js/util.js'
-    , 'src/js/request.js'
-    , 'src/js/const/*.js'
-    , 'src/js/extend/googleMaps.js'
-    , 'src/js/model/marker.js'
-    , 'src/js/model/track.js'
-    , 'src/js/model/kml.js'
-    , 'src/js/service/i18n.js'
-    , 'src/js/service/chart.js'
-    , 'src/js/service/map.js'
-    , 'src/js/service/storage.js'
-    , 'src/js/service/dialog.js'
-    , 'src/js/service/event.js'
-    , 'src/js/loader.js'
-    , 'src/js/api.js'
-    , 'src/js/init.js'
+    'bower_components/dynamics.js/lib/dynamics.min.js',
+    'bower_components/js-marker-clusterer/src/markerclusterer_compiled.js',
+    'src/js/extend/*.js',
+    'src/js/bootstrap.js',
+    'src/js/util.js',
+    'src/js/request.js',
+    'src/js/const/*.js',
+    'src/js/model/marker.js',
+    'src/js/model/track.js',
+    'src/js/model/kml.js',
+    'src/js/service/i18n.js',
+    'src/js/service/chart.js',
+    'src/js/service/map.js',
+    'src/js/service/storage.js',
+    'src/js/service/dialog.js',
+    'src/js/service/event.js',
+    'src/js/loader.js',
+    'src/js/api.js',
+    'src/js/init.js'
 ];
 
 gulp.task('build:js', function () {
@@ -136,8 +138,8 @@ gulp.task('build:js', function () {
         .pipe(concat('map.min.js'))
         .pipe(replace(/["']use strict["'];/g, ''))
         .pipe(iife({
-            params: ['window', 'document', '$', '_', 'google', 'Promise', 'dynamics'],
-            args: ['window', 'document', 'jQuery', '_', 'google', 'Promise', 'dynamics']
+            params: ['window', 'document', 'google', 'Promise'],
+            args: ['window', 'document', 'google', 'Promise']
         }))
         .pipe(uglify({
             mangle: true

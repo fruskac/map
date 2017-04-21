@@ -32,9 +32,9 @@ fruskac.Chart = (function () {
             var className = 'on';
 
             if (self.visible) {
-                $(self.container).addClass(className);
+                util.addClass(self.container, className);
             } else {
-                $(self.container).removeClass(className);
+                util.removeClass(self.container, className);
                 map.placeMarker();
             }
 
@@ -56,7 +56,7 @@ fruskac.Chart = (function () {
             self.setVisible(true);
 
             if (isFixedLayout) {
-                $(self.container).find('#chart_button_close').remove();
+                util.remove(document.getElementById('chart_button_close'));
             }
 
             var elevator = new google.maps.ElevationService;
@@ -133,7 +133,7 @@ fruskac.Chart = (function () {
                         }, 300);
                     });
 
-                    $(window).on('resize', function () {
+                    window.addEventListener('resize', function () {
                         chart.draw(data, options);
                     });
 

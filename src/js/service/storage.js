@@ -104,12 +104,14 @@ fruskac.Storage = (function () {
 
             if (selector.indexOf(':') !== -1) {
                 var selectorParts = selector.split(':');
-                var container = _.find(container, {id: selectorParts[0]}).children;
+                var container = container.find(function (object) {
+                    return object.id === selectorParts[0];
+                }).children;
                 selectorParts = selectorParts.splice(1);
                 return this.get(selectorParts.join(':'), container);
             }
 
-            return _.find(container, function (object) {
+            return container.find(function (object) {
                 if (object && object.id === selector || (object.hasOwnProperty('data') && object.data.id == selector)) {
                     return object;
                 }

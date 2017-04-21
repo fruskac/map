@@ -4,7 +4,7 @@ fruskac.Api = (function () {
 
     function Api(options) {
 
-        fruskac.config = _.extend({
+        fruskac.config = util.extend({
             lang: 'en',
             fullscreen: window.location,
             data: []

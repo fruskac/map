@@ -11,7 +11,7 @@ fruskac.Kml = (function () {
      */
     function Kml(url, options) {
 
-        options = _.extend({
+        options = util.extend({
             map: gmap,
             preserveViewport: true,
             suppressInfoWindows: true,

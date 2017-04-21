@@ -1,0 +1,18 @@
+[
+    {
+        "tag": "borders",
+        "url": "http://demo.bergb.com/maps/v2/layers/kmls/granica-zastite.kml"
+    },
+    {
+        "tag": "first-level",
+        "url": "http://demo.bergb.com/maps/v2/layers/kmls/rezim-zastite-I-stepena.kml"
+    },
+    {
+        "tag": "second-level",
+        "url": "http://demo.bergb.com/maps/v2/layers/kmls/rezim-zastite-II-stepena.kml"
+    },
+    {
+        "tag": "third-level",
+        "url": "http://demo.bergb.com/maps/v2/layers/kmls/rezim-zastite-III-stepena.kml"
+    }
+]

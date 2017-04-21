@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<iframe id="map" allowfullscreen></iframe>
+
+<script>
+
+    var iframe = document.getElementById('map');
+
+    iframe.setAttribute('src', '../dist/index.html' + window.location.search);
+
+    iframe.onload = function () {
+        var FruskacMap = document.getElementById('map').contentWindow.fruskac;
+        new FruskacMap({
+            fullscreen: '../examples/angularjs.html#!',
+            data: [
+                {
+                    url: '../examples/data/locations.json',
+                    name: 'locations',
+                    type: 'FRUSKAC_TYPE_MARKER',
+                    options: {
+                        visible: true
+                    }
+                },
+                {
+                    url: '../examples/data/marathons.json',
+                    name: 'marathons',
+                    type: 'FRUSKAC_TYPE_TRACK'
+                },
+                {
+                    url: '../examples/data/protection.json',
+                    name: 'protection',
+                    type: 'FRUSKAC_TYPE_KML',
+                    options: {
+                        visible: true,
+                        show: [
+                            'borders'
+                        ]
+                    }
+                }
+            ]
+        });
+    };
+
+</script>
+
+</body>
+</html>

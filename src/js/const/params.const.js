@@ -1,4 +1,3 @@
 var PARAMETER_FOCUS = 'f';
 var PARAMETER_COORDINATES = 'c';
 var PARAMETER_TRACK = 't';
-var PARAMETER_LAYERS = 'l';

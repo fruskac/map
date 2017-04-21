@@ -234,13 +234,11 @@ fruskac.Map = (function () {
 
             var params = {
                 c: gmap.getCenter().lat() + ',' + gmap.getCenter().lng() + ',' + gmap.getZoom(),
-                l: request.get(PARAMETER_LAYERS),
                 f: request.get(PARAMETER_FOCUS),
-                t: request.get(PARAMETER_TRACK),
-                lang: fruskac.config.lang
+                t: request.get(PARAMETER_TRACK)
             };
 
-            var url = fruskac.config.lang + '?' + Object.keys(params).map(function (i) {
+            var url = fruskac.config.fullscreen + '?' + Object.keys(params).map(function (i) {
                     return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
                 }).join('&');
 

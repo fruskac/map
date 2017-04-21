@@ -98,9 +98,7 @@
     <script>
         angular.module('app', [
             'ui.bootstrap'
-        ]).constant('CONFIG', {
-            map: '../dist/index.html'
-        }).config([
+        ]).config([
             '$compileProvider',
             function ($compileProvider) {
                 $compileProvider.debugInfoEnabled(false);
@@ -110,23 +108,53 @@
         ]).controller('AppCtrl', [
             '$scope',
             '$location',
-            'CONFIG',
-            function ($scope, $location, CONFIG) {
+            function ($scope, $location) {
 
                 var params = $location.search();
 
-                $scope.iframe = CONFIG.map + '?' + Object.keys(params).map(function (i) {
+                $scope.iframe = '../dist/index.html?' + Object.keys(params).map(function (i) {
                         return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
                     }).join('&');
 
                 document.getElementById('map').onload = function () {
-                    var FruskacMapAPI = document.getElementById('map').contentWindow.fruskac;
-                    FruskacMapAPI.ready(function () {
+                    var FruskacMap = document.getElementById('map').contentWindow.fruskac;
+                    new FruskacMap({
+                        fullscreen: '../examples/angularjs.html#!',
+                        data: [
+                            {
+                                url: '../examples/data/locations.json',
+                                name: 'locations',
+                                type: 'FRUSKAC_TYPE_MARKER',
+                                options: {
+                                    visible: true
+                                }
+                            },
+                            {
+                                url: '../examples/data/marathons.json',
+                                name: 'marathons',
+                                type: 'FRUSKAC_TYPE_TRACK'
+                            },
+                            {
+                                url: '../examples/data/protection.json',
+                                name: 'protection',
+                                type: 'FRUSKAC_TYPE_KML',
+                                options: {
+                                    visible: true,
+                                    show: [
+                                        'borders'
+                                    ]
+                                }
+                            }
+                        ]
+                    }).ready(function () {
+
+                        var self = this;
+
                         $scope.$apply(function () {
                             $scope.ready = true;
-                            $scope.data = FruskacMapAPI.getData();
-                            $scope.clustering = FruskacMapAPI.clustering;
-                            $scope.type = FruskacMapAPI.type;
+                            $scope.data = self.getData();
+                            $scope.clustering = self.clustering;
+                            $scope.type = self.type;
                         })
                     });
                 }
@@ -159,12 +187,12 @@
     <div class="panel-group" ng-show="ready">
         <div class="panel panel-default">
             <ul class="list-group">
-                <li class="list-group-item">
+                <!--<li class="list-group-item">
                     <a ng-click="clustering(!clustering())">
                         <i class="fa" ng-class="{'fa-check-square':clustering(),'fa-square-o':!clustering()}"></i>
                         Clustering
                     </a>
-                </li>
+                </li>-->
                 <li class="list-group-item">
                     <a ng-click="type(type()==='terrain'?'satellite':'terrain')">
                         <i class="fa"
@@ -181,7 +209,7 @@
                        ng-init="$parent.open=item.getVisible()" class="pull-right">
                         <i class="fa" ng-class="{'fa-chevron-right':!open,'fa-chevron-down':open}"></i>
                     </a>
-                    <a ng-click="item.setVisible(!item.getVisible())">
+                    <a ng-click="item.setVisible(!item.getVisible());open=item.getVisible()">
                         <i class="fa fa-fw"
                            ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
                         {{ ::item.id }}
@@ -198,9 +226,14 @@
                                    class="btn btn-default btn-xs pull-right">
                                     <i class="fa fa-crosshairs"></i>
                                 </a>
-                                <a ng-click="$parent.item.getVisible()&&item.setVisible(!item.getVisible())">
+                                <a ng-click="$parent.item.getVisible()&&(item.type !== 'FRUSKAC_TYPE_TRACK'?item.setVisible(!item.getVisible()):item.focus())">
                                     <i class="fa fa-fw"
-                                       ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
+                                       ng-class="{
+                                       'fa-check-square': item.type !== 'FRUSKAC_TYPE_TRACK' && item.getVisible(),
+                                       'fa-square-o': item.type !== 'FRUSKAC_TYPE_TRACK' && !item.getVisible(),
+                                       'fa-check-circle': item.type === 'FRUSKAC_TYPE_TRACK' && item.getVisible(),
+                                       'fa-circle-o': item.type === 'FRUSKAC_TYPE_TRACK' && !item.getVisible()
+                                       }"></i>
                                     {{ ::item.id }}
                                 </a>
                             </li>

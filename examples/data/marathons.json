@@ -1,0 +1,10 @@
+[
+    {
+        "tag": "marathon-one",
+        "url": "../examples/data/marathons/marathon_one.gpx"
+    },
+    {
+        "tag": "marathon-two",
+        "url": "../examples/data/marathons/marathon_two.gpx"
+    }
+]

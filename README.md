@@ -4,8 +4,7 @@
 The map is to be used in an `iFrame` element. Initial configuration could be passed in via `src` attribute. The Map will expose API to it's parent element to allow Map control. Usages could be found in [examples](https://github.com/fruskac/map/tree/master/examples) directory. Here are some links:
 
 * [AngularJS](./examples/angularjs.html)
-* [AngularJS with Material](./examples/angularjs-with-material.html)
-* [Embed](./examples/embed.html)
+* [Embed](examples/embeded.html)
 * [Coordinates](./examples/coordinates.html)
 
 ## Contributing
@@ -33,11 +32,6 @@ npm install
 This will install `Gulp` and other libraries needed for development.
 
 ##### Build
-
-Configure your dist by copying content of `map.config.js.dist` to `map.config.js` (this file is ignored in GIT)
-```
-cp map.config.js.dist map.config.js
-```
 
 To create build, run
 ```

@@ -87,6 +87,7 @@
             <li><a href="/map/src/js/bootstrap.js.html">src/js/bootstrap.js</a></li>
             <li class="active"><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
             <li><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
+            <li><a href="/map/src/js/request.js.html">src/js/request.js</a></li>
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
             <li><a href="/map/src/js/const/event.const.js.html">src/js/const/event.const.js</a></li>
             <li><a href="/map/src/js/const/i18n.const.js.html">src/js/const/i18n.const.js</a></li>
@@ -105,66 +106,21 @@
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
-              <li><a href="#chart"><i class="alert alert-success"></i><span>chart</span></a>
-              </li>
-              <li><a href="#track"><i class="alert alert-success"></i><span>track</span></a>
-              </li>
-              <li><a href="#loader"><i class="alert alert-success"></i><span>loader</span></a>
-              </li>
             </ul>
           </div>
         </div>
         <div class="span9">
-          <section id="chart">
-            <h1>chart</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-success radius ctx-type">declaration</div><span>chart</span>
-            </p>
-          </section>
-          <div class="description"><p>var clusterer = new MarkerClusterer(gmap, [], {<br /> maxZoom: 12,<br /> gridSize: 50,<br /> styles: [<br /> {<br /> textColor: &#39;white&#39;,<br /> url: &#39;img/sprite.png&#39;,<br /> backgroundPosition: &#39;0 -523px&#39;,<br /> height: 32,<br /> width: 32<br /> },<br /> {<br /> textColor: &#39;white&#39;,<br /> url: &#39;img/sprite.png&#39;,<br /> backgroundPosition: &#39;0 -443px&#39;,<br /> height: 48,<br /> width: 48<br /> },<br /> {<br /> textColor: &#39;white&#39;,<br /> url: &#39;img/sprite.png&#39;,<br /> backgroundPosition: &#39;0 -379px&#39;,<br /> height: 64,<br /> width: 64<br /> }<br /> ]<br /> });</p><p> clusterer.enabled = true;</p> </div>
-          <pre><code class="language-javascript">var chart = new fruskac.Chart(document.getElementById('chart_container'));</code></pre>
-          <div class="description"><p>URL param: &quot;l&quot; defines layers visible. If not defined, default visibility will be used</p> </div>
-          <pre><code class="language-javascript">// default layers and their visibility
-var layers = CONFIG_LAYERS;
+          <div class="description"><p>var clusterer = new MarkerClusterer(gmap, [], {<br />     maxZoom: 12,<br />     gridSize: 50,<br />     styles: [<br />     {<br />     textColor: &#39;white&#39;,<br />     url: &#39;img/sprite.png&#39;,<br />     backgroundPosition: &#39;0 -523px&#39;,<br />     height: 32,<br />     width: 32<br />     },<br />     {<br />     textColor: &#39;white&#39;,<br />     url: &#39;img/sprite.png&#39;,<br />     backgroundPosition: &#39;0 -443px&#39;,<br />     height: 48,<br />     width: 48<br />     },<br />     {<br />     textColor: &#39;white&#39;,<br />     url: &#39;img/sprite.png&#39;,<br />     backgroundPosition: &#39;0 -379px&#39;,<br />     height: 64,<br />     width: 64<br />     }<br />     ]<br />     });</p><pre><code> clusterer.enabled = true;
+</code></pre> </div>
+          <pre><code class="language-javascript">chart = new fruskac.Chart(document.getElementById('chart_container'));
 
-var activeLayers = [];
 
-var layersFromUrl = util.getParameterPartsByName(PARAMETER_LAYERS);
+var loader = new fruskac.Loader();
 
-layers.forEach(function (layer) {
+var track = request.get(PARAMETER_TRACK);
+var focus = request.get(PARAMETER_FOCUS);
 
-    if (layersFromUrl) { // if layer URL param exists, layers' visibility should follow
-        layer.visible = layersFromUrl.indexOf(layer.name) !== -1;
-    }
-
-    activeLayers.push(Object.keys(layer).map(function (key) {
-        return layer[key];
-    }));
-
-});</code></pre>
-          <section id="track">
-            <h1>track</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-success radius ctx-type">declaration</div><span>track</span>
-            </p>
-          </section>
-          <div class="description"><p>Load remote track</p> </div>
-          <pre><code class="language-javascript">var track = util.getParameterByName(PARAMETER_TRACK);</code></pre>
-          <section id="loader">
-            <h1>loader</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-success radius ctx-type">declaration</div><span>loader</span>
-            </p>
-          </section>
-          <div class="description"><p>Load from &quot;activeLayers&quot;</p> </div>
-          <pre><code class="language-javascript">var loader = new fruskac.Loader();
-
-var focus = util.getParameterByName(PARAMETER_FOCUS);
-
-loader.load(activeLayers).then(function () {
+loader.load(fruskac.config.data).then(function () {
 
     if (track) {
         // load external track
@@ -189,7 +145,12 @@ loader.load(activeLayers).then(function () {
         });
     }
 
-});</code></pre>
+    google.maps.event.addListenerOnce(gmap, 'idle', function () {
+        event.publish('ready');
+    });
+
+});
+};</code></pre>
         </div>
       </div>
     </div>

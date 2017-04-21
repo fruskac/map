@@ -99,7 +99,7 @@ fruskac.Map = (function () {
             if (typeof data === 'string') {
                 url = data;
             } else {
-                url = '../' + data.url;
+                url = data.url;
             }
 
             return new Promise(function (resolve) {
@@ -234,13 +234,11 @@ fruskac.Map = (function () {
 
             var params = {
                 c: gmap.getCenter().lat() + ',' + gmap.getCenter().lng() + ',' + gmap.getZoom(),
-                l: util.getParameterByName(PARAMETER_LAYERS),
-                f: util.getParameterByName(PARAMETER_FOCUS),
-                t: util.getParameterByName(PARAMETER_TRACK),
-                lang: fruskac.lang
+                f: request.get(PARAMETER_FOCUS),
+                t: request.get(PARAMETER_TRACK)
             };
 
-            var url = CONFIG_FULLSCREEN + '?' + Object.keys(params).map(function (i) {
+            var url = fruskac.config.fullscreen + '?' + Object.keys(params).map(function (i) {
                     return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
                 }).join('&');
 

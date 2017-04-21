@@ -418,7 +418,6 @@ fruskac.Storage = (function () {
 
     }
 
-
     return Storage;
 
 })();

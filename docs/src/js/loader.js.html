@@ -87,6 +87,7 @@
             <li><a href="/map/src/js/bootstrap.js.html">src/js/bootstrap.js</a></li>
             <li><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
             <li class="active"><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
+            <li><a href="/map/src/js/request.js.html">src/js/request.js</a></li>
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
             <li><a href="/map/src/js/const/event.const.js.html">src/js/const/event.const.js</a></li>
             <li><a href="/map/src/js/const/i18n.const.js.html">src/js/const/i18n.const.js</a></li>
@@ -167,6 +168,13 @@
     var promises = [];
 
     items.forEach(function (item) {
+
+        if (item.constructor !== Array) {
+            item = Object.keys(item).map(function (key) {
+                return item[key];
+            });
+        }
+
         promises.push(load.apply(this, item));
     });
 
@@ -206,7 +214,9 @@
     return map.add(url, type, true)
 }
 
-    };</code></pre>
+    };
+
+    return Loader;</code></pre>
           <section id="load">
             <h1>load</h1>
             <h5 class="subheader"></h5>
@@ -239,19 +249,25 @@
                 <td></td>
               </tr>
               <tr>
-                <td>visible</td>
-                <td>boolean</td>
+                <td>options</td>
+                <td>object</td>
                 <td></td>
               </tr>
             </tbody>
           </table>
           <div class="description"><p>Initialize layers</p> </div>
-          <pre><code class="language-javascript">function load(url, name, type, visible) {
+          <pre><code class="language-javascript">function load(url, name, type, options) {
+
+    options = _.extend({
+        visible: false,
+        show: [],
+        hide: []
+    }, options);
 
     return storage.add({
         id: name.toLowerCase(),
-        visible: visible,
-        on: visible
+        visible: options.visible,
+        on: options.visible
     }).then(function () {
         return $.get(url).success(function (response) { // get json array of items
 
@@ -260,21 +276,38 @@
             response.forEach(function (item) {
                 var p, container = storage.get([name, item.tag]);
 
+                var v = (function () {
+
+                    if (options.show.length) { // whitelist
+                        return options.show.indexOf(item.tag) !== -1;
+                    }
+
+                    if (options.hide.length) { // blacklist
+                        return options.show.indexOf(item.tag) === -1;
+                    }
+
+                    return options.visible;
+
+                })();
+
                 if (container) {
+                    // dummy promise to allow promise chain
                     p = new Promise(function (resolve) {
                         resolve();
                     });
                 } else {
+                    // create subcategory
                     p = storage.add({
                         id: item.tag.toLowerCase(),
-                        visible: visible,
-                        on: visible,
+                        visible: v,
+                        on: v,
                         type: type
                     }, name);
                 }
 
                 p.then(function () {
-                    storage.add(item, [name.toLowerCase(), item.tag], type, visible);
+                    // when subcategory is created, add map item to storage
+                    storage.add(item, [name.toLowerCase(), item.tag], type, v);
                 });
 
                 promises.push(p);
@@ -287,7 +320,18 @@
     });
 }
 
-return Loader;
+function isVisible(name, defaultValue) {
+
+    if (!name) {
+        return;
+    }</code></pre>
+          <div class="description"><p>if (fruskac.config.show.indexOf(name) !== -1) {<br />            return true;<br />        }</p><pre><code>    if (fruskac.config.hide.indexOf(name) !== -1) {
+        return false;
+    }
+</code></pre> </div>
+          <pre><code class="language-javascript">return defaultValue;
+
+    }
 
 })();</code></pre>
         </div>

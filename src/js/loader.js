@@ -27,6 +27,13 @@ fruskac.Loader = (function () {
             var promises = [];
 
             items.forEach(function (item) {
+
+                if (item.constructor !== Array) {
+                    item = Object.keys(item).map(function (key) {
+                        return item[key];
+                    });
+                }
+
                 promises.push(load.apply(this, item));
             });
 
@@ -46,20 +53,28 @@ fruskac.Loader = (function () {
 
     };
 
+    return Loader;
+
     /**
      * Initialize layers
      *
      * @param {string} url
      * @param {string} name
      * @param {string} type
-     * @param {boolean} visible
+     * @param {object} options
      */
-    function load(url, name, type, visible) {
+    function load(url, name, type, options) {
+
+        options = _.extend({
+            visible: false,
+            show: [],
+            hide: []
+        }, options);
 
         return storage.add({
             id: name.toLowerCase(),
-            visible: visible,
-            on: visible
+            visible: options.visible,
+            on: options.visible
         }).then(function () {
             return $.get(url).success(function (response) { // get json array of items
 
@@ -68,21 +83,38 @@ fruskac.Loader = (function () {
                 response.forEach(function (item) {
                     var p, container = storage.get([name, item.tag]);
 
+                    var v = (function () {
+
+                        if (options.show.length) { // whitelist
+                            return options.show.indexOf(item.tag) !== -1;
+                        }
+
+                        if (options.hide.length) { // blacklist
+                            return options.show.indexOf(item.tag) === -1;
+                        }
+
+                        return options.visible;
+
+                    })();
+
                     if (container) {
+                        // dummy promise to allow promise chain
                         p = new Promise(function (resolve) {
                             resolve();
                         });
                     } else {
+                        // create subcategory
                         p = storage.add({
                             id: item.tag.toLowerCase(),
-                            visible: visible,
-                            on: visible,
+                            visible: v,
+                            on: v,
                             type: type
                         }, name);
                     }
 
                     p.then(function () {
-                        storage.add(item, [name.toLowerCase(), item.tag], type, visible);
+                        // when subcategory is created, add map item to storage
+                        storage.add(item, [name.toLowerCase(), item.tag], type, v);
                     });
 
                     promises.push(p);
@@ -95,6 +127,22 @@ fruskac.Loader = (function () {
         });
     }
 
-    return Loader;
+    function isVisible(name, defaultValue) {
+
+        if (!name) {
+            return;
+        }
+
+        /*if (fruskac.config.show.indexOf(name) !== -1) {
+            return true;
+        }
+
+        if (fruskac.config.hide.indexOf(name) !== -1) {
+            return false;
+        }*/
+
+        return defaultValue;
+
+    }
 
 })();

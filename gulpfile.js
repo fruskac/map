@@ -114,9 +114,9 @@ paths.js = [
     'bower_components/google-maps-v3-infobox/infobox.js',
     'src/js/bootstrap.js'
     , 'src/js/util.js'
+    , 'src/js/request.js'
     , 'src/js/const/*.js'
     , 'src/js/extend/googleMaps.js'
-    , 'map.config.js'
     , 'src/js/model/marker.js'
     , 'src/js/model/track.js'
     , 'src/js/model/kml.js'

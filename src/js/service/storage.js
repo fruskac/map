@@ -1,6 +1,7 @@
 'use strict';
 
 fruskac.Storage = (function () {
+
     /**
      * @global
      * @param {Array} Initial data array
@@ -276,6 +277,11 @@ fruskac.Storage = (function () {
 
         },
 
+        /**
+         * Highlight certain category of map objects by making all others 'opaque'
+         * @param selector
+         * @param category
+         */
         highlight: function (selector, category) {
 
             event.publish(EVENT_STORAGE_HIGHLIGHT);
@@ -301,6 +307,10 @@ fruskac.Storage = (function () {
             }
         },
 
+        /**
+         * Get selectors
+         * @returns {Array}
+         */
         getSelectors: function () {
             return getSelectorsForContainer(storage.root());
         }

@@ -120,6 +120,8 @@
               </li>
               <li><a href="#rad"><i class="alert alert-info"></i><span>rad</span></a>
               </li>
+              <li><a href="#getTooltipContent"><i class="alert alert-info"></i><span>getTooltipContent</span></a>
+              </li>
             </ul>
           </div>
         </div>
@@ -451,9 +453,37 @@
           <div class="description"> </div>
           <pre><code class="language-javascript">function rad(x) {
     return x * Math.PI / 180;
-}
-
-function getTooltipContent(distance, elevation) {
+}</code></pre>
+          <section id="getTooltipContent">
+            <h1>getTooltipContent</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>getTooltipContent()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>distance</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>elevation</td>
+                <td>number</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Get HTML content for tooltip</p> </div>
+          <pre><code class="language-javascript">function getTooltipContent(distance, elevation) {
     return i18n.translate(I18N_ELEVATION) + ': ' + '&lt;strong&gt;' + Math.round(elevation) + ' m' + '&lt;/strong&gt;' +
         '&lt;br&gt;'
         + i18n.translate(I18N_DISTANCE) + ': ' + '&lt;strong&gt;' + Math.round(distance * 10) / 10 + ' km' + '&lt;/strong&gt;';

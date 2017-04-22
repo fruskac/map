@@ -13,6 +13,9 @@ var util = new fruskac.Util(),
     chart,
     dialog;
 
+/**
+ * Initialize the map
+ */
 fruskac.init = function () {
 
     event = new fruskac.Event();

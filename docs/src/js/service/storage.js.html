@@ -128,6 +128,10 @@
               </li>
               <li><a href="#focus"><i class="alert alert-info"></i><span>focus</span></a>
               </li>
+              <li><a href="#highlight"><i class="alert alert-info"></i><span>highlight</span></a>
+              </li>
+              <li><a href="#getSelectors"><i class="alert alert-info"></i><span>getSelectors</span></a>
+              </li>
               <li><a href="#getParentSelector"><i class="alert alert-info"></i><span>getParentSelector</span></a>
               </li>
               <li><a href="#hasParentSelector"><i class="alert alert-info"></i><span>hasParentSelector</span></a>
@@ -612,9 +616,37 @@
 
     map.focus(object &amp;&amp; object.hasOwnProperty('children') ? object.children[0] : object, isFixedLayout);
 
-},
-
-highlight: function (selector, category) {
+},</code></pre>
+          <section id="highlight">
+            <h1>highlight</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Storage.prototype.highlight()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>selector</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>category</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Highlight certain category of map objects by making all others &#39;opaque&#39;</p> </div>
+          <pre><code class="language-javascript">highlight: function (selector, category) {
 
     event.publish(EVENT_STORAGE_HIGHLIGHT);
 
@@ -637,9 +669,16 @@ highlight: function (selector, category) {
             }
         })
     }
-},
-
-getSelectors: function () {
+},</code></pre>
+          <section id="getSelectors">
+            <h1>getSelectors</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Storage.prototype.getSelectors()</span>
+            </p>
+          </section>
+          <div class="description"><p>Get selectors</p> </div>
+          <pre><code class="language-javascript">getSelectors: function () {
     return getSelectorsForContainer(storage.root());
 }
     };</code></pre>

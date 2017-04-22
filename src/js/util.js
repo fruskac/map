@@ -6,6 +6,12 @@ fruskac.Util = (function () {
     }
 
     Util.prototype = {
+
+        /**
+         * Add a class to a DOM element
+         * @param {HTMLDomElement} element
+         * @param {string} className
+         */
         addClass: function (element, className) {
             if (element.classList)
                 element.classList.add(className);
@@ -13,6 +19,11 @@ fruskac.Util = (function () {
                 element.className += ' ' + className;
         },
 
+        /**
+         * Remove a class from a DOM element
+         * @param {HTMLDomElement} element
+         * @param {string} className
+         */
         removeClass: function (element, className) {
             if (element.classList)
                 element.classList.remove(className);
@@ -20,10 +31,18 @@ fruskac.Util = (function () {
                 element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
         },
 
+        /**
+         * Show a DOM element
+         * @param {HTMLDomElement} element
+         */
         show: function (element) {
             element.style.display = '';
         },
 
+        /**
+         * Remove an element from DOM
+         * @param {HTMLDomElement} element
+         */
         remove: function (element) {
             element.parentNode.removeChild(element);
         },

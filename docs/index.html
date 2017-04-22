@@ -129,17 +129,19 @@
 </ul>
 <h5>Tools</h5>
 <p>To be able to build source files, you need to have <code>npm</code> and <code>node</code> installed. After that run</p><pre><code>npm install
-</code></pre><p>This will install <code>Gulp</code> and other libraries needed for development.</p><h5>Build</h5>
+</code></pre><p>This will install <code>Gulp</code> and other libraries needed for development.</p><h5>Dependencies</h5>
+<p>To be able to get dependencies, you need to have <code>bower</code> installed. Run the command below to install all needed dependencies.</p><pre><code>bower install
+</code></pre><h5>Build</h5>
 <p>To create build, run</p><pre><code>gulp
 </code></pre><h6>Build separate JS, LESS, HTML and IMG</h6>
 <p>Build can be run by specific type, like</p><pre><code>gulp js
 gulp less
 gulp html
 gulp img
-</code></pre><h6>Documentation</h6>
-<p>Documentation build is automated and is run by</p><pre><code>gulp docs
 </code></pre><h5>Development</h5>
 <p>While doing development, start watcher which will react on file changes and start appropriate tasks to update build</p><pre><code>gulp watch
+</code></pre><h5>Release and Documentation</h5>
+<p>Documentation build is usually done in the release process to minimize the chance of merge problems, as all the files from <code>dist</code> folder are being copied to <code>docs/dist</code>. Documentation build is automated and is run by</p><pre><code>gulp docs
 </code></pre></section>
         </div>
       </div>

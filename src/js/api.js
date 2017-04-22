@@ -2,6 +2,12 @@
 
 fruskac.Api = (function () {
 
+    /**
+     * Api
+     * @global
+     * @param {Object|undefined} options
+     * @constructor
+     */
     function Api(options) {
 
         fruskac.config = util.extend({
@@ -14,11 +20,13 @@ fruskac.Api = (function () {
 
     }
 
+    /**
+     * @global
+     */
     Api.prototype = {
 
         /**
          * Fired when ready
-         * @global
          * @param {Function} callback
          */
         ready: function (callback) {
@@ -30,7 +38,6 @@ fruskac.Api = (function () {
 
         /**
          * Get data
-         * @global
          * @returns {Object[]}
          */
         getData: function () {
@@ -39,7 +46,6 @@ fruskac.Api = (function () {
 
         /**
          * Get / Set clustering state
-         * @global
          * @param {undefined|boolean} value
          * @returns {*|boolean}
          */
@@ -62,7 +68,6 @@ fruskac.Api = (function () {
 
         /**
          * Get / Set map type
-         * @global
          * @param {undefined|string} value
          * @returns {*}
          */

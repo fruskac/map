@@ -106,10 +106,142 @@
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#addClass"><i class="alert alert-info"></i><span>addClass</span></a>
+              </li>
+              <li><a href="#removeClass"><i class="alert alert-info"></i><span>removeClass</span></a>
+              </li>
+              <li><a href="#show"><i class="alert alert-info"></i><span>show</span></a>
+              </li>
+              <li><a href="#remove"><i class="alert alert-info"></i><span>remove</span></a>
+              </li>
             </ul>
           </div>
         </div>
         <div class="span9">
+          <section id="addClass">
+            <h1>addClass</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>addClass()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td>HTMLDomElement</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>className</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Add a class to a DOM element</p> </div>
+          <pre><code class="language-javascript">addClass: function (element, className) {
+    if (element.classList)
+        element.classList.add(className);
+    else
+        element.className += ' ' + className;
+},</code></pre>
+          <section id="removeClass">
+            <h1>removeClass</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>removeClass()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td>HTMLDomElement</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>className</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Remove a class from a DOM element</p> </div>
+          <pre><code class="language-javascript">removeClass: function (element, className) {
+    if (element.classList)
+        element.classList.remove(className);
+    else
+        element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+},</code></pre>
+          <section id="show">
+            <h1>show</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>show()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td>HTMLDomElement</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Show a DOM element</p> </div>
+          <pre><code class="language-javascript">show: function (element) {
+    element.style.display = '';
+},</code></pre>
+          <section id="remove">
+            <h1>remove</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>remove()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>element</td>
+                <td>HTMLDomElement</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Remove an element from DOM</p> </div>
+          <pre><code class="language-javascript">remove: function (element) {
+    element.parentNode.removeChild(element);
+},</code></pre>
         </div>
       </div>
     </div>

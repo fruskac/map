@@ -237,6 +237,9 @@ fruskac.Map = (function () {
 
         },
 
+        /**
+         * Open a new window using URL parameters from current map
+         */
         fullscreen: function () {
 
             var params = {
@@ -254,6 +257,10 @@ fruskac.Map = (function () {
         }
     };
 
+    /**
+     * Get type of object
+     * @param {object} object
+     */
     function getType(object) {
         if (!object) {
             return;

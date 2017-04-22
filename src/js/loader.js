@@ -136,22 +136,4 @@ fruskac.Loader = (function () {
         });
     }
 
-    function isVisible(name, defaultValue) {
-
-        if (!name) {
-            return;
-        }
-
-        /*if (fruskac.config.show.indexOf(name) !== -1) {
-            return true;
-        }
-
-        if (fruskac.config.hide.indexOf(name) !== -1) {
-            return false;
-        }*/
-
-        return defaultValue;
-
-    }
-
 })();

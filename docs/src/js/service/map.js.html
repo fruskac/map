@@ -124,6 +124,10 @@
               </li>
               <li><a href="#placeMarker"><i class="alert alert-info"></i><span>placeMarker</span></a>
               </li>
+              <li><a href="#fullscreen"><i class="alert alert-info"></i><span>fullscreen</span></a>
+              </li>
+              <li><a href="#getType"><i class="alert alert-info"></i><span>getType</span></a>
+              </li>
             </ul>
           </div>
         </div>
@@ -529,9 +533,16 @@
         }
     }
 
-},
-
-fullscreen: function () {
+},</code></pre>
+          <section id="fullscreen">
+            <h1>fullscreen</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Map.prototype.fullscreen()</span>
+            </p>
+          </section>
+          <div class="description"><p>Open a new window using URL parameters from current map</p> </div>
+          <pre><code class="language-javascript">fullscreen: function () {
 
     var params = {
         c: gmap.getCenter().lat() + ',' + gmap.getCenter().lng() + ',' + gmap.getZoom(),
@@ -546,26 +557,49 @@ fullscreen: function () {
     window.open(url, '_blank');
 
 }
-    };
-
-    function getType(object) {
-if (!object) {
-    return;
-}
-if (object.hasOwnProperty('position')) {//marker
-    return TYPE_MARKER;
-} else if (object.hasOwnProperty('strokeColor')) {
-    return TYPE_TRACK;
-} else if (object.hasOwnProperty('suppressInfoWindows')) {
-    return TYPE_KML;
-}
+    };</code></pre>
+          <section id="getType">
+            <h1>getType</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>getType()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>object</td>
+                <td>object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Get type of object</p> </div>
+          <pre><code class="language-javascript">function getType(object) {
+    if (!object) {
+        return;
     }
+    if (object.hasOwnProperty('position')) {//marker
+        return TYPE_MARKER;
+    } else if (object.hasOwnProperty('strokeColor')) {
+        return TYPE_TRACK;
+    } else if (object.hasOwnProperty('suppressInfoWindows')) {
+        return TYPE_KML;
+    }
+}
 
-    window.fullscreen = function () {
-map.fullscreen()
-    };
+window.fullscreen = function () {
+    map.fullscreen()
+};
 
-    return Map;
+return Map;
 
 })();</code></pre>
         </div>

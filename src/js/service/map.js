@@ -3,9 +3,15 @@
 fruskac.Map = (function () {
 
     var style = {},
-        styleElement = document.createElement('style');
+        sheet = (function () {
 
-    document.head.appendChild(styleElement);
+            var style = document.createElement("style");
+            style.appendChild(document.createTextNode(""));
+            document.head.appendChild(style);
+
+            return style.sheet;
+
+        })();
 
     /**
      * Map
@@ -132,7 +138,7 @@ fruskac.Map = (function () {
 
                 request.open('GET', url, true);
 
-                request.onload = function() {
+                request.onload = function () {
                     if (request.status >= 200 && request.status < 400) {
                         var points = [],
                             regex = new RegExp('<trkpt lat="([^"]+)" lon="([^"]+)">', 'g'),
@@ -308,7 +314,7 @@ fruskac.Map = (function () {
 
         if (style[name][property] === undefined) {
             style[name][property] = value;
-            styleElement.appendChild(document.createTextNode(name + '{' + property + ':' + value + '}'));
+            sheet.insertRule(name + '{' + property + ':' + value + '}', 0);
         }
 
     }

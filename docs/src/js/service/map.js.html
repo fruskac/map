@@ -269,10 +269,10 @@
 
         if (color) {
             if (typeof color === 'string') {
-                document.styleSheets[0].addRule('.marker-' + data.tag + ':before', 'background-color:' + color + ';');
+                applyStyle('.marker-' + data.tag + ':before', 'background-color', color);
             } else {
                 Object.keys(color).forEach(function (key) {
-                    document.styleSheets[0].addRule('.marker-' + key + ':before', 'background-color:' + color[key] + ';');
+                    applyStyle('.marker-' + key + ':before', 'background-color', color[key]);
                 });
             }
         }
@@ -346,7 +346,7 @@
 
         request.open('GET', url, true);
 
-        request.onload = function() {
+        request.onload = function () {
             if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
                 var points = [],
                     regex = new RegExp('&lt;trkpt lat=&quot;([^&quot;]+)&quot; lon=&quot;([^&quot;]+)&quot;&gt;', 'g'),
@@ -630,6 +630,19 @@
     } else if (object.hasOwnProperty('suppressInfoWindows')) {
         return TYPE_KML;
     }
+}
+
+function applyStyle(name, property, value) {
+
+    if (style[name] === undefined) {
+        style[name] = {}
+    }
+
+    if (style[name][property] === undefined) {
+        style[name][property] = value;
+        sheet.insertRule(name + '{' + property + ':' + value + '}', 0);
+    }
+
 }
 
 window.fullscreen = function () {

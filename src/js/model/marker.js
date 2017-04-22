@@ -30,17 +30,41 @@ fruskac.Marker = (function () {
         var self = this;
         var div = self.div;
         if (!div) {
-            div = self.div = $('' +
-                '<div' + (self.options.visible ? '' : ' class="hidden"') + '>' +
-                (self.options.pulsate ? '' : '<div class="marker-shadow"></div>') +
-                '<div class="marker-wrap"' + (self.options.title ? ' title="' + self.options.title + '"' : '') + '>' +
-                (self.options.pulsate ? '<div class="marker-pulse"></div>' : '<div class="marker marker-' + self.options.icon + '"><svg><use xlink:href="#icon-' + self.options.icon + '"></use></svg></div>') +
-                '</div>' +
-                '</div>' +
-                '')[0];
-            self.markerWrap = self.div.getElementsByClassName('marker-wrap');
-            self.marker = self.div.getElementsByClassName('marker');
-            self.markerShadow = self.div.getElementsByClassName('marker-shadow');
+
+            div = self.div = document.createElement('div');
+            if (!self.options.visible) {
+                div.setAttribute('class', 'hidden');
+            }
+
+            if (!self.options.pulsate) {
+                self.markerShadow = document.createElement('div');
+                self.markerShadow.setAttribute('class', 'marker-shadow');
+                div.appendChild(self.markerShadow);
+            }
+
+            self.markerWrap = document.createElement('div');
+            self.markerWrap.setAttribute('class', 'marker-wrap');
+            if (self.options.title) {
+                self.markerWrap.setAttribute('title', self.options.title);
+            }
+
+            if (self.options.pulsate) {
+                var markerPulse = document.createElement('div');
+                markerPulse.setAttribute('class', 'marker-pulse');
+                self.markerWrap.appendChild(markerPulse);
+            } else {
+                self.marker = document.createElement('div');
+                self.marker.setAttribute('class', 'marker marker-' + self.options.icon);
+                var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                var use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+                use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#icon-' + self.options.icon);
+                svg.appendChild(use);
+                self.marker.appendChild(svg);
+                self.markerWrap.appendChild(self.marker);
+            }
+
+            div.appendChild(self.markerWrap);
+
             div.style.position = 'absolute';
             div.style.cursor = 'pointer';
             var panes = self.getPanes();

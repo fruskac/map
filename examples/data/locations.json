@@ -1,38 +1,122 @@
 [
   {
     "lat": "45.15",
-    "lng": "19.3",
-    "tag": "springs",
+    "lng": "19.4",
+    "tag": "lakes",
     "data": {
-      "title": "Spring One",
+      "title": "Location One",
       "id": "1",
-      "link": "http:\/\/fruskac.net\/en\/locations\/springs\/dry",
-      "description": "Description of Spring One",
-      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/locations\/vrdnik-izvor-suvi-izvor-1.jpg?itok=TqdkJXCw"
+      "link": "http:\/\/fruskac.net",
+      "description": "Find out more about interesting locations, the beautiful nature of this place, it's plant and animal life, and historic legacy.",
+      "image": "http:\/\/loremflickr.com\/280\/157\/forest,animal,stream"
     }
   },
   {
     "lat": "45.15",
-    "lng": "19.33",
-    "tag": "springs",
+    "lng": "19.45",
+    "tag": "waterfalls",
     "data": {
-      "title": "Spring Two",
+      "title": "Location Two",
       "id": "2",
-      "link": "http:\/\/fruskac.net\/en\/locations\/springs\/dry",
-      "description": "Description of Spring Two",
-      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/locations\/vrdnik-izvor-suvi-izvor-1.jpg?itok=TqdkJXCw"
+      "link": "http:\/\/fruskac.net",
+      "description": "Find out more about interesting locations, the beautiful nature of this place, it's plant and animal life, and historic legacy.",
+      "image": "http:\/\/loremflickr.com\/280\/157\/forest,animal,stream"
     }
   },
   {
     "lat": "45.15",
-    "lng": "19.36",
+    "lng": "19.5",
+    "tag": "fishponds",
+    "data": {
+      "title": "Location Three",
+      "id": "3",
+      "link": "http:\/\/fruskac.net",
+      "description": "Find out more about interesting locations, the beautiful nature of this place, it's plant and animal life, and historic legacy.",
+      "image": "http:\/\/loremflickr.com\/280\/157\/forest,animal,stream"
+    }
+  },
+  {
+    "lat": "45.15",
+    "lng": "19.55",
+    "tag": "monasteries",
+    "data": {
+      "title": "Location Four",
+      "id": "4",
+      "link": "http:\/\/fruskac.net",
+      "description": "Find out more about interesting locations, the beautiful nature of this place, it's plant and animal life, and historic legacy.",
+      "image": "http:\/\/loremflickr.com\/280\/157\/forest,animal,stream"
+    }
+  },
+  {
+    "lat": "45.15",
+    "lng": "19.6",
+    "tag": "monuments",
+    "data": {
+      "title": "Location Five",
+      "id": "5",
+      "link": "http:\/\/fruskac.net",
+      "description": "Find out more about interesting locations, the beautiful nature of this place, it's plant and animal life, and historic legacy.",
+      "image": "http:\/\/loremflickr.com\/280\/157\/forest,animal,stream"
+    }
+  },
+  {
+    "lat": "45.15",
+    "lng": "19.65",
     "tag": "springs",
     "data": {
-      "title": "Spring Three",
-      "id": "3",
-      "link": "http:\/\/fruskac.net\/en\/locations\/springs\/dry",
-      "description": "Description of Spring Three",
-      "image": "http:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/locations\/vrdnik-izvor-suvi-izvor-1.jpg?itok=TqdkJXCw"
+      "title": "Location Six",
+      "id": "6",
+      "link": "http:\/\/fruskac.net",
+      "description": "Find out more about interesting locations, the beautiful nature of this place, it's plant and animal life, and historic legacy.",
+      "image": "http:\/\/loremflickr.com\/280\/157\/forest,animal,stream"
+    }
+  },
+  {
+    "lat": "45.15",
+    "lng": "19.7",
+    "tag": "misc",
+    "data": {
+      "title": "Location Seven",
+      "id": "7",
+      "link": "http:\/\/fruskac.net",
+      "description": "Find out more about interesting locations, the beautiful nature of this place, it's plant and animal life, and historic legacy.",
+      "image": "http:\/\/loremflickr.com\/280\/157\/forest,animal,stream"
+    }
+  },
+  {
+    "lat": "45.15",
+    "lng": "19.75",
+    "tag": "picnic-areas",
+    "data": {
+      "title": "Location Eight",
+      "id": "8",
+      "link": "http:\/\/fruskac.net",
+      "description": "Find out more about interesting locations, the beautiful nature of this place, it's plant and animal life, and historic legacy.",
+      "image": "http:\/\/loremflickr.com\/280\/157\/forest,animal,stream"
+    }
+  },
+  {
+    "lat": "45.15",
+    "lng": "19.8",
+    "tag": "meadows",
+    "data": {
+      "title": "Location Nine",
+      "id": "9",
+      "link": "http:\/\/fruskac.net",
+      "description": "Find out more about interesting locations, the beautiful nature of this place, it's plant and animal life, and historic legacy.",
+      "image": "http:\/\/loremflickr.com\/280\/157\/forest,animal,stream"
+    }
+  },
+  {
+    "lat": "45.15",
+    "lng": "19.85",
+    "tag": "lookouts",
+    "data": {
+      "title": "Location Ten",
+      "id": "10",
+      "link": "http:\/\/fruskac.net",
+      "description": "Find out more about interesting locations, the beautiful nature of this place, it's plant and animal life, and historic legacy.",
+      "image": "http:\/\/loremflickr.com\/280\/157\/forest,animal,stream"
     }
   }
 ]

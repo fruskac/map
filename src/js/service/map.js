@@ -11,7 +11,7 @@ fruskac.Map = (function () {
 
         // show fullscreen button if CrossDomain or if "allowfullscreen" attribute added to iframe
         if (fruskac.isCrossDomain || fruskac.allowfullscreen) {
-            $('#map_button_fullscreen').show();
+            util.show(document.getElementById('map_button_fullscreen'));
         }
 
     }
@@ -104,24 +104,31 @@ fruskac.Map = (function () {
 
             return new Promise(function (resolve) {
 
-                return $.get(url).then(function (response) {
-                    var points = [];
-                    $(response).find('trkpt').each(function (i, v) {
-                        var lat = Number($(this).attr('lat'));
-                        var lon = Number($(this).attr('lon'));
-                        var p = new google.maps.LatLng(lat, lon);
-                        points.push(p);
-                    });
+                var request = new XMLHttpRequest();
 
-                    var track = new fruskac.Track({
-                        path: points
-                    });
+                request.open('GET', url, true);
 
-                    track.setVisible(visible);
+                request.onload = function() {
+                    if (request.status >= 200 && request.status < 400) {
+                        var points = [],
+                            regex = new RegExp('<trkpt lat="([^"]+)" lon="([^"]+)">', 'g'),
+                            match;
 
-                    resolve(track);
+                        while (match = regex.exec(request.responseText)) {
+                            points.push(new google.maps.LatLng(match[1], match[2]));
+                        }
 
-                });
+                        var track = new fruskac.Track({
+                            path: points
+                        });
+
+                        track.setVisible(visible);
+
+                        resolve(track);
+                    }
+                };
+
+                request.send();
 
             });
 

@@ -1,18 +1,18 @@
 [
     {
         "tag": "borders",
-        "url": "http://demo.bergb.com/maps/v2/layers/kmls/granica-zastite.kml"
+        "url": "https://fruskac.github.io/map/examples/data/protection/borders.kml"
     },
     {
         "tag": "first-level",
-        "url": "http://demo.bergb.com/maps/v2/layers/kmls/rezim-zastite-I-stepena.kml"
+        "url": "https://fruskac.github.io/map/examples/data/protection/first-level.kml"
     },
     {
         "tag": "second-level",
-        "url": "http://demo.bergb.com/maps/v2/layers/kmls/rezim-zastite-II-stepena.kml"
+        "url": "https://fruskac.github.io/map/examples/data/protection/second-level.kml"
     },
     {
         "tag": "third-level",
-        "url": "http://demo.bergb.com/maps/v2/layers/kmls/rezim-zastite-III-stepena.kml"
+        "url": "https://fruskac.github.io/map/examples/data/protection/third-level.kml"
     }
 ]

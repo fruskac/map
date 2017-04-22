@@ -13,7 +13,7 @@ var util = new fruskac.Util(),
     chart,
     dialog;
 
-fruskac.init = function (options) {
+fruskac.init = function () {
 
     event = new fruskac.Event();
 

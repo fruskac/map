@@ -22,13 +22,23 @@
 </head>
 <body>
 
-<iframe id="map" allowfullscreen></iframe>
+<iframe id="map"></iframe>
 
 <script>
 
     var iframe = document.getElementById('map');
 
+    // pass query params to iframe
     iframe.setAttribute('src', '../dist/index.html' + window.location.search);
+
+    // pass parent attributes to iframe
+    if (window.frameElement) {
+        ['allowfullscreen', 'allowbrand'].forEach(function (attribute) {
+            if (window.frameElement.hasAttribute(attribute)) {
+                iframe.setAttribute(attribute, 'true');
+            }
+        });
+    }
 
     iframe.onload = function () {
         var FruskacMap = document.getElementById('map').contentWindow.fruskac;

@@ -6,26 +6,6 @@ fruskac.Util = (function () {
     }
 
     Util.prototype = {
-        get: function (name, url) {
-            if (!url) {
-                url = window.location.href;
-            }
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        },
-
-        getParts: function (name) {
-            var value = this.get(name);
-            if (!value) {
-                return;
-            }
-            return value.split(',');
-        },
-
         addClass: function (element, className) {
             if (element.classList)
                 element.classList.add(className);
@@ -38,6 +18,37 @@ fruskac.Util = (function () {
                 element.classList.remove(className);
             else
                 element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+        },
+
+        show: function (element) {
+            element.style.display = '';
+        },
+
+        remove: function (element) {
+            element.parentNode.removeChild(element);
+        },
+
+        /**
+         * Merge defaults with user options
+         * @private
+         * @param {Object} defaults Default settings
+         * @param {Object} options User options
+         * @returns {Object} Merged values of defaults and options
+         */
+        extend: function (defaults, options) {
+            var extended = {};
+            var prop;
+            for (prop in defaults) {
+                if (Object.prototype.hasOwnProperty.call(defaults, prop)) {
+                    extended[prop] = defaults[prop];
+                }
+            }
+            for (prop in options) {
+                if (Object.prototype.hasOwnProperty.call(options, prop)) {
+                    extended[prop] = options[prop];
+                }
+            }
+            return extended;
         }
 
     };

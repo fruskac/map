@@ -206,6 +206,12 @@ fruskac.Chart = (function () {
         return x * Math.PI / 180;
     }
 
+    /**
+     * Get HTML content for tooltip
+     * @param distance
+     * @param {number} elevation
+     * @returns {string}
+     */
     function getTooltipContent(distance, elevation) {
         return i18n.translate(I18N_ELEVATION) + ': ' + '<strong>' + Math.round(elevation) + ' m' + '</strong>' +
             '<br>'

@@ -106,39 +106,108 @@
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#Request"><i class="alert alert-success"></i><span>Request</span></a>
+              </li>
+              <li><a href="#Request"><i class="alert alert-success"></i><span>Request</span></a>
+              </li>
+              <li><a href="#get"><i class="alert alert-info"></i><span>get</span></a>
+              </li>
+              <li><a href="#getParts"><i class="alert alert-info"></i><span>getParts</span></a>
+              </li>
             </ul>
           </div>
         </div>
         <div class="span9">
+          <section id="Request">
+            <h1>Request</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">constructor</div><span>Request()</span>
+            </p>
+          </section>
+          <div class="description"><p>Request</p> </div>
+          <pre><code class="language-javascript">function Request() {
+}</code></pre>
+          <section id="Request">
+            <h1>Request</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">prototype</div><span>Request.prototype</span>
+            </p>
+          </section>
           <div class="description"> </div>
-          <pre><code class="language-javascript">'use strict';
-
-fruskac.Request = (function () {
-
-    function Request() {
+          <pre><code class="language-javascript">Request.prototype = {</code></pre>
+          <section id="get">
+            <h1>get</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Request.prototype.get()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>name</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>url</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Get value of a parameter from URL by name</p> </div>
+          <pre><code class="language-javascript">get: function (name, url) {
+    if (!url) {
+        url = window.location.href;
     }
-
-    Request.prototype = {
-
-        get: function (name, url) {
-            if (!url) {
-                url = window.location.href;
-            }
-            name = name.replace(/[\[\]]/g, &quot;\\$&amp;&quot;);
-            var regex = new RegExp(&quot;[?&amp;]&quot; + name + &quot;(=([^&amp;#]*)|&amp;|#|$)&quot;),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, &quot; &quot;));
-        },
-
-        getParts: function (name) {
-            var value = this.get(name);
-            if (!value) {
-                return;
-            }
-            return value.split(',');
-        }
+    name = name.replace(/[\[\]]/g, &quot;\\$&amp;&quot;);
+    var regex = new RegExp(&quot;[?&amp;]&quot; + name + &quot;(=([^&amp;#]*)|&amp;|#|$)&quot;),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, &quot; &quot;));
+},</code></pre>
+          <section id="getParts">
+            <h1>getParts</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Request.prototype.getParts()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>name</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Get value of a parameter as an array, using &#39;comma&#39; as splitting character</p> </div>
+          <pre><code class="language-javascript">getParts: function (name) {
+    var value = this.get(name);
+    if (!value) {
+        return;
+    }
+    return value.split(',');
+}
 
     };
 

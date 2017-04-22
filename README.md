@@ -1,8 +1,6 @@
 # Fruškać Map
 #### Fruška gora, Srbija
-
 The map is to be used in an `iFrame` element. Initial configuration could be passed in via `src` attribute. The Map will expose API to it's parent element to allow Map control. Usages could be found in [examples](https://github.com/fruskac/map/tree/master/examples) directory. Here are some links:
-
 * [AngularJS](./examples/angularjs.html)
 * [Embed](examples/embeded.html)
 * [Coordinates](./examples/coordinates.html)
@@ -16,9 +14,7 @@ We are using `git-flow` as our brancing model. Read more at [nvie.com/posts/a-su
 Read more about `git-flow` and how to install it [github.com/nvie/gitflow](https://github.com/nvie/gitflow)
 
 ###### Adding ```git-flow-hooks``` helper
- 
 To automate "semantic versioning" you could install ```git-flow-hooks``` from https://github.com/jaspernbrouwer/git-flow-hooks to 
-
 - Prevent direct commits to the master branch.
 - Prevent merge marker commits.
 - Automatically bump versions when starting a release or hotfix. Versions are generated, written to file and committed.
@@ -31,8 +27,13 @@ npm install
 ```
 This will install `Gulp` and other libraries needed for development.
 
-##### Build
+##### Dependencies
+To be able to get dependencies, you need to have `bower` installed. Run the command below to install all needed dependencies.
+```
+bower install
+```
 
+##### Build
 To create build, run
 ```
 gulp
@@ -47,15 +48,14 @@ gulp html
 gulp img
 ```
 
-###### Documentation
-
-Documentation build is automated and is run by
-```
-gulp docs
-```
-
 ##### Development
 While doing development, start watcher which will react on file changes and start appropriate tasks to update build
 ```
 gulp watch
+```
+
+##### Release and Documentation
+Documentation build is usually done in the release process to minimize the chance of merge problems, as all the files from `dist` folder are being copied to `docs/dist`. Documentation build is automated and is run by
+```
+gulp docs
 ```

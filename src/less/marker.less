@@ -1,7 +1,7 @@
 @markerWidth: 32px;
 @markerHeightFactor: 1.20711;
 @markerHeight: round(@markerHeightFactor * @markerWidth);
-@markerColor: #d2003b;
+@markerColor: #525252;
 @shadowOpacity: .5;
 @shadow-size: @markerWidth/2;
 @pulseWidth: @markerWidth*5;
@@ -20,19 +20,9 @@
 .color(@name, @color:@markerColor) {
   .marker-@{name} {
     &:before {
-      background-color: @color;
-      border-color: darken(@color, 10%);
+      background-color: @color !important;
     }
   }
-  // exposing colors for parent frame - Deprecated
-  /*.checkbox-@{name} {
-    input:checked {
-      &:after {
-        background-color: @color !important;
-        border-color: @color !important;
-      }
-    }
-  }*/
 }
 
 .marker {
@@ -53,7 +43,7 @@
     content: '';
     transform: rotateZ(-45deg);
     background-color: @markerColor;
-    border: 1px solid darken(@markerColor, 10%);
+    box-shadow: 0 0 1px rgba(0,0,0,.6) inset;
     border-radius: 50% 50% 50% 0;
   }
   svg {
@@ -67,6 +57,7 @@
   }
 }
 
+/*
 .color(lakes, #448b89);
 .color(waterfalls, #26b1b7);
 .color(fishponds, #26b1b7);
@@ -81,7 +72,8 @@
 .color(cellars);
 .color(households);
 
-.color(tracker);
+*/
+.color(tracker, #d2003b);
 
 .marker-shadow {
   position: absolute;

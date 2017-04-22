@@ -25,9 +25,10 @@ fruskac.Storage = (function () {
          * @param {Array|string} selector
          * @param {string} type
          * @param {boolean} visible
+         * @param {string|object} color
          * @returns {*}
          */
-        add: function (value, selector, type, visible) {
+        add: function (value, selector, type, visible, color) {
 
             var self = this;
 
@@ -62,7 +63,7 @@ fruskac.Storage = (function () {
                         }
                     });
                 }
-                return map.add(value, type, visible).then(function (object) {
+                return map.add(value, type, visible, color).then(function (object) {
                     if (value.categories) {
                         object.categories = value.categories;
                     }

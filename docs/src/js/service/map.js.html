@@ -188,27 +188,32 @@
                 <td>boolean</td>
                 <td></td>
               </tr>
+              <tr>
+                <td>color</td>
+                <td>string, object</td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
           <div class="description"><p>Add object to map</p> </div>
-          <pre><code class="language-javascript">add: function (data, type, visible) {
+          <pre><code class="language-javascript">add: function (data, type, visible, color) {
 
     var self = this;
 
     return new Promise(function (resolve) {
         switch (type) {
             case TYPE_MARKER:
-                return self.addMarker(data, visible).then(function (marker) {
+                return self.addMarker(data, visible, color).then(function (marker) {
                     resolve(marker);
                 });
                 break;
             case TYPE_TRACK:
-                return self.addTrack(data, visible).then(function (track) {
+                return self.addTrack(data, visible, color).then(function (track) {
                     resolve(track);
                 });
                 break;
             case TYPE_KML:
-                return self.addKml(data, visible).then(function (kml) {
+                return self.addKml(data, visible, color).then(function (kml) {
                     resolve(kml);
                 });
                 break;
@@ -242,10 +247,15 @@
                 <td>boolean</td>
                 <td></td>
               </tr>
+              <tr>
+                <td>color</td>
+                <td>string, object</td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
           <div class="description"><p>Add marker to map</p> </div>
-          <pre><code class="language-javascript">addMarker: function (data, visible) {
+          <pre><code class="language-javascript">addMarker: function (data, visible, color) {
 
     return new Promise(function (resolve) {
 
@@ -256,6 +266,16 @@
             data: data.data,
             visible: visible
         });
+
+        if (color) {
+            if (typeof color === 'string') {
+                document.styleSheets[0].addRule('.marker-' + data.tag + ':before', 'background-color:' + color + ';');
+            } else {
+                Object.keys(color).forEach(function (key) {
+                    document.styleSheets[0].addRule('.marker-' + key + ':before', 'background-color:' + color[key] + ';');
+                });
+            }
+        }
 
         if (visible) {
             //clusterer.addMarker(marker);
@@ -296,10 +316,15 @@
                 <td>boolean</td>
                 <td></td>
               </tr>
+              <tr>
+                <td>color</td>
+                <td>string, object</td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
           <div class="description"><p>Add track to map</p> </div>
-          <pre><code class="language-javascript">addTrack: function (data, visible) {
+          <pre><code class="language-javascript">addTrack: function (data, visible, color) {
 
     var url;
 
@@ -307,6 +332,12 @@
         url = data;
     } else {
         url = data.url;
+    }
+
+    if (color) {
+        if (typeof color === 'object') {
+            color = color[data.tag];
+        }
     }
 
     return new Promise(function (resolve) {
@@ -326,7 +357,8 @@
                 }
 
                 var track = new fruskac.Track({
-                    path: points
+                    path: points,
+                    color: color
                 });
 
                 track.setVisible(visible);
@@ -366,10 +398,15 @@
                 <td>boolean</td>
                 <td></td>
               </tr>
+              <tr>
+                <td>color</td>
+                <td>string, object</td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
           <div class="description"><p>Add KML layer to map</p> </div>
-          <pre><code class="language-javascript">addKml: function (data, visible) {
+          <pre><code class="language-javascript">addKml: function (data, visible, color) {
 
     return new Promise(function (resolve) {
 

@@ -68,7 +68,8 @@ fruskac.Loader = (function () {
         options = util.extend({
             visible: false,
             show: [],
-            hide: []
+            hide: [],
+            color: null
         }, options);
 
         return storage.add({
@@ -119,7 +120,7 @@ fruskac.Loader = (function () {
 
                         p.then(function () {
                             // when subcategory is created, add map item to storage
-                            storage.add(item, [name.toLowerCase(), item.tag], type, v);
+                            storage.add(item, [name.toLowerCase(), item.tag], type, v, options.color);
                         });
 
                         promises.push(p);

@@ -98,7 +98,30 @@
     <script>
         angular.module('app', [
             'ui.bootstrap'
-        ]).config([
+        ]).constant('COLOR', {
+            locations: {
+                lakes: '#448b89',
+                waterfalls: '#26b1b7',
+                fishponds: '#26b1b7',
+                monasteries: '#ac860c',
+                monuments: '#666666',
+                springs: '#4d84a6',
+                misc: '#928e91',
+                "picnic-areas": '#4f452f',
+                meadows: '#9ca22f',
+                lookouts: '#8c1bdd'
+            },
+            marathons: {
+                "marathon-one": 'blue',
+                "marathon-two": 'magenta'
+            },
+            protection: {
+                borders: '#ff0000',
+                "first-level": '#ff0000',
+                "second-level": '#ffff7f',
+                "third-level": '#43c127'
+            }
+        }).config([
             '$compileProvider',
             function ($compileProvider) {
                 $compileProvider.debugInfoEnabled(false);
@@ -108,7 +131,10 @@
         ]).controller('AppCtrl', [
             '$scope',
             '$location',
-            function ($scope, $location) {
+            'COLOR',
+            function ($scope, $location, COLOR) {
+
+                $scope.COLOR = COLOR;
 
                 var params = $location.search();
 
@@ -126,7 +152,8 @@
                                 name: 'locations',
                                 type: 'FRUSKAC_TYPE_MARKER',
                                 options: {
-                                    visible: true
+                                    visible: true,
+                                    color: COLOR.locations
                                 }
                             },
                             {
@@ -221,7 +248,8 @@
                     <li ng-repeat-end ng-show="open">
                         <ul ng-if="::item.children" class="list-unstyled">
                             <li ng-repeat="item in ::item.children" ng-class="{'disabled':!$parent.item.getVisible()}"
-                                class="list-group-item">
+                                class="list-group-item"
+                                ng-style="{'box-shadow':(COLOR[$parent.item.id][item.id]||COLOR[$parent.item.id]) + ' -5px 0 0 0 inset'}">
                                 <a ng-if="::item.type === 'track'" ng-click="item.select()"
                                    class="btn btn-default btn-xs pull-right">
                                     <i class="fa fa-crosshairs"></i>

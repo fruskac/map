@@ -219,10 +219,15 @@
                 <td>boolean</td>
                 <td></td>
               </tr>
+              <tr>
+                <td>color</td>
+                <td>string, object</td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
           <div class="description"><p>Add object to storage</p> </div>
-          <pre><code class="language-javascript">add: function (value, selector, type, visible) {
+          <pre><code class="language-javascript">add: function (value, selector, type, visible, color) {
 
     var self = this;
 
@@ -257,7 +262,7 @@
                 }
             });
         }
-        return map.add(value, type, visible).then(function (object) {
+        return map.add(value, type, visible, color).then(function (object) {
             if (value.categories) {
                 object.categories = value.categories;
             }

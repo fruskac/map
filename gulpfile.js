@@ -195,15 +195,6 @@ gulp.task('docs:copy:dist', function () {
         .pipe(gulp.dest('docs/dist'));
 });
 
-gulp.task('docs:copy:data', function () {
-    return gulp
-        .src([
-            'data/*'
-            , 'data/**/*'
-        ])
-        .pipe(gulp.dest('docs/data'));
-});
-
 gulp.task('docs:copy:examples', function () {
     return gulp
         .src([
@@ -221,7 +212,6 @@ gulp.task('docs:copy:examples', function () {
 
 gulp.task('docs:copy', [
     'docs:copy:dist'
-    , 'docs:copy:data'
     , 'docs:copy:examples'
 ]);
 

@@ -2,6 +2,17 @@
 
 fruskac.Map = (function () {
 
+    var style = {},
+        sheet = (function () {
+
+            var style = document.createElement("style");
+            style.appendChild(document.createTextNode(""));
+            document.head.appendChild(style);
+
+            return style.sheet;
+
+        })();
+
     /**
      * Map
      * @global
@@ -26,26 +37,27 @@ fruskac.Map = (function () {
          * @param {Object} data
          * @param {string} type
          * @param {boolean} visible
+         * @param {string|object} color
          * @returns {Promise}
          */
-        add: function (data, type, visible) {
+        add: function (data, type, visible, color) {
 
             var self = this;
 
             return new Promise(function (resolve) {
                 switch (type) {
                     case TYPE_MARKER:
-                        return self.addMarker(data, visible).then(function (marker) {
+                        return self.addMarker(data, visible, color).then(function (marker) {
                             resolve(marker);
                         });
                         break;
                     case TYPE_TRACK:
-                        return self.addTrack(data, visible).then(function (track) {
+                        return self.addTrack(data, visible, color).then(function (track) {
                             resolve(track);
                         });
                         break;
                     case TYPE_KML:
-                        return self.addKml(data, visible).then(function (kml) {
+                        return self.addKml(data, visible, color).then(function (kml) {
                             resolve(kml);
                         });
                         break;
@@ -58,9 +70,10 @@ fruskac.Map = (function () {
          * Add marker to map
          * @param {Object} data
          * @param {boolean} visible
+         * @param {string|object} color
          * @returns {Promise}
          */
-        addMarker: function (data, visible) {
+        addMarker: function (data, visible, color) {
 
             return new Promise(function (resolve) {
 
@@ -71,6 +84,16 @@ fruskac.Map = (function () {
                     data: data.data,
                     visible: visible
                 });
+
+                if (color) {
+                    if (typeof color === 'string') {
+                        applyStyle('.marker-' + data.tag + ':before', 'background-color', color);
+                    } else {
+                        Object.keys(color).forEach(function (key) {
+                            applyStyle('.marker-' + key + ':before', 'background-color', color[key]);
+                        });
+                    }
+                }
 
                 if (visible) {
                     //clusterer.addMarker(marker);
@@ -90,9 +113,10 @@ fruskac.Map = (function () {
          * Add track to map
          * @param {Object} data
          * @param {boolean} visible
+         * @param {string|object} color
          * @returns {Promise}
          */
-        addTrack: function (data, visible) {
+        addTrack: function (data, visible, color) {
 
             var url;
 
@@ -102,13 +126,19 @@ fruskac.Map = (function () {
                 url = data.url;
             }
 
+            if (color) {
+                if (typeof color === 'object') {
+                    color = color[data.tag];
+                }
+            }
+
             return new Promise(function (resolve) {
 
                 var request = new XMLHttpRequest();
 
                 request.open('GET', url, true);
 
-                request.onload = function() {
+                request.onload = function () {
                     if (request.status >= 200 && request.status < 400) {
                         var points = [],
                             regex = new RegExp('<trkpt lat="([^"]+)" lon="([^"]+)">', 'g'),
@@ -119,7 +149,8 @@ fruskac.Map = (function () {
                         }
 
                         var track = new fruskac.Track({
-                            path: points
+                            path: points,
+                            color: color
                         });
 
                         track.setVisible(visible);
@@ -138,9 +169,10 @@ fruskac.Map = (function () {
          * Add KML layer to map
          * @param {Object} data
          * @param {boolean} visible
+         * @param {string|object} color
          * @returns {Promise}
          */
-        addKml: function (data, visible) {
+        addKml: function (data, visible, color) {
 
             return new Promise(function (resolve) {
 
@@ -272,6 +304,19 @@ fruskac.Map = (function () {
         } else if (object.hasOwnProperty('suppressInfoWindows')) {
             return TYPE_KML;
         }
+    }
+
+    function applyStyle(name, property, value) {
+
+        if (style[name] === undefined) {
+            style[name] = {}
+        }
+
+        if (style[name][property] === undefined) {
+            style[name][property] = value;
+            sheet.insertRule(name + '{' + property + ':' + value + '}', 0);
+        }
+
     }
 
     window.fullscreen = function () {

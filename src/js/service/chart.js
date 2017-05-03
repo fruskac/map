@@ -151,28 +151,34 @@ fruskac.Chart = (function () {
      */
     function getPathElevation(points, elevator, callback) {
 
-        var gpath = [];
-        points.forEach(function (point) {
-            gpath.push(point)
+        var ratio = Math.ceil(points.length/256),
+            gpath = [],
+            distance = 0;
+
+        points.forEach(function (point, index) {
+
+            if (index % ratio === 0) {
+                gpath.push(point);
+            }
+
+            distance += parseFloat(index ? getDistance(points.getAt(index), points.getAt(index - 1)) : 0);
+
         });
+
 
         // Create a PathElevationRequest object using this array.
         elevator.getElevationAlongPath({
             'path': gpath,
-            'samples': gpath.length
+            'samples': 256
         }, function (elevations) {
-            var distance = 0;
-            var rows = [];
+            var rows = [],
+                ratio = distance / (elevations.length - 1);
+
             elevations.forEach(function (e, index) {
-                var distanceFromPrevious;
-                if (index) {
-                    distanceFromPrevious = getDistance(elevations[index].location, elevations[index - 1].location)
-                } else {
-                    distanceFromPrevious = 0;
-                }
-                distance += parseFloat(distanceFromPrevious);
-                rows.push([distance, getTooltipContent(distance, e.elevation), e.elevation]);
+                var d = ratio * index;
+                rows.push([d, getTooltipContent(d, e.elevation), e.elevation]);
             });
+
             callback(rows);
         });
     }

@@ -2,6 +2,8 @@
 
 fruskac.Chart = (function () {
 
+    var chartResolution = 256;
+
     /**
      * @global
      * @param {HTMLDomElement} container
@@ -124,7 +126,7 @@ fruskac.Chart = (function () {
                             clearTimeout(timeout);
                         }
 
-                        map.placeMarker(points.getAt(coords.row), 'tracker');
+                        map.placeMarker(points.getAt(Math.round(coords.row * points.length / chartResolution)), 'tracker');
                     });
 
                     google.visualization.events.addListener(chart, 'onmouseout', function () {
@@ -151,7 +153,7 @@ fruskac.Chart = (function () {
      */
     function getPathElevation(points, elevator, callback) {
 
-        var ratio = Math.ceil(points.length/256),
+        var ratio = Math.round(points.length / chartResolution),
             gpath = [],
             distance = 0;
 
@@ -169,13 +171,13 @@ fruskac.Chart = (function () {
         // Create a PathElevationRequest object using this array.
         elevator.getElevationAlongPath({
             'path': gpath,
-            'samples': 256
+            'samples': chartResolution
         }, function (elevations) {
             var rows = [],
-                ratio = distance / (elevations.length - 1);
+                r = distance / (elevations.length - 1);
 
             elevations.forEach(function (e, index) {
-                var d = ratio * index;
+                var d = r * index;
                 rows.push([d, getTooltipContent(d, e.elevation), e.elevation]);
             });
 

@@ -2,6 +2,8 @@
 
 fruskac.Chart = (function () {
 
+    var chartResolution = 256;
+
     /**
      * @global
      * @param {HTMLDomElement} container
@@ -124,7 +126,7 @@ fruskac.Chart = (function () {
                             clearTimeout(timeout);
                         }
 
-                        map.placeMarker(points.getAt(coords.row), 'tracker');
+                        map.placeMarker(points.getAt(Math.round(coords.row * points.length / chartResolution)), 'tracker');
                     });
 
                     google.visualization.events.addListener(chart, 'onmouseout', function () {
@@ -151,28 +153,34 @@ fruskac.Chart = (function () {
      */
     function getPathElevation(points, elevator, callback) {
 
-        var gpath = [];
-        points.forEach(function (point) {
-            gpath.push(point)
+        var ratio = Math.round(points.length / chartResolution),
+            gpath = [],
+            distance = 0;
+
+        points.forEach(function (point, index) {
+
+            if (index % ratio === 0) {
+                gpath.push(point);
+            }
+
+            distance += parseFloat(index ? getDistance(points.getAt(index), points.getAt(index - 1)) : 0);
+
         });
+
 
         // Create a PathElevationRequest object using this array.
         elevator.getElevationAlongPath({
             'path': gpath,
-            'samples': gpath.length
+            'samples': chartResolution
         }, function (elevations) {
-            var distance = 0;
-            var rows = [];
+            var rows = [],
+                r = distance / (elevations.length - 1);
+
             elevations.forEach(function (e, index) {
-                var distanceFromPrevious;
-                if (index) {
-                    distanceFromPrevious = getDistance(elevations[index].location, elevations[index - 1].location)
-                } else {
-                    distanceFromPrevious = 0;
-                }
-                distance += parseFloat(distanceFromPrevious);
-                rows.push([distance, getTooltipContent(distance, e.elevation), e.elevation]);
+                var d = r * index;
+                rows.push([d, getTooltipContent(d, e.elevation), e.elevation]);
             });
+
             callback(rows);
         });
     }

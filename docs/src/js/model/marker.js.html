@@ -91,8 +91,10 @@
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
             <li><a href="/map/src/js/const/event.const.js.html">src/js/const/event.const.js</a></li>
             <li><a href="/map/src/js/const/i18n.const.js.html">src/js/const/i18n.const.js</a></li>
+            <li><a href="/map/src/js/const/image.js.html">src/js/const/image.js</a></li>
             <li><a href="/map/src/js/const/params.const.js.html">src/js/const/params.const.js</a></li>
             <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
+            <li><a href="/map/src/js/extend/clusterer.js.html">src/js/extend/clusterer.js</a></li>
             <li><a href="/map/src/js/extend/googleMaps.js.html">src/js/extend/googleMaps.js</a></li>
             <li><a href="/map/src/js/model/kml.js.html">src/js/model/kml.js</a></li>
             <li class="active"><a href="/map/src/js/model/marker.js.html">src/js/model/marker.js</a></li>
@@ -115,6 +117,8 @@
               <li><a href="#setPoint"><i class="alert alert-info"></i><span>setPoint</span></a>
               </li>
               <li><a href="#setVisible"><i class="alert alert-info"></i><span>setVisible</span></a>
+              </li>
+              <li><a href="#setClustered"><i class="alert alert-info"></i><span>setClustered</span></a>
               </li>
               <li><a href="#setOpaque"><i class="alert alert-info"></i><span>setOpaque</span></a>
               </li>
@@ -241,6 +245,10 @@
 
     self.setPoint(self.position);
 
+    if (self.options.visible) {
+        clusterer.addMarker(self);
+    }
+
 };</code></pre>
           <section id="setPoint">
             <h1>setPoint</h1>
@@ -304,22 +312,65 @@
     var self = this;
 
     if (self.div) {
+
+        self.visible = value;
+
         if (value) {
+            clusterer.addMarker(self);
             setTimeout(function () {
                 util.removeClass(self.div, 'hidden');
-
-                // add wobble animation on enter
-                self.animateWobble();
-
-                //clusterer.addMarker(object);
+                if (!self.clustered) {
+                    self.animateWobble();
+                }
             }, Math.random() * 400);
         } else {
+            clusterer.removeMarker(self);
             setTimeout(function () {
                 util.addClass(self.div, 'hidden');
-                //clusterer.removeMarker(object);
             }, Math.random() * 200);
         }
+    }
 
+};</code></pre>
+          <section id="setClustered">
+            <h1>setClustered</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.setClustered()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>value</td>
+                <td>boolean</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Set clustered</p> </div>
+          <pre><code class="language-javascript">Marker.prototype.setClustered = function (value) {
+    var self = this;
+
+    if (self.div) {
+
+        if (value) {
+            util.addClass(self.div, 'clustered');
+        } else {
+            util.removeClass(self.div, 'clustered');
+            if (self.clustered) {
+                self.animateWobble();
+            }
+        }
+
+        self.clustered = value;
     }
 };</code></pre>
           <section id="setOpaque">
@@ -391,10 +442,10 @@
 
     var content =
         '&lt;a href=&quot;' + self.data.link + '&quot; target=&quot;_blank&quot;&gt;' +
-            '&lt;img src=&quot;' + self.data.image + '&quot; width=&quot;280&quot; height=&quot;157&quot;&gt;' +
+        '&lt;img src=&quot;' + self.data.image + '&quot; width=&quot;280&quot; height=&quot;157&quot;&gt;' +
         '&lt;/a&gt;' +
         '&lt;h2&gt;' +
-            '&lt;a href=&quot;' + self.data.link + '&quot; target=&quot;_blank&quot;&gt;' + self.data.title + '&lt;/a&gt;' +
+        '&lt;a href=&quot;' + self.data.link + '&quot; target=&quot;_blank&quot;&gt;' + self.data.title + '&lt;/a&gt;' +
         '&lt;/h2&gt;' +
         '&lt;p&gt;' + self.data.description + '&lt;/p&gt;';
 

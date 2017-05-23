@@ -95,10 +95,6 @@ fruskac.Map = (function () {
                     }
                 }
 
-                if (visible) {
-                    //clusterer.addMarker(marker);
-                }
-
                 google.maps.event.addListener(marker, 'click', function () {
                     marker.animateWobble();
                 });

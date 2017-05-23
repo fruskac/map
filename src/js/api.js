@@ -51,11 +51,11 @@ fruskac.Api = (function () {
          */
         clustering: function (value) {
             if (value === undefined) { // act as getter
-                //return clusterer.enabled;
+                return clusterer.enabled;
             } else { // act as setter
                 clusterer.enabled = value;
                 if (value) {
-                    clusterer.setMaxZoom(null);
+                    clusterer.setMaxZoom(12);
                     clusterer.setGridSize(50);
                 } else {
                     clusterer.setMaxZoom(1);

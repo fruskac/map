@@ -91,8 +91,10 @@
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
             <li><a href="/map/src/js/const/event.const.js.html">src/js/const/event.const.js</a></li>
             <li><a href="/map/src/js/const/i18n.const.js.html">src/js/const/i18n.const.js</a></li>
+            <li><a href="/map/src/js/const/image.js.html">src/js/const/image.js</a></li>
             <li><a href="/map/src/js/const/params.const.js.html">src/js/const/params.const.js</a></li>
             <li><a href="/map/src/js/const/type.const.js.html">src/js/const/type.const.js</a></li>
+            <li><a href="/map/src/js/extend/clusterer.js.html">src/js/extend/clusterer.js</a></li>
             <li><a href="/map/src/js/extend/googleMaps.js.html">src/js/extend/googleMaps.js</a></li>
             <li><a href="/map/src/js/model/kml.js.html">src/js/model/kml.js</a></li>
             <li><a href="/map/src/js/model/marker.js.html">src/js/model/marker.js</a></li>
@@ -275,10 +277,6 @@
                     applyStyle('.marker-' + key + ':before', 'background-color', color[key]);
                 });
             }
-        }
-
-        if (visible) {
-            //clusterer.addMarker(marker);
         }
 
         google.maps.event.addListener(marker, 'click', function () {

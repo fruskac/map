@@ -86,6 +86,10 @@ fruskac.Marker = (function () {
 
         self.setPoint(self.position);
 
+        if (self.options.visible) {
+            clusterer.addMarker(self);
+        }
+
     };
 
     /**
@@ -113,22 +117,47 @@ fruskac.Marker = (function () {
         var self = this;
 
         if (self.div) {
+
+            self.visible = value;
+
             if (value) {
+                clusterer.addMarker(self);
                 setTimeout(function () {
                     util.removeClass(self.div, 'hidden');
-
-                    // add wobble animation on enter
-                    self.animateWobble();
-
-                    //clusterer.addMarker(object);
+                    if (!self.clustered) {
+                        self.animateWobble();
+                    }
                 }, Math.random() * 400);
             } else {
+                clusterer.removeMarker(self);
                 setTimeout(function () {
                     util.addClass(self.div, 'hidden');
-                    //clusterer.removeMarker(object);
                 }, Math.random() * 200);
             }
+        }
 
+    };
+
+    /**
+     * Set clustered
+     *
+     * @param {boolean} value
+     */
+    Marker.prototype.setClustered = function (value) {
+        var self = this;
+
+        if (self.div) {
+
+            if (value) {
+                util.addClass(self.div, 'clustered');
+            } else {
+                util.removeClass(self.div, 'clustered');
+                if (self.clustered) {
+                    self.animateWobble();
+                }
+            }
+
+            self.clustered = value;
         }
     };
 
@@ -170,10 +199,10 @@ fruskac.Marker = (function () {
 
         var content =
             '<a href="' + self.data.link + '" target="_blank">' +
-                '<img src="' + self.data.image + '" width="280" height="157">' +
+            '<img src="' + self.data.image + '" width="280" height="157">' +
             '</a>' +
             '<h2>' +
-                '<a href="' + self.data.link + '" target="_blank">' + self.data.title + '</a>' +
+            '<a href="' + self.data.link + '" target="_blank">' + self.data.title + '</a>' +
             '</h2>' +
             '<p>' + self.data.description + '</p>';
 

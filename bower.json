@@ -17,7 +17,6 @@
   ],
   "devDependencies": {
     "google-maps-v3-infobox": "google-map-v3-infobox#^0.0.0",
-    "dynamics.js": "^1.1.1",
-    "js-marker-clusterer": "*"
+    "dynamics.js": "^1.1.1"
   }
 }

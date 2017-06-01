@@ -193,6 +193,7 @@ fruskac.Chart = (function () {
      * @returns {string}
      */
     function getDistance(p1, p2) {
+        //return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
         var R = 6378137; // Earth’s mean radius in meter
         var dLat = rad(p2.lat() - p1.lat());
         var dLong = rad(p2.lng() - p1.lng());
@@ -201,8 +202,7 @@ fruskac.Chart = (function () {
             Math.sin(dLong / 2) * Math.sin(dLong / 2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c;
-        return (d / 1000).toFixed(2); // "d" returns the distance in meter
-        //return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+        return d / 1000; // "d" returns the distance in meter
     }
 
     /**

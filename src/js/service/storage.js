@@ -71,7 +71,11 @@ fruskac.Storage = (function () {
                 })
             } else {
                 return new Promise(function (resolve) {
-                    container.push(value);
+                    if (value.visible && value.type) {
+                        container.unshift(value);
+                    } else {
+                        container.push(value);
+                    }
                     resolve(value);
                 })
             }

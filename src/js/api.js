@@ -53,16 +53,7 @@ fruskac.Api = (function () {
             if (value === undefined) { // act as getter
                 return clusterer.enabled;
             } else { // act as setter
-                clusterer.enabled = value;
-                if (value) {
-                    clusterer.setMaxZoom(12);
-                    clusterer.setGridSize(50);
-                } else {
-                    clusterer.setMaxZoom(1);
-                    clusterer.setGridSize(1);
-                }
-                clusterer.resetViewport();
-                clusterer.redraw();
+                clusterer.setEnabled(value);
             }
         },
 

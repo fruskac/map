@@ -1062,6 +1062,9 @@ ClusterIcon.prototype.triggerClusterClick = function () {
  */
 ClusterIcon.prototype.onAdd = function () {
     this.div_ = document.createElement('DIV');
+
+    this.div_.className = 'cluster-marker';
+
     if (this.visible_) {
         var pos = this.getPosFromLatLng_(this.center_);
         this.div_.style.cssText = this.createCss(pos);
@@ -1205,9 +1208,9 @@ ClusterIcon.prototype.setCenter = function (center) {
  */
 ClusterIcon.prototype.createCss = function (pos) {
     var style = [];
-    style.push('background-image:url(' + this.url_ + ');');
-    var backgroundPosition = this.backgroundPosition_ ? this.backgroundPosition_ : '0 0';
-    style.push('background-position:' + backgroundPosition + ';');
+    //style.push('background-image:url(' + this.url_ + ');');
+    //var backgroundPosition = this.backgroundPosition_ ? this.backgroundPosition_ : '0 0';
+    //style.push('background-position:' + backgroundPosition + ';');
 
     if (typeof this.anchor_ === 'object') {
         if (typeof this.anchor_[0] === 'number' && this.anchor_[0] > 0 &&

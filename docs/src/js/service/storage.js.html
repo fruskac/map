@@ -272,7 +272,11 @@
         })
     } else {
         return new Promise(function (resolve) {
-            container.push(value);
+            if (value.visible &amp;&amp; value.type) {
+                container.unshift(value);
+            } else {
+                container.push(value);
+            }
             resolve(value);
         })
     }

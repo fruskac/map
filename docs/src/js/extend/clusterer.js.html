@@ -1299,9 +1299,9 @@ this.sizes = [53, 56, 66, 78, 90];</code></pre>
           <div class="description"><p>Create the css text based on the position of the icon.</p> </div>
           <pre><code class="language-javascript">ClusterIcon.prototype.createCss = function (pos) {
     var style = [];
-    style.push('background-image:url(' + this.url_ + ');');
-    var backgroundPosition = this.backgroundPosition_ ? this.backgroundPosition_ : '0 0';
-    style.push('background-position:' + backgroundPosition + ';');
+    //style.push('background-image:url(' + this.url_ + ');');
+    //var backgroundPosition = this.backgroundPosition_ ? this.backgroundPosition_ : '0 0';
+    //style.push('background-position:' + backgroundPosition + ';');
 
     if (typeof this.anchor_ === 'object') {
         if (typeof this.anchor_[0] === 'number' &amp;&amp; this.anchor_[0] &gt; 0 &amp;&amp;

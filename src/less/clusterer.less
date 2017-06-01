@@ -1,0 +1,12 @@
+@background-color: rgba(67,61,62,.9);
+
+.cluster-marker {
+  background-color: @background-color;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px fadeout(@background-color, 50%);
+  visibility: hidden;
+
+  &[style] {
+    visibility: visible;
+  }
+}

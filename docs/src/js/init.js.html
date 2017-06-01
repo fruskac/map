@@ -193,26 +193,37 @@
         styles: [
             {
                 textColor: 'white',
-                url: IMAGE_CLUSTER_32,
+                height: 24,
+                width: 24
+            },
+            {
+                textColor: 'white',
                 height: 32,
                 width: 32
             },
             {
                 textColor: 'white',
-                url: IMAGE_CLUSTER_48,
                 height: 48,
                 width: 48
-            },
-            {
-                textColor: 'white',
-                url: IMAGE_CLUSTER_64,
-                height: 64,
-                width: 64
             }
         ]
     });
 
-    clusterer.enabled = true;
+    clusterer.setEnabled = function(value) {
+        clusterer.enabled = value;
+        if (value) {
+            clusterer.setMaxZoom(12);
+            clusterer.setGridSize(50);
+        } else {
+            clusterer.setMaxZoom(1);
+            clusterer.setGridSize(1);
+        }
+        clusterer.resetViewport();
+        clusterer.redraw();
+    };
+
+    clusterer.setEnabled(fruskac.config.clustering);
+
 
     chart = new fruskac.Chart(document.getElementById('chart_container'));
 

@@ -17,10 +17,8 @@ body {
   margin: 0;
 }
 
-#map_button_fullscreen {
+.button {
   position: absolute;
-  top: @padding;
-  right: @padding;
   padding: 6px;
   background-color: #fff;
   border-radius: 2px;
@@ -35,6 +33,17 @@ body {
   &:hover svg {
     fill: #333;
   }
+
+}
+
+#map_button_fullscreen {
+  top: @padding;
+  right: @padding;
+}
+
+#map_button_locate {
+  bottom: ~"calc(50% + 35px)";
+  left: @padding;
 }
 
 #map {

@@ -11,7 +11,8 @@ var util = new fruskac.Util(),
     gmap,
     map,
     chart,
-    dialog;
+    dialog,
+    geolocation;
 
 /**
  * Initialize the map
@@ -80,6 +81,7 @@ fruskac.init = function () {
 
     map = new fruskac.Map();
     dialog = new fruskac.Dialog();
+    geolocation = new fruskac.Geolocation();
 
     clusterer = new MarkerClusterer(gmap, [], {
         maxZoom: 12,
@@ -117,7 +119,6 @@ fruskac.init = function () {
     };
 
     clusterer.setEnabled(fruskac.config.clustering);
-
 
     chart = new fruskac.Chart(document.getElementById('chart_container'));
 

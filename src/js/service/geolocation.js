@@ -65,7 +65,7 @@ fruskac.Geolocation = (function () {
 
         locate: function () {
             gmap.setCenter(this.marker.position);
-            gmap.setZoom(13);
+            gmap.setZoom(16);
         }
 
     };

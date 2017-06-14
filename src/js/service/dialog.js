@@ -106,7 +106,6 @@ fruskac.Dialog = (function () {
          * Animate Marker with Wobble animation
          */
         animateWobble: function () {
-
             dynamics.animate(this.container.parentNode, {
                 rotateZ: Math.random() * 30 - 15
             }, {

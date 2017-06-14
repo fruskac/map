@@ -36,12 +36,6 @@ fruskac.Marker = (function () {
                 div.setAttribute('class', 'hidden');
             }
 
-            if (!self.options.pulsate) {
-                self.markerShadow = document.createElement('div');
-                self.markerShadow.setAttribute('class', 'marker-shadow');
-                div.appendChild(self.markerShadow);
-            }
-
             self.markerWrap = document.createElement('div');
             self.markerWrap.setAttribute('class', 'marker-wrap');
             if (self.options.title) {

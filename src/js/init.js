@@ -103,7 +103,7 @@ fruskac.init = function () {
         ]
     });
 
-    clusterer.setEnabled = function(value) {
+    clusterer.setEnabled = function (value) {
         clusterer.enabled = value;
         if (value) {
             clusterer.setMaxZoom(12);

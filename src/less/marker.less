@@ -7,7 +7,6 @@
 @pulseWidth: @markerWidth*5;
 @pulseDot: 5px;
 @pulseColor: #d2003b;
-
 .marker-wrap {
   position: absolute;
   width: @markerWidth;
@@ -17,7 +16,7 @@
   transform-origin: 50% round(@markerHeightFactor * 100%) 0;
 }
 
-.color(@name, @color:@markerColor) {
+.color(@name, @color: @markerColor) {
   .marker-@{name} {
     &:before {
       background-color: @color !important;
@@ -43,8 +42,22 @@
     content: '';
     transform: rotateZ(-45deg);
     background-color: @markerColor;
-    box-shadow: 0 0 1px rgba(0,0,0,.6) inset;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .6) inset;
     border-radius: 50% 50% 50% 0;
+  }
+  &:not(.marker-pulse) {
+    &:after {
+      position: absolute;
+      display: block;
+      content: '';
+      box-shadow: 100px 0 20px rgba(0, 0, 0, .5);
+      width: 14px;
+      height: 14px;
+      transform: rotateX(55deg);
+      top: 32px;
+      left: -91px;
+      z-index: -1;
+    }
   }
   svg {
     position: absolute;
@@ -57,40 +70,7 @@
   }
 }
 
-/*
-.color(lakes, #448b89);
-.color(waterfalls, #26b1b7);
-.color(fishponds, #26b1b7);
-.color(monasteries, #ac860c);
-.color(monuments, #666666);
-.color(springs, #4d84a6);
-.color(misc, #928e91);
-.color(picnic-areas, #4f452f);
-.color(meadows, #9ca22f);
-.color(lookouts, #8c1bdd);
-
-.color(cellars);
-.color(households);
-
-*/
 .color(tracker, #d2003b);
-
-.marker-shadow {
-  position: absolute;
-  &:after {
-    position: absolute;
-    left: -100px - @shadow-size/2;
-    display: block;
-    width: @shadow-size;
-    height: @shadow-size;
-    margin-top: -@shadow-size/2;
-    content: '';
-    transform: rotateX(55deg);
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, @shadowOpacity) 100px 0 20px;
-  }
-}
-
 .marker-pulse {
   position: absolute;
   top: @markerHeight;

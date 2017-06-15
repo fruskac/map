@@ -188,82 +188,59 @@
 
     map = new fruskac.Map();
     dialog = new fruskac.Dialog();
-    geolocation = new fruskac.Geolocation();
+    geolocation = new fruskac.Geolocation();</code></pre>
+          <div class="description"><p>clusterer = new MarkerClusterer(gmap, [], {<br />        maxZoom: 12,<br />        gridSize: 50,<br />        styles: [<br />            {<br />                textColor: &#39;white&#39;,<br />                height: 24,<br />                width: 24<br />            },<br />            {<br />                textColor: &#39;white&#39;,<br />                height: 32,<br />                width: 32<br />            },<br />            {<br />                textColor: &#39;white&#39;,<br />                height: 48,<br />                width: 48<br />            }<br />        ]<br />    });</p><pre><code>clusterer.setEnabled = function (value) {
+    clusterer.enabled = value;
+    if (value) {
+        clusterer.setMaxZoom(12);
+        clusterer.setGridSize(50);
+    } else {
+        clusterer.setMaxZoom(1);
+        clusterer.setGridSize(1);
+    }
+    clusterer.resetViewport();
+    clusterer.redraw();
+};
 
-    clusterer = new MarkerClusterer(gmap, [], {
-        maxZoom: 12,
-        gridSize: 50,
-        styles: [
-            {
-                textColor: 'white',
-                height: 24,
-                width: 24
-            },
-            {
-                textColor: 'white',
-                height: 32,
-                width: 32
-            },
-            {
-                textColor: 'white',
-                height: 48,
-                width: 48
-            }
-        ]
-    });
+clusterer.setEnabled(fruskac.config.clustering);
+</code></pre> </div>
+          <pre><code class="language-javascript">chart = new fruskac.Chart(document.getElementById('chart_container'));
 
-    clusterer.setEnabled = function (value) {
-        clusterer.enabled = value;
-        if (value) {
-            clusterer.setMaxZoom(12);
-            clusterer.setGridSize(50);
-        } else {
-            clusterer.setMaxZoom(1);
-            clusterer.setGridSize(1);
-        }
-        clusterer.resetViewport();
-        clusterer.redraw();
-    };
+var loader = new fruskac.Loader();
 
-    clusterer.setEnabled(fruskac.config.clustering);
+var track = request.get(PARAMETER_TRACK);
+var focus = request.get(PARAMETER_FOCUS);
 
-    chart = new fruskac.Chart(document.getElementById('chart_container'));
+loader.load(fruskac.config.data).then(function () {
 
-    var loader = new fruskac.Loader();
-
-    var track = request.get(PARAMETER_TRACK);
-    var focus = request.get(PARAMETER_FOCUS);
-
-    loader.load(fruskac.config.data).then(function () {
-
-        if (track) {
-            // load external track
-            loader.append(track, TYPE_TRACK).then(function (object) {
-                google.maps.event.addListenerOnce(gmap, 'idle', function () {
-                    map.focus(object); // focus on appended object
-                });
-            })
-        }
-
-        if (focus) {
-            // focus on selector
+    if (track) {
+        // load external track
+        loader.append(track, TYPE_TRACK).then(function (object) {
             google.maps.event.addListenerOnce(gmap, 'idle', function () {
-                storage.focus(focus, true); // focus on selected object
+                map.focus(object); // focus on appended object
             });
-        }
+        })
+    }
 
-        if (!(track || focus) &amp;&amp; latLngZoom &amp;&amp; latLngZoomParts &amp;&amp; latLngZoomParts.length) {
-            // add circle marker if track/location not set
-            google.maps.event.addListenerOnce(gmap, 'idle', function () {
-                map.placeMarker(new google.maps.LatLng(latLngZoomParts[0], latLngZoomParts[1]), null, true); // create pulsating marker
-            });
-        }
-
+    if (focus) {
+        // focus on selector
         google.maps.event.addListenerOnce(gmap, 'idle', function () {
-            event.publish('ready');
+            storage.focus(focus, true); // focus on selected object
         });
+    }
 
+    if (!(track || focus) &amp;&amp; latLngZoom &amp;&amp; latLngZoomParts &amp;&amp; latLngZoomParts.length) {
+        // add circle marker if track/location not set
+        google.maps.event.addListenerOnce(gmap, 'idle', function () {
+            map.placeMarker(new google.maps.LatLng(latLngZoomParts[0], latLngZoomParts[1]), null, true); // create pulsating marker
+        });
+    }
+
+    google.maps.event.addListenerOnce(gmap, 'idle', function () {
+        event.publish('ready');
     });
+
+});
 };</code></pre>
         </div>
       </div>

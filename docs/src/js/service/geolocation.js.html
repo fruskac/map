@@ -86,7 +86,7 @@
             <li><a href="/map/src/js/api.js.html">src/js/api.js</a></li>
             <li><a href="/map/src/js/bootstrap.js.html">src/js/bootstrap.js</a></li>
             <li><a href="/map/src/js/init.js.html">src/js/init.js</a></li>
-            <li class="active"><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
+            <li><a href="/map/src/js/loader.js.html">src/js/loader.js</a></li>
             <li><a href="/map/src/js/request.js.html">src/js/request.js</a></li>
             <li><a href="/map/src/js/util.js.html">src/js/util.js</a></li>
             <li><a href="/map/src/js/const/event.const.js.html">src/js/const/event.const.js</a></li>
@@ -102,236 +102,135 @@
             <li><a href="/map/src/js/service/chart.js.html">src/js/service/chart.js</a></li>
             <li><a href="/map/src/js/service/dialog.js.html">src/js/service/dialog.js</a></li>
             <li><a href="/map/src/js/service/event.js.html">src/js/service/event.js</a></li>
-            <li><a href="/map/src/js/service/geolocation.js.html">src/js/service/geolocation.js</a></li>
+            <li class="active"><a href="/map/src/js/service/geolocation.js.html">src/js/service/geolocation.js</a></li>
             <li><a href="/map/src/js/service/i18n.js.html">src/js/service/i18n.js</a></li>
             <li><a href="/map/src/js/service/map.js.html">src/js/service/map.js</a></li>
             <li><a href="/map/src/js/service/storage.js.html">src/js/service/storage.js</a></li>
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
-              <li><a href="#Loader"><i class="alert alert-success"></i><span>Loader</span></a>
+              <li><a href="#Geolocation"><i class="alert alert-success"></i><span>Geolocation</span></a>
               </li>
-              <li><a href="#Loader"><i class="alert alert-success"></i><span>Loader</span></a>
+              <li><a href="#update"><i class="alert alert-info"></i><span>update</span></a>
               </li>
-              <li><a href="#load"><i class="alert alert-info"></i><span>load</span></a>
+              <li><a href="#Geolocation"><i class="alert alert-success"></i><span>Geolocation</span></a>
               </li>
-              <li><a href="#append"><i class="alert alert-info"></i><span>append</span></a>
-              </li>
-              <li><a href="#load"><i class="alert alert-info"></i><span>load</span></a>
+              <li><a href="#locate"><i class="alert alert-info"></i><span>locate</span></a>
               </li>
             </ul>
           </div>
         </div>
         <div class="span9">
-          <section id="Loader">
-            <h1>Loader</h1>
+          <section id="Geolocation">
+            <h1>Geolocation</h1>
             <h5 class="subheader"></h5>
             <p>
-              <div class="label label-success radius ctx-type">constructor</div><span>Loader()</span>
+              <div class="label label-success radius ctx-type">constructor</div><span>Geolocation()</span>
             </p>
           </section>
-          <div class="description"><p>Loader</p> </div>
-          <pre><code class="language-javascript">function Loader() {
-}</code></pre>
-          <section id="Loader">
-            <h1>Loader</h1>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Initial</td>
+                <td>Array</td>
+                <td><p>data array</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"> </div>
+          <pre><code class="language-javascript">function Geolocation() {
+
+    var self = this;
+
+    var enabled;
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+
+        self.marker = new google.maps.Marker({
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: '#d2003b',
+                fillOpacity: 1.0,
+                strokeColor: '#d2003b',
+                strokeOpacity: .5,
+                strokeWeight: 3,
+                scale: 6
+            }
+        });
+
+        self.marker.setMap(gmap);
+
+        update();
+
+        setInterval(function () {
+            update();
+        }, 5000);
+
+    } else {
+        console.error('Browser doesn\'t support Geolocation');
+    }</code></pre>
+          <section id="update">
+            <h1>update</h1>
             <h5 class="subheader"></h5>
             <p>
-              <div class="label label-success radius ctx-type">prototype</div><span>Loader.prototype</span>
+              <div class="label label-info radius ctx-type">function</div><span>update()</span>
+            </p>
+          </section>
+          <div class="description"><p>Get user&#39;s location</p> </div>
+          <pre><code class="language-javascript">function update() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+
+        var LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        self.marker.setPosition(LatLng);
+
+        if (!enabled) {
+            util.show(document.getElementById('map_button_locate'));
+            enabled = true;
+        }
+
+    }, function () {
+        console.error('HTML5 location error')
+    });
+}
+
+    }</code></pre>
+          <section id="Geolocation">
+            <h1>Geolocation</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">prototype</div><span>Geolocation.prototype</span>
             </p>
           </section>
           <div class="description"> </div>
-          <pre><code class="language-javascript">Loader.prototype = {</code></pre>
-          <section id="load">
-            <h1>load</h1>
+          <pre><code class="language-javascript">Geolocation.prototype = {</code></pre>
+          <section id="locate">
+            <h1>locate</h1>
             <h5 class="subheader"></h5>
             <p>
-              <div class="label label-info radius ctx-type">method</div><span>Loader.prototype.load()</span>
+              <div class="label label-info radius ctx-type">method</div><span>Geolocation.prototype.locate()</span>
             </p>
           </section>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th style="width:20%">Option name</th>
-                <th style="width:20%">Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>items</td>
-                <td>Array</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="description"><p>Load items</p> </div>
-          <pre><code class="language-javascript">load: function (items) {
-
-    var promises = [];
-
-    items.forEach(function (item) {
-
-        if (item.constructor !== Array) {
-            item = Object.keys(item).map(function (key) {
-                return item[key];
-            });
-        }
-
-        promises.push(load.apply(this, item));
-    });
-
-    return Promise.all(promises);
-
-},</code></pre>
-          <section id="append">
-            <h1>append</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-info radius ctx-type">method</div><span>Loader.prototype.append()</span>
-            </p>
-          </section>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th style="width:20%">Option name</th>
-                <th style="width:20%">Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>url</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>type</td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="description"><p>Append item to map</p> </div>
-          <pre><code class="language-javascript">append: function (url, type) {
-    return map.add(url, type, true)
+          <div class="description"><p>Center map on user&#39;s location</p> </div>
+          <pre><code class="language-javascript">locate: function () {
+    gmap.setCenter(this.marker.position);
+    gmap.setZoom(16);
 }
 
     };
 
-    return Loader;</code></pre>
-          <section id="load">
-            <h1>load</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-info radius ctx-type">function</div><span>load()</span>
-            </p>
-          </section>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th style="width:20%">Option name</th>
-                <th style="width:20%">Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>url</td>
-                <td>string</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>name</td>
-                <td>string</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>type</td>
-                <td>string</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>options</td>
-                <td>object</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="description"><p>Initialize layers</p> </div>
-          <pre><code class="language-javascript">function load(url, name, type, options) {
+    window.locate = function () {
+geolocation.locate()
+    };
 
-    options = util.extend({
-        visible: false,
-        show: [],
-        hide: [],
-        color: null
-    }, options);
-
-    return storage.add({
-        id: name.toLowerCase(),
-        visible: options.visible,
-        on: options.visible
-    }).then(function () {
-
-        var request = new XMLHttpRequest();
-        request.open('GET', url, true);
-
-        request.onload = function () {
-            if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
-
-                var promises = [];
-
-                JSON.parse(request.responseText).forEach(function (item) {
-                    var p, container = storage.get([name, item.tag]);
-
-                    var v = (function () {
-
-                        if (options.show.length) { // whitelist
-                            return options.show.indexOf(item.tag) !== -1;
-                        }
-
-                        if (options.hide.length) { // blacklist
-                            return options.show.indexOf(item.tag) === -1;
-                        }
-
-                        return options.visible;
-
-                    })();
-
-                    if (container) {
-                        // dummy promise to allow promise chain
-                        p = new Promise(function (resolve) {
-                            resolve();
-                        });
-                    } else {
-                        // create subcategory
-                        p = storage.add({
-                            id: item.tag.toLowerCase(),
-                            visible: v,
-                            on: v,
-                            type: type
-                        }, name);
-                    }
-
-                    p.then(function () {
-                        // when subcategory is created, add map item to storage
-                        storage.add(item, [name.toLowerCase(), item.tag], type, v, options.color);
-                    });
-
-                    promises.push(p);
-
-                });
-
-                return Promise.all(promises);
-
-            }
-        };
-
-        request.send();
-
-    });
-}
+    return Geolocation;
 
 })();</code></pre>
         </div>

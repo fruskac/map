@@ -163,7 +163,7 @@ fruskac.Chart = (function () {
                 gpath.push(point);
             }
 
-            distance += parseFloat(index ? getDistance(points.getAt(index), points.getAt(index - 1)) : 0);
+            distance += index ? getDistance(points.getAt(index), points.getAt(index - 1)) : 0;
 
         });
 

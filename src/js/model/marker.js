@@ -86,7 +86,7 @@ fruskac.Marker = (function () {
 
         self.setPoint(self.position);
 
-        if (self.options.visible) {
+        if (self.options.visible && !self.options.pulsate) {
             clusterer.addMarker(self);
         }
 

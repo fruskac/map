@@ -11,7 +11,8 @@ var util = new fruskac.Util(),
     gmap,
     map,
     chart,
-    dialog;
+    dialog,
+    geolocation;
 
 /**
  * Initialize the map
@@ -43,7 +44,8 @@ fruskac.init = function () {
         },
         mapTypeControl: false,
         streetViewControl: false,
-        fullscreenControl: false
+        fullscreenControl: false,
+        clickableIcons: false
     };
 
     var latLngZoom = request.get(PARAMETER_COORDINATES);
@@ -80,6 +82,7 @@ fruskac.init = function () {
 
     map = new fruskac.Map();
     dialog = new fruskac.Dialog();
+    geolocation = new fruskac.Geolocation();
 
     clusterer = new MarkerClusterer(gmap, [], {
         maxZoom: 12,
@@ -103,7 +106,7 @@ fruskac.init = function () {
         ]
     });
 
-    clusterer.setEnabled = function(value) {
+    clusterer.setEnabled = function (value) {
         clusterer.enabled = value;
         if (value) {
             clusterer.setMaxZoom(12);
@@ -117,7 +120,6 @@ fruskac.init = function () {
     };
 
     clusterer.setEnabled(fruskac.config.clustering);
-
 
     chart = new fruskac.Chart(document.getElementById('chart_container'));
 

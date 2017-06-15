@@ -68,6 +68,11 @@ fruskac.Api = (function () {
             } else { // act as setter
                 return gmap.setMapTypeId(value);
             }
+        },
+
+        locate: function () {
+            console.log(geolocation)
+            geolocation.locate();
         }
     };
 

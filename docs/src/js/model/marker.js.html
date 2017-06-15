@@ -119,8 +119,6 @@
               </li>
               <li><a href="#setVisible"><i class="alert alert-info"></i><span>setVisible</span></a>
               </li>
-              <li><a href="#setClustered"><i class="alert alert-info"></i><span>setClustered</span></a>
-              </li>
               <li><a href="#setOpaque"><i class="alert alert-info"></i><span>setOpaque</span></a>
               </li>
               <li><a href="#getPosition"><i class="alert alert-info"></i><span>getPosition</span></a>
@@ -172,6 +170,7 @@
           <div class="description"> </div>
           <pre><code class="language-javascript">function Marker(options) {
     this.options = options;
+    this.pulsate = this.options.hasOwnProperty('pulsate') &amp;&amp; this.options.pulsate;
     this.data = options.data;
     this.setValues({
         position: new google.maps.LatLng(parseFloat(options.position.lat()), parseFloat(options.position.lng())),
@@ -196,7 +195,7 @@
             div.setAttribute('class', 'hidden');
         }
 
-        if (!self.options.pulsate) {
+        if (!self.pulsate) {
             self.markerShadow = document.createElement('div');
             self.markerShadow.setAttribute('class', 'marker-shadow');
             div.appendChild(self.markerShadow);
@@ -204,11 +203,11 @@
 
         self.markerWrap = document.createElement('div');
         self.markerWrap.setAttribute('class', 'marker-wrap');
-        if (self.options.title) {
+        if (self.options.hasOwnProperty('title')) {
             self.markerWrap.setAttribute('title', self.options.title);
         }
 
-        if (self.options.pulsate) {
+        if (self.pulsate) {
             var markerPulse = document.createElement('div');
             markerPulse.setAttribute('class', 'marker-pulse');
             self.markerWrap.appendChild(markerPulse);
@@ -231,7 +230,7 @@
         panes.overlayImage.appendChild(div);
 
         // if this is a regular marker
-        if (!self.options.pulsate) {
+        if (!self.pulsate) {
             // add wobble animation on enter
             setTimeout(function () {
                 self.animateWobble();
@@ -244,13 +243,9 @@
         }
     }
 
-    self.setPoint(self.position);
-
-    if (self.options.visible &amp;&amp; !self.options.pulsate) {
-        //clusterer.addMarker(self);
-    }
-
-};</code></pre>
+    self.setPoint(self.position);</code></pre>
+          <div class="description"><p>if (self.options.visible &amp;&amp; !self.pulsate) {<br />            clusterer.addMarker(self);<br />        }</p> </div>
+          <pre><code class="language-javascript">};</code></pre>
           <section id="setPoint">
             <h1>setPoint</h1>
             <h5 class="subheader"></h5>
@@ -280,7 +275,7 @@
     var point = self.getProjection().fromLatLngToDivPixel(position);
     self.div.style.left = point.x + 'px';
     self.div.style.top = point.y + 'px';
-    if (!self.options.pulsate) {
+    if (!self.pulsate) {
         self.div.style.zIndex = Math.round(point.y * 100);
     }
 };</code></pre>
@@ -312,7 +307,7 @@
 
     var self = this;
 
-    if (self.div) {
+    if (self.hasOwnProperty('div')) {
 
         self.visible = value;
 
@@ -320,9 +315,9 @@
             //clusterer.addMarker(self);
             setTimeout(function () {
                 util.removeClass(self.div, 'hidden');
-                if (!self.clustered) {
+                //if (!self.clustered) {
                     self.animateWobble();
-                }
+                //}
             }, Math.random() * 400);
         } else {
             //clusterer.removeMarker(self);
@@ -333,13 +328,6 @@
     }
 
 };</code></pre>
-          <section id="setClustered">
-            <h1>setClustered</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.setClustered()</span>
-            </p>
-          </section>
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
@@ -357,15 +345,12 @@
             </tbody>
           </table>
           <div class="description"><p>Set clustered</p> </div>
-          <pre><code class="language-javascript">Marker.prototype.setClustered = function (value) {
-    var self = this;
-
-    if (self.div) {
+          <div class="description"><p>Marker.prototype.setClustered = function (value) {<br />        var self = this;</p><pre><code>    if (self.hasOwnProperty(&#39;div&#39;)) {
 
         if (value) {
-            util.addClass(self.div, 'clustered');
+            util.addClass(self.div, &#39;clustered&#39;);
         } else {
-            util.removeClass(self.div, 'clustered');
+            util.removeClass(self.div, &#39;clustered&#39;);
             if (self.clustered) {
                 self.animateWobble();
             }
@@ -373,7 +358,8 @@
 
         self.clustered = value;
     }
-};</code></pre>
+};
+</code></pre> </div>
           <section id="setOpaque">
             <h1>setOpaque</h1>
             <h5 class="subheader"></h5>
@@ -399,7 +385,7 @@
           </table>
           <div class="description"><p>Make marker semi-transparent</p> </div>
           <pre><code class="language-javascript">Marker.prototype.setOpaque = function (value) {
-    if (this.div) {
+    if (this.hasOwnProperty('div')) {
         if (value) {
             util.addClass(this.div, 'opaque');
         } else {

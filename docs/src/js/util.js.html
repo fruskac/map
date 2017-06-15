@@ -151,7 +151,7 @@
           </table>
           <div class="description"><p>Add a class to a DOM element</p> </div>
           <pre><code class="language-javascript">addClass: function (element, className) {
-    if (element.classList)
+    if (element.hasOwnProperty('classList'))
         element.classList.add(className);
     else
         element.className += ' ' + className;
@@ -186,7 +186,7 @@
           </table>
           <div class="description"><p>Remove a class from a DOM element</p> </div>
           <pre><code class="language-javascript">removeClass: function (element, className) {
-    if (element.classList)
+    if (element.hasOwnProperty('classList'))
         element.classList.remove(className);
     else
         element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');

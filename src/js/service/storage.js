@@ -39,7 +39,7 @@ fruskac.Storage = (function () {
             if (selector) {
                 var object = self.get(selector);
                 if (object) {
-                    if (!object.children) {
+                    if (!object.hasOwnProperty('children')) {
                         object.children = [];
                     }
                     container = object.children;
@@ -50,11 +50,11 @@ fruskac.Storage = (function () {
 
             if (type) {
                 object.type = type;
-                if (value.categories) {
+                if (value.hasOwnProperty('categories')) {
                     value.categories.forEach(function (category) {
                         var parent = self.get(getParentSelector(selector));
                         if (parent) {
-                            if (!parent.categories) {
+                            if (!parent.hasOwnProperty('categories')) {
                                 parent.categories = [];
                             }
                             if (parent.categories.indexOf(category) === -1) {
@@ -64,14 +64,14 @@ fruskac.Storage = (function () {
                     });
                 }
                 return map.add(value, type, visible, color).then(function (object) {
-                    if (value.categories) {
+                    if (value.hasOwnProperty('categories')) {
                         object.categories = value.categories;
                     }
                     container.push(object);
                 })
             } else {
                 return new Promise(function (resolve) {
-                    if (value.visible && value.type) {
+                    if (value.visible && value.hasOwnProperty('type')) {
                         container.unshift(value);
                     } else {
                         container.push(value);
@@ -200,9 +200,9 @@ fruskac.Storage = (function () {
             if (object) {
                 object.visible = value;
 
-                if (object.children) {
+                if (object.hasOwnProperty('children')) {
                     object.children.forEach(function (child) {
-                        if (child.id) {
+                        if (child.hasOwnProperty('id')) {
                             self.setVisible([selector, child.id], value)
                         } else {
                             var v = value ? object.on : false;
@@ -297,9 +297,9 @@ fruskac.Storage = (function () {
 
             var object = self.get(selector);
 
-            if (object.children) {
+            if (object.hasOwnProperty('children')) {
                 object.children.forEach(function (item) {
-                    if (item.children) {
+                    if (item.hasOwnProperty('children')) {
                         item.children.forEach(function (child) {
                             var shoudBeOpaque = category && child.categories.indexOf(category) === -1;
                             child.setOpaque(shoudBeOpaque);
@@ -385,7 +385,7 @@ fruskac.Storage = (function () {
 
         items.forEach(function (item) {
 
-            if (!item.id) {
+            if (!item.hasOwnProperty('id')) {
                 return;
             }
 
@@ -409,18 +409,18 @@ fruskac.Storage = (function () {
                 }
             };
 
-            if (item.type) {
+            if (item.hasOwnProperty('type')) {
                 object.type = item.type;
             }
 
-            if (item.children && item.children.length) {
+            if (item.hasOwnProperty('children') && item.children.length) {
                 var subChildren = getSelectorsForContainer(item.children, itemSelector);
                 if (subChildren && subChildren.length) {
                     object.children = subChildren;
                 }
             }
 
-            if (item.categories && item.categories.length) {
+            if (item.hasOwnProperty('categories') && item.categories.length) {
                 object.categories = item.categories;
                 object.highlight = function (category) {
                     storage.highlight(object.id, category)

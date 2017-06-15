@@ -16,6 +16,7 @@ fruskac.Marker = (function () {
      */
     function Marker(options) {
         this.options = options;
+        this.pulsate = this.options.hasOwnProperty('pulsate') && this.options.pulsate;
         this.data = options.data;
         this.setValues({
             position: new google.maps.LatLng(parseFloat(options.position.lat()), parseFloat(options.position.lng())),
@@ -36,7 +37,7 @@ fruskac.Marker = (function () {
                 div.setAttribute('class', 'hidden');
             }
 
-            if (!self.options.pulsate) {
+            if (!self.pulsate) {
                 self.markerShadow = document.createElement('div');
                 self.markerShadow.setAttribute('class', 'marker-shadow');
                 div.appendChild(self.markerShadow);
@@ -44,11 +45,11 @@ fruskac.Marker = (function () {
 
             self.markerWrap = document.createElement('div');
             self.markerWrap.setAttribute('class', 'marker-wrap');
-            if (self.options.title) {
+            if (self.options.hasOwnProperty('title')) {
                 self.markerWrap.setAttribute('title', self.options.title);
             }
 
-            if (self.options.pulsate) {
+            if (self.pulsate) {
                 var markerPulse = document.createElement('div');
                 markerPulse.setAttribute('class', 'marker-pulse');
                 self.markerWrap.appendChild(markerPulse);
@@ -71,7 +72,7 @@ fruskac.Marker = (function () {
             panes.overlayImage.appendChild(div);
 
             // if this is a regular marker
-            if (!self.options.pulsate) {
+            if (!self.pulsate) {
                 // add wobble animation on enter
                 setTimeout(function () {
                     self.animateWobble();
@@ -86,9 +87,11 @@ fruskac.Marker = (function () {
 
         self.setPoint(self.position);
 
-        if (self.options.visible && !self.options.pulsate) {
-            //clusterer.addMarker(self);
+        /*
+        if (self.options.visible && !self.pulsate) {
+            clusterer.addMarker(self);
         }
+        */
 
     };
 
@@ -102,7 +105,7 @@ fruskac.Marker = (function () {
         var point = self.getProjection().fromLatLngToDivPixel(position);
         self.div.style.left = point.x + 'px';
         self.div.style.top = point.y + 'px';
-        if (!self.options.pulsate) {
+        if (!self.pulsate) {
             self.div.style.zIndex = Math.round(point.y * 100);
         }
     };
@@ -116,7 +119,7 @@ fruskac.Marker = (function () {
 
         var self = this;
 
-        if (self.div) {
+        if (self.hasOwnProperty('div')) {
 
             self.visible = value;
 
@@ -124,9 +127,9 @@ fruskac.Marker = (function () {
                 //clusterer.addMarker(self);
                 setTimeout(function () {
                     util.removeClass(self.div, 'hidden');
-                    if (!self.clustered) {
+                    //if (!self.clustered) {
                         self.animateWobble();
-                    }
+                    //}
                 }, Math.random() * 400);
             } else {
                 //clusterer.removeMarker(self);
@@ -143,10 +146,11 @@ fruskac.Marker = (function () {
      *
      * @param {boolean} value
      */
+    /*
     Marker.prototype.setClustered = function (value) {
         var self = this;
 
-        if (self.div) {
+        if (self.hasOwnProperty('div')) {
 
             if (value) {
                 util.addClass(self.div, 'clustered');
@@ -160,6 +164,7 @@ fruskac.Marker = (function () {
             self.clustered = value;
         }
     };
+    */
 
     /**
      * Make marker semi-transparent
@@ -167,7 +172,7 @@ fruskac.Marker = (function () {
      * @param {boolean} value
      */
     Marker.prototype.setOpaque = function (value) {
-        if (this.div) {
+        if (this.hasOwnProperty('div')) {
             if (value) {
                 util.addClass(this.div, 'opaque');
             } else {

@@ -241,7 +241,7 @@ fruskac.Map = (function () {
             var self = this;
 
             if (point) {
-                if (self.marker) {
+                if (self.hasOwnProperty('marker')) {
                     self.marker.setPoint(point);
                 } else {
                     self.marker = new fruskac.Marker({
@@ -257,9 +257,9 @@ fruskac.Map = (function () {
                 }
 
             } else {
-                if (self.marker) {
+                if (self.hasOwnProperty('marker')) {
                     self.marker.remove();
-                    self.marker = null;
+                    delete self.marker;
                 }
             }
 

@@ -40,6 +40,9 @@ fruskac.Geolocation = (function () {
             console.error('Browser doesn\'t support Geolocation');
         }
 
+        /**
+         * Get user's location
+         */
         function update() {
             navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -63,6 +66,9 @@ fruskac.Geolocation = (function () {
      */
     Geolocation.prototype = {
 
+        /**
+         * Center map on user's location
+         */
         locate: function () {
             gmap.setCenter(this.marker.position);
             gmap.setZoom(16);

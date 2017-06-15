@@ -113,7 +113,7 @@ gulp.task('build:less', function () {
 paths.js = [
     'bower_components/google-maps-v3-infobox/infobox.js',
     'bower_components/dynamics.js/lib/dynamics.min.js',
-    'src/js/extend/*.js',
+    'src/js/extend/googleMaps.js',
     'src/js/bootstrap.js',
     'src/js/util.js',
     'src/js/request.js',

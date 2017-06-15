@@ -87,7 +87,7 @@ fruskac.Marker = (function () {
         self.setPoint(self.position);
 
         if (self.options.visible && !self.options.pulsate) {
-            clusterer.addMarker(self);
+            //clusterer.addMarker(self);
         }
 
     };
@@ -121,7 +121,7 @@ fruskac.Marker = (function () {
             self.visible = value;
 
             if (value) {
-                clusterer.addMarker(self);
+                //clusterer.addMarker(self);
                 setTimeout(function () {
                     util.removeClass(self.div, 'hidden');
                     if (!self.clustered) {
@@ -129,7 +129,7 @@ fruskac.Marker = (function () {
                     }
                 }, Math.random() * 400);
             } else {
-                clusterer.removeMarker(self);
+                //clusterer.removeMarker(self);
                 setTimeout(function () {
                     util.addClass(self.div, 'hidden');
                 }, Math.random() * 200);

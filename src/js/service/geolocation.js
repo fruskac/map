@@ -11,7 +11,8 @@ fruskac.Geolocation = (function () {
 
         var self = this;
 
-        var enabled;
+        var enabled,
+            interval;
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -32,12 +33,12 @@ fruskac.Geolocation = (function () {
 
             update();
 
-            setInterval(function () {
+            interval = setInterval(function () {
                 update();
             }, 5000);
 
         } else {
-            console.error('Browser doesn\'t support Geolocation');
+            console.warn('Browser doesn\'t support Geolocation');
         }
 
         /**
@@ -55,7 +56,8 @@ fruskac.Geolocation = (function () {
                 }
 
             }, function () {
-                console.error('HTML5 location error')
+                console.warn('Browser location not available');
+                clearInterval(interval);
             });
         }
 

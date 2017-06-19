@@ -267,7 +267,14 @@ fruskac.Storage = (function () {
             focusParents(selector);
 
             if (object.type === TYPE_TRACK) {
-                self.setState(selector, true);
+
+                var parent = self.get(getParentSelector(selector));
+
+                parent.children.forEach(function (child) {
+                    if (child.hasOwnProperty('id')) {
+                        self.setState([parent.id, child.id], child.id === object.id);
+                    }
+                });
             }
 
             map.focus(object && object.hasOwnProperty('children') ? object.children[0] : object, isFixedLayout);

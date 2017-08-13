@@ -202,6 +202,8 @@ fruskac.Marker = (function () {
 
         var self = this;
 
+        var position = self.getPosition();
+
         var content =
             '<a href="' + self.data.link + '" target="_blank">' +
             '<img src="' + self.data.image + '" width="280" height="157">' +
@@ -209,7 +211,8 @@ fruskac.Marker = (function () {
             '<h2>' +
             '<a href="' + self.data.link + '" target="_blank">' + self.data.title + '</a>' +
             '</h2>' +
-            '<p>' + self.data.description + '</p>';
+            '<p>' + self.data.description + '</p>' +
+            '<a href="http://maps.google.com/maps?daddr=' + position.lat() + ',' + position.lng() + '" target="_blank" >Navigacija</a>';
 
         dialog.open(content, self.getPosition());
     };

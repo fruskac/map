@@ -22,6 +22,7 @@
     "gulp-sourcemaps": "^2.4.1",
     "gulp-svgstore": "^6.1.0",
     "gulp-uglify": "^2.0.0",
+    "gulp-live-server": "^0.0.31",
     "run-sequence": "^1.2.2"
   },
   "repository": {

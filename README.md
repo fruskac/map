@@ -54,8 +54,14 @@ While doing development, start watcher which will react on file changes and star
 gulp watch
 ```
 
+This will start the local development server on port 3000, that serves the project root, so you can go to your browser 
+and open `http://localhost:3000` to access the files, or for example `http://localhost:3000/examples/angularjs.html` to
+access the angularjs example. 
+You can also acces the documentation by opening `http://localhost:3000/docs/index.html` in your browser.
+
 ##### Release and Documentation
-Documentation build is usually done in the release process to minimize the chance of merge problems, as all the files from `dist` folder are being copied to `docs/dist`. Documentation build is automated and is run by
+Documentation build is usually done in the release process to minimize the chance of merge problems, as all the files 
+from `dist` folder are being copied to `docs/dist`. Documentation build is automated and is run by
 ```
 gulp docs
 ```

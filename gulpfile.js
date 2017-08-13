@@ -16,6 +16,7 @@ var base64 = require('gulp-base64');
 var svgstore = require('gulp-svgstore');
 var inject = require('gulp-inject');
 var rename = require('gulp-rename');
+var gls = require('gulp-live-server');
 
 var paths = {};
 
@@ -243,7 +244,8 @@ gulp.task('watch', function () {
             , 'watch:less'
             , 'watch:html'
             //,'watch:docs'
-        ]
+        ],
+        'server'
     )
 });
 
@@ -257,4 +259,9 @@ gulp.task('watch:less', function () {
 
 gulp.task('watch:html', function () {
     gulp.watch(paths.html, ['build:html']);
+});
+
+gulp.task('server', function() {
+    var server = gls.static(['.']);
+    server.start();
 });

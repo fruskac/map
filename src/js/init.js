@@ -45,7 +45,8 @@ fruskac.init = function () {
         mapTypeControl: false,
         streetViewControl: false,
         fullscreenControl: false,
-        clickableIcons: false
+        clickableIcons: false,
+        gestureHandling: 'greedy',
     };
 
     var latLngZoom = request.get(PARAMETER_COORDINATES);

@@ -28,7 +28,7 @@ fruskac.Util = (function () {
          * @param {string} className
          */
         hasClass: function (element, className) {
-            if (element.classList.contains(className) || (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1)
+            if ((element.hasOwnProperty('classList') && element.classList.contains(className)) || (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1)
               return true;
             return false;
         },

@@ -87,5 +87,4 @@ fruskac.Util = (function () {
     };
 
     return Util;
-
 })();

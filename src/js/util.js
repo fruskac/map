@@ -8,15 +8,29 @@ fruskac.Util = (function () {
     Util.prototype = {
 
         /**
-         * Add a class to a DOM element
+         * Add a class to a DOM element if class does not exist
          * @param {HTMLDomElement} element
          * @param {string} className
          */
         addClass: function (element, className) {
+            var self = this;
+            if (self.hasClass(element,className))
+              return;
             if (element.hasOwnProperty('classList'))
                 element.classList.add(className);
             else
                 element.className += ' ' + className;
+        },
+
+        /**
+         * Check if a DOM element has a class
+         * @param {HTMLDomElement} element
+         * @param {string} className
+         */
+        hasClass: function (element, className) {
+            if (element.classList.contains(className) || (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1)
+              return true;
+            return false;
         },
 
         /**

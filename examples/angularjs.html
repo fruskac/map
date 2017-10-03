@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html ng-app="app" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ФRuŠKać</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <style>
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
         }
-
+        
         iframe {
             border: none;
             margin-top: 52px;
             width: 100%;
             height: calc(100% - 52px);
         }
-
+        
         a {
             cursor: pointer;
         }
-
+        
         a:hover {
             text-decoration: none;
         }
-
+        
         #header {
             position: absolute;
             top: 0;
@@ -39,14 +41,14 @@
             height: 52px;
             font-size: 16px;
         }
-
+        
         #header .brand,
         #header .navigation-toggle {
             padding: 15px;
             display: inline-block;
             color: inherit;
         }
-
+        
         #navigation {
             position: fixed;
             width: 320px;
@@ -56,11 +58,11 @@
             top: 52px;
             left: -320px;
         }
-
+        
         #navigation.in {
             left: 0;
         }
-
+        
         #navigation-overlay {
             display: none;
             position: absolute;
@@ -70,11 +72,11 @@
             height: calc(100% - 52px);
             background: rgba(0, 0, 0, 0.5);
         }
-
+        
         #navigation-overlay.in {
             display: block;
         }
-
+        
         @media (min-width: 768px) {
             iframe {
                 margin-top: 0;
@@ -82,11 +84,9 @@
                 width: calc(100% - 320px);
                 height: 100%;
             }
-
             #navigation-overlay {
                 display: none !important;
             }
-
             #navigation {
                 left: 0;
             }
@@ -123,7 +123,7 @@
             }
         }).config([
             '$compileProvider',
-            function ($compileProvider) {
+            function($compileProvider) {
                 $compileProvider.debugInfoEnabled(false);
                 $compileProvider.commentDirectivesEnabled(false);
                 $compileProvider.cssClassDirectivesEnabled(false);
@@ -132,52 +132,56 @@
             '$scope',
             '$location',
             'COLOR',
-            function ($scope, $location, COLOR) {
+            function($scope, $location, COLOR) {
 
                 $scope.COLOR = COLOR;
 
                 var params = $location.search();
 
-                $scope.iframe = '../dist/index.html?' + Object.keys(params).map(function (i) {
-                        return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
-                    }).join('&');
+                $scope.iframe = '../dist/index.html?' + Object.keys(params).map(function(i) {
+                    return params[i] && encodeURIComponent(i) + "=" + encodeURIComponent(params[i]);
+                }).join('&');
 
-                document.getElementById('map').onload = function () {
+                document.getElementById('map').onload = function() {
                     var FruskacMap = document.getElementById('map').contentWindow.fruskac;
                     new FruskacMap({
                         fullscreen: '../examples/angularjs.html#!',
-                        data: [
-                            {
-                                url: '../examples/data/locations.json',
-                                name: 'locations',
-                                type: 'FRUSKAC_TYPE_MARKER',
-                                options: {
-                                    visible: true,
-                                    color: COLOR.locations
-                                }
-                            },
-                            {
-                                url: '../examples/data/marathons.json',
-                                name: 'marathons',
-                                type: 'FRUSKAC_TYPE_TRACK'
-                            },
-                            {
-                                url: '../examples/data/protection.json',
-                                name: 'protection',
-                                type: 'FRUSKAC_TYPE_KML',
-                                options: {
-                                    visible: true,
-                                    show: [
-                                        'borders'
-                                    ]
-                                }
+                        data: [{
+                            url: '../examples/data/locations.json',
+                            name: 'locations',
+                            type: 'FRUSKAC_TYPE_MARKER',
+                            options: {
+                                visible: true,
+                                color: COLOR.locations
                             }
-                        ]
-                    }).ready(function () {
+                        }, {
+                            url: '../examples/data/tourism-rs.json',
+                            name: 'tourism',
+                            type: 'FRUSKAC_TYPE_MARKER',
+                            options: {
+                                visible: true,
+                                color: COLOR.locations
+                            }
+                        }, {
+                            url: '../examples/data/marathons.json',
+                            name: 'marathons',
+                            type: 'FRUSKAC_TYPE_TRACK'
+                        }, {
+                            url: '../examples/data/protection.json',
+                            name: 'protection',
+                            type: 'FRUSKAC_TYPE_KML',
+                            options: {
+                                visible: true,
+                                show: [
+                                    'borders'
+                                ]
+                            }
+                        }]
+                    }).ready(function() {
 
                         var self = this;
 
-                        $scope.$apply(function () {
+                        $scope.$apply(function() {
                             $scope.ready = true;
                             $scope.data = self.getData();
                             $scope.clustering = self.clustering;
@@ -191,89 +195,119 @@
     </script>
 
 </head>
+
 <body ng-controller="AppCtrl">
 
-<div id="header">
-    <a ng-click="navigationOpen=!navigationOpen" class="navigation-toggle hidden visible-xs-inline-block">
-        <i class="fa fa-bars"></i>
-    </a>
-    <a class="brand">
-        <i class="fa fa-map-o"></i>
-        ФRuŠKać
-    </a>
-</div>
-
-<div id="navigation-overlay" ng-class="{'in':navigationOpen}" ng-click="navigationOpen=false"></div>
-<div id="navigation" ng-class="{'in':navigationOpen}">
-    <div ng-hide="ready" class="panel panel-default">
-        <div class="panel-body">
-            <i class="fa fa-circle-o-notch fa-spin"></i>
-            Loading...
-        </div>
+    <div id="header">
+        <a ng-click="navigationOpen=!navigationOpen" class="navigation-toggle hidden visible-xs-inline-block">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a class="brand">
+            <i class="fa fa-map-o"></i> ФRuŠKać
+        </a>
     </div>
-    <div class="panel-group" ng-show="ready">
-        <div class="panel panel-default">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <a ng-click="clustering(!clustering())">
-                        <i class="fa" ng-class="{'fa-check-square':clustering(),'fa-square-o':!clustering()}"></i>
-                        Clustering
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a ng-click="type(type()==='terrain'?'satellite':'terrain')">
-                        <i class="fa"
-                           ng-class="{'fa-check-square':type()==='satellite','fa-square-o':!type()!=='terrain'}"></i>
-                        Satellite
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div ng-repeat="item in ::data" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a ng-if="::item.children" ng-click="$parent.open=!$parent.open"
-                       ng-init="$parent.open=item.getVisible()" class="pull-right">
-                        <i class="fa" ng-class="{'fa-chevron-right':!open,'fa-chevron-down':open}"></i>
-                    </a>
-                    <a ng-click="item.setVisible(!item.getVisible());open=item.getVisible()">
-                        <i class="fa fa-fw"
-                           ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i>
-                        {{ ::item.id }}
-                    </a>
-                </h3>
+
+    <div id="navigation-overlay" ng-class="{'in':navigationOpen}" ng-click="navigationOpen=false"></div>
+    <div id="navigation" ng-class="{'in':navigationOpen}">
+        <div ng-hide="ready" class="panel panel-default">
+            <div class="panel-body">
+                <i class="fa fa-circle-o-notch fa-spin"></i> Loading...
             </div>
-            <div class="panel-collapse collapse" ng-class="{'in':open}">
-                <ul ng-if="::item.children" class="list-group">
-                    <li ng-repeat-end ng-show="open">
-                        <ul ng-if="::item.children" class="list-unstyled">
-                            <li ng-repeat="item in ::item.children" ng-class="{'disabled':!$parent.item.getVisible()}"
-                                class="list-group-item"
-                                ng-style="{'box-shadow':(COLOR[$parent.item.id][item.id]||COLOR[$parent.item.id]) + ' -5px 0 0 0 inset'}">
-                                <a ng-if="::item.type === 'track'" ng-click="item.select()"
-                                   class="btn btn-default btn-xs pull-right">
-                                    <i class="fa fa-crosshairs"></i>
-                                </a>
-                                <a ng-click="$parent.item.getVisible()&&(item.type !== 'FRUSKAC_TYPE_TRACK'?item.setVisible(!item.getVisible()):item.focus())">
-                                    <i class="fa fa-fw"
-                                       ng-class="{
+        </div>
+        <div class="panel-group" ng-show="ready">
+            <div class="panel panel-default">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a ng-click="clustering(!clustering())">
+                            <i class="fa" ng-class="{'fa-check-square':clustering(),'fa-square-o':!clustering()}"></i> Clustering
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a ng-click="type(type()==='terrain'?'satellite':'terrain')">
+                            <i class="fa" ng-class="{'fa-check-square':type()==='satellite','fa-square-o':!type()!=='terrain'}"></i> Satellite
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div ng-repeat="item in ::data" class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a ng-if="::item.children" ng-click="$parent.open=!$parent.open" ng-init="$parent.open=item.getVisible()" class="pull-right">
+                            <i class="fa" ng-class="{'fa-chevron-right':!open,'fa-chevron-down':open}"></i>
+                        </a>
+                        <a ng-click="item.setVisible(!item.getVisible());open=item.getVisible()">
+                            <i class="fa fa-fw" ng-class="{'fa-check-square':item.getVisible(),'fa-square-o':!item.getVisible()}"></i> {{ ::item.id }}
+                        </a>
+                    </h3>
+                </div>
+                <div class="panel-collapse collapse" ng-class="{'in':open}">
+                    <ul ng-if="::item.children&&!item.categories" class="list-group">
+                        <li ng-repeat-end ng-show="open">
+                            <ul ng-if="::item.children" class="list-unstyled">
+                                <li ng-repeat="item in ::item.children" ng-class="{'disabled':!$parent.item.getVisible()}" class="list-group-item" ng-style="{'box-shadow':(COLOR[$parent.item.id][item.id]||COLOR[$parent.item.id]) + ' -5px 0 0 0 inset'}">
+                                    <a ng-if="::item.type === 'track'" ng-click="item.select()" class="btn btn-default btn-xs pull-right">
+                                        <i class="fa fa-crosshairs"></i>
+                                    </a>
+                                    <a ng-click="$parent.item.getVisible()&&(item.type !== 'FRUSKAC_TYPE_TRACK'?item.setVisible(!item.getVisible()):item.focus())">
+                                        <i class="fa fa-fw" ng-class="{
                                        'fa-check-square': item.type !== 'FRUSKAC_TYPE_TRACK' && item.getVisible(),
                                        'fa-square-o': item.type !== 'FRUSKAC_TYPE_TRACK' && !item.getVisible(),
                                        'fa-check-circle': item.type === 'FRUSKAC_TYPE_TRACK' && item.getVisible(),
                                        'fa-circle-o': item.type === 'FRUSKAC_TYPE_TRACK' && !item.getVisible()
-                                       }"></i>
-                                    {{ ::item.id }}
-                                </a>
-                            </li>
-                        </ul>
+                                       }"></i> {{ ::item.id }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <ul ng-if="::item.children&&item.categories" ng-show="open" class="nav nav-tabs nav-justified">
+                    <li ng-class="{'active':tab===1}">
+                        <a ng-click="$parent.tab=1">
+                        {{ 'objects' }}
+                    </a>
+                    </li>
+                    <li ng-class="{'active':tab===2}">
+                        <a ng-click="$parent.tab=2">
+                        {{ 'activity' }}
+                    </a>
                     </li>
                 </ul>
+                <div ng-if="::item.children" ng-show="open" class="panel-body" ng-init="$parent.tab=1">
+                    <div ng-show="$parent.tab===1" class="column-list">
+                        <div ng-repeat="child in ::item.children" class="checkbox">
+                            <label>
+                            <input ng-attr-type="{{ child.type !== 'FRUSKAC_TYPE_TRACK' ? 'checkbox' : 'radio' }}"
+                                   ng-click="item.getVisible()&&(child.type !== 'FRUSKAC_TYPE_TRACK'?child.setVisible(!child.getVisible()):child.focus())"
+                                   ng-checked="child.getVisible()"
+                                   ng-disabled="!item.getVisible()"
+                                   ng-class="'color-'+item.id+'-'+child.id"
+                            >
+                            {{ ::child.id }}
+                        </label>
+                        </div>
+                    </div>
+                    <div ng-show="$parent.tab===2" class="row">
+                        <div class="col-xs-6" ng-repeat="category in item.categories">
+                            <div class="checkbox" ng-class="'checkbox-' + child.id">
+                                <label>
+                                <input type="radio"
+                                       ng-attr-name="{{item.id}}"
+                                       ng-checked="item.highlightedCategory===category"
+                                       ng-click="item.highlight(item.highlightedCategory===category ? null : category)"
+                                >
+                                {{ ::category }}
+                            </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<iframe ng-src="{{ ::iframe}}" id="map"></iframe>
+    <iframe ng-src="{{ ::iframe}}" id="map"></iframe>
 
 </body>
+
 </html>

@@ -1,0 +1,226 @@
+[{
+        "lat": "45.18",
+        "lng": "19.45",
+        "tag": "restaurants",
+        "categories": [
+            "celebrations",
+            "degustation",
+            "sleeping",
+            "hiking",
+            "riding"
+        ],
+        "data": {
+            "title": "Fru\u0161kogorska lugarnica",
+            "id": "591",
+            "link": "https:\/\/fruskac.net\/rs\/turizam\/restorani\/fruskogorska-lugarnica",
+            "description": "Fru\u0161kogorska lugarnica se nalazi u Maloj Remeti, na oko 50 min od Beograda i Novog Sada i pravo je izbor za sve one koji \u017eele odmor u seoskom ambijentu.",
+            "image": "https:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/mala-remeta-restoran-fruskogorska-lugarnica-21_10.jpg?itok=Y8rdLiO7"
+        },
+        "options": {
+            "icon_data": {
+                "url": "https:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": "45.18",
+        "lng": "19.5",
+        "tag": "households",
+        "categories": [
+            "degustation"
+        ],
+        "data": {
+            "title": "Gorski",
+            "id": "586",
+            "link": "https:\/\/fruskac.net\/rs\/turizam\/domacinstva\/gorski",
+            "description": "Doma\u0107instvo i mlekara \u201eGorski\u201d nalaze se u fru\u0161kogorskom selu Jazak i proizvode sir po tradicionalnoj recepturi od 100% kozjeg mleka",
+            "image": "https:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/jazak-domacinstvo-gorski-sir-4.jpg?itok=bi3tdMgX"
+        },
+        "options": {
+            "icon_data": {
+                "url": "https:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": "45.18",
+        "lng": "19.55",
+        "tag": "households",
+        "categories": [
+            "degustation"
+        ],
+        "data": {
+            "title": "Vila Davidovi\u0107",
+            "id": "576",
+            "link": "https:\/\/fruskac.net\/rs\/turizam\/domacinstva\/vila-davidovic",
+            "description": "Pravo mesto za beg iz grada, opu\u0161tanje i neposredan kontakt sa prelepom fru\u0161kogorskom prirodom, nalazi se na oko sat vremena od Beograda i Novog Sada",
+            "image": "https:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/mandjelos-domacinstvo-vila-davidovic-9.jpg?itok=I42qP2WH"
+        },
+        "options": {
+            "icon_data": {
+                "url": "https:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": "45.18",
+        "lng": "19.6",
+        "tag": "wineries",
+        "categories": [
+            "degustation"
+        ],
+        "data": {
+            "title": "Vinarija \u0160ija\u010dki",
+            "id": "454",
+            "link": "https:\/\/fruskac.net\/rs\/turizam\/vinarije\/sijacki",
+            "description": "Porodi\u010dna vinarija \u0160ija\u010dki se  nalazi na 25 km od Novog Sada i sme\u0161tena je na samoj obali Dunava. Vinarija poseduje sopstvene vinograde",
+            "image": "https:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/banostor-vinarija-sijacki-1.jpg?itok=-kQ8GWQQ"
+        },
+        "options": {
+            "icon_data": {
+                "url": "https:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": "45.18",
+        "lng": "19.65",
+        "tag": "households",
+        "categories": [
+            "sleeping"
+        ],
+        "data": {
+            "title": "Etno bud\u017eak",
+            "id": "510",
+            "link": "https:\/\/fruskac.net\/rs\/turizam\/domacinstva\/etno-budzak",
+            "description": "Etno bud\u017e\u0430k se nalazi u \u010cerevi\u0107u, u podno\u017eju Fru\u0161ke gore.  Ure\u0111en u etno stilu, svojim izgledom, toplom i doma\u0107inskom atmosferom vas ne\u0107e ostaviti ravnodu\u0161nim.",
+            "image": "https:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/cerevic-domacinstvo-etno-budzak-11.jpg?itok=8andtJ-N"
+        },
+        "options": {
+            "icon_data": {
+                "url": "https:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": "45.18",
+        "lng": "19.7",
+        "tag": "restaurants",
+        "categories": [
+            "celebrations"
+        ],
+        "data": {
+            "title": "Restoran Beli \u010cin",
+            "id": "522",
+            "link": "https:\/\/fruskac.net\/rs\/turizam\/restorani\/beli-cin",
+            "description": "Restoran \u201eBeli \u010din\u201c nalazi se na putu prema manastiru Beo\u010din. Celokupan ambijent ovog restorana ure\u0111en je u etno stilu i ukra\u0161en eksponatima ",
+            "image": "https:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/beocin-restoran-beli-cin-5.jpg?itok=v4RS4WV1"
+        },
+        "options": {
+            "icon_data": {
+                "url": "https:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": "45.18",
+        "lng": "19.75",
+        "tag": "restaurants",
+        "categories": [
+            "celebrations"
+        ],
+        "data": {
+            "title": "Restoran Vila Milana",
+            "id": "519",
+            "link": "https:\/\/fruskac.net\/rs\/turizam\/restorani\/vila-milana",
+            "description": "Na putu Novi Sad \u2013 Ledinci, koji se pru\u017ea paralelno uz Dunav i gde Fru\u0161ka gora silazi do same vode, nalazi se vila \u201eMilana\u201d. ",
+            "image": "https:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/petrovaradin-apartmani-petrovaradin-1_8.jpg?itok=5FPLxril"
+        },
+        "options": {
+            "icon_data": {
+                "url": "https:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": "45.18",
+        "lng": "19.8",
+        "tag": "households",
+        "categories": [
+            "degustation",
+            "sleeping",
+            "hiking",
+            "riding"
+        ],
+        "data": {
+            "title": "Ran\u010d Dobro prase",
+            "id": "489",
+            "link": "https:\/\/fruskac.net\/rs\/turizam\/domacinstva\/dobro-prase",
+            "description": "Ran\u010d Dobro prase vam nudi skloni\u0161te od urbanog \u017eivota, oazu mira i zdravlja, na samo 10km od Novog Sada. ",
+            "image": "https:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/ledinci-domacinstvo-dobro-prase-10.jpg?itok=5UMbdXu0"
+        },
+        "options": {
+            "icon_data": {
+                "url": "https:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    {
+        "lat": "45.18",
+        "lng": "19.85",
+        "tag": "wineries",
+        "categories": [
+            "degustation",
+            "sleeping",
+            "cycling"
+        ],
+        "data": {
+            "title": "Vinarija Gaston Wine",
+            "id": "490",
+            "link": "https:\/\/fruskac.net\/rs\/turizam\/vinarije\/gaston-wine",
+            "description": "Vinarija u atraktivnom objektu napravljenom u autenti\u010dnom vojvo\u0111anskom stilu, nudi organizovanim grupama degustacije vina, rakije i proizvoda sa sala\u0161a.",
+            "image": "https:\/\/fruskac.net\/sites\/default\/files\/styles\/thumbnail\/public\/thumb\/tourism\/nestin-vinarija-gaston-wine-2.jpg?itok=MUG96iQQ"
+        },
+        "options": {
+            "icon_data": {
+                "url": "https:\/\/fruskac.net\/sites\/all\/themes\/fruskac\/css\/img\/maps.png",
+                "width": 32,
+                "height": 32,
+                "x": 0,
+                "y": 0
+            }
+        }
+    }
+]

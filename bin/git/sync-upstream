@@ -1,0 +1,58 @@
+#/bin/bash
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+yellow=`tput setaf 3`
+upstream=$1
+branch=$2
+
+# checks if there is a remote repo called upstream
+check_upstream() {
+    git remote -v | grep upstream
+    # if there are no remote repository called upstream
+    if [ $? -ne 0  ]; then
+        printf "${red}Upstream not configured\n"
+        # if the url was passed as an parameter, adds a remote repo called upstream pointing to that url
+        if [[ $upstream ]]; then
+            printf "${yellow}Upstream URL will be set to ${upstream}\n"
+            git remote add upstream $upstream
+        else
+            # if there is no remote called upstream and no url was passed aborts the whole thing
+            printf "${red}Upstream parameter not informed, please inform it like this:\n\n${yellow}--> bash sync-upstream <upstream-url> <branch-to-sync-from>\n\n"
+            printf "${yellow}This is an one time configuration (for each forked repository)\n\n"
+            exit 1
+        fi
+    else
+        printf "${green}Upstream seems to be configured\n"
+    fi
+}
+
+# check if a branch was passed as parameter and if not it makes the master as the default branch
+check_branch() {
+    if [[ $branch ]]; then
+        printf "${green}Branch to sync to is set to {$branch}\n"
+    else
+        printf "${yellow}Branch to sync to not supplied, using *master* as the default branch to sync to\n"
+        branch="master"
+    fi
+}
+
+# fetch updates from upstream
+# merges upstream with a given branch
+# push the changes
+sync() {
+    printf "${green}Fetching its updates...\n"
+    git fetch upstream
+    if [ $? -eq 0 ]; then
+        printf "${green}Merging updates with ${branch}\n"
+        git merge upstream/$branch
+        git push
+    else
+        printf "${red}"
+    fi
+}
+
+
+check_upstream
+check_branch
+sync

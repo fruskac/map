@@ -27,79 +27,12 @@ var gaConfig = {
     sendPageView: true
 };
 
-gulp.task('default', function (callback) {
-    runSequence(
-        'build',
-        'inlinesource',
-        callback
-    );
-});
-
 gulp.task('build', [
     'build:less',
     'build:js',
     'build:img',
     'build:html'
 ]);
-
-gulp.task('inlinesource', function (callback) {
-    runSequence(
-        'inlinesource:html',
-        'inlinesource:clean',
-        callback
-    );
-});
-
-gulp.task('inlinesource:html', function () {
-
-    var index = 0,
-        alphabet = 'abcdefghijklmnopqrstuvwxyz'.split(''),
-        map = {};
-
-    function getValue(string, namespace) {
-        var name = namespace + '__' + string;
-        var value = map[name];
-        if (!value) {
-            value = map[name] = alphabet[index];
-            index++;
-        }
-        return value;
-    }
-
-    return gulp.src('./dist/index.html')
-        .pipe(inlinesource())
-        .pipe(base64())
-        // id selectors
-        .pipe(replace(/(#|id="|getElementById\(")([a-z_]{7,}|chart|map)/g, function (match, value_1, value_2) {
-            return value_1 + getValue(value_2, 'id');
-        }))
-        // class selectors
-        // TODO: minify class selectors
-        /*.pipe(replace(/([},]\.|class="|getElementsByClassName\("|Class\(\w+\.div,")([a-z]{6,})/g, function (match, value_1, value_2) {
-         return value_1 + getValue(value_2, 'class');
-         }))*/
-        // misc
-        // TODO: minify other selectors
-        /*.pipe(replace(/(\[|\s)(marker)(\]|\s)/g, function (match, value_1, value_2, value_3) {
-         return value_1 + getValue(value_2, 'misc') + value_3;
-         }))*/
-        // methods
-        // TODO: minify JS methods
-        /*.pipe(replace(/(getParameterByName|getParameterPartsByName|I18N|placeMarker|addMarker|Marker|addTrack|Track|addKml|Kml|Loader|Chart|markerWrap|markerShadow|animateWobble|animateBounce|animateDrop|setOpaque|showInfoWindow|highlight|translate|fromLatLngToDivPixel)/g, function (match, value_1) {
-         return getValue(value_1, 'method');
-         }))*/
-        .pipe(replace("\n", ' '))
-        .pipe(replace(/[\s]+/g, ' '))
-        .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('inlinesource:clean', function () {
-    return gulp.src([
-        './dist/map.min.*'
-        , './dist/img'
-    ], {read: false})
-        .pipe(clean());
-});
 
 paths.less = [
     './src/less/*.less'
@@ -184,6 +117,65 @@ gulp.task('build:html', function () {
 
 });
 
+gulp.task('inlinesource', function (callback) {
+    runSequence(
+        'inlinesource:html',
+        'inlinesource:clean',
+        callback
+    );
+});
+
+gulp.task('inlinesource:html', function () {
+
+    var index = 0,
+        alphabet = 'abcdefghijklmnopqrstuvwxyz'.split(''),
+        map = {};
+
+    function getValue(string, namespace) {
+        var name = namespace + '__' + string;
+        var value = map[name];
+        if (!value) {
+            value = map[name] = alphabet[index];
+            index++;
+        }
+        return value;
+    }
+
+    return gulp.src('./dist/index.html')
+        .pipe(inlinesource())
+        .pipe(base64())
+        // id selectors
+        .pipe(replace(/(#|id="|getElementById\(")([a-z_]{7,}|chart|map)/g, function (match, value_1, value_2) {
+            return value_1 + getValue(value_2, 'id');
+        }))
+        // class selectors
+        // TODO: minify class selectors
+        /*.pipe(replace(/([},]\.|class="|getElementsByClassName\("|Class\(\w+\.div,")([a-z]{6,})/g, function (match, value_1, value_2) {
+         return value_1 + getValue(value_2, 'class');
+         }))*/
+        // misc
+        // TODO: minify other selectors
+        /*.pipe(replace(/(\[|\s)(marker)(\]|\s)/g, function (match, value_1, value_2, value_3) {
+         return value_1 + getValue(value_2, 'misc') + value_3;
+         }))*/
+        // methods
+        // TODO: minify JS methods
+        /*.pipe(replace(/(getParameterByName|getParameterPartsByName|I18N|placeMarker|addMarker|Marker|addTrack|Track|addKml|Kml|Loader|Chart|markerWrap|markerShadow|animateWobble|animateBounce|animateDrop|setOpaque|showInfoWindow|highlight|translate|fromLatLngToDivPixel)/g, function (match, value_1) {
+         return getValue(value_1, 'method');
+         }))*/
+        .pipe(replace("\n", ' '))
+        .pipe(replace(/[\s]+/g, ' '))
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('inlinesource:clean', function () {
+    return gulp.src([
+        './dist/map.min.*'
+        , './dist/img'
+    ], {read: false})
+        .pipe(clean());
+});
+
 gulp.task('docs:clean', function () {
     return gulp.src([
         'docs/*'
@@ -229,7 +221,7 @@ gulp.task('docs:documentation', function () {
             title: 'ФRuŠKać',
             urlPrefix: '/map'
         }))
-        .pipe(replace(/http:\/\/([^/]+)/g, '//$1')) // fix to allow https
+        .pipe(replace(/http:\/\/(?!localhost)([^/]+)/g, '//$1')) // fix to allow https
         .pipe(ga(gaConfig))
         .pipe(gulp.dest('docs'));
 });
@@ -275,7 +267,8 @@ gulp.task('serve', function() {
 
 gulp.task('release', function (callback) {
     runSequence(
-        'default',
+        'build',
+        'inlinesource',
         'docs',
         callback
     )

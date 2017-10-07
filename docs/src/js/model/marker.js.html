@@ -427,6 +427,8 @@
 
     var self = this;
 
+    var position = self.getPosition();
+
     var content =
         '&lt;a href=&quot;' + self.data.link + '&quot; target=&quot;_blank&quot;&gt;' +
         '&lt;img src=&quot;' + self.data.image + '&quot; width=&quot;280&quot; height=&quot;157&quot;&gt;' +
@@ -434,7 +436,9 @@
         '&lt;h2&gt;' +
         '&lt;a href=&quot;' + self.data.link + '&quot; target=&quot;_blank&quot;&gt;' + self.data.title + '&lt;/a&gt;' +
         '&lt;/h2&gt;' +
-        '&lt;p&gt;' + self.data.description + '&lt;/p&gt;';
+        '&lt;p&gt;' + self.data.description + '&lt;/p&gt;' +
+        '&lt;p&gt;&lt;a href=&quot;https://maps.google.com/maps?daddr=' + position.lat() + ',' + position.lng() + '&quot; target=&quot;_blank&quot; &gt;' +
+        '&lt;svg&gt;&lt;use xmlns:xlink=&quot;//www.w3.org/1999/xlink&quot; xlink:href=&quot;#icon-directions&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/p&gt;';
 
     dialog.open(content, self.getPosition());
 };</code></pre>

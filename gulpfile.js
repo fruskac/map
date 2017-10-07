@@ -17,6 +17,7 @@ var svgstore = require('gulp-svgstore');
 var inject = require('gulp-inject');
 var rename = require('gulp-rename');
 var gls = require('gulp-live-server');
+var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {};
 
@@ -137,6 +138,7 @@ paths.js = [
 
 gulp.task('build:js', function () {
     return gulp.src(paths.js)
+        .pipe(sourcemaps.init())
         .pipe(concat('map.min.js'))
         .pipe(replace(/["']use strict["'];/g, ''))
         .pipe(iife({
@@ -146,6 +148,7 @@ gulp.task('build:js', function () {
         .pipe(uglify({
             mangle: true
         }))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./dist'));
 });
 

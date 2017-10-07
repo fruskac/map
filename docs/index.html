@@ -117,25 +117,27 @@
 <h4>Fruška gora, Srbija</h4>
 <p>The map is to be used in an <code>iFrame</code> element. Initial configuration could be passed in via <code>src</code> attribute. The Map will expose API to it&#39;s parent element to allow Map control. Usages could be found in <a href="https://github.com/fruskac/map/tree/master/examples">examples</a> directory. Here are some links:</p><ul>
 <li><a href="./examples/angularjs.html">AngularJS</a></li>
-<li><a href="examples/embeded.html">Embed</a></li>
+<li><a href="./examples/embeded.html">Embed</a></li>
 <li><a href="./examples/coordinates.html">Coordinates</a></li>
 </ul>
-<h2>Contributing</h2>
-<p>We are using <code>GitHub Flow</code> as our branching model. Read more at <a href="https://guides.github.com/introduction/flow/">https://guides.github.com/introduction/flow/</a></p><h5>Tools</h5>
-<p>To be able to build source files, you need to have <code>npm</code> and <code>node</code> installed. After that run</p><pre><code>npm install
-</code></pre><p>This will install <code>Gulp</code> and other libraries needed for development.</p><h5>Dependencies</h5>
+<h1>Contributing</h1>
+<p>We are using <code>GitHub Flow</code> as our branching model. Read more at <a href="https://guides.github.com/introduction/flow/">https://guides.github.com/introduction/flow/</a></p><h4>Fork the repository</h4>
+<p>Start by forking this repository like explained here <a href="https://help.github.com/articles/fork-a-repo/">https://help.github.com/articles/fork-a-repo/</a>. </p><h4>Create a local clone of your fork</h4>
+<p>To get code to your local machine use</p><pre><code>git clone https://github.com/YOUR-USERNAME/map
+</code></pre><h4>Keep your fork synced</h4>
+<p>Keep your local fork of this repository in sync use</p><pre><code>./bin/git/sync-upstream
+</code></pre><h4>Tools</h4>
+<p>You need to have <code>npm</code> and <code>node</code> installed. Install <code>Gulp</code> and other libraries needed for development with this command</p><pre><code>npm install
+</code></pre><h4>Dependencies</h4>
 <p>To be able to get dependencies, you need to have <code>bower</code> installed. Run the command below to install all needed dependencies.</p><pre><code>bower install
-</code></pre><h5>Build</h5>
-<p>To create build, run</p><pre><code>gulp
-</code></pre><h6>Build separate JS, LESS, HTML and IMG</h6>
-<p>Build can be run by specific type, like</p><pre><code>gulp js
-gulp less
-gulp html
-gulp img
-</code></pre><h5>Development</h5>
+</code></pre><h4>Build</h4>
+<p>To create a build, run</p><pre><code>gulp build
+</code></pre><h4>Development</h4>
 <p>While doing development, start watcher which will react on file changes and start appropriate tasks to update build</p><pre><code>gulp watch
-</code></pre><p>This will also start the local development server on port 3000, that serves the project root, so you can go to your browser<br />and open <code>//localhost:3000</code> to access the files, or for example <code>//localhost:3000/examples/angularjs.html</code> to<br />access the angularjs example.<br />You can also access the documentation by opening <code>//localhost:3000/docs/index.html</code> in your browser.</p><h5>Release and Documentation</h5>
+</code></pre><p>This will also start the local development server on port 3000, that serves the project root, so you can go to your browser and open </p><p><a href="http://localhost:3000">http://localhost:3000</a></p><p>to access the files, or for example </p><p><a href="http://localhost:3000/examples/angularjs.html">http://localhost:3000/examples/angularjs.html</a></p><p>to access the AngularJS example.</p><p>You can also access the documentation by opening </p><p><a href="http://localhost:3000/docs/">http://localhost:3000/docs/</a></p><h4>Documentation</h4>
 <p>Documentation build is usually done in the release process to minimize the chance of merge problems, as all the files<br />from <code>dist</code> folder are being copied to <code>docs/dist</code>. Documentation build is automated and is run by</p><pre><code>gulp docs
+</code></pre><h4>Release</h4>
+<p>Run builds, put code inline, generate documentation by running</p><pre><code>gulp release
 </code></pre></section>
         </div>
       </div>

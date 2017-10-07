@@ -26,25 +26,26 @@ var gaConfig = {
     sendPageView: true
 };
 
-gulp.task('default', function () {
-    return runSequence(
-        'build'
-        , 'inlinesource'
-        //,'docs'
+gulp.task('default', function (callback) {
+    runSequence(
+        'build',
+        'inlinesource',
+        callback
     );
 });
 
 gulp.task('build', [
-    'build:less'
-    , 'build:js'
-    , 'build:img'
-    , 'build:html'
+    'build:less',
+    'build:js',
+    'build:img',
+    'build:html'
 ]);
 
-gulp.task('inlinesource', function () {
-    return runSequence(
-        'inlinesource:html'
-        , 'inlinesource:clean'
+gulp.task('inlinesource', function (callback) {
+    runSequence(
+        'inlinesource:html',
+        'inlinesource:clean',
+        callback
     );
 });
 
@@ -212,40 +213,43 @@ gulp.task('docs:copy:examples', function () {
 });
 
 gulp.task('docs:copy', [
-    'docs:copy:dist'
-    , 'docs:copy:examples'
+    'docs:copy:dist',
+    'docs:copy:examples'
 ]);
 
-gulp.task('docs', function () {
+gulp.task('docs:documentation', function () {
+    return gulp.src([
+        './README.md',
+        './src/**/*.js'
+    ], {base: '.'})
+        .pipe(doxx({
+            title: 'ФRuŠKać',
+            urlPrefix: '/map'
+        }))
+        .pipe(replace(/http:\/\/([^/]+)/g, '//$1')) // fix to allow https
+        .pipe(ga(gaConfig))
+        .pipe(gulp.dest('docs'));
+});
+
+gulp.task('docs', function (callback) {
     runSequence(
         'docs:clean',
         'docs:copy',
-        function () {
-            gulp.src([
-                './README.md',
-                './src/**/*.js'
-            ], {base: '.'})
-                .pipe(doxx({
-                    title: 'ФRuŠKać',
-                    urlPrefix: '/map'
-                }))
-                .pipe(replace(/http:\/\/([^/]+)/g, '//$1')) // fix to allow https
-                .pipe(ga(gaConfig))
-                .pipe(gulp.dest('docs'));
-        }
+        'docs:documentation',
+        callback
     );
 });
 
-gulp.task('watch', function () {
-    return runSequence(
+gulp.task('watch', function (callback) {
+    runSequence(
         'build',
         [
-            'watch:js'
-            , 'watch:less'
-            , 'watch:html'
-            //,'watch:docs'
+            'watch:js',
+            'watch:less',
+            'watch:html'
         ],
-        'server'
+        'serve',
+        callback
     )
 });
 
@@ -261,7 +265,15 @@ gulp.task('watch:html', function () {
     gulp.watch(paths.html, ['build:html']);
 });
 
-gulp.task('server', function() {
+gulp.task('serve', function() {
     var server = gls.static(['.']);
     server.start();
+});
+
+gulp.task('release', function (callback) {
+    runSequence(
+        'default',
+        'docs',
+        callback
+    )
 });

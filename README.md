@@ -7,18 +7,7 @@ The map is to be used in an `iFrame` element. Initial configuration could be pas
 
 ## Contributing
 
-##### Branching model
-We are using `git-flow` as our brancing model. Read more at [nvie.com/posts/a-successful-git-branching-model](http://nvie.com/posts/a-successful-git-branching-model/)
-
-###### Installing `git-flow`
-Read more about `git-flow` and how to install it [github.com/nvie/gitflow](https://github.com/nvie/gitflow)
-
-###### Adding ```git-flow-hooks``` helper
-To automate "semantic versioning" you could install ```git-flow-hooks``` from https://github.com/jaspernbrouwer/git-flow-hooks to 
-- Prevent direct commits to the master branch.
-- Prevent merge marker commits.
-- Automatically bump versions when starting a release or hotfix. Versions are generated, written to file and committed.
-- Automatically specify tag messages.
+We are using `GitHub Flow` as our branching model. Read more at [https://guides.github.com/introduction/flow/](https://guides.github.com/introduction/flow/)
 
 ##### Tools
 To be able to build source files, you need to have `npm` and `node` installed. After that run
@@ -54,10 +43,10 @@ While doing development, start watcher which will react on file changes and star
 gulp watch
 ```
 
-This will start the local development server on port 3000, that serves the project root, so you can go to your browser 
+This will also start the local development server on port 3000, that serves the project root, so you can go to your browser 
 and open `http://localhost:3000` to access the files, or for example `http://localhost:3000/examples/angularjs.html` to
 access the angularjs example. 
-You can also acces the documentation by opening `http://localhost:3000/docs/index.html` in your browser.
+You can also access the documentation by opening `http://localhost:3000/docs/index.html` in your browser.
 
 ##### Release and Documentation
 Documentation build is usually done in the release process to minimize the chance of merge problems, as all the files 

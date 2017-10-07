@@ -121,16 +121,7 @@
 <li><a href="./examples/coordinates.html">Coordinates</a></li>
 </ul>
 <h2>Contributing</h2>
-<h5>Branching model</h5>
-<p>We are using <code>git-flow</code> as our brancing model. Read more at <a href="//nvie.com/posts/a-successful-git-branching-model/">nvie.com/posts/a-successful-git-branching-model</a></p><h6>Installing <code>git-flow</code></h6>
-<p>Read more about <code>git-flow</code> and how to install it <a href="https://github.com/nvie/gitflow">github.com/nvie/gitflow</a></p><h6>Adding <code>git-flow-hooks</code> helper</h6>
-<p>To automate &quot;semantic versioning&quot; you could install <code>git-flow-hooks</code> from <a href="https://github.com/jaspernbrouwer/git-flow-hooks">https://github.com/jaspernbrouwer/git-flow-hooks</a> to </p><ul>
-<li>Prevent direct commits to the master branch.</li>
-<li>Prevent merge marker commits.</li>
-<li>Automatically bump versions when starting a release or hotfix. Versions are generated, written to file and committed.</li>
-<li>Automatically specify tag messages.</li>
-</ul>
-<h5>Tools</h5>
+<p>We are using <code>GitHub Flow</code> as our branching model. Read more at <a href="https://guides.github.com/introduction/flow/">https://guides.github.com/introduction/flow/</a></p><h5>Tools</h5>
 <p>To be able to build source files, you need to have <code>npm</code> and <code>node</code> installed. After that run</p><pre><code>npm install
 </code></pre><p>This will install <code>Gulp</code> and other libraries needed for development.</p><h5>Dependencies</h5>
 <p>To be able to get dependencies, you need to have <code>bower</code> installed. Run the command below to install all needed dependencies.</p><pre><code>bower install
@@ -143,8 +134,8 @@ gulp html
 gulp img
 </code></pre><h5>Development</h5>
 <p>While doing development, start watcher which will react on file changes and start appropriate tasks to update build</p><pre><code>gulp watch
-</code></pre><h5>Release and Documentation</h5>
-<p>Documentation build is usually done in the release process to minimize the chance of merge problems, as all the files from <code>dist</code> folder are being copied to <code>docs/dist</code>. Documentation build is automated and is run by</p><pre><code>gulp docs
+</code></pre><p>This will also start the local development server on port 3000, that serves the project root, so you can go to your browser<br />and open <code>//localhost:3000</code> to access the files, or for example <code>//localhost:3000/examples/angularjs.html</code> to<br />access the angularjs example.<br />You can also access the documentation by opening <code>//localhost:3000/docs/index.html</code> in your browser.</p><h5>Release and Documentation</h5>
+<p>Documentation build is usually done in the release process to minimize the chance of merge problems, as all the files<br />from <code>dist</code> folder are being copied to <code>docs/dist</code>. Documentation build is automated and is run by</p><pre><code>gulp docs
 </code></pre></section>
         </div>
       </div>

@@ -1,4 +1,5 @@
 # Fruškać Map
+
 #### Fruška gora, Srbija
 The map is to be used in an `iFrame` element. Initial configuration could be passed in via `src` attribute. The Map will expose API to it's parent element to allow Map control. Usages could be found in [examples](https://github.com/fruskac/map/tree/master/examples) directory. Here are some links:
 * [AngularJS](./examples/angularjs.html)
@@ -7,11 +8,11 @@ The map is to be used in an `iFrame` element. Initial configuration could be pas
 
 # Contributing
 
-We are using `GitHub Flow` as our branching model. Read more at [https://guides.github.com/introduction/flow/](https://guides.github.com/introduction/flow/)
+We are using `GitHub Flow` as our branching model. Read more at https://guides.github.com/introduction/flow/
 
 #### Fork the repository
 
-Start by forking this repository like explained here [https://help.github.com/articles/fork-a-repo/](https://help.github.com/articles/fork-a-repo/). 
+Start by forking this repository like explained here https://help.github.com/articles/fork-a-repo/. 
 
 #### Create a local clone of your fork
 
@@ -22,7 +23,7 @@ git clone https://github.com/YOUR-USERNAME/map
 
 #### Keep your fork synced
 
-Keep your local fork of this repository in sync use
+Keep your local fork of this repository in sync use command below. For more details see https://help.github.com/articles/syncing-a-fork/
 ```
 ./bin/git/sync-upstream
 ```

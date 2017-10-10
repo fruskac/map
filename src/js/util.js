@@ -1,9 +1,8 @@
 'use strict';
 
-fruskac.Util = (function () {
+fruskac.Util = (function() {
 
-    function Util() {
-    }
+    function Util() {}
 
     Util.prototype = {
 
@@ -12,10 +11,9 @@ fruskac.Util = (function () {
          * @param {HTMLDomElement} element
          * @param {string} className
          */
-        addClass: function (element, className) {
-            var self = this;
-            if (self.hasClass(element,className))
-              return;
+        addClass: function(element, className) {
+            if (this.hasClass(element, className))
+                return;
             if (element.hasOwnProperty('classList'))
                 element.classList.add(className);
             else
@@ -27,10 +25,8 @@ fruskac.Util = (function () {
          * @param {HTMLDomElement} element
          * @param {string} className
          */
-        hasClass: function (element, className) {
-            if ((element.hasOwnProperty('classList') && element.classList.contains(className)) || (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1)
-              return true;
-            return false;
+        hasClass: function(element, className) {
+            return ((element.hasOwnProperty('classList') && element.classList.contains(className)) || (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1) ? true : false;
         },
 
         /**
@@ -38,7 +34,7 @@ fruskac.Util = (function () {
          * @param {HTMLDomElement} element
          * @param {string} className
          */
-        removeClass: function (element, className) {
+        removeClass: function(element, className) {
             if (element.hasOwnProperty('classList'))
                 element.classList.remove(className);
             else
@@ -49,7 +45,7 @@ fruskac.Util = (function () {
          * Show a DOM element
          * @param {HTMLDomElement} element
          */
-        show: function (element) {
+        show: function(element) {
             element.style.display = '';
         },
 
@@ -57,7 +53,7 @@ fruskac.Util = (function () {
          * Remove an element from DOM
          * @param {HTMLDomElement} element
          */
-        remove: function (element) {
+        remove: function(element) {
             element.parentNode.removeChild(element);
         },
 
@@ -68,7 +64,7 @@ fruskac.Util = (function () {
          * @param {Object} options User options
          * @returns {Object} Merged values of defaults and options
          */
-        extend: function (defaults, options) {
+        extend: function(defaults, options) {
             var extended = {};
             var prop;
             for (prop in defaults) {

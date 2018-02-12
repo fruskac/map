@@ -237,9 +237,7 @@ loader.load(fruskac.config.data).then(function () {
         });
     }
 
-    google.maps.event.addListenerOnce(gmap, 'idle', function () {
-        event.publish('ready');
-    });
+    event.publish('ready');
 
 });
 };</code></pre>

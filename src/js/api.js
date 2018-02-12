@@ -71,7 +71,6 @@ fruskac.Api = (function () {
         },
 
         locate: function () {
-            console.log(geolocation)
             geolocation.locate();
         }
     };

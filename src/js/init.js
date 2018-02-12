@@ -154,9 +154,7 @@ fruskac.init = function () {
             });
         }
 
-        google.maps.event.addListenerOnce(gmap, 'idle', function () {
-            event.publish('ready');
-        });
+        event.publish('ready');
 
     });
 };

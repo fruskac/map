@@ -274,61 +274,69 @@
         on: options.visible
     }).then(function () {
 
-        var request = new XMLHttpRequest();
-        request.open('GET', url, true);
+        return new Promise(function (resolve) {
 
-        request.onload = function () {
-            if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
+            var request = new XMLHttpRequest();
 
-                var promises = [];
+            request.open('GET', url, true);
 
-                JSON.parse(request.responseText).forEach(function (item) {
-                    var p, container = storage.get([name, item.tag]);
+            request.onload = function () {
 
-                    var v = (function () {
+                if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
 
-                        if (options.show.length) { // whitelist
-                            return options.show.indexOf(item.tag) !== -1;
+                    var promises = [];
+
+                    JSON.parse(request.responseText).forEach(function (item) {
+                        var p, container = storage.get([name, item.tag]);
+
+                        var v = (function () {
+
+                            if (options.show.length) { // whitelist
+                                return options.show.indexOf(item.tag) !== -1;
+                            }
+
+                            if (options.hide.length) { // blacklist
+                                return options.show.indexOf(item.tag) === -1;
+                            }
+
+                            return options.visible;
+
+                        })();
+
+                        if (container) {
+                            // dummy promise to allow promise chain
+                            p = new Promise(function (resolve) {
+                                resolve();
+                            });
+                        } else {
+                            // create subcategory
+                            p = storage.add({
+                                id: item.tag.toLowerCase(),
+                                visible: v,
+                                on: v,
+                                type: type
+                            }, name);
                         }
 
-                        if (options.hide.length) { // blacklist
-                            return options.show.indexOf(item.tag) === -1;
-                        }
-
-                        return options.visible;
-
-                    })();
-
-                    if (container) {
-                        // dummy promise to allow promise chain
-                        p = new Promise(function (resolve) {
-                            resolve();
+                        p.then(function () {
+                            // when subcategory is created, add map item to storage
+                            storage.add(item, [name.toLowerCase(), item.tag], type, v, options.color);
                         });
-                    } else {
-                        // create subcategory
-                        p = storage.add({
-                            id: item.tag.toLowerCase(),
-                            visible: v,
-                            on: v,
-                            type: type
-                        }, name);
-                    }
 
-                    p.then(function () {
-                        // when subcategory is created, add map item to storage
-                        storage.add(item, [name.toLowerCase(), item.tag], type, v, options.color);
+                        promises.push(p);
+
                     });
 
-                    promises.push(p);
+                    Promise.all(promises).then(function () {
+                        resolve();
+                    });
 
-                });
+                }
+            };
 
-                return Promise.all(promises);
+            request.send();
 
-            }
-        };
-
-        request.send();
+        });
 
     });
 }

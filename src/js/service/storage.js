@@ -67,6 +67,7 @@ fruskac.Storage = (function () {
                     if (value.hasOwnProperty('categories')) {
                         object.categories = value.categories;
                     }
+                    container.push(object);
                 })
             } else {
                 return new Promise(function (resolve) {

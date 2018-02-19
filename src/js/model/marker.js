@@ -106,8 +106,9 @@ fruskac.Marker = (function () {
                     self.showInfoWindow();
                 });
                 // Stop Info Window opening on drag start
-                self.map.addListener(gmap, 'dragstart', function () {
+                var handlePreventExecute = self.map.addListener('dragstart', function () {
                     google.maps.event.removeListener(handleExecuteEvent);
+                    google.maps.event.removeListener(handlePreventExecute);
                 });
             });
         }

@@ -218,7 +218,7 @@ fruskac.Map = (function () {
                     var interval = setInterval(function () {
                         object.animateBounce();
                     }, 2000);
-                    google.maps.event.addDomListener(object.div, EVENT_CLICK, function () {
+                    google.maps.event.addDomListener(object.div, 'click', function () {
                         clearInterval(interval);
                     });
                     break;

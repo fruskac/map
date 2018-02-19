@@ -78,11 +78,12 @@ fruskac.Marker = (function () {
                     self.animateWobble();
                 }, Math.random() * 800 + 200);
 
-                google.maps.event.addDomListener(div, EVENT_CLICK, function () {
-                    //self.animateWobble();
-                    self.showInfoWindow();
-                });
+                // Show info Window for desktop
+                attachEvents('mousedown', 'mouseup');
+                // Show info Window for touch devices
+                attachEvents('touchstart', 'touchend');
             }
+
         }
 
         self.setPoint(self.position);
@@ -92,6 +93,24 @@ fruskac.Marker = (function () {
             clusterer.addMarker(self);
         }
         */
+
+        /**
+         * Attach events which handle click/touch on marker, and show Info Window
+         * @param {string} prepareEvent
+         * @param {string} executeEvent
+         */
+        function attachEvents(prepareEvent, executeEvent) {
+            google.maps.event.addDomListener(div, prepareEvent, function () {
+                // Listen to gesture stop, if not prevented it will open Info Window
+                var handleExecuteEvent = google.maps.event.addDomListener(div, executeEvent, function () {
+                    self.showInfoWindow();
+                });
+                // Stop Info Window opening on drag start
+                self.map.addListener(gmap, 'dragstart', function () {
+                    google.maps.event.removeListener(handleExecuteEvent);
+                });
+            });
+        }
 
     };
 

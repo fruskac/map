@@ -115,6 +115,8 @@
               </li>
               <li><a href="#draw"><i class="alert alert-info"></i><span>draw</span></a>
               </li>
+              <li><a href="#attachEvents"><i class="alert alert-info"></i><span>attachEvents</span></a>
+              </li>
               <li><a href="#setPoint"><i class="alert alert-info"></i><span>setPoint</span></a>
               </li>
               <li><a href="#setVisible"><i class="alert alert-info"></i><span>setVisible</span></a>
@@ -236,16 +238,59 @@
                 self.animateWobble();
             }, Math.random() * 800 + 200);
 
-            google.maps.event.addDomListener(div, EVENT_CLICK, function () {
-                //self.animateWobble();
-                self.showInfoWindow();
-            });
+            // Show info Window for desktop
+            attachEvents('mousedown', 'mouseup');
+            // Show info Window for touch devices
+            attachEvents('touchstart', 'touchend');
         }
+
     }
 
     self.setPoint(self.position);</code></pre>
           <div class="description"><p>if (self.options.visible &amp;&amp; !self.pulsate) {<br />            clusterer.addMarker(self);<br />        }</p> </div>
-          <pre><code class="language-javascript">};</code></pre>
+          <section id="attachEvents">
+            <h1>attachEvents</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>attachEvents()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>prepareEvent</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>executeEvent</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Attach events which handle click/touch on marker, and show Info Window</p> </div>
+          <pre><code class="language-javascript">function attachEvents(prepareEvent, executeEvent) {
+    google.maps.event.addDomListener(div, prepareEvent, function () {
+        // Listen to gesture stop, if not prevented it will open Info Window
+        var handleExecuteEvent = google.maps.event.addDomListener(div, executeEvent, function () {
+            self.showInfoWindow();
+        });
+        // Stop Info Window opening on drag start
+        self.map.addListener(gmap, 'dragstart', function () {
+            google.maps.event.removeListener(handleExecuteEvent);
+        });
+    });
+}
+
+    };</code></pre>
           <section id="setPoint">
             <h1>setPoint</h1>
             <h5 class="subheader"></h5>

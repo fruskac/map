@@ -78,7 +78,7 @@ fruskac.Marker = (function () {
                     self.animateWobble();
                 }, Math.random() * 800 + 200);
 
-                google.maps.event.addDomListener(div, 'click', function () {
+                google.maps.event.addDomListener(div, EVENT_CLICK, function () {
                     //self.animateWobble();
                     self.showInfoWindow();
                 });

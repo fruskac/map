@@ -135,6 +135,26 @@
   visibility: hidden;
 }
 
+.scaleOnZoom(@zoom) {
+  #map[zoom="@{zoom}"] {
+    .marker-container {
+      transform: scale(@zoom*0.9/12);
+    }
+  }
+}
+
+.scaleOnZoom(1);
+.scaleOnZoom(2);
+.scaleOnZoom(3);
+.scaleOnZoom(4);
+.scaleOnZoom(5);
+.scaleOnZoom(6);
+.scaleOnZoom(7);
+.scaleOnZoom(8);
+.scaleOnZoom(9);
+.scaleOnZoom(10);
+.scaleOnZoom(11);
+
 @keyframes pulsate {
   0% {
     transform: scale(.1, .1);

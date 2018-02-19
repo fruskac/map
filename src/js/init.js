@@ -81,6 +81,12 @@ fruskac.init = function () {
     );
     groundOverlay.setMap(gmap);
 
+    gmap.getDiv().setAttribute('zoom', gmap.getZoom());
+
+    gmap.addListener('zoom_changed', function () {
+        gmap.getDiv().setAttribute('zoom', gmap.getZoom());
+    })
+
     map = new fruskac.Map();
     dialog = new fruskac.Dialog();
     geolocation = new fruskac.Geolocation();

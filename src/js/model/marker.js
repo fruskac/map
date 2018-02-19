@@ -234,7 +234,7 @@ fruskac.Marker = (function () {
             '<p><a href="https://maps.google.com/maps?daddr=' + position.lat() + ',' + position.lng() + '" target="_blank" >' +
             '<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-directions"></use></svg></a></p>';
 
-        dialog.open(content, self.getPosition());
+        dialog.open(content, self);
     };
 
     /**

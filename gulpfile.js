@@ -27,6 +27,8 @@ var gaConfig = {
     sendPageView: true
 };
 
+gulp.task('default', ['build']);
+
 gulp.task('build', [
     'build:less',
     'build:js',

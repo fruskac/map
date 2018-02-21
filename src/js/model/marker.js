@@ -33,8 +33,9 @@ fruskac.Marker = (function () {
         if (!div) {
 
             div = self.div = document.createElement('div');
+            div.setAttribute('class', 'marker-container');
             if (!self.options.visible) {
-                div.setAttribute('class', 'hidden');
+                div.setAttribute('class', div.getAttribute('class') + ' hidden');
             }
 
             if (!self.pulsate) {

@@ -138,7 +138,8 @@
 .scaleOnZoom(@zoom) {
   #map[zoom="@{zoom}"] {
     .marker-container {
-      transform: scale(@zoom*0.9/12);
+      transition: transform .5s;
+      transform: scale(@zoom*.8/12);
     }
   }
 }

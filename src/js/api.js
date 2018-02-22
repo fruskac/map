@@ -13,7 +13,11 @@ fruskac.Api = (function () {
         fruskac.config = util.extend({
             lang: 'en',
             fullscreen: window.location,
-            data: []
+            data: [],
+            map: {
+                center: new google.maps.LatLng(45.167031, 19.69677),
+                zoom: 12
+            }
         }, options);
 
         fruskac.init();

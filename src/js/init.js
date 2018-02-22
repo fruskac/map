@@ -36,8 +36,8 @@ fruskac.init = function () {
     storage = new fruskac.Storage();
 
     var mapConfig = {
-        center: new google.maps.LatLng(45.167031, 19.69677),
-        zoom: 11,
+        center: new google.maps.LatLng(fruskac.config.map.center.latitude, fruskac.config.map.center.longitude),
+        zoom: fruskac.config.map.zoom,
         mapTypeId: google.maps.MapTypeId.TERRAIN,
         zoomControlOptions: {
             position: google.maps.ControlPosition.LEFT_CENTER
@@ -64,6 +64,13 @@ fruskac.init = function () {
 
     gmap = new google.maps.Map(document.getElementById('map'), mapConfig);
 
+    if (fruskac.config.map.bounds) {
+        gmap.fitBounds(new google.maps.LatLngBounds(
+            new google.maps.LatLng(fruskac.config.map.bounds.sw.latitude, fruskac.config.map.bounds.sw.longitude),
+            new google.maps.LatLng(fruskac.config.map.bounds.ne.latitude, fruskac.config.map.bounds.ne.longitude)
+        ));
+    }
+
     var overlayImageBounds = {
         north: 45.166508,
         south: 45.136001,
@@ -85,7 +92,7 @@ fruskac.init = function () {
 
     gmap.addListener('zoom_changed', function () {
         gmap.getDiv().setAttribute('zoom', gmap.getZoom());
-    })
+    });
 
     map = new fruskac.Map();
     dialog = new fruskac.Dialog();

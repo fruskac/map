@@ -15,7 +15,10 @@ fruskac.Api = (function () {
             fullscreen: window.location,
             data: [],
             map: {
-                center: new google.maps.LatLng(45.1570741, 19.7093099),
+                center: {
+                    latitude: 45.1570741,
+                    longitude: 19.7093099
+                },
                 zoom: 12
             }
         }, options);

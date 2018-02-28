@@ -59,6 +59,9 @@ fruskac.init = function () {
             if (latLngZoomParts[2]) {
                 mapConfig.zoom = parseFloat(latLngZoomParts[2]);
             }
+            if (fruskac.config.map.bounds) {
+                delete fruskac.config.map.bounds;
+            }
         }
     }
 

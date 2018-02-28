@@ -218,9 +218,11 @@ fruskac.Map = (function () {
                     var interval = setInterval(function () {
                         object.animateBounce();
                     }, 2000);
-                    google.maps.event.addDomListener(object.div, 'click', function () {
-                        clearInterval(interval);
-                    });
+                    setTimeout(function () {
+                        object.div.addEventListener('click', function () {
+                            clearInterval(interval);
+                        });
+                    }, 2000);
                     break;
                 case TYPE_TRACK:
                     self.placeMarker(null);

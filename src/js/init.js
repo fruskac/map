@@ -59,12 +59,18 @@ fruskac.init = function () {
             if (latLngZoomParts[2]) {
                 mapConfig.zoom = parseFloat(latLngZoomParts[2]);
             }
+            if (fruskac.config.map.bounds) {
+                delete fruskac.config.map.bounds;
+            }
         }
     }
 
     gmap = new google.maps.Map(document.getElementById('map'), mapConfig);
 
-    if (fruskac.config.map.bounds) {
+    var track = request.get(PARAMETER_TRACK);
+    var focus = request.get(PARAMETER_FOCUS);
+
+    if (fruskac.config.map.bounds && !(track || focus)) {
         gmap.fitBounds(new google.maps.LatLngBounds(
             new google.maps.LatLng(fruskac.config.map.bounds.sw.latitude, fruskac.config.map.bounds.sw.longitude),
             new google.maps.LatLng(fruskac.config.map.bounds.ne.latitude, fruskac.config.map.bounds.ne.longitude)
@@ -139,32 +145,23 @@ fruskac.init = function () {
 
     var loader = new fruskac.Loader();
 
-    var track = request.get(PARAMETER_TRACK);
-    var focus = request.get(PARAMETER_FOCUS);
-
     loader.load(fruskac.config.data).then(function () {
 
         if (track) {
             // load external track
             loader.append(track, TYPE_TRACK).then(function (object) {
-                google.maps.event.addListenerOnce(gmap, 'idle', function () {
-                    map.focus(object); // focus on appended object
-                });
+                map.focus(object); // focus on appended object
             })
         }
 
         if (focus) {
             // focus on selector
-            google.maps.event.addListenerOnce(gmap, 'idle', function () {
-                storage.focus(focus, true); // focus on selected object
-            });
+            storage.focus(focus, true); // focus on selected object
         }
 
         if (!(track || focus) && latLngZoom && latLngZoomParts && latLngZoomParts.length) {
             // add circle marker if track/location not set
-            google.maps.event.addListenerOnce(gmap, 'idle', function () {
-                map.placeMarker(new google.maps.LatLng(latLngZoomParts[0], latLngZoomParts[1]), null, true); // create pulsating marker
-            });
+            map.placeMarker(new google.maps.LatLng(latLngZoomParts[0], latLngZoomParts[1]), null, true); // create pulsating marker
         }
 
         event.publish('ready');

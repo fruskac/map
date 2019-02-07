@@ -47,6 +47,7 @@ fruskac.init = function () {
         fullscreenControl: false,
         clickableIcons: false,
         gestureHandling: 'greedy',
+        controlSize: 30,
     };
 
     var latLngZoom = request.get(PARAMETER_COORDINATES);

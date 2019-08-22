@@ -8,7 +8,6 @@ var clean = require('gulp-clean');
 var doxx = require('gulp-doxx');
 var replace = require('gulp-replace');
 var runSequence = require('run-sequence');
-var ga = require('gulp-ga');
 var iife = require('gulp-iife');
 var inlinesource = require('gulp-inline-source');
 var imagemin = require('gulp-imagemin');
@@ -20,12 +19,6 @@ var gls = require('gulp-live-server');
 var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {};
-
-var gaConfig = {
-    url: 'auto',
-    uid: 'UA-52141130-3',
-    sendPageView: true
-};
 
 gulp.task('default', ['build']);
 
@@ -199,7 +192,6 @@ gulp.task('docs:copy:examples', function () {
         .src([
             'examples/**/*'
         ])
-        .pipe(ga(gaConfig))
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true,
@@ -224,7 +216,6 @@ gulp.task('docs:documentation', function () {
             urlPrefix: '/map'
         }))
         .pipe(replace(/http:\/\/(?!localhost)([^/]+)/g, '//$1')) // fix to allow https
-        .pipe(ga(gaConfig))
         .pipe(gulp.dest('docs'));
 });
 

@@ -33,10 +33,7 @@ fruskac.Marker = (function () {
         if (!div) {
 
             div = self.div = document.createElement('div');
-            div.setAttribute('class', 'marker-container');
-            if (!self.options.visible) {
-                div.setAttribute('class', div.getAttribute('class') + ' hidden');
-            }
+            div.setAttribute('class', 'marker-container hidden');
 
             if (!self.pulsate) {
                 self.markerShadow = document.createElement('div');
@@ -74,9 +71,9 @@ fruskac.Marker = (function () {
 
             // if this is a regular marker
             if (!self.pulsate) {
-                // add wobble animation on enter
+                // add random timeout on enter
                 setTimeout(function () {
-                    self.animateWobble();
+                    util.removeClass(self.div, 'hidden');
                 }, Math.random() * 800 + 200);
 
                 // Show info Window for desktop
@@ -148,9 +145,6 @@ fruskac.Marker = (function () {
                 //clusterer.addMarker(self);
                 setTimeout(function () {
                     util.removeClass(self.div, 'hidden');
-                    //if (!self.clustered) {
-                        self.animateWobble();
-                    //}
                 }, Math.random() * 400);
             } else {
                 //clusterer.removeMarker(self);
@@ -240,47 +234,6 @@ fruskac.Marker = (function () {
     };
 
     /**
-     * Animate Marker with "Drop" animation
-     */
-    /*Marker.prototype.animateDrop = function () {
-     dynamics.stop(this.markerWrap);
-     dynamics.css(this.markerWrap, {
-     'transform': 'scaleY(2) translateY(-' + $('#map').outerHeight() + 'px)',
-     'opacity': '1'
-     });
-     dynamics.animate(this.markerWrap, {
-     translateY: 0,
-     scaleY: 1.0
-     }, {
-     type: dynamics.gravity,
-     duration: 1800
-     });
-
-     dynamics.stop(this.marker);
-     dynamics.css(this.marker, {
-     'transform': 'none'
-     });
-     dynamics.animate(this.marker, {
-     scaleY: 0.8
-     }, {
-     type: dynamics.bounce,
-     duration: 1800,
-     bounciness: 600
-     });
-
-     dynamics.stop(this.markerShadow);
-     dynamics.css(this.markerShadow, {
-     'transform': 'scale(0,0)',
-     });
-     dynamics.animate(this.markerShadow, {
-     scale: 1
-     }, {
-     type: dynamics.gravity,
-     duration: 1800
-     });
-     };*/
-
-    /**
      * Animate Marker with Bounce animation
      */
     Marker.prototype.animateBounce = function () {
@@ -328,34 +281,6 @@ fruskac.Marker = (function () {
             bounciness: 0,
             duration: 500,
             delay: 150
-        });
-    };
-
-    /**
-     * Animate Marker with Wobble animation
-     */
-    Marker.prototype.animateWobble = function () {
-        dynamics.stop(this.markerWrap);
-        dynamics.css(this.markerWrap, {
-            'transform': 'none'
-        });
-        dynamics.animate(this.markerWrap, {
-            rotateZ: Math.random() * 90 - 45
-        }, {
-            type: dynamics.bounce,
-            duration: 1800
-        });
-
-        dynamics.stop(this.marker);
-        dynamics.css(this.marker, {
-            'transform': 'none'
-        });
-        dynamics.animate(this.marker, {
-            scaleX: 0.8
-        }, {
-            type: dynamics.bounce,
-            duration: 800,
-            bounciness: 1800
         });
     };
 

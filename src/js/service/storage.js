@@ -313,9 +313,6 @@ fruskac.Storage = (function () {
                         item.children.forEach(function (child) {
                             var shoudBeOpaque = category && child.categories.indexOf(category) === -1;
                             child.setOpaque(shoudBeOpaque);
-                            if (!shoudBeOpaque) {
-                                child.animateWobble();
-                            }
                         })
                     }
                 })

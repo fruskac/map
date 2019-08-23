@@ -106,8 +106,6 @@
               </li>
               <li><a href="#close"><i class="alert alert-info"></i><span>close</span></a>
               </li>
-              <li><a href="#animateWobble"><i class="alert alert-info"></i><span>animateWobble</span></a>
-              </li>
             </ul>
           </div>
         </div>
@@ -213,9 +211,6 @@
 
     setTimeout(function () {
         self.dialog.open(gmap, anchor);
-        setTimeout(function () {
-            self.animateWobble();
-        }, 99)
     }, 99);
 
 },</code></pre>
@@ -231,23 +226,7 @@
     if (this.dialog.getVisible()) {
         this.dialog.close();
     }
-},</code></pre>
-          <section id="animateWobble">
-            <h1>animateWobble</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-info radius ctx-type">method</div><span>Dialog.prototype.animateWobble()</span>
-            </p>
-          </section>
-          <div class="description"><p>Animate Marker with Wobble animation</p> </div>
-          <pre><code class="language-javascript">animateWobble: function () {
-    dynamics.animate(this.container.parentNode, {
-        rotateZ: Math.random() * 30 - 15
-    }, {
-        type: dynamics.bounce,
-        duration: 1800
-    })
-}
+},
 
     };
 

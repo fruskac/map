@@ -673,9 +673,6 @@
                 item.children.forEach(function (child) {
                     var shoudBeOpaque = category &amp;&amp; child.categories.indexOf(category) === -1;
                     child.setOpaque(shoudBeOpaque);
-                    if (!shoudBeOpaque) {
-                        child.animateWobble();
-                    }
                 })
             }
         })

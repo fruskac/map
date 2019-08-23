@@ -73,9 +73,6 @@ fruskac.Dialog = (function () {
 
             setTimeout(function () {
                 self.dialog.open(gmap, anchor);
-                setTimeout(function () {
-                    self.animateWobble();
-                }, 99)
             }, 99);
 
         },
@@ -88,18 +85,6 @@ fruskac.Dialog = (function () {
                 this.dialog.close();
             }
         },
-
-        /**
-         * Animate Marker with Wobble animation
-         */
-        animateWobble: function () {
-            dynamics.animate(this.container.parentNode, {
-                rotateZ: Math.random() * 30 - 15
-            }, {
-                type: dynamics.bounce,
-                duration: 1800
-            })
-        }
 
     };
 

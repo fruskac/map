@@ -120,8 +120,6 @@
               </li>
               <li><a href="#animateBounce"><i class="alert alert-info"></i><span>animateBounce</span></a>
               </li>
-              <li><a href="#animateWobble"><i class="alert alert-info"></i><span>animateWobble</span></a>
-              </li>
             </ul>
           </div>
         </div>
@@ -182,10 +180,7 @@
     if (!div) {
 
         div = self.div = document.createElement('div');
-        div.setAttribute('class', 'marker-container');
-        if (!self.options.visible) {
-            div.setAttribute('class', div.getAttribute('class') + ' hidden');
-        }
+        div.setAttribute('class', 'marker-container hidden');
 
         if (!self.pulsate) {
             self.markerShadow = document.createElement('div');
@@ -223,9 +218,9 @@
 
         // if this is a regular marker
         if (!self.pulsate) {
-            // add wobble animation on enter
+            // add random timeout on enter
             setTimeout(function () {
-                self.animateWobble();
+                util.removeClass(self.div, 'hidden');
             }, Math.random() * 800 + 200);
 
             // Show info Window for desktop
@@ -351,9 +346,6 @@
             //clusterer.addMarker(self);
             setTimeout(function () {
                 util.removeClass(self.div, 'hidden');
-                //if (!self.clustered) {
-                    self.animateWobble();
-                //}
             }, Math.random() * 400);
         } else {
             //clusterer.removeMarker(self);
@@ -478,31 +470,6 @@
 
     dialog.open(content, self);
 };</code></pre>
-          <div class="description"><p>Animate Marker with &quot;Drop&quot; animation</p> </div>
-          <div class="description"><p>Marker.prototype.animateDrop = function () {<br />     dynamics.stop(this.markerWrap);<br />     dynamics.css(this.markerWrap, {<br />     &#39;transform&#39;: &#39;scaleY(2) translateY(-&#39; + $(&#39;#map&#39;).outerHeight() + &#39;px)&#39;,<br />     &#39;opacity&#39;: &#39;1&#39;<br />     });<br />     dynamics.animate(this.markerWrap, {<br />     translateY: 0,<br />     scaleY: 1.0<br />     }, {<br />     type: dynamics.gravity,<br />     duration: 1800<br />     });</p><pre><code> dynamics.stop(this.marker);
- dynamics.css(this.marker, {
- &#39;transform&#39;: &#39;none&#39;
- });
- dynamics.animate(this.marker, {
- scaleY: 0.8
- }, {
- type: dynamics.bounce,
- duration: 1800,
- bounciness: 600
- });
-
- dynamics.stop(this.markerShadow);
- dynamics.css(this.markerShadow, {
- &#39;transform&#39;: &#39;scale(0,0)&#39;,
- });
- dynamics.animate(this.markerShadow, {
- scale: 1
- }, {
- type: dynamics.gravity,
- duration: 1800
- });
- };
-</code></pre> </div>
           <section id="animateBounce">
             <h1>animateBounce</h1>
             <h5 class="subheader"></h5>
@@ -556,38 +523,6 @@
         bounciness: 0,
         duration: 500,
         delay: 150
-    });
-};</code></pre>
-          <section id="animateWobble">
-            <h1>animateWobble</h1>
-            <h5 class="subheader"></h5>
-            <p>
-              <div class="label label-info radius ctx-type">method</div><span>Marker.prototype.animateWobble()</span>
-            </p>
-          </section>
-          <div class="description"><p>Animate Marker with Wobble animation</p> </div>
-          <pre><code class="language-javascript">Marker.prototype.animateWobble = function () {
-    dynamics.stop(this.markerWrap);
-    dynamics.css(this.markerWrap, {
-        'transform': 'none'
-    });
-    dynamics.animate(this.markerWrap, {
-        rotateZ: Math.random() * 90 - 45
-    }, {
-        type: dynamics.bounce,
-        duration: 1800
-    });
-
-    dynamics.stop(this.marker);
-    dynamics.css(this.marker, {
-        'transform': 'none'
-    });
-    dynamics.animate(this.marker, {
-        scaleX: 0.8
-    }, {
-        type: dynamics.bounce,
-        duration: 800,
-        bounciness: 1800
     });
 };
 

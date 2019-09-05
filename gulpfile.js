@@ -36,8 +36,10 @@ paths.less = [
 gulp.task('build:less', function () {
     return gulp.src(paths.less)
         .pipe(less())
+        .pipe(sourcemaps.init())
         .pipe(cssnano())
         .pipe(concat('map.min.css'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./dist'));
 });
 

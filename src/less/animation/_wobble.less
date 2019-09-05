@@ -1,0 +1,22 @@
+.wobble(@type) {
+  transition-timing-function: ease-in-out;
+  animation-duration: 1800ms;
+  animation-fill-mode: both;
+  animation-name: ~'wobble_@{type}';
+}
+
+.wobble_type_keyframes(1, 20);
+.wobble_type_keyframes(2, -15);
+.wobble_type_keyframes(3, 8);
+.wobble_type_keyframes(4, -4);
+
+.wobble_type_keyframes(@type, @intensity) {
+  @name: ~'wobble_@{type}';
+
+  @keyframes @name {
+    10% { transform: rotate(unit(@intensity, deg)); }
+    30% { transform: rotate(unit(-@intensity*0.7, deg)); }
+    50% { transform: rotate(unit(@intensity*0.4, deg)); }
+    70% { transform: rotate(unit(-@intensity*0.1, deg)); }
+  }
+}

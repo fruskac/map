@@ -1,0 +1,24 @@
+.twist(@type) {
+  transition-timing-function: ease-in-out;
+  animation-duration: 800ms;
+  animation-fill-mode: both;
+  animation-name: ~'twist_@{type}';
+}
+
+.twist_type_keyframes(1, 30);
+.twist_type_keyframes(2, 20);
+.twist_type_keyframes(3, 10);
+.twist_type_keyframes(4, 5);
+
+.twist_type_keyframes(@type, @intensity) {
+  @name: ~'twist_@{type}';
+
+  @keyframes @name {
+    0% { transform: scale(0); }
+    8% { transform: scaleY(1.1); }
+    10% { transform: scale(1); }
+    10% { transform: scaleX((100-@intensity)/100); }
+    30% { transform: scaleX(1); }
+    50% { transform: scaleX((100-@intensity/2)/100); }
+  }
+}

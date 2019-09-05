@@ -1,3 +1,6 @@
+@import "animation/_wobble";
+@import "animation/_twist";
+
 @markerWidth: 32px;
 @markerHeightFactor: 1.20711;
 @markerHeight: round(@markerHeightFactor * @markerWidth);
@@ -14,7 +17,6 @@
   height: @markerWidth;
   margin-top: -@markerHeight;
   margin-left: -@markerWidth/2;
-  transform-origin: 50% round(@markerHeightFactor * 100%) 0;
 }
 
 .color(@name, @color:@markerColor) {
@@ -155,6 +157,38 @@
 .scaleOnZoom(9);
 .scaleOnZoom(10);
 .scaleOnZoom(11);
+
+/* wobble marker animation */
+.marker-container {
+  .marker-wrap {
+    transform-origin: 50% round(@markerHeightFactor * 100%) 0;
+  }
+
+  &:nth-child(4n+1) {
+    .twist(1);
+    .marker-wrap {
+      .wobble(1);
+    }
+  }
+  &:nth-child(4n+2) {
+    .twist(2);
+    .marker-wrap {
+      .wobble(2);
+    }
+  }
+  &:nth-child(4n+3) {
+    .twist(3);
+    .marker-wrap {
+      .wobble(3);
+    }
+  }
+  &:nth-child(4n+4) {
+    .twist(4);
+    .marker-wrap {
+      .wobble(4);
+    }
+  }
+}
 
 @keyframes pulsate {
   0% {

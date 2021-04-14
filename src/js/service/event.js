@@ -1,76 +1,71 @@
-'use strict';
-
 fruskac.Event = (function () {
+  const cache = {};
 
-    var cache = {};
+  /**
+   * Event
+   * @global
+   * @constructor
+   */
+  function Event() {
+  }
+
+  /**
+   * @global
+   */
+  Event.prototype = {
 
     /**
-     * Event
-     * @global
-     * @constructor
+     * Publish on channel
+     * @param {string} name
+     * @param args
      */
-    function Event() {
-    }
+    publish(name, args) {
+      try {
+        cache[name] && cache[name].forEach((callback) => {
+          callback.apply(args);
+        });
+      } catch (err) {
+        console.warn(err);
+      }
+    },
 
     /**
-     * @global
+     * Subscribe a callback on a channel
+     * @param {string|Array} name
+     * @param {Function} callback
+     * @returns {Array}
      */
-    Event.prototype = {
+    subscribe(name, callback) {
+      const self = this;
 
-        /**
-         * Publish on channel
-         * @param {string} name
-         * @param args
-         */
-        publish: function (name, args) {
-            try {
-                cache[name] && cache[name].forEach(function (callback) {
-                    callback.apply(args);
-                });
-            } catch (err) {
-                console.warn(err);
-            }
-        },
+      if (name.constructor === Array) {
+        name.forEach((n) => {
+          self.subscribe(n, callback);
+        });
+        return;
+      }
 
-        /**
-         * Subscribe a callback on a channel
-         * @param {string|Array} name
-         * @param {Function} callback
-         * @returns {Array}
-         */
-        subscribe: function (name, callback) {
+      if (!cache[name]) {
+        cache[name] = [];
+      }
+      cache[name].push(callback);
+      return [name, callback];
+    },
 
-            var self = this;
-
-            if (name.constructor === Array) {
-                name.forEach(function (n) {
-                    self.subscribe(n, callback);
-                });
-                return;
-            }
-
-            if (!cache[name]) {
-                cache[name] = [];
-            }
-            cache[name].push(callback);
-            return [name, callback];
-        },
-
-        /**
-         * Unsubscribe
-         * @param handle
-         */
-        unsubscribe: function (handle) {
-            var name = handle[0];
-            cache[name] && cache[name].forEach(function (id) {
-                if (this == handle[1]) {
-                    cache[name].splice(id, 1);
-                }
-            });
+    /**
+     * Unsubscribe
+     * @param handle
+     */
+    unsubscribe(handle) {
+      const name = handle[0];
+      cache[name] && cache[name].forEach(function (id) {
+        if (this == handle[1]) {
+          cache[name].splice(id, 1);
         }
+      });
+    },
 
-    };
+  };
 
-    return Event;
-
-})();
+  return Event;
+}());

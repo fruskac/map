@@ -135,6 +135,7 @@
             function ($scope, $location, COLOR) {
 
                 $scope.COLOR = COLOR;
+                $scope.MAP_TYPES = ['osm', 'satellite'];
 
                 var params = $location.search();
 
@@ -215,9 +216,9 @@
         <div class="panel panel-default">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a ng-click="type(type()==='osm'?'satellite':'osm')">
+                    <a ng-click="type(type()===MAP_TYPES[0]?MAP_TYPES[1]:MAP_TYPES[0])">
                         <i class="fa"
-                           ng-class="{'fa-check-square':type()==='satellite','fa-square-o':!type()!=='osm'}"></i>
+                           ng-class="{'fa-check-square':type()===MAP_TYPES[1],'fa-square-o':!type()!==MAP_TYPES[0]}"></i>
                         Satellite
                     </a>
                 </li>

@@ -17,6 +17,7 @@ const rename = require('gulp-rename');
 const gls = require('gulp-live-server');
 const sourcemaps = require('gulp-sourcemaps');
 const { series } = require('gulp');
+const babel = require('gulp-babel');
 
 const paths = {};
 
@@ -55,6 +56,9 @@ paths.js = [
 
 const buildJs = () => gulp.src(paths.js)
   .pipe(sourcemaps.init())
+  .pipe(babel({
+    presets: ['@babel/preset-env'],
+  }))
   .pipe(concat('map.min.js'))
   .pipe(replace(/["']use strict["'];/g, ''))
   .pipe(iife({

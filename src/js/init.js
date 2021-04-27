@@ -91,12 +91,12 @@ fruskac.init = function () {
   const track = request.get(PARAMETER_TRACK);
   const focus = request.get(PARAMETER_FOCUS);
 
-  if (fruskac.config.map.bounds && !(track || focus)) {
+  /*if (fruskac.config.map.bounds && !(track || focus)) {
     gmap.fitBounds(new google.maps.LatLngBounds(
       new google.maps.LatLng(fruskac.config.map.bounds.sw.latitude, fruskac.config.map.bounds.sw.longitude),
       new google.maps.LatLng(fruskac.config.map.bounds.ne.latitude, fruskac.config.map.bounds.ne.longitude),
     ));
-  }
+  }*/
 
   /* const overlayImageBounds = {
     north: 45.166508,
@@ -124,44 +124,6 @@ fruskac.init = function () {
   map = new fruskac.Map();
   dialog = new fruskac.Dialog();
   geolocation = new fruskac.Geolocation();
-
-  /* clusterer = new MarkerClusterer(gmap, [], {
-        maxZoom: 12,
-        gridSize: 50,
-        styles: [
-            {
-                textColor: 'white',
-                height: 24,
-                width: 24
-            },
-            {
-                textColor: 'white',
-                height: 32,
-                width: 32
-            },
-            {
-                textColor: 'white',
-                height: 48,
-                width: 48
-            }
-        ]
-    });
-
-    clusterer.setEnabled = function (value) {
-        clusterer.enabled = value;
-        if (value) {
-            clusterer.setMaxZoom(12);
-            clusterer.setGridSize(50);
-        } else {
-            clusterer.setMaxZoom(1);
-            clusterer.setGridSize(1);
-        }
-        clusterer.resetViewport();
-        clusterer.redraw();
-    };
-
-    clusterer.setEnabled(fruskac.config.clustering); */
-
   chart = new fruskac.Chart(document.getElementById('chart_container'));
 
   const loader = new fruskac.Loader();
@@ -185,5 +147,21 @@ fruskac.init = function () {
     }
 
     event.publish('ready');
+
+    let onMoveTimout;
+    const onMove = () => {
+      clearTimeout(onMoveTimout);
+      onMoveTimout = setTimeout(() => {
+        const { lat, lng } = gmap.getCenter();
+        event.publish('move', {
+          lat: lat(),
+          lng: lng(),
+          zoom: gmap.getZoom(),
+        });
+      }, 700);
+    };
+
+    gmap.addListener('zoom_changed', onMove);
+    gmap.addListener('center_changed', onMove);
   });
 };

@@ -84,12 +84,6 @@ fruskac.Marker = (function () {
 
     self.setPoint(self.position);
 
-    /*
-        if (self.options.visible && !self.pulsate) {
-            clusterer.addMarker(self);
-        }
-        */
-
     /**
      * Attach events which handle click/touch on marker, and show Info Window
      * @param {string} prepareEvent
@@ -137,46 +131,17 @@ fruskac.Marker = (function () {
       self.visible = value;
 
       if (value) {
-        // clusterer.addMarker(self);
         setTimeout(() => {
           util.removeClass(self.div, 'hidden');
-          // if (!self.clustered) {
           self.animateWobble();
-          // }
         }, Math.random() * 400);
       } else {
-        // clusterer.removeMarker(self);
         setTimeout(() => {
           util.addClass(self.div, 'hidden');
         }, Math.random() * 200);
       }
     }
   };
-
-  /**
-   * Set clustered
-   *
-   * @param {boolean} value
-   */
-  /*
-    Marker.prototype.setClustered = function (value) {
-        var self = this;
-
-        if (self.hasOwnProperty('div')) {
-
-            if (value) {
-                util.addClass(self.div, 'clustered');
-            } else {
-                util.removeClass(self.div, 'clustered');
-                if (self.clustered) {
-                    self.animateWobble();
-                }
-            }
-
-            self.clustered = value;
-        }
-    };
-    */
 
   /**
    * Make marker semi-transparent

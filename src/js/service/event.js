@@ -19,10 +19,11 @@ fruskac.Event = (function () {
      * @param {string} name
      * @param args
      */
-    publish(name, args) {
+    publish(name, ...args) {
+      const self = this;
       try {
         cache[name] && cache[name].forEach((callback) => {
-          callback.apply(args);
+          callback.apply(self, args);
         });
       } catch (err) {
         console.warn(err);

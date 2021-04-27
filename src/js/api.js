@@ -36,6 +36,15 @@ fruskac.Api = (function () {
       event.subscribe('ready', () => {
         callback.apply(self);
       });
+      return this;
+    },
+
+    move(callback) {
+      const self = this;
+      event.subscribe('move', (...args) => {
+        callback.apply(self, args);
+      });
+      return this;
     },
 
     /**
@@ -44,18 +53,6 @@ fruskac.Api = (function () {
      */
     getData() {
       return storage.getSelectors();
-    },
-
-    /**
-     * Get / Set clustering state
-     * @param {undefined|boolean} value
-     * @returns {*|boolean}
-     */
-    clustering(value) {
-      if (value === undefined) { // act as getter
-        return clusterer.enabled;
-      } // act as setter
-      clusterer.setEnabled(value);
     },
 
     /**
